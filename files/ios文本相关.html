@@ -57,15 +57,43 @@
 
 
 
-<meta name="description">
+<meta name="description" content="iOS文本相关
+1、文字布局
+2、Label、TextView、TextField、WebView等基础控件
+3、键盘处理
+4、自定义键盘
+5、Copy、Cut、Paste操作、Menu
+6、UIKit-&amp;gt;TextKit-&amp;gt;CoreText-&amp;gt;Core Graphics
+7、使用TextKit管理和绘制文本
+8、UIKit中使用UIStringDrawing绘制文本
+9、正则匹配">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Jacoli'Home">
-<meta property="og:url" content="http://jacoli.github.io/categories/技术/index.html">
+<meta property="og:url" content="http://jacoli.github.io/files/ios文本相关.html">
 <meta property="og:site_name" content="Jacoli'Home">
-<meta property="og:description">
+<meta property="og:description" content="iOS文本相关
+1、文字布局
+2、Label、TextView、TextField、WebView等基础控件
+3、键盘处理
+4、自定义键盘
+5、Copy、Cut、Paste操作、Menu
+6、UIKit-&amp;gt;TextKit-&amp;gt;CoreText-&amp;gt;Core Graphics
+7、使用TextKit管理和绘制文本
+8、UIKit中使用UIStringDrawing绘制文本
+9、正则匹配">
+<meta property="og:updated_time" content="2016-02-25T12:17:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jacoli'Home">
-<meta name="twitter:description">
+<meta name="twitter:description" content="iOS文本相关
+1、文字布局
+2、Label、TextView、TextField、WebView等基础控件
+3、键盘处理
+4、自定义键盘
+5、Copy、Cut、Paste操作、Menu
+6、UIKit-&amp;gt;TextKit-&amp;gt;CoreText-&amp;gt;Core Graphics
+7、使用TextKit管理和绘制文本
+8、UIKit中使用UIStringDrawing绘制文本
+9、正则匹配">
 
 
 
@@ -83,7 +111,13 @@
   };
 </script>
 
-  <title> 分类: 技术 | Jacoli'Home </title>
+  <title>
+  
+
+  
+     | Jacoli'Home
+  
+</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -192,303 +226,34 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        技术
-        <small>分类</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+    
+      <h3 id="iOS文本相关"><a href="#iOS文本相关" class="headerlink" title="iOS文本相关"></a>iOS文本相关</h3><ul>
+<li>1、文字布局</li>
+<li>2、Label、TextView、TextField、WebView等基础控件</li>
+<li>3、键盘处理</li>
+<li>4、自定义键盘</li>
+<li>5、Copy、Cut、Paste操作、Menu</li>
+<li>6、UIKit-&gt;TextKit-&gt;CoreText-&gt;Core Graphics</li>
+<li>7、使用TextKit管理和绘制文本</li>
+<li>8、UIKit中使用UIStringDrawing绘制文本</li>
+<li><p>9、正则匹配</p>
+<pre><code>// finds phone number in format nnn-nnn-nnnn
+NSRange r;
+NSString *regEx = @&quot;[0-9]{3}-[0-9]{3}-[0-9]{4}&quot;;
+r = [textView.text rangeOfString:regEx  options:NSRegularExpressionSearch];
+if (r.location != NSNotFound) {
+    NSLog(@&quot;Phone number is %@&quot;, [textView.text substringWithRange:r]);
+} else {
+    NSLog(@&quot;Not found.&quot;);
+}
+</code></pre></li>
+</ul>
+<p>参考文档：Text Programming Guide for iOS</p>
 
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/04/06/移动技术架构/" itemprop="url">
-              
-                <span itemprop="name">移动技术架构</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-04-06T22:45:56+08:00"
-              content="2016-04-06" >
-          04-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/04/06/阅读笔记一/" itemprop="url">
-              
-                <span itemprop="name">阅读笔记一</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-04-06T20:07:56+08:00"
-              content="2016-04-06" >
-          04-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/04/06/搭建新App需要做哪些事[iOS]/" itemprop="url">
-              
-                <span itemprop="name">搭建新App需要做哪些事[iOS]</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-04-06T20:07:56+08:00"
-              content="2016-04-06" >
-          04-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/04/04/在github上开启个人页/" itemprop="url">
-              
-                <span itemprop="name">利用Github搭建个人博客</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-04-04T22:07:56+08:00"
-              content="2016-04-04" >
-          04-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/04/03/APP代码结构/" itemprop="url">
-              
-                <span itemprop="name">APP结构设计</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-04-03T23:07:56+08:00"
-              content="2016-04-03" >
-          04-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/10/16/iOS开源库收集/" itemprop="url">
-              
-                <span itemprop="name">iOS开源库收集</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-10-16T23:07:56+08:00"
-              content="2015-10-16" >
-          10-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/09/16/iOS事件处理/" itemprop="url">
-              
-                <span itemprop="name">iOS事件处理</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-09-16T23:07:56+08:00"
-              content="2015-09-16" >
-          09-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/08/06/ios crash文件分析/" itemprop="url">
-              
-                <span itemprop="name">ios crash文件分析</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-08-06T22:07:56+08:00"
-              content="2015-08-06" >
-          08-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/06/06/UITableView的Cell高度计算/" itemprop="url">
-              
-                <span itemprop="name">UITableView的Cell高度计算</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-06-06T20:07:56+08:00"
-              content="2015-06-06" >
-          06-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/05/06/iOS开发_统计xcode代码行数/" itemprop="url">
-              
-                <span itemprop="name">iOS开发_统计xcode代码行数</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-05-06T23:07:56+08:00"
-              content="2015-05-06" >
-          05-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/categories/技术/page/2/">2</a><a class="extend next" rel="next" href="/categories/技术/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
-
+  </div>
 
 
           </div>
@@ -496,6 +261,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
