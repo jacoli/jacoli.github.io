@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,设计模式," />
+  <meta name="keywords" content="iOS," />
 
 
 
@@ -57,37 +57,19 @@
 
 
 
-<meta name="description" content="模块化（Bundle）
-业务、服务、功能可以按模块粒度做划分，模块内功能独立，模块间松耦合。
-模块依赖管理工具：CocoaPods、Carthage、Gradle、Maven等
-
-分层（Layers）
-基础功能：硬件、网络、存储、数据模型、音视频、图像、安全、研发支撑、布局、主题、样式、组件化、动态化、动画、控件等
-基础服务：推送、分享、LBS、支付、扫码、统一跳转、登录、H5容器等
-上层业务：首">
+<meta name="description" content="arc：http://clang.llvm.org/docs/AutomaticReferenceCounting.html#bridged-casts
+Toll-Free-Bridginghttp://gracelancy.com/blog/2014/04/21/toll-free-bridging/(bridge T) op：告诉编译器在 bridge 的时候不要做任何事情(bridge_re">
 <meta property="og:type" content="article">
-<meta property="og:title" content="APP结构设计">
-<meta property="og:url" content="http://jacoli.github.io/2016/04/03/APP代码结构/index.html">
+<meta property="og:title" content="ObjectiveC备忘">
+<meta property="og:url" content="http://jacoli.github.io/2015/04/06/ObjectiveC备忘/index.html">
 <meta property="og:site_name" content="Jacoli'Home">
-<meta property="og:description" content="模块化（Bundle）
-业务、服务、功能可以按模块粒度做划分，模块内功能独立，模块间松耦合。
-模块依赖管理工具：CocoaPods、Carthage、Gradle、Maven等
-
-分层（Layers）
-基础功能：硬件、网络、存储、数据模型、音视频、图像、安全、研发支撑、布局、主题、样式、组件化、动态化、动画、控件等
-基础服务：推送、分享、LBS、支付、扫码、统一跳转、登录、H5容器等
-上层业务：首">
-<meta property="og:updated_time" content="2016-04-06T14:23:37.000Z">
+<meta property="og:description" content="arc：http://clang.llvm.org/docs/AutomaticReferenceCounting.html#bridged-casts
+Toll-Free-Bridginghttp://gracelancy.com/blog/2014/04/21/toll-free-bridging/(bridge T) op：告诉编译器在 bridge 的时候不要做任何事情(bridge_re">
+<meta property="og:updated_time" content="2016-04-06T15:41:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="APP结构设计">
-<meta name="twitter:description" content="模块化（Bundle）
-业务、服务、功能可以按模块粒度做划分，模块内功能独立，模块间松耦合。
-模块依赖管理工具：CocoaPods、Carthage、Gradle、Maven等
-
-分层（Layers）
-基础功能：硬件、网络、存储、数据模型、音视频、图像、安全、研发支撑、布局、主题、样式、组件化、动态化、动画、控件等
-基础服务：推送、分享、LBS、支付、扫码、统一跳转、登录、H5容器等
-上层业务：首">
+<meta name="twitter:title" content="ObjectiveC备忘">
+<meta name="twitter:description" content="arc：http://clang.llvm.org/docs/AutomaticReferenceCounting.html#bridged-casts
+Toll-Free-Bridginghttp://gracelancy.com/blog/2014/04/21/toll-free-bridging/(bridge T) op：告诉编译器在 bridge 的时候不要做任何事情(bridge_re">
 
 
 
@@ -105,7 +87,7 @@
   };
 </script>
 
-  <title> APP结构设计 | Jacoli'Home </title>
+  <title> ObjectiveC备忘 | Jacoli'Home </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -235,7 +217,7 @@
             
             
               
-                APP结构设计
+                ObjectiveC备忘
               
             
           </h1>
@@ -247,8 +229,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-03T23:07:56+08:00" content="2016-04-03">
-              2016-04-03
+            <time itemprop="dateCreated" datetime="2015-04-06T23:07:56+08:00" content="2015-04-06">
+              2015-04-06
             </time>
           </span>
 
@@ -305,24 +287,9 @@
       
 
       
-        <h3 id="模块化（Bundle）"><a href="#模块化（Bundle）" class="headerlink" title="模块化（Bundle）"></a>模块化（Bundle）</h3><ul>
-<li>业务、服务、功能可以按模块粒度做划分，模块内功能独立，模块间松耦合。</li>
-<li>模块依赖管理工具：<code>CocoaPods</code>、<code>Carthage</code>、<code>Gradle</code>、<code>Maven</code>等</li>
-</ul>
-<h3 id="分层（Layers）"><a href="#分层（Layers）" class="headerlink" title="分层（Layers）"></a>分层（Layers）</h3><ul>
-<li>基础功能：硬件、网络、存储、数据模型、音视频、图像、安全、研发支撑、布局、主题、样式、组件化、动态化、动画、控件等</li>
-<li>基础服务：推送、分享、LBS、支付、扫码、统一跳转、登录、H5容器等</li>
-<li>上层业务：首页、搜索、详情、活动、社区、交易等</li>
-</ul>
-<h3 id="UI模块的设计模式MVC-vs-MVVM"><a href="#UI模块的设计模式MVC-vs-MVVM" class="headerlink" title="UI模块的设计模式MVC vs MVVM"></a>UI模块的设计模式MVC vs MVVM</h3><ul>
-<li><a href="http://www.cocoachina.com/ios/20160108/14916.html" target="_blank" rel="external">iOS 架构模式–解密 MVC，MVP，MVVM以及VIPER架构</a></li>
-</ul>
-<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><ul>
-<li>一级目录按Layers划分</li>
-<li>二级目录按模块划分</li>
-<li>三级目录按MVC或MVVM划分</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">|--MainBizz</span><br><span class="line">|	|--Front</span><br><span class="line">|      		|--Views</span><br><span class="line">|      		|--Controllers</span><br><span class="line">|      		|--Models</span><br><span class="line">| 	|--Search</span><br><span class="line">|     		|--Views</span><br><span class="line">|      		|--Controllers</span><br><span class="line">|      		|--ViewModels</span><br><span class="line">|      		|--Models</span><br><span class="line">|  	|--Detail</span><br><span class="line">|--BasicServices</span><br><span class="line">|--BasicModules</span><br><span class="line">|--</span><br><span class="line">|--</span><br></pre></td></tr></table></figure>
+        <h3 id="arc："><a href="#arc：" class="headerlink" title="arc："></a>arc：</h3><p><a href="http://clang.llvm.org/docs/AutomaticReferenceCounting.html#bridged-casts" target="_blank" rel="external">http://clang.llvm.org/docs/AutomaticReferenceCounting.html#bridged-casts</a></p>
+<h3 id="Toll-Free-Bridging"><a href="#Toll-Free-Bridging" class="headerlink" title="Toll-Free-Bridging"></a>Toll-Free-Bridging</h3><p><a href="http://gracelancy.com/blog/2014/04/21/toll-free-bridging/" target="_blank" rel="external">http://gracelancy.com/blog/2014/04/21/toll-free-bridging/</a><br>(<strong>bridge T) op：告诉编译器在 bridge 的时候不要做任何事情<br>(</strong>bridge_retained T) op：（ ObjC 转 CF 的时候使用）告诉编译器在 bridge 的时候 retain 对象，开发者需要在CF一端负责释放对象<br>(__bridge_transfer T) op：（ CF 转 ObjC 的时候使用）告诉编译器转移 CF 对象的所有权，开发者不再需要在CF一端负责释放对象</p>
+
       
     </div>
     
@@ -344,8 +311,6 @@
           
             <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-            <a href="/tags/设计模式/" rel="tag">#设计模式</a>
-          
         </div>
       
 
@@ -353,16 +318,12 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/10/16/iOS开源库收集/" rel="next" title="iOS开源库收集">
-                <i class="fa fa-chevron-left"></i> iOS开源库收集
-              </a>
-            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/04/04/在github上开启个人页/" rel="prev" title="利用Github搭建个人博客">
-                利用Github搭建个人博客 <i class="fa fa-chevron-right"></i>
+              <a href="/2015/05/06/iOS开发_统计xcode代码行数/" rel="prev" title="iOS开发_统计xcode代码行数">
+                iOS开发_统计xcode代码行数 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -508,7 +469,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#模块化（Bundle）"><span class="nav-number">1.</span> <span class="nav-text">模块化（Bundle）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分层（Layers）"><span class="nav-number">2.</span> <span class="nav-text">分层（Layers）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UI模块的设计模式MVC-vs-MVVM"><span class="nav-number">3.</span> <span class="nav-text">UI模块的设计模式MVC vs MVVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录结构"><span class="nav-number">4.</span> <span class="nav-text">目录结构</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#arc："><span class="nav-number">1.</span> <span class="nav-text">arc：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Toll-Free-Bridging"><span class="nav-number">2.</span> <span class="nav-text">Toll-Free-Bridging</span></a></li></ol></div>
             
           </div>
         </section>
