@@ -216,278 +216,6 @@
             
               
                 
-                <a class="post-title-link" href="/2015/08/06/ios crash文件分析/" itemprop="url">
-                  ios crash文件分析
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-08-06T22:07:56+08:00" content="2015-08-06">
-              2015-08-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术/工具/" itemprop="url" rel="index">
-                    <span itemprop="name">工具</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="比较老的方法了"><a href="#比较老的方法了" class="headerlink" title="比较老的方法了"></a>比较老的方法了</h3><p>IOS程序在真机运行程序出现crash状况时，机器会自动产生log文件，它包含了在程序crash之前的运行逻辑，分析carsh文件，有效的解决程序在真机上的问题，保证程序良好的稳定性,但是这个crash文件多数是显示出现问题的地址和一些系统的消息，无法查看程序中对应的崩溃地点，以下文章帮你解决这个问题。</p>
-<p>分析崩溃原因，需要三个东西，第一,crash文件，第二，symbolicatecrash，第三，dysm和app文件</p>
-<ol>
-<li><p>在桌面创建一个临时文件夹,如crash</p>
-</li>
-<li><p>首先要从设备中导出crash文件,最简单直接的办法是设备连接到mac上，打开xcode的organizer，然后选择其顶端选中devices，在左边的列表里，就能显示出当前连接的设备信息，选择当前设备下的device logs，等待片刻，中间的列表里会出现很多panic的信息，按照时间排序可以找到最近崩溃的crash，然后右键导出此文件.文件名自动保存为.crash文件，形如: xxx<em>2013-08-15-200743</em>-iPad.crash, 将这个文件拷入第一步创建的临时文件夹备用</p>
-</li>
-<li><p>symbolicatecrash是xcode自带的工具，为了方便调用，可以做一个快捷方式，方便在任意路径下调用<br>首先在termail下，输入find /Applications/Xcode.app -name symbolicatecrash -type f，用来查找symbolicatecrash的真实位置，<br>一般情况下，会返回如下路径</p>
-</li>
-</ol>
-<p>/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/PrivateFrameworks/DTDeviceKit.framework/Versions/A/Resources/symbolicatecrash</p>
-<p>下一步建立快捷方式<br>sudo ln -s “/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/PrivateFrameworks/DTDeviceKit.framework/Versions/A/Resources/symbolicatecrash”  /usr/local/bin/symbolicatecrash</p>
-<p>3.dysm文件存在于最后发包的机器上，使用打开xcode的organizer,选择顶部的archives，看到最后的发包记录，选择distribute保存为相应的archive文件，查看包内容，里面有我们需要的.dSYM文件</p>
-<p>app文件用刚才同样的方法，dictribute保存为ipa文件，把文件名扩展名改为zip，解压后可以得到最后的app文件。将这两个文件拷入第一步创建的临时文件夹备用</p>
-<p>万事俱备，只差最后一步，termail下进入第一步创建的临时文件夹，</p>
-<p>使用命令 symbolicatecrash xxxx.crash  xxxx.dsym &gt; crash.text   将最后分析出来的文件保存在crash.text文件中</p>
-<p>形如 symbolicatecrash xxx_2013-08-15-200743_iPad.crash xxxx.app.dSYM &gt;crash.text</p>
-<p>注意，一般情况下，第一次使用symbolicatecrash会产生一个error，如下的错误信息</p>
-<p>Error: “DEVELOPER_DIR” is not defined at /usr/local/bin/symbolicatecrash line 53.</p>
-<p>解决办法是输入export DEVELOPER_DIR=”/Applications/XCode.app/Contents/Developer</p>
-
-          
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/06/06/UITableView的Cell高度计算/" itemprop="url">
-                  UITableView的Cell高度计算
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-06-06T20:07:56+08:00" content="2015-06-06">
-              2015-06-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术/移动开发/" itemprop="url" rel="index">
-                    <span itemprop="name">移动开发</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>iOS7和iOS8有所区别，iOS7在需要调整布局时，计算一遍高度信息，而iOS8只要重新显示就会计算高度（iOS8 把高度计算搞成这个样子，从 WWDC 也倒是能找到点解释，cell 被认为随时都可能改变高度（如从设置中调整动态字体大小），所以每次滑动出来后都要重新计算高度。<br> ）</p>
-<p>iOS7:<br>1)获取section数和每个section中的row数<br>2)获取所有cell的高度，计算出tableView的contentSize<br>3)按已经算好的frame显示cell</p>
-<p>iOS8:</p>
-<p>1)获取section数和每个section中的row数<br>2)获取所有cell的高度，计算出tableView的contentSize（iOS8中该步骤调用更频繁）<br>3)重新获取当前需要显示cell的高度，调整tableView的contentSize，显示cell</p>
-<p>UITableView的Cell高度计算＋估算</p>
-<p>如果估算，则2）步骤中计算所有cell的高度改成估算所有cell的高度</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">// All methods that trigger height cache&apos;s invalidation</span><br><span class="line"></span><br><span class="line">SEL selectors[] = &#123;</span><br><span class="line"></span><br><span class="line">    @selector(reloadData),</span><br><span class="line"></span><br><span class="line">    @selector(insertSections:withRowAnimation:),</span><br><span class="line"></span><br><span class="line">    @selector(deleteSections:withRowAnimation:),</span><br><span class="line"></span><br><span class="line">    @selector(reloadSections:withRowAnimation:),</span><br><span class="line"></span><br><span class="line">    @selector(moveSection:toSection:),</span><br><span class="line"></span><br><span class="line">    @selector(insertRowsAtIndexPaths:withRowAnimation:),</span><br><span class="line"></span><br><span class="line">    @selector(deleteRowsAtIndexPaths:withRowAnimation:),</span><br><span class="line"></span><br><span class="line">    @selector(reloadRowsAtIndexPaths:withRowAnimation:),</span><br><span class="line"></span><br><span class="line">    @selector(moveRowAtIndexPath:toIndexPath:)</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">for (NSUInteger index = 0; index &lt; sizeof(selectors) / sizeof(SEL); ++index) &#123;</span><br><span class="line"></span><br><span class="line">    SEL originalSelector = selectors[index];</span><br><span class="line"></span><br><span class="line">    SEL swizzledSelector = NSSelectorFromString([@&quot;fd_&quot; stringByAppendingString:NSStringFromSelector(originalSelector)]);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    Method originalMethod = class_getInstanceMethod(self, originalSelector);</span><br><span class="line"></span><br><span class="line">    Method swizzledMethod = class_getInstanceMethod(self, swizzledSelector);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    method_exchangeImplementations(originalMethod, swizzledMethod);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2015/05/06/iOS开发_统计xcode代码行数/" itemprop="url">
                   iOS开发_统计xcode代码行数
                 </a>
@@ -719,6 +447,965 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/04/09/001-OC-Runtime-6-Load&Initialize/" itemprop="url">
+                  OC Runtime(6)之Load&Initialize
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-04-09T00:00:00+08:00" content="2014-04-09">
+              2014-04-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Runtime系列笔记"><a href="#Runtime系列笔记" class="headerlink" title="Runtime系列笔记"></a>Runtime系列笔记</h3><ul>
+<li><a href="/2014/03/07/001-OC-Runtime-1-Object&amp;Class/">Runtime之对象和类</a></li>
+<li><a href="/2014/03/12/001-OC-Runtime-2-Ivar&amp;Property&amp;Method&amp;Protocol/">Runtime之属性和方法</a></li>
+<li><a href="/2014/03/18/001-OC-Runtime-3-Associated%20Objects/">Runtime之关联对象</a></li>
+<li><a href="/2014/03/21/001-OC-Runtime-4-Message%20Forwarding/">Runtime之消息转发</a></li>
+<li><a href="/2014/04/02/001-OC-Runtime-5-Method%20Swizzling/">Runtime之方法替换</a></li>
+<li><a href="/2014/04/09/001-OC-Runtime-6-Load&amp;Initialize/">Runtime之Load&amp;Initialize</a></li>
+</ul>
+<p><img src="/images/OC-Runtime.png" alt="OC-Runtime"></p>
+<h3 id="load"><a href="#load" class="headerlink" title="+load"></a>+load</h3><ul>
+<li><code>+load</code>方法只会被执行一次，且是在程序加载阶段，这时运行环境并不完备。</li>
+<li>不同类或类别的<code>+load</code>方法会按一定顺序被执行。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、依赖库的`+load`。</span><br><span class="line">2、当前库`+load`，`class`的`+load`优先于`category`，父`class`优先于子`class`。</span><br><span class="line">3、当前库的`All C++ static initializers and C/C++ __attribute__(constructor) functions`。</span><br><span class="line">4、被依赖库的`+load`。</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>在<code>+load</code>方法中可以安全地发送消息给当前库内其他类的消息，虽然这些类的<code>+load</code>可能还没有执行过。</p>
+</li>
+<li><p>从源码中，也可以看出<code>class</code>的<code>+load</code>优先于<code>category</code>，父<code>class</code>优先于子<code>class</code>。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">void prepare_load_methods(const headerType *mhdr)</span><br><span class="line">&#123;</span><br><span class="line">    size_t count, i;</span><br><span class="line"></span><br><span class="line">    runtimeLock.assertWriting();</span><br><span class="line"></span><br><span class="line">    classref_t *classlist = </span><br><span class="line">        _getObjc2NonlazyClassList(mhdr, &amp;count);</span><br><span class="line">    for (i = 0; i &lt; count; i++) &#123;</span><br><span class="line">        schedule_class_load(remapClass(classlist[i]));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    category_t **categorylist = _getObjc2NonlazyCategoryList(mhdr, &amp;count);</span><br><span class="line">    for (i = 0; i &lt; count; i++) &#123;</span><br><span class="line">        category_t *cat = categorylist[i];</span><br><span class="line">        Class cls = remapClass(cat-&gt;cls);</span><br><span class="line">        if (!cls) continue;  // category for ignored weak-linked class</span><br><span class="line">        realizeClass(cls);</span><br><span class="line">        assert(cls-&gt;ISA()-&gt;isRealized());</span><br><span class="line">        add_category_to_loadable_list(cat);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">static void schedule_class_load(Class cls)</span><br><span class="line">&#123;</span><br><span class="line">    if (!cls) return;</span><br><span class="line">    assert(cls-&gt;isRealized());  // _read_images should realize</span><br><span class="line"></span><br><span class="line">    if (cls-&gt;data()-&gt;flags &amp; RW_LOADED) return;</span><br><span class="line"></span><br><span class="line">    // Ensure superclass-first ordering</span><br><span class="line">    schedule_class_load(cls-&gt;superclass);</span><br><span class="line"></span><br><span class="line">    add_class_to_loadable_list(cls);</span><br><span class="line">    cls-&gt;setInfo(RW_LOADED); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="initialize"><a href="#initialize" class="headerlink" title="initialize"></a>initialize</h3><ul>
+<li>向类或对象发送消息时，会调用<code>lookUpImpOrForward</code>查找，并会检查是否初始化过，如果没有，则会调用<code>_class_initialize</code>做初始化。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">IMP lookUpImpOrForward(Class cls, SEL sel, id inst, </span><br><span class="line">                       bool initialize, bool cache, bool resolver)</span><br><span class="line">&#123;</span><br><span class="line">    // ...</span><br><span class="line"></span><br><span class="line">    if (initialize  &amp;&amp;  !cls-&gt;isInitialized()) &#123;</span><br><span class="line">        _class_initialize (_class_getNonMetaClass(cls, inst));</span><br><span class="line">        // If sel == initialize, _class_initialize will send +initialize and </span><br><span class="line">        // then the messenger will send +initialize again after this </span><br><span class="line">        // procedure finishes. Of course, if this is not being called </span><br><span class="line">        // from the messenger then it won&apos;t happen. 2778172</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	// ...</span><br><span class="line"></span><br><span class="line">    return imp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="http://cocoasamurai.blogspot.jp/2010/01/understanding-objective-c-runtime.html" target="_blank" rel="external">understanding-objective-c-runtime</a></li>
+<li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048" target="_blank" rel="external">ObjCRuntimeGuide</a></li>
+<li><a href="http://opensource.apple.com/tarballs/objc4/" target="_blank" rel="external">runtime源码</a></li>
+<li><a href="http://blog.jobbole.com/45963/" target="_blank" rel="external">Objective-C 的动态提示和技巧</a></li>
+<li><a href="http://www.cocoachina.com/ios/20150104/10826.html" target="_blank" rel="external">NSObject的load和initialize方法</a></li>
+<li><a href="http://esoftmobile.com/2014/02/18/associated-objects/" target="_blank" rel="external">associated-objects</a></li>
+<li><a href="http://esoftmobile.com/2014/02/19/method-swizzling/" target="_blank" rel="external">method-swizzling</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/04/02/001-OC-Runtime-5-Method Swizzling/" itemprop="url">
+                  OC Runtime(5)之Method Swizzling
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-04-02T00:00:00+08:00" content="2014-04-02">
+              2014-04-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Runtime系列笔记"><a href="#Runtime系列笔记" class="headerlink" title="Runtime系列笔记"></a>Runtime系列笔记</h3><ul>
+<li><a href="/2014/03/07/001-OC-Runtime-1-Object&amp;Class/">Runtime之对象和类</a></li>
+<li><a href="/2014/03/12/001-OC-Runtime-2-Ivar&amp;Property&amp;Method&amp;Protocol/">Runtime之属性和方法</a></li>
+<li><a href="/2014/03/18/001-OC-Runtime-3-Associated%20Objects/">Runtime之关联对象</a></li>
+<li><a href="/2014/03/21/001-OC-Runtime-4-Message%20Forwarding/">Runtime之消息转发</a></li>
+<li><a href="/2014/04/02/001-OC-Runtime-5-Method%20Swizzling/">Runtime之方法替换</a></li>
+<li><a href="/2014/04/09/001-OC-Runtime-6-Load&amp;Initialize/">Runtime之Load&amp;Initialize</a></li>
+</ul>
+<p><img src="/images/OC-Runtime.png" alt="OC-Runtime"></p>
+<h3 id="Method的几个概念"><a href="#Method的几个概念" class="headerlink" title="Method的几个概念"></a>Method的几个概念</h3><ul>
+<li><code>Method</code>包含方法名<code>Selector</code>、函数地址<code>IMP</code>、参数类型<code>TypeEncoding</code>。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NSLog(@&quot;    method name = %s&quot;, sel_getName(method_getName(method)));</span><br><span class="line">NSLog(@&quot;    method type encode = %s&quot;, method_getTypeEncoding(method));</span><br><span class="line">NSLog(@&quot;    NumberOfArguments = %d&quot;, method_getNumberOfArguments(method));</span><br><span class="line">NSLog(@&quot;    ReturnType = %s&quot;, method_copyReturnType(method));</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">2016-04-08 20:54:59.351 OCRuntime[54195:953880]     method name = setNumberProperty:</span><br><span class="line">2016-04-08 20:54:59.352 OCRuntime[54195:953880]     method type encode = v24@0:8@16</span><br><span class="line">2016-04-08 20:54:59.352 OCRuntime[54195:953880]     NumberOfArguments = 3</span><br><span class="line">2016-04-08 20:54:59.352 OCRuntime[54195:953880]     ReturnType = v</span><br></pre></td></tr></table></figure>
+<h3 id="动态修改Method的几个接口"><a href="#动态修改Method的几个接口" class="headerlink" title="动态修改Method的几个接口"></a>动态修改Method的几个接口</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 设置或交换IMP</span><br><span class="line">IMP method_setImplementation(Method m, IMP imp);</span><br><span class="line">void method_exchangeImplementations(Method m1, Method m2);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BOOL class_addMethod(Class cls, SEL name, IMP imp, const char *types);</span><br><span class="line">                                 </span><br><span class="line">// 如果原来没有这个方法，则直接添加Method，效果同class_addMethod</span><br><span class="line">// 如果原来有，则替换掉原来的IMP，忽略参数类型</span><br><span class="line">IMP class_replaceMethod(Class cls, SEL name, IMP imp, const char *types);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>例子：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">+ (void)load &#123;</span><br><span class="line">    static dispatch_once_t onceToken;</span><br><span class="line">    dispatch_once(&amp;onceToken, ^&#123;</span><br><span class="line">        Class class = [self class];</span><br><span class="line"></span><br><span class="line">        // When swizzling a class method, use the following:</span><br><span class="line">        // Class class = object_getClass((id)self);</span><br><span class="line"></span><br><span class="line">        SEL originalSelector = @selector(viewWillAppear:);</span><br><span class="line">        SEL swizzledSelector = @selector(xxx_viewWillAppear:);</span><br><span class="line"></span><br><span class="line">        Method originalMethod = class_getInstanceMethod(class, originalSelector);</span><br><span class="line">        Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);</span><br><span class="line"></span><br><span class="line">        BOOL didAddMethod =</span><br><span class="line">            class_addMethod(class,</span><br><span class="line">                originalSelector,</span><br><span class="line">                method_getImplementation(swizzledMethod),</span><br><span class="line">                method_getTypeEncoding(swizzledMethod));</span><br><span class="line"></span><br><span class="line">        if (didAddMethod) &#123;</span><br><span class="line">            class_replaceMethod(class,</span><br><span class="line">                swizzledSelector,</span><br><span class="line">                method_getImplementation(originalMethod),</span><br><span class="line">                method_getTypeEncoding(originalMethod));</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            method_exchangeImplementations(originalMethod, swizzledMethod);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="http://cocoasamurai.blogspot.jp/2010/01/understanding-objective-c-runtime.html" target="_blank" rel="external">understanding-objective-c-runtime</a></li>
+<li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048" target="_blank" rel="external">ObjCRuntimeGuide</a></li>
+<li><a href="http://opensource.apple.com/tarballs/objc4/" target="_blank" rel="external">runtime源码</a></li>
+<li><a href="http://blog.jobbole.com/45963/" target="_blank" rel="external">Objective-C 的动态提示和技巧</a></li>
+<li><a href="http://www.cocoachina.com/ios/20150104/10826.html" target="_blank" rel="external">NSObject的load和initialize方法</a></li>
+<li><a href="http://esoftmobile.com/2014/02/18/associated-objects/" target="_blank" rel="external">associated-objects</a></li>
+<li><a href="http://esoftmobile.com/2014/02/19/method-swizzling/" target="_blank" rel="external">method-swizzling</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/03/21/001-OC-Runtime-4-Message Forwarding/" itemprop="url">
+                  OC Runtime(4)之Message Forwarding
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-03-21T00:00:00+08:00" content="2014-03-21">
+              2014-03-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Runtime系列笔记"><a href="#Runtime系列笔记" class="headerlink" title="Runtime系列笔记"></a>Runtime系列笔记</h3><ul>
+<li><a href="/2014/03/07/001-OC-Runtime-1-Object&amp;Class/">Runtime之对象和类</a></li>
+<li><a href="/2014/03/12/001-OC-Runtime-2-Ivar&amp;Property&amp;Method&amp;Protocol/">Runtime之属性和方法</a></li>
+<li><a href="/2014/03/18/001-OC-Runtime-3-Associated%20Objects/">Runtime之关联对象</a></li>
+<li><a href="/2014/03/21/001-OC-Runtime-4-Message%20Forwarding/">Runtime之消息转发</a></li>
+<li><a href="/2014/04/02/001-OC-Runtime-5-Method%20Swizzling/">Runtime之方法替换</a></li>
+<li><a href="/2014/04/09/001-OC-Runtime-6-Load&amp;Initialize/">Runtime之Load&amp;Initialize</a></li>
+</ul>
+<p><img src="/images/OC-Runtime.png" alt="OC-Runtime"></p>
+<h3 id="消息发送"><a href="#消息发送" class="headerlink" title="消息发送"></a>消息发送</h3><ul>
+<li>对象方法的调用就是向该对象发送消息。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">OCHelper *object = [[OCHelper alloc] init];</span><br><span class="line"></span><br><span class="line">// 以下两句代码效果是相同的。</span><br><span class="line">[object onHandler];</span><br><span class="line">objc_msgSend(object, @selector(onHandler));</span><br></pre></td></tr></table></figure>
+<ul>
+<li>编译阶段，会自动将OC方法调用转化成内联的<code>objc_msgSend</code>方法调用。</li>
+</ul>
+<h3 id="消息转发"><a href="#消息转发" class="headerlink" title="消息转发"></a>消息转发</h3><ul>
+<li>有了OC的消息机制，就可以在运行时修改消息执行路径。</li>
+<li><p><code>objc_msgSend</code>会调用<code>lookUpImpOrForward</code>从类（或父类）的<code>methodsCache</code>或<code>methodList</code>寻找方法。</p>
+</li>
+<li><p><code>lookUpImpOrForward</code>的源码如下：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line">IMP lookUpImpOrForward(Class cls, SEL sel, id inst, </span><br><span class="line">                       bool initialize, bool cache, bool resolver)</span><br><span class="line">&#123;</span><br><span class="line">    Class curClass;</span><br><span class="line">    IMP methodPC = nil;</span><br><span class="line">    Method meth;</span><br><span class="line">    bool triedResolver = NO;</span><br><span class="line"></span><br><span class="line">    methodListLock.assertUnlocked();</span><br><span class="line"></span><br><span class="line">    // Optimistic cache lookup</span><br><span class="line">    if (cache) &#123;</span><br><span class="line">        methodPC = _cache_getImp(cls, sel);</span><br><span class="line">        if (methodPC) return methodPC;    </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Check for freed class</span><br><span class="line">    if (cls == _class_getFreedObjectClass())</span><br><span class="line">        return (IMP) _freedHandler;</span><br><span class="line"></span><br><span class="line">    // Check for +initialize</span><br><span class="line">    if (initialize  &amp;&amp;  !cls-&gt;isInitialized()) &#123;</span><br><span class="line">        _class_initialize (_class_getNonMetaClass(cls, inst));</span><br><span class="line">        // If sel == initialize, _class_initialize will send +initialize and </span><br><span class="line">        // then the messenger will send +initialize again after this </span><br><span class="line">        // procedure finishes. Of course, if this is not being called </span><br><span class="line">        // from the messenger then it won&apos;t happen. 2778172</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // The lock is held to make method-lookup + cache-fill atomic </span><br><span class="line">    // with respect to method addition. Otherwise, a category could </span><br><span class="line">    // be added but ignored indefinitely because the cache was re-filled </span><br><span class="line">    // with the old value after the cache flush on behalf of the category.</span><br><span class="line"> retry:</span><br><span class="line">    methodListLock.lock();</span><br><span class="line"></span><br><span class="line">    // Ignore GC selectors</span><br><span class="line">    if (ignoreSelector(sel)) &#123;</span><br><span class="line">        methodPC = _cache_addIgnoredEntry(cls, sel);</span><br><span class="line">        goto done;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Try this class&apos;s cache.</span><br><span class="line"></span><br><span class="line">    methodPC = _cache_getImp(cls, sel);</span><br><span class="line">    if (methodPC) goto done;</span><br><span class="line"></span><br><span class="line">    // Try this class&apos;s method lists.</span><br><span class="line"></span><br><span class="line">    meth = _class_getMethodNoSuper_nolock(cls, sel);</span><br><span class="line">    if (meth) &#123;</span><br><span class="line">        log_and_fill_cache(cls, cls, meth, sel);</span><br><span class="line">        methodPC = method_getImplementation(meth);</span><br><span class="line">        goto done;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Try superclass caches and method lists.</span><br><span class="line"></span><br><span class="line">    curClass = cls;</span><br><span class="line">    while ((curClass = curClass-&gt;superclass)) &#123;</span><br><span class="line">        // Superclass cache.</span><br><span class="line">        meth = _cache_getMethod(curClass, sel, _objc_msgForward_impcache);</span><br><span class="line">        if (meth) &#123;</span><br><span class="line">            if (meth != (Method)1) &#123;</span><br><span class="line">                // Found the method in a superclass. Cache it in this class.</span><br><span class="line">                log_and_fill_cache(cls, curClass, meth, sel);</span><br><span class="line">                methodPC = method_getImplementation(meth);</span><br><span class="line">                goto done;</span><br><span class="line">            &#125;</span><br><span class="line">            else &#123;</span><br><span class="line">                // Found a forward:: entry in a superclass.</span><br><span class="line">                // Stop searching, but don&apos;t cache yet; call method </span><br><span class="line">                // resolver for this class first.</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // Superclass method list.</span><br><span class="line">        meth = _class_getMethodNoSuper_nolock(curClass, sel);</span><br><span class="line">        if (meth) &#123;</span><br><span class="line">            log_and_fill_cache(cls, curClass, meth, sel);</span><br><span class="line">            methodPC = method_getImplementation(meth);</span><br><span class="line">            goto done;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // No implementation found. Try method resolver once.</span><br><span class="line"></span><br><span class="line">    if (resolver  &amp;&amp;  !triedResolver) &#123;</span><br><span class="line">        methodListLock.unlock();</span><br><span class="line">        _class_resolveMethod(cls, sel, inst);</span><br><span class="line">        triedResolver = YES;</span><br><span class="line">        goto retry;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // No implementation found, and method resolver didn&apos;t help. </span><br><span class="line">    // Use forwarding.</span><br><span class="line"></span><br><span class="line">    _cache_addForwardEntry(cls, sel);</span><br><span class="line">    methodPC = _objc_msgForward_impcache;</span><br><span class="line"></span><br><span class="line"> done:</span><br><span class="line">    methodListLock.unlock();</span><br><span class="line"></span><br><span class="line">    // paranoia: look for ignored selectors with non-ignored implementations</span><br><span class="line">    assert(!(ignoreSelector(sel)  &amp;&amp;  methodPC != (IMP)&amp;_objc_ignored_method));</span><br><span class="line"></span><br><span class="line">    return methodPC;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果找到方法，则直接执行。</li>
+<li>如果没有找到方法，则提供一套Hock机制，允许运行时解决。</li>
+<li><code>NSObject</code>提供了些可重载的方法，如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@interface NSObject</span><br><span class="line">- (id)forwardingTargetForSelector:(SEL)aSelector;</span><br><span class="line">- (void)forwardInvocation:(NSInvocation *)anInvocation;</span><br><span class="line">- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector;</span><br><span class="line">+ (BOOL)resolveClassMethod:(SEL)sel;</span><br><span class="line">+ (BOOL)resolveInstanceMethod:(SEL)sel;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果没有找到方法，会先调用<code>resolveInstanceMethod</code>，在该方法中可动态添加方法到类。</li>
+</ul>
+<p><img src="/images/messaging.png" alt="resolveInstanceMethod"></p>
+<ul>
+<li>如果不行，接下来会调用<code>forwardingTargetForSelector</code>转发，可动态替换掉响应对象。</li>
+<li>如果还不行，则调用<code>methodSignatureForSelector</code>和<code>forwardInvocation</code>转发<code>Invocation</code>。</li>
+<li>如果还不行，则会抛异常<code>doesNotRecognizeSelector</code>。</li>
+</ul>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="http://cocoasamurai.blogspot.jp/2010/01/understanding-objective-c-runtime.html" target="_blank" rel="external">understanding-objective-c-runtime</a></li>
+<li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048" target="_blank" rel="external">ObjCRuntimeGuide</a></li>
+<li><a href="http://opensource.apple.com/tarballs/objc4/" target="_blank" rel="external">runtime源码</a></li>
+<li><a href="http://blog.jobbole.com/45963/" target="_blank" rel="external">Objective-C 的动态提示和技巧</a></li>
+<li><a href="http://www.cocoachina.com/ios/20150104/10826.html" target="_blank" rel="external">NSObject的load和initialize方法</a></li>
+<li><a href="http://esoftmobile.com/2014/02/18/associated-objects/" target="_blank" rel="external">associated-objects</a></li>
+<li><a href="http://esoftmobile.com/2014/02/19/method-swizzling/" target="_blank" rel="external">method-swizzling</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/03/18/001-OC-Runtime-3-Associated Objects/" itemprop="url">
+                  OC Runtime(3)之Associated Objects
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-03-18T00:00:00+08:00" content="2014-03-18">
+              2014-03-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Runtime系列笔记"><a href="#Runtime系列笔记" class="headerlink" title="Runtime系列笔记"></a>Runtime系列笔记</h3><ul>
+<li><a href="/2014/03/07/001-OC-Runtime-1-Object&amp;Class/">Runtime之对象和类</a></li>
+<li><a href="/2014/03/12/001-OC-Runtime-2-Ivar&amp;Property&amp;Method&amp;Protocol/">Runtime之属性和方法</a></li>
+<li><a href="/2014/03/18/001-OC-Runtime-3-Associated%20Objects/">Runtime之关联对象</a></li>
+<li><a href="/2014/03/21/001-OC-Runtime-4-Message%20Forwarding/">Runtime之消息转发</a></li>
+<li><a href="/2014/04/02/001-OC-Runtime-5-Method%20Swizzling/">Runtime之方法替换</a></li>
+<li><a href="/2014/04/09/001-OC-Runtime-6-Load&amp;Initialize/">Runtime之Load&amp;Initialize</a></li>
+</ul>
+<p><img src="/images/OC-Runtime.png" alt="OC-Runtime"></p>
+<h3 id="关联对象"><a href="#关联对象" class="headerlink" title="关联对象"></a>关联对象</h3><ul>
+<li><objc runtime.h="">提供了三个方法，分别是get、set、remove</objc></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">void objc_setAssociatedObject(id object, const void *key, id value, objc_AssociationPolicy policy);</span><br><span class="line">id objc_getAssociatedObject(id object, const void *key);</span><br><span class="line">void objc_removeAssociatedObjects(id object);</span><br></pre></td></tr></table></figure>
+<h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><ul>
+<li>获取</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">id _object_get_associative_reference(id object, void *key) &#123;</span><br><span class="line">    id value = nil;</span><br><span class="line">    uintptr_t policy = OBJC_ASSOCIATION_ASSIGN;</span><br><span class="line">    &#123;</span><br><span class="line">        AssociationsManager manager;</span><br><span class="line">        AssociationsHashMap &amp;associations(manager.associations());</span><br><span class="line">        disguised_ptr_t disguised_object = DISGUISE(object);</span><br><span class="line">        AssociationsHashMap::iterator i = associations.find(disguised_object);</span><br><span class="line">        if (i != associations.end()) &#123;</span><br><span class="line">            ObjectAssociationMap *refs = i-&gt;second;</span><br><span class="line">            ObjectAssociationMap::iterator j = refs-&gt;find(key);</span><br><span class="line">            if (j != refs-&gt;end()) &#123;</span><br><span class="line">                ObjcAssociation &amp;entry = j-&gt;second;</span><br><span class="line">                value = entry.value();</span><br><span class="line">                policy = entry.policy();</span><br><span class="line">                if (policy &amp; OBJC_ASSOCIATION_GETTER_RETAIN) ((id(*)(id, SEL))objc_msgSend)(value, SEL_retain);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (value &amp;&amp; (policy &amp; OBJC_ASSOCIATION_GETTER_AUTORELEASE)) &#123;</span><br><span class="line">        ((id(*)(id, SEL))objc_msgSend)(value, SEL_autorelease);</span><br><span class="line">    &#125;</span><br><span class="line">    return value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>设置</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">void _object_set_associative_reference(id object, void *key, id value, uintptr_t policy) &#123;</span><br><span class="line">    // retain the new value (if any) outside the lock.</span><br><span class="line">    ObjcAssociation old_association(0, nil);</span><br><span class="line">    id new_value = value ? acquireValue(value, policy) : nil;</span><br><span class="line">    &#123;</span><br><span class="line">        AssociationsManager manager;</span><br><span class="line">        AssociationsHashMap &amp;associations(manager.associations());</span><br><span class="line">        disguised_ptr_t disguised_object = DISGUISE(object);</span><br><span class="line">        if (new_value) &#123;</span><br><span class="line">            // break any existing association.</span><br><span class="line">            AssociationsHashMap::iterator i = associations.find(disguised_object);</span><br><span class="line">            if (i != associations.end()) &#123;</span><br><span class="line">                // secondary table exists</span><br><span class="line">                ObjectAssociationMap *refs = i-&gt;second;</span><br><span class="line">                ObjectAssociationMap::iterator j = refs-&gt;find(key);</span><br><span class="line">                if (j != refs-&gt;end()) &#123;</span><br><span class="line">                    old_association = j-&gt;second;</span><br><span class="line">                    j-&gt;second = ObjcAssociation(policy, new_value);</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    (*refs)[key] = ObjcAssociation(policy, new_value);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                // create the new association (first time).</span><br><span class="line">                ObjectAssociationMap *refs = new ObjectAssociationMap;</span><br><span class="line">                associations[disguised_object] = refs;</span><br><span class="line">                (*refs)[key] = ObjcAssociation(policy, new_value);</span><br><span class="line">                object-&gt;setHasAssociatedObjects();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            // setting the association to nil breaks the association.</span><br><span class="line">            AssociationsHashMap::iterator i = associations.find(disguised_object);</span><br><span class="line">            if (i !=  associations.end()) &#123;</span><br><span class="line">                ObjectAssociationMap *refs = i-&gt;second;</span><br><span class="line">                ObjectAssociationMap::iterator j = refs-&gt;find(key);</span><br><span class="line">                if (j != refs-&gt;end()) &#123;</span><br><span class="line">                    old_association = j-&gt;second;</span><br><span class="line">                    refs-&gt;erase(j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // release the old value (outside of the lock).</span><br><span class="line">    if (old_association.hasValue()) ReleaseValue()(old_association);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>释放</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">id </span><br><span class="line">object_dispose(id obj)</span><br><span class="line">&#123;</span><br><span class="line">    if (!obj) return nil;</span><br><span class="line"></span><br><span class="line">    objc_destructInstance(obj);</span><br><span class="line"></span><br><span class="line">    free(obj);</span><br><span class="line"></span><br><span class="line">    return nil;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void *objc_destructInstance(id obj) </span><br><span class="line">&#123;</span><br><span class="line">    if (obj) &#123;</span><br><span class="line">        // Read all of the flags at once for performance.</span><br><span class="line">        bool cxx = obj-&gt;hasCxxDtor();</span><br><span class="line">        bool assoc = !UseGC &amp;&amp; obj-&gt;hasAssociatedObjects();</span><br><span class="line">        bool dealloc = !UseGC;</span><br><span class="line"></span><br><span class="line">        // This order is important.</span><br><span class="line">        if (cxx) object_cxxDestruct(obj);</span><br><span class="line">        if (assoc) _object_remove_assocations(obj);</span><br><span class="line">        if (dealloc) obj-&gt;clearDeallocating();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void _object_remove_assocations(id object) &#123;</span><br><span class="line">    vector&lt; ObjcAssociation,ObjcAllocator&lt;ObjcAssociation&gt; &gt; elements;</span><br><span class="line">    &#123;</span><br><span class="line">        AssociationsManager manager;</span><br><span class="line">        AssociationsHashMap &amp;associations(manager.associations());</span><br><span class="line">        if (associations.size() == 0) return;</span><br><span class="line">        disguised_ptr_t disguised_object = DISGUISE(object);</span><br><span class="line">        AssociationsHashMap::iterator i = associations.find(disguised_object);</span><br><span class="line">        if (i != associations.end()) &#123;</span><br><span class="line">            // copy all of the associations that need to be removed.</span><br><span class="line">            ObjectAssociationMap *refs = i-&gt;second;</span><br><span class="line">            for (ObjectAssociationMap::iterator j = refs-&gt;begin(), end = refs-&gt;end(); j != end; ++j) &#123;</span><br><span class="line">                elements.push_back(j-&gt;second);</span><br><span class="line">            &#125;</span><br><span class="line">            // remove the secondary table.</span><br><span class="line">            delete refs;</span><br><span class="line">            associations.erase(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // the calls to releaseValue() happen outside of the lock.</span><br><span class="line">    for_each(elements.begin(), elements.end(), ReleaseValue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="http://cocoasamurai.blogspot.jp/2010/01/understanding-objective-c-runtime.html" target="_blank" rel="external">understanding-objective-c-runtime</a></li>
+<li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048" target="_blank" rel="external">ObjCRuntimeGuide</a></li>
+<li><a href="http://opensource.apple.com/tarballs/objc4/" target="_blank" rel="external">runtime源码</a></li>
+<li><a href="http://blog.jobbole.com/45963/" target="_blank" rel="external">Objective-C 的动态提示和技巧</a></li>
+<li><a href="http://www.cocoachina.com/ios/20150104/10826.html" target="_blank" rel="external">NSObject的load和initialize方法</a></li>
+<li><a href="http://esoftmobile.com/2014/02/18/associated-objects/" target="_blank" rel="external">associated-objects</a></li>
+<li><a href="http://esoftmobile.com/2014/02/19/method-swizzling/" target="_blank" rel="external">method-swizzling</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/03/12/001-OC-Runtime-2-Ivar&Property&Method&Protocol/" itemprop="url">
+                  OC Runtime(2)之Ivar&Property&Method&Protocol
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-03-12T00:00:00+08:00" content="2014-03-12">
+              2014-03-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Runtime系列笔记"><a href="#Runtime系列笔记" class="headerlink" title="Runtime系列笔记"></a>Runtime系列笔记</h3><ul>
+<li><a href="/2014/03/07/001-OC-Runtime-1-Object&amp;Class/">Runtime之对象和类</a></li>
+<li><a href="/2014/03/12/001-OC-Runtime-2-Ivar&amp;Property&amp;Method&amp;Protocol/">Runtime之属性和方法</a></li>
+<li><a href="/2014/03/18/001-OC-Runtime-3-Associated%20Objects/">Runtime之关联对象</a></li>
+<li><a href="/2014/03/21/001-OC-Runtime-4-Message%20Forwarding/">Runtime之消息转发</a></li>
+<li><a href="/2014/04/02/001-OC-Runtime-5-Method%20Swizzling/">Runtime之方法替换</a></li>
+<li><a href="/2014/04/09/001-OC-Runtime-6-Load&amp;Initialize/">Runtime之Load&amp;Initialize</a></li>
+</ul>
+<p><img src="/images/OC-Runtime.png" alt="OC-Runtime"></p>
+<h3 id="Ivar"><a href="#Ivar" class="headerlink" title="Ivar"></a>Ivar</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">struct old_ivar &#123;</span><br><span class="line">    char *ivar_name;</span><br><span class="line">    char *ivar_type;</span><br><span class="line">    int ivar_offset;</span><br><span class="line">#ifdef __LP64__</span><br><span class="line">    int space;</span><br><span class="line">#endif</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Property"><a href="#Property" class="headerlink" title="Property"></a>Property</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">struct old_property &#123;</span><br><span class="line">    const char *name;</span><br><span class="line">    const char *attributes;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct old_method &#123;</span><br><span class="line">    SEL method_name;</span><br><span class="line">    char *method_types;</span><br><span class="line">    IMP method_imp;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="protocol"><a href="#protocol" class="headerlink" title="protocol"></a>protocol</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">struct old_protocol &#123;</span><br><span class="line">    Class isa;</span><br><span class="line">    const char *protocol_name;</span><br><span class="line">    struct old_protocol_list *protocol_list;</span><br><span class="line">    struct objc_method_description_list *instance_methods;</span><br><span class="line">    struct objc_method_description_list *class_methods;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">struct objc_method_description *</span><br><span class="line">lookup_protocol_method(old_protocol *proto, SEL aSel, </span><br><span class="line">                       bool isRequiredMethod, bool isInstanceMethod, </span><br><span class="line">                       bool recursive)</span><br><span class="line">&#123;</span><br><span class="line">    struct objc_method_description *m = nil;</span><br><span class="line">    old_protocol_ext *ext;</span><br><span class="line"></span><br><span class="line">    if (isRequiredMethod) &#123;</span><br><span class="line">        if (isInstanceMethod) &#123;</span><br><span class="line">            m = lookup_method(proto-&gt;instance_methods, aSel);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            m = lookup_method(proto-&gt;class_methods, aSel);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else if ((ext = ext_for_protocol(proto))) &#123;</span><br><span class="line">        if (isInstanceMethod) &#123;</span><br><span class="line">            m = lookup_method(ext-&gt;optional_instance_methods, aSel);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            m = lookup_method(ext-&gt;optional_class_methods, aSel);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (!m  &amp;&amp;  recursive  &amp;&amp;  proto-&gt;protocol_list) &#123;</span><br><span class="line">        int i;</span><br><span class="line">        for (i = 0; !m  &amp;&amp;  i &lt; proto-&gt;protocol_list-&gt;count; i++) &#123;</span><br><span class="line">            m = lookup_protocol_method(proto-&gt;protocol_list-&gt;list[i], aSel, </span><br><span class="line">                                       isRequiredMethod,isInstanceMethod,true);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return m;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="category"><a href="#category" class="headerlink" title="category"></a>category</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">struct old_category &#123;</span><br><span class="line">    char *category_name;</span><br><span class="line">    char *class_name;</span><br><span class="line">    struct old_method_list *instance_methods;</span><br><span class="line">    struct old_method_list *class_methods;</span><br><span class="line">    struct old_protocol_list *protocols;</span><br><span class="line">    uint32_t size;</span><br><span class="line">    struct old_property_list *instance_properties;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="http://cocoasamurai.blogspot.jp/2010/01/understanding-objective-c-runtime.html" target="_blank" rel="external">understanding-objective-c-runtime</a></li>
+<li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048" target="_blank" rel="external">ObjCRuntimeGuide</a></li>
+<li><a href="http://opensource.apple.com/tarballs/objc4/" target="_blank" rel="external">runtime源码</a></li>
+<li><a href="http://blog.jobbole.com/45963/" target="_blank" rel="external">Objective-C 的动态提示和技巧</a></li>
+<li><a href="http://www.cocoachina.com/ios/20150104/10826.html" target="_blank" rel="external">NSObject的load和initialize方法</a></li>
+<li><a href="http://esoftmobile.com/2014/02/18/associated-objects/" target="_blank" rel="external">associated-objects</a></li>
+<li><a href="http://esoftmobile.com/2014/02/19/method-swizzling/" target="_blank" rel="external">method-swizzling</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/03/07/001-OC-Runtime-1-Object&Class/" itemprop="url">
+                  OC Runtime(1)之Object&Class
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-03-07T00:00:00+08:00" content="2014-03-07">
+              2014-03-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Runtime系列笔记"><a href="#Runtime系列笔记" class="headerlink" title="Runtime系列笔记"></a>Runtime系列笔记</h3><ul>
+<li><a href="/2014/03/07/001-OC-Runtime-1-Object&amp;Class/">Runtime之对象和类</a></li>
+<li><a href="/2014/03/12/001-OC-Runtime-2-Ivar&amp;Property&amp;Method&amp;Protocol/">Runtime之属性和方法</a></li>
+<li><a href="/2014/03/18/001-OC-Runtime-3-Associated%20Objects/">Runtime之关联对象</a></li>
+<li><a href="/2014/03/21/001-OC-Runtime-4-Message%20Forwarding/">Runtime之消息转发</a></li>
+<li><a href="/2014/04/02/001-OC-Runtime-5-Method%20Swizzling/">Runtime之方法替换</a></li>
+<li><a href="/2014/04/09/001-OC-Runtime-6-Load&amp;Initialize/">Runtime之Load&amp;Initialize</a></li>
+</ul>
+<p><img src="/images/OC-Runtime.png" alt="OC-Runtime"></p>
+<h3 id="Obejctive-C-Runtime"><a href="#Obejctive-C-Runtime" class="headerlink" title="Obejctive-C Runtime"></a>Obejctive-C Runtime</h3><ul>
+<li><p>Objective-C是面向运行时的编程语言，这就意味着运行阶段才知道如何执行，而不是编译链接阶段就确定好。</p>
+</li>
+<li><p>What is the Objective-C Runtime?</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">The Objective-C Runtime is a Runtime Library, it&apos;s a library written </span><br><span class="line">mainly in C &amp; Assembler that adds the Object Oriented capabilities </span><br><span class="line">to C to create Objective-C. This means it loads in Class information, </span><br><span class="line">does all method dispatching, method forwarding, etc. The Objective-C </span><br><span class="line">runtime essentially creates all the support structures that make </span><br><span class="line">Object Oriented Programming with Objective-C Possible.</span><br></pre></td></tr></table></figure>
+<ul>
+<li>有了Objective-C Runtime，就有了各种在运行时修改代码的hack手段。</li>
+</ul>
+<h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><ul>
+<li>先看下<code>类</code>的结构体定义，除了存放类的基本信息，还存放对象的变量、方法、协议的元信息。程序加载时，<code>类</code>结构体会被实例化，并放到全局列表中<code>g_classList</code>，结构体的<code>isa</code>、<code>super_class</code>、<code>methodLists</code>等属性也一起被初始化。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">// 伪代码，对源码稍做修改。</span><br><span class="line"></span><br><span class="line">static Class *g_classList;</span><br><span class="line"></span><br><span class="line">struct objc_class &#123;</span><br><span class="line">    Class isa; 			// 指向元类</span><br><span class="line">    Class super_class; 	// 指向父类</span><br><span class="line">    </span><br><span class="line">    // 类基本信息</span><br><span class="line">    const char *name;</span><br><span class="line">    long version;</span><br><span class="line">    long info;</span><br><span class="line">    long instance_size;</span><br><span class="line">    </span><br><span class="line">    // 类的变量、方法、协议的元信息</span><br><span class="line">    struct objc_ivar_list *ivars;</span><br><span class="line">    struct objc_method_list **methodLists;</span><br><span class="line">    struct objc_protocol_list *protocols;</span><br><span class="line">    </span><br><span class="line">    // 方法缓存</span><br><span class="line">	struct objc_cache *cache;</span><br><span class="line">&#125;;</span><br><span class="line">typedef struct objc_class *Class;</span><br><span class="line"></span><br><span class="line">bool isMetaClass() &#123;</span><br><span class="line">        return info &amp; CLS_META;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="元类"><a href="#元类" class="headerlink" title="元类"></a>元类</h3><ul>
+<li><code>元类</code>跟<code>类</code>使用相同的结构体，只是通过<code>isMetaClass</code>方法做区分。</li>
+<li><p><code>元类</code>结构体中，存放类的变量、方法、协议的元信息。</p>
+</li>
+<li><p>对象、类、元类的关系如下：</p>
+</li>
+</ul>
+<p><img src="/images/OC-Runtime-类图.png" alt="类图"></p>
+<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><ul>
+<li>对象的结构体如下，存放对象的变量数据，其他的都是先通过<code>isa</code>找到类，再从类中找出变量、方法等的元信息。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 伪代码，对源码稍做修改。</span><br><span class="line"></span><br><span class="line">struct objc_object &#123;</span><br><span class="line">	Class isa;</span><br><span class="line">	</span><br><span class="line">	// 变量的数据</span><br><span class="line">	void *varsLayout;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">typedef struct objc_object *id</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建对象，<code>NSObject *obj = [[NSObject alloc] init];</code>可能对应以下一些动作。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">// 伪代码</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">	// 找到类</span><br><span class="line">	Class cls = findClass(&quot;NSObject&quot;);</span><br><span class="line">	</span><br><span class="line">	// 找到alloc方法，执行生成对象</span><br><span class="line">	IMP imp = findImp(cls, &quot;alloc&quot;);</span><br><span class="line">	id obj = imp(cls);</span><br><span class="line">	</span><br><span class="line">	// 找到init方法，执行初始化对象</span><br><span class="line">	IMP imp = findImp(cls, &quot;init&quot;);</span><br><span class="line">	imp(obj);</span><br><span class="line">	</span><br><span class="line">	// 返回对象</span><br><span class="line">	return obj;</span><br><span class="line">&#125;	</span><br><span class="line">	</span><br><span class="line">id alloc(Class cls) &#123;</span><br><span class="line">	id obj = malloc(sizeof(struct objc_object));</span><br><span class="line">	obj-&gt;isa = cls;</span><br><span class="line">	return obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">id init(id obj) &#123;</span><br><span class="line">	obj-&gt;varsLayout = xxx;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>总的来说，全局维护一张类表，存放类方法、实例方法、实例变量的元信息等。程序加载阶段会初始化这张表。运行阶段，也可以通过<code>addMethod</code>、<code>class_replaceMethod</code>、<code>class_addIvar</code>、<code>class_addProtocol</code>、<code>class_addProperty</code>等接口动态修改这张表。</li>
+</ul>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="http://cocoasamurai.blogspot.jp/2010/01/understanding-objective-c-runtime.html" target="_blank" rel="external">understanding-objective-c-runtime</a></li>
+<li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048" target="_blank" rel="external">ObjCRuntimeGuide</a></li>
+<li><a href="http://opensource.apple.com/tarballs/objc4/" target="_blank" rel="external">runtime源码</a></li>
+<li><a href="http://blog.jobbole.com/45963/" target="_blank" rel="external">Objective-C 的动态提示和技巧</a></li>
+<li><a href="http://www.cocoachina.com/ios/20150104/10826.html" target="_blank" rel="external">NSObject的load和initialize方法</a></li>
+<li><a href="http://esoftmobile.com/2014/02/18/associated-objects/" target="_blank" rel="external">associated-objects</a></li>
+<li><a href="http://esoftmobile.com/2014/02/19/method-swizzling/" target="_blank" rel="external">method-swizzling</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -764,7 +1451,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -772,7 +1459,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -781,7 +1468,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -848,7 +1535,7 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy;  2015 - 
+  &copy;  2014 - 
   <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
