@@ -1,0 +1,681 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="本指南汇集React-Native各类学习资源，给大家提供便利。指南正在不断的更新，大家有好的资源欢迎Pull Requests！
+同时还有Awesome React-Native系列
+https://github.com/jondot/awesome-react-native
+教程
+React-Native视频教程(部分免费)https://egghead.io/technologies/rea">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React-Native学习指南">
+<meta property="og:url" content="http://jacoli.github.io/2015/11/03/2015-11-03-React-Native学习指南/index.html">
+<meta property="og:site_name" content="Jacoli'Home">
+<meta property="og:description" content="本指南汇集React-Native各类学习资源，给大家提供便利。指南正在不断的更新，大家有好的资源欢迎Pull Requests！
+同时还有Awesome React-Native系列
+https://github.com/jondot/awesome-react-native
+教程
+React-Native视频教程(部分免费)https://egghead.io/technologies/rea">
+<meta property="og:updated_time" content="2016-04-07T05:01:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React-Native学习指南">
+<meta name="twitter:description" content="本指南汇集React-Native各类学习资源，给大家提供便利。指南正在不断的更新，大家有好的资源欢迎Pull Requests！
+同时还有Awesome React-Native系列
+https://github.com/jondot/awesome-react-native
+教程
+React-Native视频教程(部分免费)https://egghead.io/technologies/rea">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> React-Native学习指南 | Jacoli'Home </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Jacoli'Home</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">移动开发技术分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                React-Native学习指南
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-11-03T20:07:56+08:00" content="2015-11-03">
+              2015-11-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/移动开发/" itemprop="url" rel="index">
+                    <span itemprop="name">移动开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本指南汇集React-Native各类学习资源，给大家提供便利。指南正在不断的更新，大家有好的资源欢迎Pull Requests！</p>
+<p>同时还有Awesome React-Native系列</p>
+<p><a href="https://github.com/jondot/awesome-react-native" target="_blank" rel="external">https://github.com/jondot/awesome-react-native</a></p>
+<p>教程</p>
+<p>React-Native视频教程(部分免费)<br><a href="https://egghead.io/technologies/react" target="_blank" rel="external">https://egghead.io/technologies/react</a></p>
+<p>react-native 官方api文档<br><a href="http://facebook.github.io/react-native/docs/getting-started.html" target="_blank" rel="external">http://facebook.github.io/react-native/docs/getting-started.html</a></p>
+<p>react-native中文文档(极客学院)<br><a href="http://wiki.jikexueyuan.com/project/react-native/" target="_blank" rel="external">http://wiki.jikexueyuan.com/project/react-native/</a></p>
+<p>react-native 官方api文档<br><a href="http://facebook.github.io/react-native/docs/getting-started.html" target="_blank" rel="external">http://facebook.github.io/react-native/docs/getting-started.html</a></p>
+<p>react-native 中文api文档 (翻译中)<br><a href="https://github.com/ecomfe/react-native-cn" target="_blank" rel="external">https://github.com/ecomfe/react-native-cn</a></p>
+<p>react.js中文文档<br><a href="http://reactjs.cn/" target="_blank" rel="external">http://reactjs.cn/</a></p>
+<p>react.js入门教程(gitbook)<br><a href="http://hulufei.gitbooks.io/react-tutorial/content/introduction.html" target="_blank" rel="external">http://hulufei.gitbooks.io/react-tutorial/content/introduction.html</a></p>
+<p>react.js快速入门教程 - 阮一峰<br><a href="http://www.ruanyifeng.com/blog/2015/03/react.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2015/03/react.html</a></p>
+<p>react.js视频教程<br><a href="http://react.nodejs-china.org/t/reactjszhong-wen-shi-pin-jiao-cheng-bai-du-wang-pan/584" target="_blank" rel="external">http://react.nodejs-china.org/t/reactjszhong-wen-shi-pin-jiao-cheng-bai-du-wang-pan/584</a></p>
+<p>react-native第一课<br><a href="http://html-js.com/article/2783" target="_blank" rel="external">http://html-js.com/article/2783</a></p>
+<p>深入浅出 React Native：使用 JavaScript 构建原生应用<br><a href="http://zhuanlan.zhihu.com/FrontendMagazine/19996445" target="_blank" rel="external">http://zhuanlan.zhihu.com/FrontendMagazine/19996445</a></p>
+<p>React Native通信机制详解<br><a href="http://blog.cnbang.net/tech/2698/" target="_blank" rel="external">http://blog.cnbang.net/tech/2698/</a></p>
+<p>React Native布局篇<br><a href="http://segmentfault.com/a/1190000002658374" target="_blank" rel="external">http://segmentfault.com/a/1190000002658374</a></p>
+<p>React Native 基础练习指北（一）<br><a href="http://segmentfault.com/a/1190000002645929" target="_blank" rel="external">http://segmentfault.com/a/1190000002645929</a></p>
+<p>React Native 基础练习指北（二）<br><a href="http://segmentfault.com/a/1190000002647733" target="_blank" rel="external">http://segmentfault.com/a/1190000002647733</a></p>
+<p>构建一个简单的列表页和2页导航<br><a href="http://www.xn--cnq920ntha.cn/archives/235#6838470-tsina-1-17436-6a377b1a66595f9ede646cf5c012734c" target="_blank" rel="external">http://www.xn--cnq920ntha.cn/archives/235#6838470-tsina-1-17436-6a377b1a66595f9ede646cf5c012734c</a></p>
+<p>Diary of Building an iOS App with React Native<br><a href="http://herman.asia/building-a-flashcard-app-with-react-native" target="_blank" rel="external">http://herman.asia/building-a-flashcard-app-with-react-native</a></p>
+<p>Use React Native in Existing iOS App<br><a href="http://blog-en.leapoahead.com/post/use-react-native-in-existing-ios-app" target="_blank" rel="external">http://blog-en.leapoahead.com/post/use-react-native-in-existing-ios-app</a></p>
+<p>React Native For Beginners – The Next Big Thing?<br><a href="http://devdactic.com/react-native-for-beginners/" target="_blank" rel="external">http://devdactic.com/react-native-for-beginners/</a></p>
+<p>How To Implement A Tab Bar With React Native<br><a href="http://devdactic.com/react-native-tab-bar/" target="_blank" rel="external">http://devdactic.com/react-native-tab-bar/</a></p>
+<p>tcomb-form-native使用视频教程(需翻墙)<br><a href="http://react.rocks/example/tcomb-form-native" target="_blank" rel="external">http://react.rocks/example/tcomb-form-native</a></p>
+<p>React Native分享记录<br><a href="http://segmentfault.com/a/1190000002678782" target="_blank" rel="external">http://segmentfault.com/a/1190000002678782</a></p>
+<p>React Native构建本地视图组件<br><a href="http://www.dobest.me/post/react-native-build-native-componenets/" target="_blank" rel="external">http://www.dobest.me/post/react-native-build-native-componenets/</a></p>
+<p>开源APP</p>
+<p>研究源码也是一个很好的学习方式</p>
+<p>官方演示App<br><a href="https://github.com/facebook/react-native/tree/master/Examples" target="_blank" rel="external">https://github.com/facebook/react-native/tree/master/Examples</a></p>
+<p>Leanote for iOS(云笔记)<br><a href="https://github.com/leanote/leanote-ios" target="_blank" rel="external">https://github.com/leanote/leanote-ios</a></p>
+<p>ReactNativeRubyChina<br><a href="https://github.com/henter/ReactNativeRubyChina" target="_blank" rel="external">https://github.com/henter/ReactNativeRubyChina</a></p>
+<p>HackerNews-React-Native<br><a href="https://github.com/iSimar/HackerNews-React-Native" target="_blank" rel="external">https://github.com/iSimar/HackerNews-React-Native</a></p>
+<p>React-Native新闻客户端<br><a href="https://github.com/tabalt/ReactNativeNews" target="_blank" rel="external">https://github.com/tabalt/ReactNativeNews</a></p>
+<p>newswatch(新闻客户端)<br><a href="https://github.com/bradoyler/newswatch-react-native" target="_blank" rel="external">https://github.com/bradoyler/newswatch-react-native</a></p>
+<p>buyscreen(购买页面)<br><a href="https://github.com/appintheair/react-native-buyscreen" target="_blank" rel="external">https://github.com/appintheair/react-native-buyscreen</a></p>
+<p>V2EX客户端<br><a href="https://github.com/samuel1112/v2er" target="_blank" rel="external">https://github.com/samuel1112/v2er</a></p>
+<p>react-native-todo<br><a href="https://github.com/joemaddalone/react-native-todo" target="_blank" rel="external">https://github.com/joemaddalone/react-native-todo</a></p>
+<p>react-native-beer<br><a href="https://github.com/muratsu/react-native-beer" target="_blank" rel="external">https://github.com/muratsu/react-native-beer</a></p>
+<p>react-native-stars<br><a href="https://github.com/86/react-native-stars" target="_blank" rel="external">https://github.com/86/react-native-stars</a></p>
+<p>模仿天猫首页的app<br><a href="https://github.com/baofen14787/react-native-demo" target="_blank" rel="external">https://github.com/baofen14787/react-native-demo</a></p>
+<p>ReactNativeChess<br><a href="https://github.com/csarsam/ReactNativeChess" target="_blank" rel="external">https://github.com/csarsam/ReactNativeChess</a></p>
+<p>react native 编写的音乐软件<br><a href="https://github.com/Johnqing/miumiu" target="_blank" rel="external">https://github.com/Johnqing/miumiu</a></p>
+<p>react-native-pokedex<br><a href="https://github.com/ababol/react-native-pokedex" target="_blank" rel="external">https://github.com/ababol/react-native-pokedex</a></p>
+<p>CNode-React-Native<br><a href="https://github.com/SFantasy/CNode-React-Native" target="_blank" rel="external">https://github.com/SFantasy/CNode-React-Native</a></p>
+<p>8tracks电台客户端<br><a href="https://github.com/voronianski/EightTracksReactNative" target="_blank" rel="external">https://github.com/voronianski/EightTracksReactNative</a></p>
+<p>React-Native实现的计算器<br><a href="https://github.com/yoxisem544/Calculator-using-React-Native" target="_blank" rel="external">https://github.com/yoxisem544/Calculator-using-React-Native</a></p>
+<p>房产搜索app<br><a href="https://github.com/jawee/react-native-PropertyFinder" target="_blank" rel="external">https://github.com/jawee/react-native-PropertyFinder</a></p>
+<p>知乎专栏app<br><a href="https://github.com/LeezQ/react-native-zhihu-app" target="_blank" rel="external">https://github.com/LeezQ/react-native-zhihu-app</a></p>
+<p>ForeignExchangeApp<br><a href="https://github.com/peralmq/ForeignExchangeApp" target="_blank" rel="external">https://github.com/peralmq/ForeignExchangeApp</a></p>
+<p>Segmentfault 客户端<br><a href="https://github.com/fakefish/sf-react-native" target="_blank" rel="external">https://github.com/fakefish/sf-react-native</a></p>
+<p>糗事百科app<br><a href="https://github.com/stormhouse/QiuShiReactNative" target="_blank" rel="external">https://github.com/stormhouse/QiuShiReactNative</a></p>
+<p>孢子社区app<br><a href="https://github.com/Hi-Rube/baoz-ReactNative" target="_blank" rel="external">https://github.com/Hi-Rube/baoz-ReactNative</a></p>
+<p>深JS app *<br><a href="https://github.com/fraserxu/shenjs" target="_blank" rel="external">https://github.com/fraserxu/shenjs</a></p>
+<p>组件</p>
+<p>由于已经有较好的组件库网站，这里就不做总结。可以直接查看如下网站，过后可能精选一部分优质组件出来 :P</p>
+<p>React-native组件库（比较全的组件库）<br><a href="http://react.parts/" target="_blank" rel="external">http://react.parts/</a></p>
+<p>React Native Modules<br><a href="http://reactnativemodules.com/" target="_blank" rel="external">http://reactnativemodules.com/</a></p>
+<p>最佳轮播类组件<br><a href="https://github.com/leecade/react-native-swiper" target="_blank" rel="external">https://github.com/leecade/react-native-swiper</a></p>
+<p>React Native Router<br><a href="https://github.com/t4t5/react-native-router" target="_blank" rel="external">https://github.com/t4t5/react-native-router</a></p>
+<p>下拉刷新组件<br><a href="https://github.com/jsdf/react-native-refreshable-listview" target="_blank" rel="external">https://github.com/jsdf/react-native-refreshable-listview</a></p>
+<p>模态框<br><a href="https://github.com/brentvatne/react-native-modal" target="_blank" rel="external">https://github.com/brentvatne/react-native-modal</a></p>
+<p>react-native-navbar<br><a href="https://github.com/Kureev/react-native-navbar" target="_blank" rel="external">https://github.com/Kureev/react-native-navbar</a></p>
+<p>滚动轮播组件<br><a href="https://github.com/appintheair/react-native-looped-carousel" target="_blank" rel="external">https://github.com/appintheair/react-native-looped-carousel</a></p>
+<p>HTML显示组件<br><a href="https://github.com/jsdf/react-native-htmlview" target="_blank" rel="external">https://github.com/jsdf/react-native-htmlview</a></p>
+<p>工具</p>
+<p>react-native-snippets(代码提示)<br><a href="https://github.com/Shrugs/react-native-snippets" target="_blank" rel="external">https://github.com/Shrugs/react-native-snippets</a></p>
+<p>react-native-babel(使用ES6+)<br><a href="https://github.com/roman01la/react-native-babel" target="_blank" rel="external">https://github.com/roman01la/react-native-babel</a></p>
+<p>sqlite for react-native<br><a href="https://github.com/almost/react-native-sqlite" target="_blank" rel="external">https://github.com/almost/react-native-sqlite</a></p>
+<p>gulp-react-native-css(就像写css一样写React Style)<br><a href="https://github.com/soliury/gulp-react-native-css" target="_blank" rel="external">https://github.com/soliury/gulp-react-native-css</a></p>
+<p>资源网站</p>
+<p>React-native官网<br><a href="http://facebook.github.io/react-native/" target="_blank" rel="external">http://facebook.github.io/react-native/</a></p>
+<p>React-China社区<br><a href="http://react-china.org/" target="_blank" rel="external">http://react-china.org/</a></p>
+<p>React-native组件库（比较全的组件库）<br><a href="http://react.parts/" target="_blank" rel="external">http://react.parts/</a></p>
+<p>React Native Modules<br><a href="http://reactnativemodules.com/" target="_blank" rel="external">http://reactnativemodules.com/</a></p>
+<p>11款React Native开源移动 UI 组件<br><a href="http://www.oschina.net/news/61214/11-react-native-ui-components" target="_blank" rel="external">http://www.oschina.net/news/61214/11-react-native-ui-components</a></p>
+<p>业界讨论</p>
+<p>跨平台开发时代的 (再次) 到来？（ Xamarin，NativeScript 和 React Native 对比）<br><a href="http://onevcat.com/2015/03/cross-platform/" target="_blank" rel="external">http://onevcat.com/2015/03/cross-platform/</a></p>
+<p>谈谈 React Native - 唐巧<br><a href="http://blog.devtang.com/blog/2015/02/01/talk-about-react-native/" target="_blank" rel="external">http://blog.devtang.com/blog/2015/02/01/talk-about-react-native/</a></p>
+<p>如何评价React-Native?<br><a href="http://www.zhihu.com/question/27852694/answer/43990708" target="_blank" rel="external">http://www.zhihu.com/question/27852694/answer/43990708</a></p>
+<p>React Native概述：背景、规划和风险<br><a href="http://div.io/topic/938" target="_blank" rel="external">http://div.io/topic/938</a></p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/16/2015-10-16-iOS开源库收集/" rel="next" title="iOS开源库收集">
+                <i class="fa fa-chevron-left"></i> iOS开源库收集
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/16/2015-12-16-搭建新App需要做哪些事[iOS]/" rel="prev" title="搭建新App需要做哪些事[iOS]">
+                搭建新App需要做哪些事[iOS] <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="jacoli" />
+          <p class="site-author-name" itemprop="name">jacoli</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/jacoli" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2012271871/profile" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/li-chuan-ge-25" target="_blank">
+                  
+                    <i class="fa fa-zhihu"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jacoli</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
