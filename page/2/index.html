@@ -216,6 +216,262 @@
             
               
                 
+                <a class="post-title-link" href="/2015/06/06/2015-06-06-UITableView的Cell高度计算/" itemprop="url">
+                  UITableView的Cell高度计算
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-06-06T20:07:56+08:00" content="2015-06-06">
+              2015-06-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/移动开发/" itemprop="url" rel="index">
+                    <span itemprop="name">移动开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>iOS7和iOS8有所区别，iOS7在需要调整布局时，计算一遍高度信息，而iOS8只要重新显示就会计算高度（iOS8 把高度计算搞成这个样子，从 WWDC 也倒是能找到点解释，cell 被认为随时都可能改变高度（如从设置中调整动态字体大小），所以每次滑动出来后都要重新计算高度。<br> ）</p>
+<p>iOS7:<br>1)获取section数和每个section中的row数<br>2)获取所有cell的高度，计算出tableView的contentSize<br>3)按已经算好的frame显示cell</p>
+<p>iOS8:</p>
+<p>1)获取section数和每个section中的row数<br>2)获取所有cell的高度，计算出tableView的contentSize（iOS8中该步骤调用更频繁）<br>3)重新获取当前需要显示cell的高度，调整tableView的contentSize，显示cell</p>
+<p>UITableView的Cell高度计算＋估算</p>
+<p>如果估算，则2）步骤中计算所有cell的高度改成估算所有cell的高度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">// All methods that trigger height cache&apos;s invalidation</span><br><span class="line"></span><br><span class="line">SEL selectors[] = &#123;</span><br><span class="line"></span><br><span class="line">    @selector(reloadData),</span><br><span class="line"></span><br><span class="line">    @selector(insertSections:withRowAnimation:),</span><br><span class="line"></span><br><span class="line">    @selector(deleteSections:withRowAnimation:),</span><br><span class="line"></span><br><span class="line">    @selector(reloadSections:withRowAnimation:),</span><br><span class="line"></span><br><span class="line">    @selector(moveSection:toSection:),</span><br><span class="line"></span><br><span class="line">    @selector(insertRowsAtIndexPaths:withRowAnimation:),</span><br><span class="line"></span><br><span class="line">    @selector(deleteRowsAtIndexPaths:withRowAnimation:),</span><br><span class="line"></span><br><span class="line">    @selector(reloadRowsAtIndexPaths:withRowAnimation:),</span><br><span class="line"></span><br><span class="line">    @selector(moveRowAtIndexPath:toIndexPath:)</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">for (NSUInteger index = 0; index &lt; sizeof(selectors) / sizeof(SEL); ++index) &#123;</span><br><span class="line"></span><br><span class="line">    SEL originalSelector = selectors[index];</span><br><span class="line"></span><br><span class="line">    SEL swizzledSelector = NSSelectorFromString([@&quot;fd_&quot; stringByAppendingString:NSStringFromSelector(originalSelector)]);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    Method originalMethod = class_getInstanceMethod(self, originalSelector);</span><br><span class="line"></span><br><span class="line">    Method swizzledMethod = class_getInstanceMethod(self, swizzledSelector);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    method_exchangeImplementations(originalMethod, swizzledMethod);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/05/06/2015-05-06-iOS开发_统计xcode代码行数/" itemprop="url">
+                  iOS开发_统计xcode代码行数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-05-06T23:07:56+08:00" content="2015-05-06">
+              2015-05-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/工具/" itemprop="url" rel="index">
+                    <span itemprop="name">工具</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>如果要统计ios开发代码，包括头文件的，终端命令进入项目目录下，命令如下</p>
+<p>find . -name “<em>.m” -or -name “</em>.h” -or -name “<em>.xib” -or -name “</em>.c” |xargs wc -l<br>列出每个文件的行数</p>
+<p>find . -name “<em>.m” -or -name “</em>.h” -or -name “<em>.xib” -or -name “</em>.c” |xargs grep -v “^$”|wc -l<br>列出代码行数总和</p>
+<p>grep -v “^$”是去掉空行<br>注释也统计在代码量之内，毕竟也一个字一个字码出来的</p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/04/06/2015-04-06-ObjectiveC杂项/" itemprop="url">
                   ObjectiveC杂项
                 </a>
@@ -475,135 +731,6 @@
             
               
                 
-                <a class="post-title-link" href="/2014/06/17/2014-06-17-iOS应用优化/" itemprop="url">
-                  iOS应用优化
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-06-17T00:00:00+08:00" content="2014-06-17">
-              2014-06-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术/iOS优化/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS优化</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="UI优化"><a href="#UI优化" class="headerlink" title="UI优化"></a>UI优化</h3><ul>
-<li><p><a href="http://blog.ibireme.com/2015/11/12/smooth_user_interfaces_for_ios/" target="_blank" rel="external">iOS 保持界面流畅的技巧</a></p>
-</li>
-<li><p><a href="https://github.com/facebook/AsyncDisplayKit" target="_blank" rel="external">AsyncDisplayKit</a></p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2014/05/11/2014-05-11-iphone分辨率/" itemprop="url">
                   iphone分辨率
                 </a>
@@ -683,141 +810,6 @@
 </ul>
 <p><img src="/images/iphone分辨率.jpeg" alt=""></p>
 <p><img src="/images/iphone分辨率2.jpg" alt=""></p>
-
-          
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/05/09/2014-05-09-iOS应用开发基础点/" itemprop="url">
-                  iOS应用开发基础
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-05-09T00:00:00+08:00" content="2014-05-09">
-              2014-05-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术/iOS基础/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS基础</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li>iOS应用开发基础</li>
-</ul>
-<p><img src="/images/iOS应用开发基础.png" alt=""></p>
-<ul>
-<li>runloop</li>
-</ul>
-<p><a href="http://blog.ibireme.com/2015/05/18/runloop/" target="_blank" rel="external">深入理解RunLoop</a></p>
-<ul>
-<li>Core Foundation</li>
-</ul>
-<p><a href="http://opensource.apple.com/tarballs/CF/" target="_blank" rel="external">Core Foundation源码</a></p>
 
           
         
@@ -1684,7 +1676,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
