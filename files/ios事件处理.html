@@ -1,208 +1,81 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
-
-
-
-  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="mobile" />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
-
-
-
-
-
-
-<meta name="description" content="iOS事件处理先梳理下用户点击事件的传递及处理流程，如下：1、首先，用户触发的点击事件会被添加到事件队列。2、UIApplication循环从事件队列中取出事件，并通过-[SendEvent:]分发到UIWindow。3、UIWindow先通过hit-test找出第一响应的视图，可以重载这两个函数，-[pointInside:withEvent:],-[hitTest:withEvent:]4、U">
+  <meta charset="utf-8">
+  
+  <title>Jacoli&#39;Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="iOS事件处理先梳理下用户点击事件的传递及处理流程，如下：1、首先，用户触发的点击事件会被添加到事件队列。2、UIApplication循环从事件队列中取出事件，并通过-[SendEvent:]分发到UIWindow。3、UIWindow先通过hit-test找出第一响应的视图，可以重载这两个函数，-[pointInside:withEvent:],-[hitTest:withEvent:]4、U">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Jacoli'Home">
-<meta property="og:url" content="http://jacoli.github.io/files/ios事件处理.html">
+<meta property="og:url" content="http://yoursite.com/files/ios事件处理.html">
 <meta property="og:site_name" content="Jacoli'Home">
 <meta property="og:description" content="iOS事件处理先梳理下用户点击事件的传递及处理流程，如下：1、首先，用户触发的点击事件会被添加到事件队列。2、UIApplication循环从事件队列中取出事件，并通过-[SendEvent:]分发到UIWindow。3、UIWindow先通过hit-test找出第一响应的视图，可以重载这两个函数，-[pointInside:withEvent:],-[hitTest:withEvent:]4、U">
-<meta property="og:updated_time" content="2016-02-25T03:48:53.000Z">
+<meta property="og:updated_time" content="2016-04-22T15:30:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jacoli'Home">
 <meta name="twitter:description" content="iOS事件处理先梳理下用户点击事件的传递及处理流程，如下：1、首先，用户触发的点击事件会被添加到事件队列。2、UIApplication循环从事件队列中取出事件，并通过-[SendEvent:]分发到UIWindow。3、UIWindow先通过hit-test找出第一响应的视图，可以重载这两个函数，-[pointInside:withEvent:],-[hitTest:withEvent:]4、U">
-
-
-
-<script type="text/javascript" id="hexo.configuration">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: 0,
-      author: '博主'
-    }
-  };
-</script>
-
-  <title>
+  
+    <link rel="alternate" href="/atom.xml" title="Jacoli&#39;Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
   
 
-  
-     | Jacoli'Home
-  
-</title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-left  ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta custom-logo">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Jacoli'Home</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Jacoli&#39;Home</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
   </div>
-  <p class="site-subtitle">移动开发技术分享</p>
-</div>
-
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
+</header>
+      <div class="outer">
+        <section id="main"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/files/ios事件处理.html" class="article-date">
+  <time datetime="2016-04-22T15:30:29.000Z" itemprop="datePublished">2016-04-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
     
     
-      <h3 id="iOS事件处理"><a href="#iOS事件处理" class="headerlink" title="iOS事件处理"></a>iOS事件处理</h3><p>先梳理下用户点击事件的传递及处理流程，如下：<br>1、首先，用户触发的点击事件会被添加到事件队列。<br>2、UIApplication循环从事件队列中取出事件，并通过-[SendEvent:]分发到UIWindow。<br>3、UIWindow先通过hit-test找出第一响应的视图，可以重载这两个函数，-[pointInside:withEvent:],-[hitTest:withEvent:]<br>4、UIWindow将Event和Touchs传递给第一响应的视图，如果该视图上存在Gesture，则优先由Gesture处理。<br>5、如果该视图没有Gesture或Gesture没有识别成功或没有处理-[touchesBegan:withEvent:]，事件则沿着响应链传递，直到被处理。</p>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="iOS事件处理"><a href="#iOS事件处理" class="headerlink" title="iOS事件处理"></a>iOS事件处理</h3><p>先梳理下用户点击事件的传递及处理流程，如下：<br>1、首先，用户触发的点击事件会被添加到事件队列。<br>2、UIApplication循环从事件队列中取出事件，并通过-[SendEvent:]分发到UIWindow。<br>3、UIWindow先通过hit-test找出第一响应的视图，可以重载这两个函数，-[pointInside:withEvent:],-[hitTest:withEvent:]<br>4、UIWindow将Event和Touchs传递给第一响应的视图，如果该视图上存在Gesture，则优先由Gesture处理。<br>5、如果该视图没有Gesture或Gesture没有识别成功或没有处理-[touchesBegan:withEvent:]，事件则沿着响应链传递，直到被处理。</p>
 <p>When a user-generated event occurs, UIKit creates an event object containing the information needed to process the event. Then it places the event object in the active app’sevent queue. For touch events, that object is a set of touches packaged in a UIEventobject. For motion events, the event object varies depending on which framework you use and what type of motion event you are interested in.</p>
 <p>An event travels along a specific path until it is delivered to an object that can handle it. First, the singleton  UIApplication object takes an event from the top of the queue and dispatches it for handling. Typically, it sends the event to the app’s key window object, which passes the event to an initial object for handling. The initial object depends on the type of event.</p>
 <p>Touch events. For touch events, the window object first tries to deliver the event to the view where the touch occurred. That view is known as the hit-test view. The process of finding the hit-test view is called hit-testing, which is described in Hit-Testing Returns the View Where a Touch Occurred.</p>
@@ -216,227 +89,124 @@
 <p>The multipleTouchEnabled property is set to NO by default, which means that a view receives only the first touch in a multitouch sequence. When this property is disabled, you can retrieve a touch object by calling the anyObject method on the set object because there is only one object in the set.</p>
 <p>参考文档：Event Handling Guide for iOS</p>
 
-    
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+      
     </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/files/ios事件处理.html" data-id="cinbvr0wt0038r25ox67bphpf" class="article-share-link">Share</a>
       
-
       
-
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/default_avatar.jpg"
-               alt="jacoli" />
-          <p class="site-author-name" itemprop="name">jacoli</p>
-          <p class="site-description motion-element" itemprop="description"></p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">21</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">7</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">6</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/jacoli" target="_blank">
-                  
-                    <i class="fa fa-github"></i>
-                  
-                  github
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/2012271871/profile" target="_blank">
-                  
-                    <i class="fa fa-globe"></i>
-                  
-                  weibo
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.zhihu.com/people/li-chuan-ge-25" target="_blank">
-                  
-                    <i class="fa fa-zhihu"></i>
-                  
-                  zhihu
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        <div class="links-of-blogroll motion-element">
-          
-        </div>
-
-      </section>
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2014 - 
-  <span itemprop="copyrightYear">2016</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">jacoli</span>
-</div>
-
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
-
-
-      </div>
     </footer>
+  </div>
+  
+    
+  
+</article>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Objective-C/">Objective-C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/iOS基础/">iOS基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/工具/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/源码分析/">源码分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/移动开发/">移动开发</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/OC-Runtime/">OC Runtime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/OC-Runtime/" style="font-size: 15px;">OC Runtime</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
     </div>
   </div>
 
   
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li></ul>
+    </div>
+  </div>
 
 
   
-
-
-
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
-
-
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/04/20/2016-04-20-DeepLink&UniversalLink/">Deep Linking</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/12/2016-04-12-iOS学习导图/">iOS学习导图</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/06/2016-04-06-阅读笔记一/">阅读笔记一</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/27/2016-02-27-移动技术架构/">移动技术架构</a>
+          </li>
+        
+          <li>
+            <a href="/2016/01/14/2016-01-14-APP代码结构/">APP结构设计</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 
   
+</aside>
+        
+      </div>
+      <footer id="footer">
   
-
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Jaco Li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
   
-
+    <a href="/" class="mobile-nav-link">Home</a>
   
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
-
-
-
+    <a href="/archives" class="mobile-nav-link">Archives</a>
   
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
-  
 
+<script src="/js/script.js"></script>
 
-
-  
-  
-  
-
-  
-
-  
-
+  </div>
 </body>
 </html>
