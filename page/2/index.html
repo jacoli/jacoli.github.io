@@ -51,9 +51,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -64,53 +64,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-2015-07-12-源码分析收集" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2016-04-12-iOS学习导图" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/07/12/2015-07-12-源码分析收集/" class="article-date">
-  <time datetime="2015-07-11T16:00:00.000Z" itemprop="datePublished">2015-07-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/源码分析/">源码分析</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/12/2015-07-12-源码分析收集/">源码分析收集</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><a href="http://blog.cnbang.net/tech/2320/" target="_blank" rel="external">AFNetworking2.0源码解析</a></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/07/12/2015-07-12-源码分析收集/" data-id="cinbvr0v7000tr25oszzp0zxy" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2015-06-06-UITableView的Cell高度计算" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/06/06/2015-06-06-UITableView的Cell高度计算/" class="article-date">
-  <time datetime="2015-06-06T12:07:56.000Z" itemprop="datePublished">2015-06-06</time>
+    <a href="/2016/04/12/2016-04-12-iOS学习导图/" class="article-date">
+  <time datetime="2016-04-11T16:00:00.000Z" itemprop="datePublished">2016-04-12</time>
 </a>
     
   <div class="article-category">
@@ -125,7 +82,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/06/06/2015-06-06-UITableView的Cell高度计算/">UITableView的Cell高度计算</a>
+      <a class="article-title" href="/2016/04/12/2016-04-12-iOS学习导图/">iOS学习导图</a>
     </h1>
   
 
@@ -133,17 +90,88 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>iOS7和iOS8有所区别，iOS7在需要调整布局时，计算一遍高度信息，而iOS8只要重新显示就会计算高度（iOS8 把高度计算搞成这个样子，从 WWDC 也倒是能找到点解释，cell 被认为随时都可能改变高度（如从设置中调整动态字体大小），所以每次滑动出来后都要重新计算高度。<br> ）</p>
-<p>iOS7:<br>1)获取section数和每个section中的row数<br>2)获取所有cell的高度，计算出tableView的contentSize<br>3)按已经算好的frame显示cell</p>
-<p>iOS8:</p>
-<p>1)获取section数和每个section中的row数<br>2)获取所有cell的高度，计算出tableView的contentSize（iOS8中该步骤调用更频繁）<br>3)重新获取当前需要显示cell的高度，调整tableView的contentSize，显示cell</p>
-<p>UITableView的Cell高度计算＋估算</p>
-<p>如果估算，则2）步骤中计算所有cell的高度改成估算所有cell的高度</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">// All methods that trigger height cache&apos;s invalidation</span><br><span class="line"></span><br><span class="line">SEL selectors[] = &#123;</span><br><span class="line"></span><br><span class="line">    @selector(reloadData),</span><br><span class="line"></span><br><span class="line">    @selector(insertSections:withRowAnimation:),</span><br><span class="line"></span><br><span class="line">    @selector(deleteSections:withRowAnimation:),</span><br><span class="line"></span><br><span class="line">    @selector(reloadSections:withRowAnimation:),</span><br><span class="line"></span><br><span class="line">    @selector(moveSection:toSection:),</span><br><span class="line"></span><br><span class="line">    @selector(insertRowsAtIndexPaths:withRowAnimation:),</span><br><span class="line"></span><br><span class="line">    @selector(deleteRowsAtIndexPaths:withRowAnimation:),</span><br><span class="line"></span><br><span class="line">    @selector(reloadRowsAtIndexPaths:withRowAnimation:),</span><br><span class="line"></span><br><span class="line">    @selector(moveRowAtIndexPath:toIndexPath:)</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">for (NSUInteger index = 0; index &lt; sizeof(selectors) / sizeof(SEL); ++index) &#123;</span><br><span class="line"></span><br><span class="line">    SEL originalSelector = selectors[index];</span><br><span class="line"></span><br><span class="line">    SEL swizzledSelector = NSSelectorFromString([@&quot;fd_&quot; stringByAppendingString:NSStringFromSelector(originalSelector)]);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    Method originalMethod = class_getInstanceMethod(self, originalSelector);</span><br><span class="line"></span><br><span class="line">    Method swizzledMethod = class_getInstanceMethod(self, swizzledSelector);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    method_exchangeImplementations(originalMethod, swizzledMethod);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p> 本文简单罗列了下iOS相关的点。</p>
+<h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><p><img src="/images/iOS应用开发基础.png" alt=""></p>
+<ul>
+<li><p>Swift，<a href="https://github.com/apple/swift" target="_blank" rel="external">Swift开源地址</a>，iOS7.0之后开始支持Swift。</p>
+</li>
+<li><p>Runloop</p>
+</li>
+</ul>
+<p><a href="http://blog.ibireme.com/2015/05/18/runloop/" target="_blank" rel="external">深入理解RunLoop</a></p>
+<ul>
+<li>多线程&amp;同步</li>
+</ul>
+<p><a href="http://www.dreamingwish.com/article/ios-multi-threaded-programming-a-multi-threaded-programming.html" target="_blank" rel="external">iOS多线程编程指南</a></p>
+<ul>
+<li>Core Animation</li>
+</ul>
+<p><a href="http://www.dreamingwish.com/article/coreanimation-programming-guide-summary.html" target="_blank" rel="external">CoreAnimation编程指南</a></p>
+<p><a href="http://www.cnblogs.com/xdream86/p/3250782.html" target="_blank" rel="external">Core Animation编程指南</a><br><a href="http://www.cocoachina.com/ios/20150104/10814.html" target="_blank" rel="external">iOS-Core-Animation-Advanced-Techniques</a></p>
+<ul>
+<li>Block</li>
+</ul>
+<p><a href="http://www.dreamingwish.com/article/block%E4%BB%8B%E7%BB%8D%EF%BC%88%E4%B8%80%EF%BC%89%E5%9F%BA%E7%A1%80.html" target="_blank" rel="external">Block介绍</a></p>
+<ul>
+<li>GCD</li>
+</ul>
+<p><a href="http://www.dreamingwish.com/article/grand-central-dispatch-basic-1.html" target="_blank" rel="external">GCD入门</a></p>
+<ul>
+<li>Core Foundation</li>
+</ul>
+<p><a href="http://opensource.apple.com/tarballs/CF/" target="_blank" rel="external">Core Foundation源码</a></p>
+<h3 id="开源项目"><a href="#开源项目" class="headerlink" title="开源项目"></a>开源项目</h3><ul>
+<li>代码库网址</li>
+</ul>
+<p><a href="http://code.cocoachina.com/" target="_blank" rel="external">cocoachina</a></p>
+<p><a href="http://www.oschina.net/ios/codingList" target="_blank" rel="external">oschina</a></p>
+<p><a href="http://code4app.com/" target="_blank" rel="external">code4app</a></p>
+<p><a href="https://github.com/" target="_blank" rel="external">github</a></p>
+<ul>
+<li><p><a href="https://github.com/facebook/AsyncDisplayKit" target="_blank" rel="external">AsyncDisplayKit</a></p>
+</li>
+<li><p><a href="http://blog.csdn.net/pingchangtan367/article/details/9111917" target="_blank" rel="external">最火的iOS开源项目</a></p>
+</li>
+<li><p><a href="https://www.zhihu.com/question/22914651" target="_blank" rel="external">https://www.zhihu.com/question/22914651</a></p>
+</li>
+<li><a href="http://www.oschina.net/news/61416/github-top-100-objective-c-projects?* from=20150412ReactiveCocoa" target="_blank" rel="external">http://www.oschina.net/news/61416/github-top-100-objective-c-projects?* from=20150412ReactiveCocoa</a></li>
+<li><a href="https://github.com/edagarli/open-ios-projects" target="_blank" rel="external">https://github.com/edagarli/open-ios-projects</a></li>
+<li><a href="http://github.ibireme.com/github/list/ios/" target="_blank" rel="external">http://github.ibireme.com/github/list/ios/</a></li>
+</ul>
+<p>1、AFNetworking<br>AFNetworking 采用 NSURLConnection + NSOperation, 主要方便与服务端 API 进行数据交换, 操作简单, 功能强大, 现在许多人都用它取代 ASIHTTPRequest</p>
+<p>2、Apple Reachability<br>网络监测，可以参考下这篇文章iOS网络监测如何区分2、3、4G?</p>
+<p>3、DOUAudioStreamer<br>豆瓣的开源软件，DOUAudioStreamer 是 iOS 和 Mac 的基于核心音频的流媒体音频播放器</p>
+<p>4、FXBlurView<br>iOS 模糊背景类库, 可以方便的根据底层显示的状态生成模糊效果</p>
+<p>5、GTMNSString+HTML<br>谷歌开源的用于过滤HTML标签</p>
+<p>6、iCarousel<br>iCarousel是一个类，它继承于UIView。用于简化实现各种类型的旋转木马(分页滚动视图）</p>
+<p>7、JDStatusBarNotification<br>在状态栏顶部显示通知。可以自定义颜色字体以及动画。支持进度显示以及显示状态指示器</p>
+<p>8、libwebp<br>可用于webp的移植，具体还是去看git吧</p>
+<p>9、masonry<br>一个轻量级的布局框架, 同时支持 iOS 和 Mac OS X, 语法优雅, 帮助开发者快速适配不同分辨率的 iOS 设备</p>
+<p>10、MGTemplateEngine<br>MGTemplateEngine比较象 PHP 中的 Smarty、FreeMarker 和 Django的模版引擎，是一个轻量级的引擎，简单好用。只要设置很多不同的HMTL模版，就能轻松的实现一个View多种内容格式的显示，对于不熟悉HTML或者减轻 工作量而言，把这些工作让设计分担一下还是很好的，也比较容易实现设计想要的效果。</p>
+<p>11、NJKWebViewProgress<br>NJKWebViewProgress 是一个 UIWebView 的进度条接口库,UIWebView 本身是不提供进度条的。</p>
+<p>12、pop<br>Facebook 开源的iOS 动画库, 集合了很多动画效果</p>
+<p>13、RegexKitLite<br>用来处理正则表达式</p>
+<p>14、SDWebImage<br>常用于对从服务器端接受到的图片进行缓存, 是 UIImageView 的扩展, 应用起来比较简单</p>
+<p>15、SSKeychain<br>SSKeyChains对苹果安全框架API进行了简单封装,支持对存储在钥匙串中密码、账户进行访问,包括读取、删除和设置</p>
+<p>16、TTTAttributedLabel<br>UILabel 的替代品, 使 iOS 上的 Label 功能更加丰富, 可支持链接植入等功能</p>
+<p>17、wax<br>Wax 就是使用 Lua 脚本语言来编写 ios原生应用 的一个框架,它把Lua脚本语言和原生 Objective-C 应用编程接口(API)结合起来</p>
+<p>18、ZipArchive<br>可用于压缩和解压缩文</p>
+<h3 id="第三方服务平台"><a href="#第三方服务平台" class="headerlink" title="第三方服务平台"></a>第三方服务平台</h3><p>TODO</p>
+<h3 id="应用优化"><a href="#应用优化" class="headerlink" title="应用优化"></a>应用优化</h3><ul>
+<li><p><a href="http://blog.ibireme.com/2015/11/12/smooth_user_interfaces_for_ios/" target="_blank" rel="external">iOS 保持界面流畅的技巧</a></p>
+</li>
+<li><p><a href="http://www.cocoachina.com/ios/20150429/11712.html" target="_blank" rel="external">WWDC心得与延伸:iOS图形性能</a></p>
+</li>
+<li><p><a href="http://www.cocoachina.com/ios/20151203/14549.html" target="_blank" rel="external">iOS 事件处理机制与图像渲染过程</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s?__biz=MzAwNDY1ODY2OQ==&amp;mid=207890859&amp;idx=1&amp;sn=e98dd604cdb854e7a5808d2072c29162&amp;scene=1&amp;srcid=1119D98cPepPAys5UJjzKkFU&amp;key=d72a47206eca0ea99e5bfedd27c4e1979bafb09babd40343f279933377d574eeac88cdf63260b257d9bf187a90b30d1b&amp;ascene=0&amp;uin=NDEzMTA2OTc1&amp;devicetype=iMac+MacBookPro11%2C2+OSX+OSX+10.11+build(15A284" target="_blank" rel="external">微信iOS卡顿监控系统</a>&amp;version=11020201&amp;pass_ticket=WqTD03t23%2Fz4yjGdIgJ7hHJdRAUd2Xh4DPQpswxoclHSqzbaxr%2B%2F%2B16u%2Fg0PXgMQ)</p>
+</li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/06/06/2015-06-06-UITableView的Cell高度计算/" data-id="cinbvr0v4000pr25olutwkou7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/12/2016-04-12-iOS学习导图/" data-id="cinbvr0w0001ir25os65x28h1" class="article-share-link">Partager</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
@@ -155,54 +183,10 @@
 
 
   
-    <article id="post-2015-05-06-iOS开发_统计xcode代码行数" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2016-04-06-阅读笔记一" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/05/06/2015-05-06-iOS开发_统计xcode代码行数/" class="article-date">
-  <time datetime="2015-05-06T15:07:56.000Z" itemprop="datePublished">2015-05-06</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/工具/">工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/05/06/2015-05-06-iOS开发_统计xcode代码行数/">iOS开发_统计xcode代码行数</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>如果要统计ios开发代码，包括头文件的，终端命令进入项目目录下，命令如下</p>
-<p>find . -name “<em>.m” -or -name “</em>.h” -or -name “<em>.xib” -or -name “</em>.c” |xargs wc -l<br>列出每个文件的行数</p>
-<p>find . -name “<em>.m” -or -name “</em>.h” -or -name “<em>.xib” -or -name “</em>.c” |xargs grep -v “^$”|wc -l<br>列出代码行数总和</p>
-<p>grep -v “^$”是去掉空行<br>注释也统计在代码量之内，毕竟也一个字一个字码出来的</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/05/06/2015-05-06-iOS开发_统计xcode代码行数/" data-id="cinbvr0v2000nr25oqhus0jmc" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2015-04-06-ObjectiveC杂项" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/04/06/2015-04-06-ObjectiveC杂项/" class="article-date">
-  <time datetime="2015-04-06T15:07:56.000Z" itemprop="datePublished">2015-04-06</time>
+    <a href="/2016/04/06/2016-04-06-阅读笔记一/" class="article-date">
+  <time datetime="2016-04-06T12:07:56.000Z" itemprop="datePublished">2016-04-06</time>
 </a>
     
   <div class="article-category">
@@ -217,102 +201,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/06/2015-04-06-ObjectiveC杂项/">ObjectiveC杂项</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="arc："><a href="#arc：" class="headerlink" title="arc："></a>arc：</h3><p><a href="http://clang.llvm.org/docs/AutomaticReferenceCounting.html#bridged-casts" target="_blank" rel="external">http://clang.llvm.org/docs/AutomaticReferenceCounting.html#bridged-casts</a></p>
-<h3 id="Toll-Free-Bridging"><a href="#Toll-Free-Bridging" class="headerlink" title="Toll-Free-Bridging"></a>Toll-Free-Bridging</h3><p><a href="http://gracelancy.com/blog/2014/04/21/toll-free-bridging/" target="_blank" rel="external">http://gracelancy.com/blog/2014/04/21/toll-free-bridging/</a><br>(<strong>bridge T) op：告诉编译器在 bridge 的时候不要做任何事情<br>(</strong>bridge_retained T) op：（ ObjC 转 CF 的时候使用）告诉编译器在 bridge 的时候 retain 对象，开发者需要在CF一端负责释放对象<br>(__bridge_transfer T) op：（ CF 转 ObjC 的时候使用）告诉编译器转移 CF 对象的所有权，开发者不再需要在CF一端负责释放对象</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/04/06/2015-04-06-ObjectiveC杂项/" data-id="cinbvr0v0000kr25oxvmkg1sx" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2015-03-24-在github上开启个人页" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/03/24/2015-03-24-在github上开启个人页/" class="article-date">
-  <time datetime="2015-03-24T14:07:56.000Z" itemprop="datePublished">2015-03-24</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/工具/">工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/03/24/2015-03-24-在github上开启个人页/">利用Github搭建个人博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="在Github上开启个人页"><a href="#在Github上开启个人页" class="headerlink" title="在Github上开启个人页"></a>在Github上开启个人页</h3><ul>
-<li><a href="https://github.com/" target="_blank" rel="external">Github</a></li>
-<li>以笔者为例，git帐号为<code>jacoli</code>，github地址为<code>https://github.com/jacoli</code>，需要创建名为<code>jacoli.github.io</code>的仓库，该仓库的master分支下放静态网页的站点。<code>http://jacoli.github.io/</code>就是个人页的网址了。</li>
-</ul>
-<h3 id="将Markdown文件转成静态网页"><a href="#将Markdown文件转成静态网页" class="headerlink" title="将Markdown文件转成静态网页"></a>将Markdown文件转成静态网页</h3><ul>
-<li><a href="https://jekyllrb.com/" target="_blank" rel="external">jekyll</a>，用ruby写的工具，可将markdown文件转成静态网站</li>
-<li><a href="https://hexo.io/zh-cn/" target="_blank" rel="external">hexo</a>，用nodejs写的，通过npm安装，使用较jekyll简单。</li>
-</ul>
-<h3 id="使用网页主题"><a href="#使用网页主题" class="headerlink" title="使用网页主题"></a>使用网页主题</h3><ul>
-<li><a href="http://theme-next.iissnan.com/" target="_blank" rel="external">theme-next</a>，主题包，可以配合<code>hexo</code>使用。</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/03/24/2015-03-24-在github上开启个人页/" data-id="cinbvr0uu000hr25orn6nzzxm" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2014-05-11-iphone分辨率" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/05/11/2014-05-11-iphone分辨率/" class="article-date">
-  <time datetime="2014-05-10T16:00:00.000Z" itemprop="datePublished">2014-05-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/iOS基础/">iOS基础</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/05/11/2014-05-11-iphone分辨率/">iphone分辨率</a>
+      <a class="article-title" href="/2016/04/06/2016-04-06-阅读笔记一/">阅读笔记一</a>
     </h1>
   
 
@@ -321,15 +210,67 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li>iphone分辨率</li>
+<li><a href="http://www.cocoachina.com/ios/20160108/14916.html" target="_blank" rel="external">iOS 架构模式–解密 MVC，MVP，MVVM以及VIPER架构</a></li>
 </ul>
-<p><img src="/images/iphone分辨率.jpeg" alt=""></p>
-<p><img src="/images/iphone分辨率2.jpg" alt=""></p>
+<p>我们了解了集中架构模式，希望你已经找到了到底是什么在困扰你。毫无疑问通过阅读本篇文章，你已经了解到其实并没有完全的银弹。所以选择架构是一个根据实际情况具体分析利弊的过程。</p>
+<p>因此，在同一个应用中包含着多种架构。比如，你开始的时候使用MVC，然后突然意识到一个页面在MVC模式下的变得越来越难以维护，然后就切换到MVVM架构，但是仅仅针对这一个页面。并没有必要对哪些MVC模式下运转良好的页面进行重构，因为二者是可以并存的。<br><img src="/images/APP架构模式对比.png" alt="APP架构模式对比"></p>
+<ul>
+<li><a href="http://www.cocoachina.com/ios/20160331/15801.html" target="_blank" rel="external">移动开发的革命之路到底指向何方</a></li>
+</ul>
+<p>Native和Hybrid之争，业务和技术驱动下的权衡，短期内，不能说哪个替代掉哪个，而是在业务需求下，哪个更合适。Native在高性能的基础上，追求更高的动态性，Hybrid在高动态性的基础上，追求高性能，有些殊途同归的意味。</p>
+<ul>
+<li><a href="http://www.cocoachina.com/ios/20160316/15685.html" target="_blank" rel="external">在写一个iOS应用之前必须做的7件事(附相关资源)</a></li>
+</ul>
+<p>设定应用的代码风格、结构框架、持续集成等。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/05/11/2014-05-11-iphone分辨率/" data-id="cinbvr0uq000er25ok703b5cm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/06/2016-04-06-阅读笔记一/" data-id="cinbvr0wq0031r25ochu5bsc7" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-03-02-模拟器及profile路径" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/02/2016-03-02-模拟器及profile路径/" class="article-date">
+  <time datetime="2016-03-01T16:00:00.000Z" itemprop="datePublished">2016-03-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/移动开发/">移动开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/02/2016-03-02-模拟器及profile路径/">模拟器及profile路径</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>模拟器设备路径<br><code>/Users/lichuange/Library/Developer/CoreSimulator/Devices</code></p>
+<p>Profiles路径<br><code>/Users/lichuange/Library/MobileDevice/Provisioning Profiles</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/02/2016-03-02-模拟器及profile路径/" data-id="cinmv0kz10003985ovwirg0d7" class="article-share-link">Partager</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
@@ -341,14 +282,14 @@
 
 
   
-    <article id="post-2014-04-09-OC-Runtime-6-Load&amp;Initialize" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2016-03-02-keychain中保存私密信息" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/04/09/2014-04-09-OC-Runtime-6-Load&Initialize/" class="article-date">
-  <time datetime="2014-04-08T16:00:00.000Z" itemprop="datePublished">2014-04-09</time>
+    <a href="/2016/03/02/2016-03-02-keychain中保存私密信息/" class="article-date">
+  <time datetime="2016-03-01T16:00:00.000Z" itemprop="datePublished">2016-03-02</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/Objective-C/">Objective-C</a>
+    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/移动开发/">移动开发</a>
   </div>
 
   </div>
@@ -359,7 +300,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/04/09/2014-04-09-OC-Runtime-6-Load&Initialize/">OC Runtime(6)之Load&amp;Initialize</a>
+      <a class="article-title" href="/2016/03/02/2016-03-02-keychain中保存私密信息/">keychain中保存私密信息</a>
     </h1>
   
 
@@ -367,49 +308,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Runtime系列笔记"><a href="#Runtime系列笔记" class="headerlink" title="Runtime系列笔记"></a>Runtime系列笔记</h3><ul>
-<li><a href="/2014/03/07/001-OC-Runtime-1-Object&amp;Class/">Runtime之对象和类</a></li>
-<li><a href="/2014/03/12/001-OC-Runtime-2-Ivar&amp;Property&amp;Method&amp;Protocol/">Runtime之属性和方法</a></li>
-<li><a href="/2014/03/18/001-OC-Runtime-3-Associated%20Objects/">Runtime之关联对象</a></li>
-<li><a href="/2014/03/21/001-OC-Runtime-4-Message%20Forwarding/">Runtime之消息转发</a></li>
-<li><a href="/2014/04/02/001-OC-Runtime-5-Method%20Swizzling/">Runtime之方法替换</a></li>
-<li><a href="/2014/04/09/001-OC-Runtime-6-Load&amp;Initialize/">Runtime之Load&amp;Initialize</a></li>
-</ul>
-<p><img src="/images/OC-Runtime.png" alt="OC-Runtime"></p>
-<h3 id="load"><a href="#load" class="headerlink" title="+load"></a>+load</h3><ul>
-<li><code>+load</code>方法只会被执行一次，且是在程序加载阶段，这时运行环境并不完备。</li>
-<li>不同类或类别的<code>+load</code>方法会按一定顺序被执行。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、依赖库的`+load`。</span><br><span class="line">2、当前库`+load`，`class`的`+load`优先于`category`，父`class`优先于子`class`。</span><br><span class="line">3、当前库的`All C++ static initializers and C/C++ __attribute__(constructor) functions`。</span><br><span class="line">4、被依赖库的`+load`。</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>在<code>+load</code>方法中可以安全地发送消息给当前库内其他类的消息，虽然这些类的<code>+load</code>可能还没有执行过。</p>
-</li>
-<li><p>从源码中，也可以看出<code>class</code>的<code>+load</code>优先于<code>category</code>，父<code>class</code>优先于子<code>class</code>。</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">void prepare_load_methods(const headerType *mhdr)</span><br><span class="line">&#123;</span><br><span class="line">    size_t count, i;</span><br><span class="line"></span><br><span class="line">    runtimeLock.assertWriting();</span><br><span class="line"></span><br><span class="line">    classref_t *classlist = </span><br><span class="line">        _getObjc2NonlazyClassList(mhdr, &amp;count);</span><br><span class="line">    for (i = 0; i &lt; count; i++) &#123;</span><br><span class="line">        schedule_class_load(remapClass(classlist[i]));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    category_t **categorylist = _getObjc2NonlazyCategoryList(mhdr, &amp;count);</span><br><span class="line">    for (i = 0; i &lt; count; i++) &#123;</span><br><span class="line">        category_t *cat = categorylist[i];</span><br><span class="line">        Class cls = remapClass(cat-&gt;cls);</span><br><span class="line">        if (!cls) continue;  // category for ignored weak-linked class</span><br><span class="line">        realizeClass(cls);</span><br><span class="line">        assert(cls-&gt;ISA()-&gt;isRealized());</span><br><span class="line">        add_category_to_loadable_list(cat);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">static void schedule_class_load(Class cls)</span><br><span class="line">&#123;</span><br><span class="line">    if (!cls) return;</span><br><span class="line">    assert(cls-&gt;isRealized());  // _read_images should realize</span><br><span class="line"></span><br><span class="line">    if (cls-&gt;data()-&gt;flags &amp; RW_LOADED) return;</span><br><span class="line"></span><br><span class="line">    // Ensure superclass-first ordering</span><br><span class="line">    schedule_class_load(cls-&gt;superclass);</span><br><span class="line"></span><br><span class="line">    add_class_to_loadable_list(cls);</span><br><span class="line">    cls-&gt;setInfo(RW_LOADED); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="initialize"><a href="#initialize" class="headerlink" title="initialize"></a>initialize</h3><ul>
-<li>向类或对象发送消息时，会调用<code>lookUpImpOrForward</code>查找，并会检查是否初始化过，如果没有，则会调用<code>_class_initialize</code>做初始化。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">IMP lookUpImpOrForward(Class cls, SEL sel, id inst, </span><br><span class="line">                       bool initialize, bool cache, bool resolver)</span><br><span class="line">&#123;</span><br><span class="line">    // ...</span><br><span class="line"></span><br><span class="line">    if (initialize  &amp;&amp;  !cls-&gt;isInitialized()) &#123;</span><br><span class="line">        _class_initialize (_class_getNonMetaClass(cls, inst));</span><br><span class="line">        // If sel == initialize, _class_initialize will send +initialize and </span><br><span class="line">        // then the messenger will send +initialize again after this </span><br><span class="line">        // procedure finishes. Of course, if this is not being called </span><br><span class="line">        // from the messenger then it won&apos;t happen. 2778172</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	// ...</span><br><span class="line"></span><br><span class="line">    return imp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
-<li><a href="http://cocoasamurai.blogspot.jp/2010/01/understanding-objective-c-runtime.html" target="_blank" rel="external">understanding-objective-c-runtime</a></li>
-<li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048" target="_blank" rel="external">ObjCRuntimeGuide</a></li>
-<li><a href="http://opensource.apple.com/tarballs/objc4/" target="_blank" rel="external">runtime源码</a></li>
-<li><a href="http://blog.jobbole.com/45963/" target="_blank" rel="external">Objective-C 的动态提示和技巧</a></li>
-<li><a href="http://www.cocoachina.com/ios/20150104/10826.html" target="_blank" rel="external">NSObject的load和initialize方法</a></li>
-<li><a href="http://esoftmobile.com/2014/02/18/associated-objects/" target="_blank" rel="external">associated-objects</a></li>
-<li><a href="http://esoftmobile.com/2014/02/19/method-swizzling/" target="_blank" rel="external">method-swizzling</a></li>
-</ul>
+        <p>通常情况下，IOS系统用NSUserDefaults存储数据信息，但是对于一些私密信息，比如密码、证书等等，就需要使用更为安全的keychain了。</p>
+<p>keychain里保存的信息不会因App被删除而丢失。所以，可以利用这个keychain这个特点来保存设备唯一标识。</p>
+<p>那么，如何在应用里使用使用keyChain呢，我们需要导入Security.framework ，keychain的操作接口声明在头文件SecItem.h里。</p>
+<p>直接使用SecItem.h里方法操作keychain，需要写的代码较为复杂，我们可以使用已经封装好了的工具类KeychainItemWrapper来对keychain进行操作。</p>
+<p>KeychainItemWrapper是apple官方例子“GenericKeychain”里一个访问keychain常用操作的封装类，在官网上下载了GenericKeychain项目后，</p>
+<p>只需要把“KeychainItemWrapper.h”和“KeychainItemWrapper.m”拷贝到我们项目，并导入Security.framework 。KeychainItemWrapper的用法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/** 初始化一个保存用户帐号的KeychainItemWrapper */</span><br><span class="line">KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@&quot;Account Number&quot;</span><br><span class="line">                                                                   accessGroup:@&quot;YOUR_APP_ID_HERE.com.yourcompany.AppIdentifier&quot;];  </span><br><span class="line"> </span><br><span class="line">//保存数据</span><br><span class="line">[wrapper setObject:@&quot;&lt;帐号&gt;&quot; forKey:(id)kSecAttrAccount];    </span><br><span class="line"> </span><br><span class="line">[wrapper setObject:@&quot;&lt;帐号密码&gt;&quot; forKey:(id)kSecValueData];    </span><br><span class="line"> </span><br><span class="line">//从keychain里取出帐号密码</span><br><span class="line">NSString *password = [wrapper objectForKey:(id)kSecValueData];      </span><br><span class="line"> </span><br><span class="line">//清空设置</span><br><span class="line">[wrapper resetKeychainItem];</span><br><span class="line">其中方法“- (void)setObject:(id)inObject forKey:(id)key;”里参数“forKey”的值应该是Security.framework 里头文件“SecItem.h”里定义好的key，用其他字符串做key程序会出错！</span><br></pre></td></tr></table></figure>
+<p>keychain<br><a href="http://my.oschina.net/w11h22j33/blog/206713" target="_blank" rel="external">http://my.oschina.net/w11h22j33/blog/206713</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/04/09/2014-04-09-OC-Runtime-6-Load&Initialize/" data-id="cinbvr0un000br25owzh28fu7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/02/2016-03-02-keychain中保存私密信息/" data-id="cinmv0kyx0001985o80qnpr5u" class="article-share-link">Partager</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OC-Runtime/">OC Runtime</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
 
     </footer>
   </div>
@@ -418,14 +332,14 @@
 
 
   
-    <article id="post-2014-04-02-OC-Runtime-5-Method Swizzling" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2016-03-02-Xcode命令行" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/04/02/2014-04-02-OC-Runtime-5-Method Swizzling/" class="article-date">
-  <time datetime="2014-04-01T16:00:00.000Z" itemprop="datePublished">2014-04-02</time>
+    <a href="/2016/03/02/2016-03-02-Xcode命令行/" class="article-date">
+  <time datetime="2016-03-01T16:00:00.000Z" itemprop="datePublished">2016-03-02</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/Objective-C/">Objective-C</a>
+    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/移动开发/">移动开发</a>
   </div>
 
   </div>
@@ -436,7 +350,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/04/02/2014-04-02-OC-Runtime-5-Method Swizzling/">OC Runtime(5)之Method Swizzling</a>
+      <a class="article-title" href="/2016/03/02/2016-03-02-Xcode命令行/">Xcode命令行</a>
     </h1>
   
 
@@ -444,43 +358,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Runtime系列笔记"><a href="#Runtime系列笔记" class="headerlink" title="Runtime系列笔记"></a>Runtime系列笔记</h3><ul>
-<li><a href="/2014/03/07/001-OC-Runtime-1-Object&amp;Class/">Runtime之对象和类</a></li>
-<li><a href="/2014/03/12/001-OC-Runtime-2-Ivar&amp;Property&amp;Method&amp;Protocol/">Runtime之属性和方法</a></li>
-<li><a href="/2014/03/18/001-OC-Runtime-3-Associated%20Objects/">Runtime之关联对象</a></li>
-<li><a href="/2014/03/21/001-OC-Runtime-4-Message%20Forwarding/">Runtime之消息转发</a></li>
-<li><a href="/2014/04/02/001-OC-Runtime-5-Method%20Swizzling/">Runtime之方法替换</a></li>
-<li><a href="/2014/04/09/001-OC-Runtime-6-Load&amp;Initialize/">Runtime之Load&amp;Initialize</a></li>
-</ul>
-<p><img src="/images/OC-Runtime.png" alt="OC-Runtime"></p>
-<h3 id="Method的几个概念"><a href="#Method的几个概念" class="headerlink" title="Method的几个概念"></a>Method的几个概念</h3><ul>
-<li><code>Method</code>包含方法名<code>Selector</code>、函数地址<code>IMP</code>、参数类型<code>TypeEncoding</code>。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NSLog(@&quot;    method name = %s&quot;, sel_getName(method_getName(method)));</span><br><span class="line">NSLog(@&quot;    method type encode = %s&quot;, method_getTypeEncoding(method));</span><br><span class="line">NSLog(@&quot;    NumberOfArguments = %d&quot;, method_getNumberOfArguments(method));</span><br><span class="line">NSLog(@&quot;    ReturnType = %s&quot;, method_copyReturnType(method));</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">2016-04-08 20:54:59.351 OCRuntime[54195:953880]     method name = setNumberProperty:</span><br><span class="line">2016-04-08 20:54:59.352 OCRuntime[54195:953880]     method type encode = v24@0:8@16</span><br><span class="line">2016-04-08 20:54:59.352 OCRuntime[54195:953880]     NumberOfArguments = 3</span><br><span class="line">2016-04-08 20:54:59.352 OCRuntime[54195:953880]     ReturnType = v</span><br></pre></td></tr></table></figure>
-<h3 id="动态修改Method的几个接口"><a href="#动态修改Method的几个接口" class="headerlink" title="动态修改Method的几个接口"></a>动态修改Method的几个接口</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 设置或交换IMP</span><br><span class="line">IMP method_setImplementation(Method m, IMP imp);</span><br><span class="line">void method_exchangeImplementations(Method m1, Method m2);</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BOOL class_addMethod(Class cls, SEL name, IMP imp, const char *types);</span><br><span class="line">                                 </span><br><span class="line">// 如果原来没有这个方法，则直接添加Method，效果同class_addMethod</span><br><span class="line">// 如果原来有，则替换掉原来的IMP，忽略参数类型</span><br><span class="line">IMP class_replaceMethod(Class cls, SEL name, IMP imp, const char *types);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>例子：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">+ (void)load &#123;</span><br><span class="line">    static dispatch_once_t onceToken;</span><br><span class="line">    dispatch_once(&amp;onceToken, ^&#123;</span><br><span class="line">        Class class = [self class];</span><br><span class="line"></span><br><span class="line">        // When swizzling a class method, use the following:</span><br><span class="line">        // Class class = object_getClass((id)self);</span><br><span class="line"></span><br><span class="line">        SEL originalSelector = @selector(viewWillAppear:);</span><br><span class="line">        SEL swizzledSelector = @selector(xxx_viewWillAppear:);</span><br><span class="line"></span><br><span class="line">        Method originalMethod = class_getInstanceMethod(class, originalSelector);</span><br><span class="line">        Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);</span><br><span class="line"></span><br><span class="line">        BOOL didAddMethod =</span><br><span class="line">            class_addMethod(class,</span><br><span class="line">                originalSelector,</span><br><span class="line">                method_getImplementation(swizzledMethod),</span><br><span class="line">                method_getTypeEncoding(swizzledMethod));</span><br><span class="line"></span><br><span class="line">        if (didAddMethod) &#123;</span><br><span class="line">            class_replaceMethod(class,</span><br><span class="line">                swizzledSelector,</span><br><span class="line">                method_getImplementation(originalMethod),</span><br><span class="line">                method_getTypeEncoding(originalMethod));</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            method_exchangeImplementations(originalMethod, swizzledMethod);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
-<li><a href="http://cocoasamurai.blogspot.jp/2010/01/understanding-objective-c-runtime.html" target="_blank" rel="external">understanding-objective-c-runtime</a></li>
-<li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048" target="_blank" rel="external">ObjCRuntimeGuide</a></li>
-<li><a href="http://opensource.apple.com/tarballs/objc4/" target="_blank" rel="external">runtime源码</a></li>
-<li><a href="http://blog.jobbole.com/45963/" target="_blank" rel="external">Objective-C 的动态提示和技巧</a></li>
-<li><a href="http://www.cocoachina.com/ios/20150104/10826.html" target="_blank" rel="external">NSObject的load和initialize方法</a></li>
-<li><a href="http://esoftmobile.com/2014/02/18/associated-objects/" target="_blank" rel="external">associated-objects</a></li>
-<li><a href="http://esoftmobile.com/2014/02/19/method-swizzling/" target="_blank" rel="external">method-swizzling</a></li>
-</ul>
-
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/xcodebuild -scheme Tmall4iPhone -sdk iphoneos -workspace Tmall4iPhone.xcworkspace -configuration Release clean archive -archivePath mupp_output_dir &apos;GCC_PREPROCESSOR_DEFINITIONS=$(inherited) CHANNEL_ID=201200 TLOG_SWITCH_FLAG=\&quot;true\&quot; TLOG_LEVEL_FLAG=\&quot;error\&quot; TLOG_MODULE_FLAG=\&quot;off\&quot;&apos;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/04/02/2014-04-02-OC-Runtime-5-Method Swizzling/" data-id="cinbvr0uj0008r25oumdabshz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/02/2016-03-02-Xcode命令行/" data-id="cinmv0kyq0000985onuyz2wyh" class="article-share-link">Partager</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OC-Runtime/">OC Runtime</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
 
     </footer>
   </div>
@@ -489,14 +374,14 @@
 
 
   
-    <article id="post-2014-03-21-OC-Runtime-4-Message Forwarding" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2016-02-27-移动技术架构" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/03/21/2014-03-21-OC-Runtime-4-Message Forwarding/" class="article-date">
-  <time datetime="2014-03-20T16:00:00.000Z" itemprop="datePublished">2014-03-21</time>
+    <a href="/2016/02/27/2016-02-27-移动技术架构/" class="article-date">
+  <time datetime="2016-02-27T14:45:56.000Z" itemprop="datePublished">2016-02-27</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/Objective-C/">Objective-C</a>
+    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/移动开发/">移动开发</a>
   </div>
 
   </div>
@@ -507,7 +392,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/03/21/2014-03-21-OC-Runtime-4-Message Forwarding/">OC Runtime(4)之Message Forwarding</a>
+      <a class="article-title" href="/2016/02/27/2016-02-27-移动技术架构/">移动技术架构</a>
     </h1>
   
 
@@ -515,62 +400,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Runtime系列笔记"><a href="#Runtime系列笔记" class="headerlink" title="Runtime系列笔记"></a>Runtime系列笔记</h3><ul>
-<li><a href="/2014/03/07/001-OC-Runtime-1-Object&amp;Class/">Runtime之对象和类</a></li>
-<li><a href="/2014/03/12/001-OC-Runtime-2-Ivar&amp;Property&amp;Method&amp;Protocol/">Runtime之属性和方法</a></li>
-<li><a href="/2014/03/18/001-OC-Runtime-3-Associated%20Objects/">Runtime之关联对象</a></li>
-<li><a href="/2014/03/21/001-OC-Runtime-4-Message%20Forwarding/">Runtime之消息转发</a></li>
-<li><a href="/2014/04/02/001-OC-Runtime-5-Method%20Swizzling/">Runtime之方法替换</a></li>
-<li><a href="/2014/04/09/001-OC-Runtime-6-Load&amp;Initialize/">Runtime之Load&amp;Initialize</a></li>
+        <ul>
+<li>移动技术架构思维图</li>
 </ul>
-<p><img src="/images/OC-Runtime.png" alt="OC-Runtime"></p>
-<h3 id="消息发送"><a href="#消息发送" class="headerlink" title="消息发送"></a>消息发送</h3><ul>
-<li>对象方法的调用就是向该对象发送消息。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">OCHelper *object = [[OCHelper alloc] init];</span><br><span class="line"></span><br><span class="line">// 以下两句代码效果是相同的。</span><br><span class="line">[object onHandler];</span><br><span class="line">objc_msgSend(object, @selector(onHandler));</span><br></pre></td></tr></table></figure>
-<ul>
-<li>编译阶段，会自动将OC方法调用转化成内联的<code>objc_msgSend</code>方法调用。</li>
-</ul>
-<h3 id="消息转发"><a href="#消息转发" class="headerlink" title="消息转发"></a>消息转发</h3><ul>
-<li>有了OC的消息机制，就可以在运行时修改消息执行路径。</li>
-<li><p><code>objc_msgSend</code>会调用<code>lookUpImpOrForward</code>从类（或父类）的<code>methodsCache</code>或<code>methodList</code>寻找方法。</p>
-</li>
-<li><p><code>lookUpImpOrForward</code>的源码如下：</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line">IMP lookUpImpOrForward(Class cls, SEL sel, id inst, </span><br><span class="line">                       bool initialize, bool cache, bool resolver)</span><br><span class="line">&#123;</span><br><span class="line">    Class curClass;</span><br><span class="line">    IMP methodPC = nil;</span><br><span class="line">    Method meth;</span><br><span class="line">    bool triedResolver = NO;</span><br><span class="line"></span><br><span class="line">    methodListLock.assertUnlocked();</span><br><span class="line"></span><br><span class="line">    // Optimistic cache lookup</span><br><span class="line">    if (cache) &#123;</span><br><span class="line">        methodPC = _cache_getImp(cls, sel);</span><br><span class="line">        if (methodPC) return methodPC;    </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Check for freed class</span><br><span class="line">    if (cls == _class_getFreedObjectClass())</span><br><span class="line">        return (IMP) _freedHandler;</span><br><span class="line"></span><br><span class="line">    // Check for +initialize</span><br><span class="line">    if (initialize  &amp;&amp;  !cls-&gt;isInitialized()) &#123;</span><br><span class="line">        _class_initialize (_class_getNonMetaClass(cls, inst));</span><br><span class="line">        // If sel == initialize, _class_initialize will send +initialize and </span><br><span class="line">        // then the messenger will send +initialize again after this </span><br><span class="line">        // procedure finishes. Of course, if this is not being called </span><br><span class="line">        // from the messenger then it won&apos;t happen. 2778172</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // The lock is held to make method-lookup + cache-fill atomic </span><br><span class="line">    // with respect to method addition. Otherwise, a category could </span><br><span class="line">    // be added but ignored indefinitely because the cache was re-filled </span><br><span class="line">    // with the old value after the cache flush on behalf of the category.</span><br><span class="line"> retry:</span><br><span class="line">    methodListLock.lock();</span><br><span class="line"></span><br><span class="line">    // Ignore GC selectors</span><br><span class="line">    if (ignoreSelector(sel)) &#123;</span><br><span class="line">        methodPC = _cache_addIgnoredEntry(cls, sel);</span><br><span class="line">        goto done;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Try this class&apos;s cache.</span><br><span class="line"></span><br><span class="line">    methodPC = _cache_getImp(cls, sel);</span><br><span class="line">    if (methodPC) goto done;</span><br><span class="line"></span><br><span class="line">    // Try this class&apos;s method lists.</span><br><span class="line"></span><br><span class="line">    meth = _class_getMethodNoSuper_nolock(cls, sel);</span><br><span class="line">    if (meth) &#123;</span><br><span class="line">        log_and_fill_cache(cls, cls, meth, sel);</span><br><span class="line">        methodPC = method_getImplementation(meth);</span><br><span class="line">        goto done;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Try superclass caches and method lists.</span><br><span class="line"></span><br><span class="line">    curClass = cls;</span><br><span class="line">    while ((curClass = curClass-&gt;superclass)) &#123;</span><br><span class="line">        // Superclass cache.</span><br><span class="line">        meth = _cache_getMethod(curClass, sel, _objc_msgForward_impcache);</span><br><span class="line">        if (meth) &#123;</span><br><span class="line">            if (meth != (Method)1) &#123;</span><br><span class="line">                // Found the method in a superclass. Cache it in this class.</span><br><span class="line">                log_and_fill_cache(cls, curClass, meth, sel);</span><br><span class="line">                methodPC = method_getImplementation(meth);</span><br><span class="line">                goto done;</span><br><span class="line">            &#125;</span><br><span class="line">            else &#123;</span><br><span class="line">                // Found a forward:: entry in a superclass.</span><br><span class="line">                // Stop searching, but don&apos;t cache yet; call method </span><br><span class="line">                // resolver for this class first.</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // Superclass method list.</span><br><span class="line">        meth = _class_getMethodNoSuper_nolock(curClass, sel);</span><br><span class="line">        if (meth) &#123;</span><br><span class="line">            log_and_fill_cache(cls, curClass, meth, sel);</span><br><span class="line">            methodPC = method_getImplementation(meth);</span><br><span class="line">            goto done;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // No implementation found. Try method resolver once.</span><br><span class="line"></span><br><span class="line">    if (resolver  &amp;&amp;  !triedResolver) &#123;</span><br><span class="line">        methodListLock.unlock();</span><br><span class="line">        _class_resolveMethod(cls, sel, inst);</span><br><span class="line">        triedResolver = YES;</span><br><span class="line">        goto retry;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // No implementation found, and method resolver didn&apos;t help. </span><br><span class="line">    // Use forwarding.</span><br><span class="line"></span><br><span class="line">    _cache_addForwardEntry(cls, sel);</span><br><span class="line">    methodPC = _objc_msgForward_impcache;</span><br><span class="line"></span><br><span class="line"> done:</span><br><span class="line">    methodListLock.unlock();</span><br><span class="line"></span><br><span class="line">    // paranoia: look for ignored selectors with non-ignored implementations</span><br><span class="line">    assert(!(ignoreSelector(sel)  &amp;&amp;  methodPC != (IMP)&amp;_objc_ignored_method));</span><br><span class="line"></span><br><span class="line">    return methodPC;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>如果找到方法，则直接执行。</li>
-<li>如果没有找到方法，则提供一套Hock机制，允许运行时解决。</li>
-<li><code>NSObject</code>提供了些可重载的方法，如下：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@interface NSObject</span><br><span class="line">- (id)forwardingTargetForSelector:(SEL)aSelector;</span><br><span class="line">- (void)forwardInvocation:(NSInvocation *)anInvocation;</span><br><span class="line">- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector;</span><br><span class="line">+ (BOOL)resolveClassMethod:(SEL)sel;</span><br><span class="line">+ (BOOL)resolveInstanceMethod:(SEL)sel;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<ul>
-<li>如果没有找到方法，会先调用<code>resolveInstanceMethod</code>，在该方法中可动态添加方法到类。</li>
-</ul>
-<p><img src="/images/messaging.png" alt="resolveInstanceMethod"></p>
-<ul>
-<li>如果不行，接下来会调用<code>forwardingTargetForSelector</code>转发，可动态替换掉响应对象。</li>
-<li>如果还不行，则调用<code>methodSignatureForSelector</code>和<code>forwardInvocation</code>转发<code>Invocation</code>。</li>
-<li>如果还不行，则会抛异常<code>doesNotRecognizeSelector</code>。</li>
-</ul>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
-<li><a href="http://cocoasamurai.blogspot.jp/2010/01/understanding-objective-c-runtime.html" target="_blank" rel="external">understanding-objective-c-runtime</a></li>
-<li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048" target="_blank" rel="external">ObjCRuntimeGuide</a></li>
-<li><a href="http://opensource.apple.com/tarballs/objc4/" target="_blank" rel="external">runtime源码</a></li>
-<li><a href="http://blog.jobbole.com/45963/" target="_blank" rel="external">Objective-C 的动态提示和技巧</a></li>
-<li><a href="http://www.cocoachina.com/ios/20150104/10826.html" target="_blank" rel="external">NSObject的load和initialize方法</a></li>
-<li><a href="http://esoftmobile.com/2014/02/18/associated-objects/" target="_blank" rel="external">associated-objects</a></li>
-<li><a href="http://esoftmobile.com/2014/02/19/method-swizzling/" target="_blank" rel="external">method-swizzling</a></li>
-</ul>
+<p><img src="/images/移动技术架构.png" alt="移动技术架构思维图"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/03/21/2014-03-21-OC-Runtime-4-Message Forwarding/" data-id="cinbvr0ue0006r25ok2nsrbdq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/02/27/2016-02-27-移动技术架构/" data-id="cinbvr0vw001fr25oe9cwt9fc" class="article-share-link">Partager</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OC-Runtime/">OC Runtime</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
 
     </footer>
   </div>
@@ -579,14 +420,14 @@
 
 
   
-    <article id="post-2014-03-18-OC-Runtime-3-Associated Objects" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2016-01-14-APP代码结构" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/03/18/2014-03-18-OC-Runtime-3-Associated Objects/" class="article-date">
-  <time datetime="2014-03-17T16:00:00.000Z" itemprop="datePublished">2014-03-18</time>
+    <a href="/2016/01/14/2016-01-14-APP代码结构/" class="article-date">
+  <time datetime="2016-01-14T15:07:56.000Z" itemprop="datePublished">2016-01-14</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/Objective-C/">Objective-C</a>
+    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/移动开发/">移动开发</a>
   </div>
 
   </div>
@@ -597,7 +438,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/03/18/2014-03-18-OC-Runtime-3-Associated Objects/">OC Runtime(3)之Associated Objects</a>
+      <a class="article-title" href="/2016/01/14/2016-01-14-APP代码结构/">APP结构设计</a>
     </h1>
   
 
@@ -605,48 +446,265 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Runtime系列笔记"><a href="#Runtime系列笔记" class="headerlink" title="Runtime系列笔记"></a>Runtime系列笔记</h3><ul>
-<li><a href="/2014/03/07/001-OC-Runtime-1-Object&amp;Class/">Runtime之对象和类</a></li>
-<li><a href="/2014/03/12/001-OC-Runtime-2-Ivar&amp;Property&amp;Method&amp;Protocol/">Runtime之属性和方法</a></li>
-<li><a href="/2014/03/18/001-OC-Runtime-3-Associated%20Objects/">Runtime之关联对象</a></li>
-<li><a href="/2014/03/21/001-OC-Runtime-4-Message%20Forwarding/">Runtime之消息转发</a></li>
-<li><a href="/2014/04/02/001-OC-Runtime-5-Method%20Swizzling/">Runtime之方法替换</a></li>
-<li><a href="/2014/04/09/001-OC-Runtime-6-Load&amp;Initialize/">Runtime之Load&amp;Initialize</a></li>
+        <h3 id="模块化（Bundle）"><a href="#模块化（Bundle）" class="headerlink" title="模块化（Bundle）"></a>模块化（Bundle）</h3><ul>
+<li>业务、服务、功能可以按模块粒度做划分，模块内功能独立，模块间松耦合。</li>
+<li>模块依赖管理工具：<code>CocoaPods</code>、<code>Carthage</code>、<code>Gradle</code>、<code>Maven</code>等</li>
 </ul>
-<p><img src="/images/OC-Runtime.png" alt="OC-Runtime"></p>
-<h3 id="关联对象"><a href="#关联对象" class="headerlink" title="关联对象"></a>关联对象</h3><ul>
-<li><objc runtime.h="">提供了三个方法，分别是get、set、remove</objc></li>
+<h3 id="分层（Layers）"><a href="#分层（Layers）" class="headerlink" title="分层（Layers）"></a>分层（Layers）</h3><ul>
+<li>基础功能：硬件、网络、存储、数据模型、音视频、图像、安全、研发支撑、布局、主题、样式、组件化、动态化、动画、控件等</li>
+<li>基础服务：推送、分享、LBS、支付、扫码、统一跳转、登录、H5容器等</li>
+<li>上层业务：首页、搜索、详情、活动、社区、交易等</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">void objc_setAssociatedObject(id object, const void *key, id value, objc_AssociationPolicy policy);</span><br><span class="line">id objc_getAssociatedObject(id object, const void *key);</span><br><span class="line">void objc_removeAssociatedObjects(id object);</span><br></pre></td></tr></table></figure>
-<h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><ul>
-<li>获取</li>
+<h3 id="UI模块的设计模式MVC-vs-MVVM"><a href="#UI模块的设计模式MVC-vs-MVVM" class="headerlink" title="UI模块的设计模式MVC vs MVVM"></a>UI模块的设计模式MVC vs MVVM</h3><ul>
+<li><a href="http://www.cocoachina.com/ios/20160108/14916.html" target="_blank" rel="external">iOS 架构模式–解密 MVC，MVP，MVVM以及VIPER架构</a></li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">id _object_get_associative_reference(id object, void *key) &#123;</span><br><span class="line">    id value = nil;</span><br><span class="line">    uintptr_t policy = OBJC_ASSOCIATION_ASSIGN;</span><br><span class="line">    &#123;</span><br><span class="line">        AssociationsManager manager;</span><br><span class="line">        AssociationsHashMap &amp;associations(manager.associations());</span><br><span class="line">        disguised_ptr_t disguised_object = DISGUISE(object);</span><br><span class="line">        AssociationsHashMap::iterator i = associations.find(disguised_object);</span><br><span class="line">        if (i != associations.end()) &#123;</span><br><span class="line">            ObjectAssociationMap *refs = i-&gt;second;</span><br><span class="line">            ObjectAssociationMap::iterator j = refs-&gt;find(key);</span><br><span class="line">            if (j != refs-&gt;end()) &#123;</span><br><span class="line">                ObjcAssociation &amp;entry = j-&gt;second;</span><br><span class="line">                value = entry.value();</span><br><span class="line">                policy = entry.policy();</span><br><span class="line">                if (policy &amp; OBJC_ASSOCIATION_GETTER_RETAIN) ((id(*)(id, SEL))objc_msgSend)(value, SEL_retain);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (value &amp;&amp; (policy &amp; OBJC_ASSOCIATION_GETTER_AUTORELEASE)) &#123;</span><br><span class="line">        ((id(*)(id, SEL))objc_msgSend)(value, SEL_autorelease);</span><br><span class="line">    &#125;</span><br><span class="line">    return value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>设置</li>
+<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><ul>
+<li>一级目录按Layers划分</li>
+<li>二级目录按模块划分</li>
+<li>三级目录按MVC或MVVM划分</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">void _object_set_associative_reference(id object, void *key, id value, uintptr_t policy) &#123;</span><br><span class="line">    // retain the new value (if any) outside the lock.</span><br><span class="line">    ObjcAssociation old_association(0, nil);</span><br><span class="line">    id new_value = value ? acquireValue(value, policy) : nil;</span><br><span class="line">    &#123;</span><br><span class="line">        AssociationsManager manager;</span><br><span class="line">        AssociationsHashMap &amp;associations(manager.associations());</span><br><span class="line">        disguised_ptr_t disguised_object = DISGUISE(object);</span><br><span class="line">        if (new_value) &#123;</span><br><span class="line">            // break any existing association.</span><br><span class="line">            AssociationsHashMap::iterator i = associations.find(disguised_object);</span><br><span class="line">            if (i != associations.end()) &#123;</span><br><span class="line">                // secondary table exists</span><br><span class="line">                ObjectAssociationMap *refs = i-&gt;second;</span><br><span class="line">                ObjectAssociationMap::iterator j = refs-&gt;find(key);</span><br><span class="line">                if (j != refs-&gt;end()) &#123;</span><br><span class="line">                    old_association = j-&gt;second;</span><br><span class="line">                    j-&gt;second = ObjcAssociation(policy, new_value);</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    (*refs)[key] = ObjcAssociation(policy, new_value);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                // create the new association (first time).</span><br><span class="line">                ObjectAssociationMap *refs = new ObjectAssociationMap;</span><br><span class="line">                associations[disguised_object] = refs;</span><br><span class="line">                (*refs)[key] = ObjcAssociation(policy, new_value);</span><br><span class="line">                object-&gt;setHasAssociatedObjects();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            // setting the association to nil breaks the association.</span><br><span class="line">            AssociationsHashMap::iterator i = associations.find(disguised_object);</span><br><span class="line">            if (i !=  associations.end()) &#123;</span><br><span class="line">                ObjectAssociationMap *refs = i-&gt;second;</span><br><span class="line">                ObjectAssociationMap::iterator j = refs-&gt;find(key);</span><br><span class="line">                if (j != refs-&gt;end()) &#123;</span><br><span class="line">                    old_association = j-&gt;second;</span><br><span class="line">                    refs-&gt;erase(j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // release the old value (outside of the lock).</span><br><span class="line">    if (old_association.hasValue()) ReleaseValue()(old_association);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>释放</li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">|--MainBizz</span><br><span class="line">|	|--Front</span><br><span class="line">|      		|--Views</span><br><span class="line">|      		|--Controllers</span><br><span class="line">|      		|--Models</span><br><span class="line">| 	|--Search</span><br><span class="line">|     		|--Views</span><br><span class="line">|      		|--Controllers</span><br><span class="line">|      		|--ViewModels</span><br><span class="line">|      		|--Models</span><br><span class="line">|  	|--Detail</span><br><span class="line">|--BasicServices</span><br><span class="line">|--BasicModules</span><br><span class="line">|--</span><br><span class="line">|--</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/01/14/2016-01-14-APP代码结构/" data-id="cinbvr0vu001cr25ourgt38r0" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-12-16-搭建新App需要做哪些事[iOS]" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/16/2015-12-16-搭建新App需要做哪些事[iOS]/" class="article-date">
+  <time datetime="2015-12-16T12:07:56.000Z" itemprop="datePublished">2015-12-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/移动开发/">移动开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/16/2015-12-16-搭建新App需要做哪些事[iOS]/">搭建新App需要做哪些事[iOS]</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h3><ul>
+<li>1、选定编程语音OC还是Swift，IDE肯定就是Xcode了。</li>
+<li>2、设定编程风格和app工程结构</li>
+<li>3、选定项目依赖管理</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">id </span><br><span class="line">object_dispose(id obj)</span><br><span class="line">&#123;</span><br><span class="line">    if (!obj) return nil;</span><br><span class="line"></span><br><span class="line">    objc_destructInstance(obj);</span><br><span class="line"></span><br><span class="line">    free(obj);</span><br><span class="line"></span><br><span class="line">    return nil;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void *objc_destructInstance(id obj) </span><br><span class="line">&#123;</span><br><span class="line">    if (obj) &#123;</span><br><span class="line">        // Read all of the flags at once for performance.</span><br><span class="line">        bool cxx = obj-&gt;hasCxxDtor();</span><br><span class="line">        bool assoc = !UseGC &amp;&amp; obj-&gt;hasAssociatedObjects();</span><br><span class="line">        bool dealloc = !UseGC;</span><br><span class="line"></span><br><span class="line">        // This order is important.</span><br><span class="line">        if (cxx) object_cxxDestruct(obj);</span><br><span class="line">        if (assoc) _object_remove_assocations(obj);</span><br><span class="line">        if (dealloc) obj-&gt;clearDeallocating();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void _object_remove_assocations(id object) &#123;</span><br><span class="line">    vector&lt; ObjcAssociation,ObjcAllocator&lt;ObjcAssociation&gt; &gt; elements;</span><br><span class="line">    &#123;</span><br><span class="line">        AssociationsManager manager;</span><br><span class="line">        AssociationsHashMap &amp;associations(manager.associations());</span><br><span class="line">        if (associations.size() == 0) return;</span><br><span class="line">        disguised_ptr_t disguised_object = DISGUISE(object);</span><br><span class="line">        AssociationsHashMap::iterator i = associations.find(disguised_object);</span><br><span class="line">        if (i != associations.end()) &#123;</span><br><span class="line">            // copy all of the associations that need to be removed.</span><br><span class="line">            ObjectAssociationMap *refs = i-&gt;second;</span><br><span class="line">            for (ObjectAssociationMap::iterator j = refs-&gt;begin(), end = refs-&gt;end(); j != end; ++j) &#123;</span><br><span class="line">                elements.push_back(j-&gt;second);</span><br><span class="line">            &#125;</span><br><span class="line">            // remove the secondary table.</span><br><span class="line">            delete refs;</span><br><span class="line">            associations.erase(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // the calls to releaseValue() happen outside of the lock.</span><br><span class="line">    for_each(elements.begin(), elements.end(), ReleaseValue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
-<li><a href="http://cocoasamurai.blogspot.jp/2010/01/understanding-objective-c-runtime.html" target="_blank" rel="external">understanding-objective-c-runtime</a></li>
-<li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048" target="_blank" rel="external">ObjCRuntimeGuide</a></li>
-<li><a href="http://opensource.apple.com/tarballs/objc4/" target="_blank" rel="external">runtime源码</a></li>
-<li><a href="http://blog.jobbole.com/45963/" target="_blank" rel="external">Objective-C 的动态提示和技巧</a></li>
-<li><a href="http://www.cocoachina.com/ios/20150104/10826.html" target="_blank" rel="external">NSObject的load和initialize方法</a></li>
-<li><a href="http://esoftmobile.com/2014/02/18/associated-objects/" target="_blank" rel="external">associated-objects</a></li>
-<li><a href="http://esoftmobile.com/2014/02/19/method-swizzling/" target="_blank" rel="external">method-swizzling</a></li>
+<h3 id="初版开发"><a href="#初版开发" class="headerlink" title="初版开发"></a>初版开发</h3><ul>
+<li>1、梳理第一版的需求</li>
+<li>2、三方技术的选型，三方登录认证、推送、支付、LBS、统计等。</li>
+<li>3、开源基础库的选型，</li>
+</ul>
+<h3 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h3><ul>
+<li>1、搭建持续集成环境</li>
+<li>2、搞定证书和APP的灰度和发布策略，。</li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/03/18/2014-03-18-OC-Runtime-3-Associated Objects/" data-id="cinbvr0uc0005r25offw7pnc3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/12/16/2015-12-16-搭建新App需要做哪些事[iOS]/" data-id="cinbvr0vr0018r25o4cp8326j" class="article-share-link">Partager</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OC-Runtime/">OC Runtime</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-11-03-React-Native学习指南" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/03/2015-11-03-React-Native学习指南/" class="article-date">
+  <time datetime="2015-11-03T12:07:56.000Z" itemprop="datePublished">2015-11-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/移动开发/">移动开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/03/2015-11-03-React-Native学习指南/">React-Native学习指南</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本指南汇集React-Native各类学习资源，给大家提供便利。指南正在不断的更新，大家有好的资源欢迎Pull Requests！</p>
+<p>同时还有Awesome React-Native系列</p>
+<p><a href="https://github.com/jondot/awesome-react-native" target="_blank" rel="external">https://github.com/jondot/awesome-react-native</a></p>
+<p>教程</p>
+<p>React-Native视频教程(部分免费)<br><a href="https://egghead.io/technologies/react" target="_blank" rel="external">https://egghead.io/technologies/react</a></p>
+<p>react-native 官方api文档<br><a href="http://facebook.github.io/react-native/docs/getting-started.html" target="_blank" rel="external">http://facebook.github.io/react-native/docs/getting-started.html</a></p>
+<p>react-native中文文档(极客学院)<br><a href="http://wiki.jikexueyuan.com/project/react-native/" target="_blank" rel="external">http://wiki.jikexueyuan.com/project/react-native/</a></p>
+<p>react-native 官方api文档<br><a href="http://facebook.github.io/react-native/docs/getting-started.html" target="_blank" rel="external">http://facebook.github.io/react-native/docs/getting-started.html</a></p>
+<p>react-native 中文api文档 (翻译中)<br><a href="https://github.com/ecomfe/react-native-cn" target="_blank" rel="external">https://github.com/ecomfe/react-native-cn</a></p>
+<p>react.js中文文档<br><a href="http://reactjs.cn/" target="_blank" rel="external">http://reactjs.cn/</a></p>
+<p>react.js入门教程(gitbook)<br><a href="http://hulufei.gitbooks.io/react-tutorial/content/introduction.html" target="_blank" rel="external">http://hulufei.gitbooks.io/react-tutorial/content/introduction.html</a></p>
+<p>react.js快速入门教程 - 阮一峰<br><a href="http://www.ruanyifeng.com/blog/2015/03/react.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2015/03/react.html</a></p>
+<p>react.js视频教程<br><a href="http://react.nodejs-china.org/t/reactjszhong-wen-shi-pin-jiao-cheng-bai-du-wang-pan/584" target="_blank" rel="external">http://react.nodejs-china.org/t/reactjszhong-wen-shi-pin-jiao-cheng-bai-du-wang-pan/584</a></p>
+<p>react-native第一课<br><a href="http://html-js.com/article/2783" target="_blank" rel="external">http://html-js.com/article/2783</a></p>
+<p>深入浅出 React Native：使用 JavaScript 构建原生应用<br><a href="http://zhuanlan.zhihu.com/FrontendMagazine/19996445" target="_blank" rel="external">http://zhuanlan.zhihu.com/FrontendMagazine/19996445</a></p>
+<p>React Native通信机制详解<br><a href="http://blog.cnbang.net/tech/2698/" target="_blank" rel="external">http://blog.cnbang.net/tech/2698/</a></p>
+<p>React Native布局篇<br><a href="http://segmentfault.com/a/1190000002658374" target="_blank" rel="external">http://segmentfault.com/a/1190000002658374</a></p>
+<p>React Native 基础练习指北（一）<br><a href="http://segmentfault.com/a/1190000002645929" target="_blank" rel="external">http://segmentfault.com/a/1190000002645929</a></p>
+<p>React Native 基础练习指北（二）<br><a href="http://segmentfault.com/a/1190000002647733" target="_blank" rel="external">http://segmentfault.com/a/1190000002647733</a></p>
+<p>构建一个简单的列表页和2页导航<br><a href="http://www.xn--cnq920ntha.cn/archives/235#6838470-tsina-1-17436-6a377b1a66595f9ede646cf5c012734c" target="_blank" rel="external">http://www.xn--cnq920ntha.cn/archives/235#6838470-tsina-1-17436-6a377b1a66595f9ede646cf5c012734c</a></p>
+<p>Diary of Building an iOS App with React Native<br><a href="http://herman.asia/building-a-flashcard-app-with-react-native" target="_blank" rel="external">http://herman.asia/building-a-flashcard-app-with-react-native</a></p>
+<p>Use React Native in Existing iOS App<br><a href="http://blog-en.leapoahead.com/post/use-react-native-in-existing-ios-app" target="_blank" rel="external">http://blog-en.leapoahead.com/post/use-react-native-in-existing-ios-app</a></p>
+<p>React Native For Beginners – The Next Big Thing?<br><a href="http://devdactic.com/react-native-for-beginners/" target="_blank" rel="external">http://devdactic.com/react-native-for-beginners/</a></p>
+<p>How To Implement A Tab Bar With React Native<br><a href="http://devdactic.com/react-native-tab-bar/" target="_blank" rel="external">http://devdactic.com/react-native-tab-bar/</a></p>
+<p>tcomb-form-native使用视频教程(需翻墙)<br><a href="http://react.rocks/example/tcomb-form-native" target="_blank" rel="external">http://react.rocks/example/tcomb-form-native</a></p>
+<p>React Native分享记录<br><a href="http://segmentfault.com/a/1190000002678782" target="_blank" rel="external">http://segmentfault.com/a/1190000002678782</a></p>
+<p>React Native构建本地视图组件<br><a href="http://www.dobest.me/post/react-native-build-native-componenets/" target="_blank" rel="external">http://www.dobest.me/post/react-native-build-native-componenets/</a></p>
+<p>开源APP</p>
+<p>研究源码也是一个很好的学习方式</p>
+<p>官方演示App<br><a href="https://github.com/facebook/react-native/tree/master/Examples" target="_blank" rel="external">https://github.com/facebook/react-native/tree/master/Examples</a></p>
+<p>Leanote for iOS(云笔记)<br><a href="https://github.com/leanote/leanote-ios" target="_blank" rel="external">https://github.com/leanote/leanote-ios</a></p>
+<p>ReactNativeRubyChina<br><a href="https://github.com/henter/ReactNativeRubyChina" target="_blank" rel="external">https://github.com/henter/ReactNativeRubyChina</a></p>
+<p>HackerNews-React-Native<br><a href="https://github.com/iSimar/HackerNews-React-Native" target="_blank" rel="external">https://github.com/iSimar/HackerNews-React-Native</a></p>
+<p>React-Native新闻客户端<br><a href="https://github.com/tabalt/ReactNativeNews" target="_blank" rel="external">https://github.com/tabalt/ReactNativeNews</a></p>
+<p>newswatch(新闻客户端)<br><a href="https://github.com/bradoyler/newswatch-react-native" target="_blank" rel="external">https://github.com/bradoyler/newswatch-react-native</a></p>
+<p>buyscreen(购买页面)<br><a href="https://github.com/appintheair/react-native-buyscreen" target="_blank" rel="external">https://github.com/appintheair/react-native-buyscreen</a></p>
+<p>V2EX客户端<br><a href="https://github.com/samuel1112/v2er" target="_blank" rel="external">https://github.com/samuel1112/v2er</a></p>
+<p>react-native-todo<br><a href="https://github.com/joemaddalone/react-native-todo" target="_blank" rel="external">https://github.com/joemaddalone/react-native-todo</a></p>
+<p>react-native-beer<br><a href="https://github.com/muratsu/react-native-beer" target="_blank" rel="external">https://github.com/muratsu/react-native-beer</a></p>
+<p>react-native-stars<br><a href="https://github.com/86/react-native-stars" target="_blank" rel="external">https://github.com/86/react-native-stars</a></p>
+<p>模仿天猫首页的app<br><a href="https://github.com/baofen14787/react-native-demo" target="_blank" rel="external">https://github.com/baofen14787/react-native-demo</a></p>
+<p>ReactNativeChess<br><a href="https://github.com/csarsam/ReactNativeChess" target="_blank" rel="external">https://github.com/csarsam/ReactNativeChess</a></p>
+<p>react native 编写的音乐软件<br><a href="https://github.com/Johnqing/miumiu" target="_blank" rel="external">https://github.com/Johnqing/miumiu</a></p>
+<p>react-native-pokedex<br><a href="https://github.com/ababol/react-native-pokedex" target="_blank" rel="external">https://github.com/ababol/react-native-pokedex</a></p>
+<p>CNode-React-Native<br><a href="https://github.com/SFantasy/CNode-React-Native" target="_blank" rel="external">https://github.com/SFantasy/CNode-React-Native</a></p>
+<p>8tracks电台客户端<br><a href="https://github.com/voronianski/EightTracksReactNative" target="_blank" rel="external">https://github.com/voronianski/EightTracksReactNative</a></p>
+<p>React-Native实现的计算器<br><a href="https://github.com/yoxisem544/Calculator-using-React-Native" target="_blank" rel="external">https://github.com/yoxisem544/Calculator-using-React-Native</a></p>
+<p>房产搜索app<br><a href="https://github.com/jawee/react-native-PropertyFinder" target="_blank" rel="external">https://github.com/jawee/react-native-PropertyFinder</a></p>
+<p>知乎专栏app<br><a href="https://github.com/LeezQ/react-native-zhihu-app" target="_blank" rel="external">https://github.com/LeezQ/react-native-zhihu-app</a></p>
+<p>ForeignExchangeApp<br><a href="https://github.com/peralmq/ForeignExchangeApp" target="_blank" rel="external">https://github.com/peralmq/ForeignExchangeApp</a></p>
+<p>Segmentfault 客户端<br><a href="https://github.com/fakefish/sf-react-native" target="_blank" rel="external">https://github.com/fakefish/sf-react-native</a></p>
+<p>糗事百科app<br><a href="https://github.com/stormhouse/QiuShiReactNative" target="_blank" rel="external">https://github.com/stormhouse/QiuShiReactNative</a></p>
+<p>孢子社区app<br><a href="https://github.com/Hi-Rube/baoz-ReactNative" target="_blank" rel="external">https://github.com/Hi-Rube/baoz-ReactNative</a></p>
+<p>深JS app *<br><a href="https://github.com/fraserxu/shenjs" target="_blank" rel="external">https://github.com/fraserxu/shenjs</a></p>
+<p>组件</p>
+<p>由于已经有较好的组件库网站，这里就不做总结。可以直接查看如下网站，过后可能精选一部分优质组件出来 :P</p>
+<p>React-native组件库（比较全的组件库）<br><a href="http://react.parts/" target="_blank" rel="external">http://react.parts/</a></p>
+<p>React Native Modules<br><a href="http://reactnativemodules.com/" target="_blank" rel="external">http://reactnativemodules.com/</a></p>
+<p>最佳轮播类组件<br><a href="https://github.com/leecade/react-native-swiper" target="_blank" rel="external">https://github.com/leecade/react-native-swiper</a></p>
+<p>React Native Router<br><a href="https://github.com/t4t5/react-native-router" target="_blank" rel="external">https://github.com/t4t5/react-native-router</a></p>
+<p>下拉刷新组件<br><a href="https://github.com/jsdf/react-native-refreshable-listview" target="_blank" rel="external">https://github.com/jsdf/react-native-refreshable-listview</a></p>
+<p>模态框<br><a href="https://github.com/brentvatne/react-native-modal" target="_blank" rel="external">https://github.com/brentvatne/react-native-modal</a></p>
+<p>react-native-navbar<br><a href="https://github.com/Kureev/react-native-navbar" target="_blank" rel="external">https://github.com/Kureev/react-native-navbar</a></p>
+<p>滚动轮播组件<br><a href="https://github.com/appintheair/react-native-looped-carousel" target="_blank" rel="external">https://github.com/appintheair/react-native-looped-carousel</a></p>
+<p>HTML显示组件<br><a href="https://github.com/jsdf/react-native-htmlview" target="_blank" rel="external">https://github.com/jsdf/react-native-htmlview</a></p>
+<p>工具</p>
+<p>react-native-snippets(代码提示)<br><a href="https://github.com/Shrugs/react-native-snippets" target="_blank" rel="external">https://github.com/Shrugs/react-native-snippets</a></p>
+<p>react-native-babel(使用ES6+)<br><a href="https://github.com/roman01la/react-native-babel" target="_blank" rel="external">https://github.com/roman01la/react-native-babel</a></p>
+<p>sqlite for react-native<br><a href="https://github.com/almost/react-native-sqlite" target="_blank" rel="external">https://github.com/almost/react-native-sqlite</a></p>
+<p>gulp-react-native-css(就像写css一样写React Style)<br><a href="https://github.com/soliury/gulp-react-native-css" target="_blank" rel="external">https://github.com/soliury/gulp-react-native-css</a></p>
+<p>资源网站</p>
+<p>React-native官网<br><a href="http://facebook.github.io/react-native/" target="_blank" rel="external">http://facebook.github.io/react-native/</a></p>
+<p>React-China社区<br><a href="http://react-china.org/" target="_blank" rel="external">http://react-china.org/</a></p>
+<p>React-native组件库（比较全的组件库）<br><a href="http://react.parts/" target="_blank" rel="external">http://react.parts/</a></p>
+<p>React Native Modules<br><a href="http://reactnativemodules.com/" target="_blank" rel="external">http://reactnativemodules.com/</a></p>
+<p>11款React Native开源移动 UI 组件<br><a href="http://www.oschina.net/news/61214/11-react-native-ui-components" target="_blank" rel="external">http://www.oschina.net/news/61214/11-react-native-ui-components</a></p>
+<p>业界讨论</p>
+<p>跨平台开发时代的 (再次) 到来？（ Xamarin，NativeScript 和 React Native 对比）<br><a href="http://onevcat.com/2015/03/cross-platform/" target="_blank" rel="external">http://onevcat.com/2015/03/cross-platform/</a></p>
+<p>谈谈 React Native - 唐巧<br><a href="http://blog.devtang.com/blog/2015/02/01/talk-about-react-native/" target="_blank" rel="external">http://blog.devtang.com/blog/2015/02/01/talk-about-react-native/</a></p>
+<p>如何评价React-Native?<br><a href="http://www.zhihu.com/question/27852694/answer/43990708" target="_blank" rel="external">http://www.zhihu.com/question/27852694/answer/43990708</a></p>
+<p>React Native概述：背景、规划和风险<br><a href="http://div.io/topic/938" target="_blank" rel="external">http://div.io/topic/938</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/11/03/2015-11-03-React-Native学习指南/" data-id="cinbvr0vm0015r25o58bcwipv" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-09-16-iOS事件处理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/16/2015-09-16-iOS事件处理/" class="article-date">
+  <time datetime="2015-09-16T15:07:56.000Z" itemprop="datePublished">2015-09-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/移动开发/">移动开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/16/2015-09-16-iOS事件处理/">iOS事件处理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>先梳理下用户点击事件的传递及处理流程，如下：<br>1、首先，用户触发的点击事件会被添加到事件队列。<br>2、UIApplication循环从事件队列中取出事件，并通过-[SendEvent:]分发到UIWindow。<br>3、UIWindow先通过hit-test找出第一响应的视图，可以重载这两个函数，-[pointInside:withEvent:],-[hitTest:withEvent:]<br>4、UIWindow将Event和Touchs传递给第一响应的视图，如果该视图上存在Gesture，则优先由Gesture处理。<br>5、如果该视图没有Gesture或Gesture没有识别成功或没有处理-[touchesBegan:withEvent:]，事件则沿着响应链传递，直到被处理。</p>
+<p>When a user-generated event occurs, UIKit creates an event object containing the information needed to process the event. Then it places the event object in the active app’sevent queue. For touch events, that object is a set of touches packaged in a UIEventobject. For motion events, the event object varies depending on which framework you use and what type of motion event you are interested in.</p>
+<p>An event travels along a specific path until it is delivered to an object that can handle it. First, the singleton  UIApplication object takes an event from the top of the queue and dispatches it for handling. Typically, it sends the event to the app’s key window object, which passes the event to an initial object for handling. The initial object depends on the type of event.</p>
+<p>Touch events. For touch events, the window object first tries to deliver the event to the view where the touch occurred. That view is known as the hit-test view. The process of finding the hit-test view is called hit-testing, which is described in Hit-Testing Returns the View Where a Touch Occurred.</p>
+<p>Motion and remote control events. With these events, the window object sends the shaking-motion or remote control event to the first responder for handling. The first responder is described in The Responder Chain Is Made Up of Responder Objects.</p>
+<p>Motion和remote control事件也是类似流程，不同的是没有hit-test，而是找First responder，由First respinder优先处理。</p>
+<p>几个关键点：<br>1、-[sendEvent:]可以被重载<br>2、hit-test流程中的两个关键函数都可以被重载，-[pointInside:withEvent:]，-[hitTest:withEvent:]<br>3、Gesture和hit-test视图是同时收到touch事件，在gesture识别成功后，视图上的touch时间才被cancel。</p>
+<p>4、touch事件通过-[touchesBegan:withEvent:]，-[touchesMoved:withEvent:]，-[touchesEnded:withEvent:]等方法传递，在-[UIResponder  touchesBegan:withEvent:]中为空实现，-[UIView  touchesBegan:withEvent:]重载后增加传递到下个Responder的逻辑。<br>5、如果存在多个Gesture都在识别手势，则可以通过Gesture的属性和委托处理多个Gesture的协同问题。</p>
+<p>Within an event handling method, you get information about the event by retrieving touch objects from:</p>
+<p>The set object. The passed-in NSSet contains all touches that are new or have changed in the phase represented by the method, such as UITouchPhaseBegan for the touchesBegan:withEvent: method.</p>
+<p>The event object. The passed-in UIEvent object contains all of the touches for a given multitouch sequence.</p>
+<p>The multipleTouchEnabled property is set to NO by default, which means that a view receives only the first touch in a multitouch sequence. When this property is disabled, you can retrieve a touch object by calling the anyObject method on the set object because there is only one object in the set.</p>
+<p>参考文档：Event Handling Guide for iOS</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/09/16/2015-09-16-iOS事件处理/" data-id="cinbvr0vd000zr25oq7ebhy5w" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
 
     </footer>
   </div>
@@ -658,7 +716,7 @@
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">__('next') &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">__('next') &raquo;</a>
   </nav>
 </section>
         
@@ -666,9 +724,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">Catégories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Objective-C/">Objective-C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/iOS基础/">iOS基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/工具/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/源码分析/">源码分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/移动开发/">移动开发</a></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Objective-C/">Objective-C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/iOS基础/">iOS基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/博客-论坛-会议/">博客&论坛&会议</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/工具/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/源码分析/">源码分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/移动开发/">移动开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/软件设计/">软件设计</a></li></ul></li></ul>
     </div>
   </div>
 
@@ -676,9 +734,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
+    <h3 class="widget-title">Mot-clés</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/OC-Runtime/">OC Runtime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/OC-Runtime/">OC Runtime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/会议/">会议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/论坛/">论坛</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
     </div>
   </div>
 
@@ -686,9 +744,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
+    <h3 class="widget-title">Nuage de mot-clés</h3>
     <div class="widget tagcloud">
-      <a href="/tags/OC-Runtime/" style="font-size: 15px;">OC Runtime</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+      <a href="/tags/OC-Runtime/" style="font-size: 16.67px;">OC Runtime</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/会议/" style="font-size: 10px;">会议</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/论坛/" style="font-size: 10px;">论坛</a> <a href="/tags/设计模式/" style="font-size: 13.33px;">设计模式</a>
     </div>
   </div>
 
@@ -697,7 +755,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li></ul>
     </div>
   </div>
 
@@ -705,28 +763,28 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/2016/04/20/2016-04-20-DeepLink&UniversalLink/">Deep Linking</a>
+            <a href="/2016/04/29/2016-04-29-常用开发者论坛博客的收集/">常用开发者论坛博客的收集</a>
           </li>
         
           <li>
-            <a href="/2016/04/12/2016-04-12-iOS学习导图/">iOS学习导图</a>
+            <a href="/2016/04/29/2016-04-29-Swift学习/">Swift学习</a>
           </li>
         
           <li>
-            <a href="/2016/04/06/2016-04-06-阅读笔记一/">阅读笔记一</a>
+            <a href="/2016/04/29/2016-04-29-QCon2016/">QCon2016</a>
           </li>
         
           <li>
-            <a href="/2016/02/27/2016-02-27-移动技术架构/">移动技术架构</a>
+            <a href="/2016/04/29/2016-04-29-iOS App安装包过大/">iOS App安装包过大</a>
           </li>
         
           <li>
-            <a href="/2016/01/14/2016-01-14-APP代码结构/">APP结构设计</a>
+            <a href="/2016/04/28/2016-04-28-常用的设计模式/">常用的设计模式</a>
           </li>
         
       </ul>
@@ -742,7 +800,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2016 Jaco Li<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
