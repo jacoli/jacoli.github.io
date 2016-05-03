@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>移动三方应用分享 | Jacoli&#39;Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原生
+123456789NSString *textToShare = @&amp;quot;要分享的文本内容&amp;quot;;UIImage *imageToShare = [UIImage imageNamed:@&amp;quot;shop&amp;quot;];NSURL *urlToShare = [NSURL URLWithString:@&amp;quot;http://blog.csdn.net/hitwhylz&amp;q">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动三方应用分享">
+<meta property="og:url" content="http://yoursite.com/2016/05/03/2016-05-03-移动三方应用分享/index.html">
+<meta property="og:site_name" content="Jacoli'Home">
+<meta property="og:description" content="原生
+123456789NSString *textToShare = @&amp;quot;要分享的文本内容&amp;quot;;UIImage *imageToShare = [UIImage imageNamed:@&amp;quot;shop&amp;quot;];NSURL *urlToShare = [NSURL URLWithString:@&amp;quot;http://blog.csdn.net/hitwhylz&amp;q">
+<meta property="og:image" content="http://yoursite.com/images/activity.png">
+<meta property="og:image" content="http://yoursite.com/images/urlschemedemo.png">
+<meta property="og:image" content="http://yoursite.com/images/iosappsinteraction.png">
+<meta property="og:image" content="http://yoursite.com/images/weixinlogin.png">
+<meta property="og:updated_time" content="2016-05-03T16:39:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动三方应用分享">
+<meta name="twitter:description" content="原生
+123456789NSString *textToShare = @&amp;quot;要分享的文本内容&amp;quot;;UIImage *imageToShare = [UIImage imageNamed:@&amp;quot;shop&amp;quot;];NSURL *urlToShare = [NSURL URLWithString:@&amp;quot;http://blog.csdn.net/hitwhylz&amp;q">
+<meta name="twitter:image" content="http://yoursite.com/images/activity.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Jacoli&#39;Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Jacoli&#39;Home</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2016-05-03-移动三方应用分享" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/03/2016-05-03-移动三方应用分享/" class="article-date">
+  <time datetime="2016-05-02T16:00:00.000Z" itemprop="datePublished">2016-05-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/移动开发/">移动开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      移动三方应用分享
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="原生"><a href="#原生" class="headerlink" title="原生"></a>原生</h3><p><img src="images/activity.png" alt="原生Share&amp;Action"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">NSString *textToShare = @&quot;要分享的文本内容&quot;;</span><br><span class="line">UIImage *imageToShare = [UIImage imageNamed:@&quot;shop&quot;];</span><br><span class="line">NSURL *urlToShare = [NSURL URLWithString:@&quot;http://blog.csdn.net/hitwhylz&quot;];</span><br><span class="line">NSArray *activityItems = @[textToShare, imageToShare, urlToShare];</span><br><span class="line"></span><br><span class="line">UIActivityViewController *vc = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];</span><br><span class="line">//vc.excludedActivityTypes = @[UIActivityTypePostToFacebook, UIActivityTypePostToTwitter, UIActivityTypePostToWeibo, UIActivityTypeMessage, UIActivityTypeMail, UIActivityTypeMail, UIActivityTypePrint, UIActivityTypeCopyToPasteboard, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll, UIActivityTypeAddToReadingList, UIActivityTypePostToFlickr, UIActivityTypePostToVimeo, UIActivityTypePostToTencentWeibo, UIActivityTypeAirDrop, UIActivityTypeOpenInIBooks];</span><br><span class="line"></span><br><span class="line">[self presentViewController:vc animated:YES completion:nil];</span><br></pre></td></tr></table></figure>
+<h3 id="三方开放平台"><a href="#三方开放平台" class="headerlink" title="三方开放平台"></a>三方开放平台</h3><ul>
+<li>新浪微博 <a href="http://open.weibo.com" target="_blank" rel="external">http://open.weibo.com</a></li>
+<li>腾讯微博 <a href="http://dev.t.qq.com" target="_blank" rel="external">http://dev.t.qq.com</a></li>
+<li>QQ空间，朋友网 <a href="http://connect.qq.com/intro/login/" target="_blank" rel="external">http://connect.qq.com/intro/login/</a></li>
+<li>QQ分享（QQ好友，QQ群等）<a href="http://mobile.qq.com/api/" target="_blank" rel="external">http://mobile.qq.com/api/</a></li>
+<li>豆瓣社区 <a href="http://developers.douban.com" target="_blank" rel="external">http://developers.douban.com</a></li>
+<li>人人网 <a href="http://dev.renren.com" target="_blank" rel="external">http://dev.renren.com</a></li>
+<li>微信好友 微信朋友圈 <a href="http://open.weixin.qq.com" target="_blank" rel="external">http://open.weixin.qq.com</a></li>
+</ul>
+<h3 id="整合服务"><a href="#整合服务" class="headerlink" title="整合服务"></a>整合服务</h3><ul>
+<li><a href="http://mobile.umeng.com/social?spm=0.0.0.0.lW5N4c" target="_blank" rel="external">友盟U-Share</a></li>
+</ul>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><ul>
+<li>iOS应用间可以通过URL Schemes解决相互通信的问题。</li>
+<li>DemoA通过<code>openURL</code>唤起DemoB，并带上参数。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DemoA</span><br><span class="line"></span><br><span class="line">[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@&quot;demob://page?sourcescheme=demoa&quot;]];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>DemoB收到并解析参数并作逻辑处理，然后同样通过<code>openURL</code>返回到DemoA，并带上参数。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">DemoB</span><br><span class="line"></span><br><span class="line">- (BOOL)handleUrl:(NSURL *)url &#123;</span><br><span class="line">    NSArray *querys = [url.query componentsSeparatedByString:@&quot;&amp;&quot;];</span><br><span class="line">    </span><br><span class="line">    NSMutableDictionary *queryDict = [[NSMutableDictionary alloc] init];</span><br><span class="line">    for (NSString *q in querys) &#123;</span><br><span class="line">        NSArray *kv = [q componentsSeparatedByString:@&quot;=&quot;];</span><br><span class="line">        if (kv.count == 2) &#123;</span><br><span class="line">            queryDict[kv[0]] = kv[1];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    NSString *returnScheme = queryDict[@&quot;sourcescheme&quot;];</span><br><span class="line">    </span><br><span class="line">    UIAlertController *vc = [UIAlertController alertControllerWithTitle:@&quot;url&quot;</span><br><span class="line">                                                                message:url.absoluteString</span><br><span class="line">                                                         preferredStyle:UIAlertControllerStyleAlert];</span><br><span class="line">    [vc addAction:[UIAlertAction actionWithTitle:@&quot;返回原应用&quot;</span><br><span class="line">                                           style:UIAlertActionStyleDefault</span><br><span class="line">                                         handler:^(UIAlertAction * _Nonnull action) &#123;</span><br><span class="line">                                             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@&quot;%@://&quot;, returnScheme]]];</span><br><span class="line">                                         &#125;]];</span><br><span class="line">    </span><br><span class="line">    [vc addAction:[UIAlertAction actionWithTitle:@&quot;留在当前应用&quot;</span><br><span class="line">                                           style:UIAlertActionStyleCancel</span><br><span class="line">                                         handler:^(UIAlertAction * _Nonnull action) &#123;</span><br><span class="line">                                         &#125;]];</span><br><span class="line">    </span><br><span class="line">    [self.window.rootViewController presentViewController:vc animated:YES completion:nil];</span><br><span class="line">    </span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url NS_DEPRECATED_IOS(2_0, 9_0, &quot;Please use application:openURL:options:&quot;) __TVOS_PROHIBITED &#123;</span><br><span class="line">    return [self handleUrl:url];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation NS_DEPRECATED_IOS(4_2, 9_0, &quot;Please use application:openURL:options:&quot;) __TVOS_PROHIBITED &#123;</span><br><span class="line">    return [self handleUrl:url];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary&lt;NSString*, id&gt; *)options NS_AVAILABLE_IOS(9_0) &#123;</span><br><span class="line">    return [self handleUrl:url];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/urlschemedemo.png" alt="urlschemedemo"></p>
+<p><img src="images/iosappsinteraction.png" alt="iosappsinteraction"></p>
+<ul>
+<li>三方应用分享或认证都会用到这个流程，实际过程和参数会更复杂点。</li>
+<li>如微信三方登录认证，除了三方应用通过URL Scheme跳转微信拿到code，再通过https请求微信后台拿到access_token，后续用https带上access_token可以请求各种资源。<br><img src="images/weixinlogin.png" alt="weixinlogin"></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/03/2016-05-03-移动三方应用分享/" data-id="cinrnv99x0005nf5op3thydm1" class="article-share-link">Delen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/05/03/2016-05-03-移动安全/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Nieuwer</strong>
+      <div class="article-nav-title">
+        
+          移动安全
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/03/2016-05-03-三方认证/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ouder</strong>
+      <div class="article-nav-title">三方认证</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categorieën</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Objective-C/">Objective-C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/iOS基础/">iOS基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/博客-论坛-会议/">博客&论坛&会议</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/工具/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/服务端开发/">服务端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/源码分析/">源码分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/移动开发/">移动开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/软件设计/">软件设计</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Labels</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OC-Runtime/">OC Runtime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/会议/">会议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安全/">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程模式/">编程模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/论坛/">论坛</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/OC-Runtime/" style="font-size: 16.67px;">OC Runtime</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/会议/" style="font-size: 10px;">会议</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/安全/" style="font-size: 10px;">安全</a> <a href="/tags/编程模式/" style="font-size: 10px;">编程模式</a> <a href="/tags/论坛/" style="font-size: 10px;">论坛</a> <a href="/tags/设计模式/" style="font-size: 13.33px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archieven</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recente berichten</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/05/03/2016-05-03-移动安全/">移动安全</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/03/2016-05-03-移动三方应用分享/">移动三方应用分享</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/03/2016-05-03-三方认证/">三方认证</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/03/2016-05-03-iOS原生Alert和ActionSheet/">iOS原生Alert和ActionSheet</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/03/2016-05-03-iOS Push/">iOS Push</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Jaco Li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
