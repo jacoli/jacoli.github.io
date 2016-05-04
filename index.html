@@ -53,7 +53,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -64,10 +64,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-2016-05-03-移动安全" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2016-05-04-移动安全" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/05/03/2016-05-03-移动安全/" class="article-date">
-  <time datetime="2016-05-02T16:00:00.000Z" itemprop="datePublished">2016-05-03</time>
+    <a href="/2016/05/04/2016-05-04-移动安全/" class="article-date">
+  <time datetime="2016-05-03T16:00:00.000Z" itemprop="datePublished">2016-05-04</time>
 </a>
     
   <div class="article-category">
@@ -82,7 +82,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/03/2016-05-03-移动安全/">移动安全</a>
+      <a class="article-title" href="/2016/05/04/2016-05-04-移动安全/">移动安全</a>
     </h1>
   
 
@@ -101,14 +101,175 @@
 <li>完整性，消息是完整的，内容没有被篡改，对消息做哈希得到摘要，作为消息的签名。哈希算法有SHA256等，MD5、SHA1已经不太安全，尽量用SHA256等相对安全的算法。</li>
 <li>真实性，消息是可靠的，内容来自受信的来源，验证来源的数字证书是否可靠。</li>
 </ul>
+<h3 id="app安全"><a href="#app安全" class="headerlink" title="app安全"></a>app安全</h3><p><img src="images/appsecurity.png" alt="app安全"></p>
+<p>1.1 iOS真机环境</p>
+<p>1.1.1 越狱后的 iphone</p>
+<p>由于 iOS 缺乏模拟器测试环境,开发环境下的模拟器不支持自定义安装 ipa 进行测试调试的 功能,因此需 iphone 真机环境进行测试。由于测试所涉及的文件操作、应用调试等功能等权限被 官方出于安全考虑进行了限制,因此需对 iphone 进行越狱,获取 root 权限。</p>
+<p>1.2 安全测试工具<br>部分工具下载地址请前往淘云盘下载 <a href="http://yunpan.alibaba-inc.com/share/link/2G5kEe73iM。" target="_blank" rel="external">http://yunpan.alibaba-inc.com/share/link/2G5kEe73iM。</a></p>
+<p>1.2.1 class-dump-z</p>
+<p>一个跨平台的 Objective-C 接口提取器,用于分析 iPhoneOS 可执行文件中私有的 API。需 通过 Cydia 安装。</p>
+<p>1.2.2 darwin cc tools (otools) 一个开源的苹果程序编译和连接器。需通过 Cydia 安装。</p>
+<p>1.2.3 HTTP代理抓包工具(Fiddler)</p>
+<p>1.2.4 Plist文件查看器(plistEditor) 请前往“文件检查”下载该软件。</p>
+<p>1.2.5 iOS内存修改工具(iGameGuard) 请前往“内存检查”下载该软件。</p>
+<p>1.2.6 内购破解工具(LocalIAPStore、iAPFree) 请前往“文件检查”下载该工具。安装后即默认启用。</p>
+<p>1.2.7 keychain-dumper</p>
+<p>该工具可以读取已越狱 IOS 设备中的 keychain。需通过 Cydia 安装。 </p>
+<p>1.2.8 Link Identity Editor (ldid)</p>
+<p>该工具可以协助测试人员修改 Mach-O 二进制文件的签名信息。需通过 Cydia 安装。 </p>
+<p>1.2.9 OpenSSH</p>
+<p>OpenSSH 是 Linux 下常用的服务,装上后设备可充当 SSH 服务端。需通过 Cydia 安装。 </p>
+<p>1.2.10 Snoop-it</p>
+<p>IOS APP 安全评估工具。可对 APP 进行静态、动态分析。需通过 Cydia 安装。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/03/2016-05-03-移动安全/" data-id="cinrnv9a00008nf5olw5xu7cy" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/05/04/2016-05-04-移动安全/" data-id="cinszsgqn0001f95o3ipupaqz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安全/">安全</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-05-04-iOS Push" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/04/2016-05-04-iOS Push/" class="article-date">
+  <time datetime="2016-05-03T16:00:00.000Z" itemprop="datePublished">2016-05-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/移动开发/">移动开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/04/2016-05-04-iOS Push/">iOS Push</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><ul>
+<li><a href="http://www.tuicool.com/articles/Y77Ffe" target="_blank" rel="external">一步一步实现iOS应用PUSH功能 - 咪咕咪咕</a></li>
+<li><a href="http://blog.csdn.net/daydreamingboy/article/details/7977098" target="_blank" rel="external">iOS上简单推送通知（Push Notification）的实现</a></li>
+</ul>
+<h3 id="三方服务平台"><a href="#三方服务平台" class="headerlink" title="三方服务平台"></a>三方服务平台</h3><ul>
+<li><a href="http://www.getui.com/" target="_blank" rel="external">个推</a></li>
+<li><a href="http://www.qcloud.com/product/XGPush.html" target="_blank" rel="external">腾讯信鸽</a></li>
+<li><a href="http://mobile.umeng.com/push?spm=0.0.0.0.pphrqW" target="_blank" rel="external">友盟U-Push</a></li>
+</ul>
+<h3 id="十大豪门推送sdk，哪个更适合你"><a href="#十大豪门推送sdk，哪个更适合你" class="headerlink" title="十大豪门推送sdk，哪个更适合你"></a>十大豪门推送sdk，哪个更适合你</h3><p>推送,使得开发者可以即时地向其应用程序的用户推送通知或者消息,与用户保持互动,从而有效地提高留存率,提升用户体验。平台整合了Android推送、iOS推送的统一推送服务。但是在众多的推送服务中那个更好用,更适合你的需求呢,小编给你介绍十大豪门推送,自己对比下吧。</p>
+<ul>
+<li>百度云推送</li>
+</ul>
+<p>点评:百度云推送可谓为用户体验而生,它实现了多项创新,并通过百度各大产品线千万级连<br>接的可用性测试,迅速成为国内第三方云推送平台的标杆。据了解,在百度云推送正式发布之前,大部分的百度产品其实都已在使用百度云推送,例如百度框、百度<br>网盘、百度地图、百度视频,已覆盖数亿的用户规模百度的技术品牌为百度云推送的先进性、大规模并发与稳定性提供了保障。</p>
+<ul>
+<li>腾讯信鸽推送</li>
+</ul>
+<p>点评:互联网巨无霸腾讯的产品,咱有用户优势!据信鸽产品团队表示,其实信鸽在产品功能上和个推、极光推送等服务并没有特别大的差异,而其优<br>势在于后期可以通过腾讯的大数据分析为用户划分标签,并结合 7 亿 qq 用户的画像标签,比如人口属性、消费能力、短时兴趣、LBS<br>信息等等,从而让开发者可以针对不同用户群体推送不同的内容。</p>
+<ul>
+<li>极光推送</li>
+</ul>
+<p>点评:由于极光进入的时间比较早,服务很稳定,<br>在开发者中间形成了一定的口碑;像这种to<br>B的服务面向的都是专业用户,商业推广并不奏效,开发者之间的口口相传才是业务不断做大的原因。极光建立了一些QQ群、官网问答社区,也在开发者聚集的论<br>坛做了一些曝光,截至今天Jpush已经拥有近6000名开发者用户。</p>
+<p>极光是一个20多人的研发团队专注一年的结果。“有新团队要切入这个领域当然还是有机会,但是要作好持续投入的准备。”</p>
+<ul>
+<li>个推推送</li>
+</ul>
+<p>点评:2012年,公司全面开放其核心竞争力–推送技术,面向公众提供专业的手机推送决方案,即个推,成为国内该领域的先驱和最专业服务商。通过个推的推送解决方案,开发者可以在应用推送功能上节省开发成本,并达到节省公司资源、保证用户推送质量,省用户流量和电能的效果。开发者还可获得推送的BI数据。个推还提供智能推送服务,通过属性分析与推送测试的功能,帮助找到APP用户中最精准的人群,摒弃盲目推送技术,从而进行精细化运营。</p>
+<ul>
+<li>友盟推送</li>
+</ul>
+<p>点评:友盟消息推送的优势在于,能够在更大程度上发挥友盟各产品线的协同效应。具体来<br>说,开发者使用友盟统计分析、社会化组件、自动更新等产品,之前更多的是辅助其进行分析和决策,而消息推送则把决策成果输送到用户的设备上,开发者通过推<br>送实现与用户的互动,并使用推送数据指导新的策略跟进。至此,开发者也经历了从数据监测、运营策划到用户互动的完整环节,从产品形态上实现闭环。</p>
+<ul>
+<li>智游推送</li>
+</ul>
+<p>点评:智游推送是北京智游网安科技有限公司为开发者设计的一款推送服务,推送包括移动端SDK和网页后端控制,帮助开发者解决消息推送难题。<br>并且保证推送服务的稳定、高效和即时性。开发者通过添加SDK后,服务消息可以推送到其客户端,通过IP通道实现用户间免费实时通讯服务,支持文字,图片等。</p>
+<ul>
+<li>华为推送</li>
+</ul>
+<p>点评:华为推送平台是华为开发者联盟为开发者提供的基于Push技术的PaaS服务平台,<br>它建立了从云端到手机端的推送通道,可以将最新信息及时通知用户,从而构筑良好的用户关系,持续提升用户互动价值。华为推送使用分布式云服务器,多云协同<br>工作,安全可靠,容量巨大,可处理每秒100万以上的并发发送。华为针对不同的网络设备做不同的优化,华为推送是达到电信级水平的推送平台。</p>
+<ul>
+<li>小米推送</li>
+</ul>
+<p>点评:小米推送(MiPush)是小米公司为开发者提供的消息推送服务,通过在云端和客户端之间建立一条稳定、可靠的长连接,为开发者提供向客户端应用推送实时消息的服务,帮助开发者有效地拉动用户活跃。<br>省电,是手机的最核心竞争力之一,如果能够统一小米手机上的推送服务,则小米手机便毫无争议的成为最省电的安卓手机。这是小米做推送服务的初<br>衷,也是最根本的出发点。同时作为一家互联网公司,服务一直是小米的铁人三项的很重要的一项,而开发者服务则是互联网服务的重中之重,是企业的创建自己生<br>态圈的重要根基。微软、谷歌、苹果的成功无不说明“得开发者得天下”这一事实。小米抱着同样的开放心态,不惜投入大量的人力和服务器资源,以推送服务为切<br>入点,一步步完善整个小米生态圈。</p>
+<ul>
+<li>魔桥推送</li>
+</ul>
+<p>点评:魔桥推送服务是基于MQTT协议实现的Android、IOS推送功能。魔桥构建的推送服务,旨在降低移动应用开发者的开发、运维成本。MQTT是一个轻量级的消息发布/订阅协议,它是实现基于手机客户端的消息推送服务器的理想解决方案。</p>
+<ul>
+<li>盛大云推送</li>
+</ul>
+<p>点评:盛大移动云推送服务是基于盛大云计算Iaas平台所构建的推送服务平台,旨在降低移动应用开发者的开发、运维成本。<br>使用盛大移动云推送服务,移动应用开发者无需为推送服务搭建服务端,只需在应用开发时集成云推送服务提供的sdk,即可轻松的让应用支持推送服务。</p>
+<p>根据你的需求做好你的开发,你还在苦苦埋头敲代码改bug么?devstore集成开发者需要的服务整合类平台,设计开发、运营维护到市场推广一站式开发服务,需要的尽管拿去。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/04/2016-05-04-iOS Push/" data-id="cinszsgqg0000f95o8ait4jm1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-05-03-编程模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/03/2016-05-03-编程模式/" class="article-date">
+  <time datetime="2016-05-02T16:00:00.000Z" itemprop="datePublished">2016-05-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/软件设计/">软件设计</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/03/2016-05-03-编程模式/">编程模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>函数式编程 vs 面向对象编程</li>
+<li>响应式编程 vs 命令式编程</li>
+<li>promise</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/03/2016-05-03-编程模式/" data-id="cinrnv9a2000bnf5o6zd2vp0j" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程模式/">编程模式</a></li></ul>
 
     </footer>
   </div>
@@ -176,7 +337,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/03/2016-05-03-移动三方应用分享/" data-id="cinrnv99x0005nf5op3thydm1" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/05/03/2016-05-03-移动三方应用分享/" data-id="cinrnv99x0005nf5op3thydm1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
@@ -218,7 +379,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/03/2016-05-03-三方认证/" data-id="cinrnv99v0003nf5o0fyy4jk0" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/05/03/2016-05-03-三方认证/" data-id="cinrnv99v0003nf5o0fyy4jk0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
@@ -268,99 +429,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/03/2016-05-03-iOS原生Alert和ActionSheet/" data-id="cinrnv99s0001nf5oha0hbsky" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/05/03/2016-05-03-iOS原生Alert和ActionSheet/" data-id="cinrnv99s0001nf5oha0hbsky" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2016-05-03-iOS Push" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/03/2016-05-03-iOS Push/" class="article-date">
-  <time datetime="2016-05-02T16:00:00.000Z" itemprop="datePublished">2016-05-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/移动开发/">移动开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/03/2016-05-03-iOS Push/">iOS Push</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/03/2016-05-03-iOS Push/" data-id="cinrnv99j0000nf5ogj9tdr5b" class="article-share-link">Delen</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2016-05-03-编程模式" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/03/2016-05-03-编程模式/" class="article-date">
-  <time datetime="2016-05-02T16:00:00.000Z" itemprop="datePublished">2016-05-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/软件设计/">软件设计</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/03/2016-05-03-编程模式/">编程模式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>函数式编程 vs 面向对象编程</li>
-<li>响应式编程 vs 命令式编程</li>
-<li>promise</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/03/2016-05-03-编程模式/" data-id="cinrnv9a2000bnf5o6zd2vp0j" class="article-share-link">Delen</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程模式/">编程模式</a></li></ul>
 
     </footer>
   </div>
@@ -405,7 +477,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/02/2016-05-02-Nodejs学习/" data-id="cinrnv9ae000enf5op1kurfcp" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/05/02/2016-05-02-Nodejs学习/" data-id="cinrnv9ae000enf5op1kurfcp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nodejs/">Nodejs</a></li></ul>
@@ -475,7 +547,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/29/2016-04-29-常用开发者论坛博客的收集/" data-id="cinmv0kzy000t985o8eiem4oj" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/04/29/2016-04-29-常用开发者论坛博客的收集/" data-id="cinmv0kzy000t985o8eiem4oj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/博客/">博客</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/论坛/">论坛</a></li></ul>
@@ -528,7 +600,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/29/2016-04-29-iOS App安装包过大/" data-id="cinmv0kzw000r985oqxtqe2fo" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/04/29/2016-04-29-iOS App安装包过大/" data-id="cinmv0kzw000r985oqxtqe2fo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
@@ -576,7 +648,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/29/2016-04-29-Swift学习/" data-id="cinmv0kzl000n985olz7yg18s" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/04/29/2016-04-29-Swift学习/" data-id="cinmv0kzl000n985olz7yg18s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/">Swift</a></li></ul>
@@ -599,7 +671,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categorieën</h3>
+    <h3 class="widget-title">Kategorier</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Objective-C/">Objective-C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/iOS基础/">iOS基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/博客-论坛-会议/">博客&论坛&会议</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/工具/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/服务端开发/">服务端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/源码分析/">源码分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/移动开发/">移动开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/软件设计/">软件设计</a></li></ul></li></ul>
     </div>
@@ -609,7 +681,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Labels</h3>
+    <h3 class="widget-title">Tags</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OC-Runtime/">OC Runtime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/会议/">会议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安全/">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程模式/">编程模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/论坛/">论坛</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
     </div>
@@ -628,7 +700,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archieven</h3>
+    <h3 class="widget-title">Arkiv</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li></ul>
     </div>
@@ -638,12 +710,20 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recente berichten</h3>
+    <h3 class="widget-title">Siste innlegg</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/2016/05/03/2016-05-03-移动安全/">移动安全</a>
+            <a href="/2016/05/04/2016-05-04-移动安全/">移动安全</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/04/2016-05-04-iOS Push/">iOS Push</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/03/2016-05-03-编程模式/">编程模式</a>
           </li>
         
           <li>
@@ -652,14 +732,6 @@
         
           <li>
             <a href="/2016/05/03/2016-05-03-三方认证/">三方认证</a>
-          </li>
-        
-          <li>
-            <a href="/2016/05/03/2016-05-03-iOS原生Alert和ActionSheet/">iOS原生Alert和ActionSheet</a>
-          </li>
-        
-          <li>
-            <a href="/2016/05/03/2016-05-03-iOS Push/">iOS Push</a>
           </li>
         
       </ul>

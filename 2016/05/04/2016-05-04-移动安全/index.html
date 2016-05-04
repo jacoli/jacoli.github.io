@@ -17,7 +17,7 @@ https-ssl-tls
 真实">
 <meta property="og:type" content="article">
 <meta property="og:title" content="移动安全">
-<meta property="og:url" content="http://yoursite.com/2016/05/03/2016-05-03-移动安全/index.html">
+<meta property="og:url" content="http://yoursite.com/2016/05/04/2016-05-04-移动安全/index.html">
 <meta property="og:site_name" content="Jacoli'Home">
 <meta property="og:description" content="博文
 在线支付逻辑漏洞总结
@@ -29,7 +29,8 @@ https-ssl-tls
 保密性，消息是加密的，内容没有泄露，可以用对称加密算法进行加解密，如AES256。
 完整性，消息是完整的，内容没有被篡改，对消息做哈希得到摘要，作为消息的签名。哈希算法有SHA256等，MD5、SHA1已经不太安全，尽量用SHA256等相对安全的算法。
 真实">
-<meta property="og:updated_time" content="2016-05-03T15:19:38.000Z">
+<meta property="og:image" content="http://yoursite.com/images/appsecurity.png">
+<meta property="og:updated_time" content="2016-05-04T15:00:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="移动安全">
 <meta name="twitter:description" content="博文
@@ -42,6 +43,7 @@ https-ssl-tls
 保密性，消息是加密的，内容没有泄露，可以用对称加密算法进行加解密，如AES256。
 完整性，消息是完整的，内容没有被篡改，对消息做哈希得到摘要，作为消息的签名。哈希算法有SHA256等，MD5、SHA1已经不太安全，尽量用SHA256等相对安全的算法。
 真实">
+<meta name="twitter:image" content="http://yoursite.com/images/appsecurity.png">
   
     <link rel="alternate" href="/atom.xml" title="Jacoli&#39;Home" type="application/atom+xml">
   
@@ -81,7 +83,7 @@ https-ssl-tls
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -90,10 +92,10 @@ https-ssl-tls
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-2016-05-03-移动安全" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-2016-05-04-移动安全" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/05/03/2016-05-03-移动安全/" class="article-date">
-  <time datetime="2016-05-02T16:00:00.000Z" itemprop="datePublished">2016-05-03</time>
+    <a href="/2016/05/04/2016-05-04-移动安全/" class="article-date">
+  <time datetime="2016-05-03T16:00:00.000Z" itemprop="datePublished">2016-05-04</time>
 </a>
     
   <div class="article-category">
@@ -127,11 +129,31 @@ https-ssl-tls
 <li>完整性，消息是完整的，内容没有被篡改，对消息做哈希得到摘要，作为消息的签名。哈希算法有SHA256等，MD5、SHA1已经不太安全，尽量用SHA256等相对安全的算法。</li>
 <li>真实性，消息是可靠的，内容来自受信的来源，验证来源的数字证书是否可靠。</li>
 </ul>
+<h3 id="app安全"><a href="#app安全" class="headerlink" title="app安全"></a>app安全</h3><p><img src="images/appsecurity.png" alt="app安全"></p>
+<p>1.1 iOS真机环境</p>
+<p>1.1.1 越狱后的 iphone</p>
+<p>由于 iOS 缺乏模拟器测试环境,开发环境下的模拟器不支持自定义安装 ipa 进行测试调试的 功能,因此需 iphone 真机环境进行测试。由于测试所涉及的文件操作、应用调试等功能等权限被 官方出于安全考虑进行了限制,因此需对 iphone 进行越狱,获取 root 权限。</p>
+<p>1.2 安全测试工具<br>部分工具下载地址请前往淘云盘下载 <a href="http://yunpan.alibaba-inc.com/share/link/2G5kEe73iM。" target="_blank" rel="external">http://yunpan.alibaba-inc.com/share/link/2G5kEe73iM。</a></p>
+<p>1.2.1 class-dump-z</p>
+<p>一个跨平台的 Objective-C 接口提取器,用于分析 iPhoneOS 可执行文件中私有的 API。需 通过 Cydia 安装。</p>
+<p>1.2.2 darwin cc tools (otools) 一个开源的苹果程序编译和连接器。需通过 Cydia 安装。</p>
+<p>1.2.3 HTTP代理抓包工具(Fiddler)</p>
+<p>1.2.4 Plist文件查看器(plistEditor) 请前往“文件检查”下载该软件。</p>
+<p>1.2.5 iOS内存修改工具(iGameGuard) 请前往“内存检查”下载该软件。</p>
+<p>1.2.6 内购破解工具(LocalIAPStore、iAPFree) 请前往“文件检查”下载该工具。安装后即默认启用。</p>
+<p>1.2.7 keychain-dumper</p>
+<p>该工具可以读取已越狱 IOS 设备中的 keychain。需通过 Cydia 安装。 </p>
+<p>1.2.8 Link Identity Editor (ldid)</p>
+<p>该工具可以协助测试人员修改 Mach-O 二进制文件的签名信息。需通过 Cydia 安装。 </p>
+<p>1.2.9 OpenSSH</p>
+<p>OpenSSH 是 Linux 下常用的服务,装上后设备可充当 SSH 服务端。需通过 Cydia 安装。 </p>
+<p>1.2.10 Snoop-it</p>
+<p>IOS APP 安全评估工具。可对 APP 进行静态、动态分析。需通过 Cydia 安装。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/03/2016-05-03-移动安全/" data-id="cinrnv9a00008nf5olw5xu7cy" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/05/04/2016-05-04-移动安全/" data-id="cinszsgqn0001f95o3ipupaqz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安全/">安全</a></li></ul>
@@ -143,9 +165,9 @@ https-ssl-tls
 <nav id="article-nav">
   
   
-    <a href="/2016/05/03/2016-05-03-移动三方应用分享/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ouder</strong>
-      <div class="article-nav-title">移动三方应用分享</div>
+    <a href="/2016/05/04/2016-05-04-iOS Push/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">iOS Push</div>
     </a>
   
 </nav>
@@ -159,7 +181,7 @@ https-ssl-tls
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categorieën</h3>
+    <h3 class="widget-title">Kategorier</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Objective-C/">Objective-C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/iOS基础/">iOS基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/博客-论坛-会议/">博客&论坛&会议</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/工具/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/服务端开发/">服务端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/源码分析/">源码分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/移动开发/">移动开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/软件设计/">软件设计</a></li></ul></li></ul>
     </div>
@@ -169,7 +191,7 @@ https-ssl-tls
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Labels</h3>
+    <h3 class="widget-title">Tags</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OC-Runtime/">OC Runtime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/会议/">会议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安全/">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程模式/">编程模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/论坛/">论坛</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
     </div>
@@ -188,7 +210,7 @@ https-ssl-tls
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archieven</h3>
+    <h3 class="widget-title">Arkiv</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li></ul>
     </div>
@@ -198,12 +220,20 @@ https-ssl-tls
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recente berichten</h3>
+    <h3 class="widget-title">Siste innlegg</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/2016/05/03/2016-05-03-移动安全/">移动安全</a>
+            <a href="/2016/05/04/2016-05-04-移动安全/">移动安全</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/04/2016-05-04-iOS Push/">iOS Push</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/03/2016-05-03-编程模式/">编程模式</a>
           </li>
         
           <li>
@@ -212,14 +242,6 @@ https-ssl-tls
         
           <li>
             <a href="/2016/05/03/2016-05-03-三方认证/">三方认证</a>
-          </li>
-        
-          <li>
-            <a href="/2016/05/03/2016-05-03-iOS原生Alert和ActionSheet/">iOS原生Alert和ActionSheet</a>
-          </li>
-        
-          <li>
-            <a href="/2016/05/03/2016-05-03-iOS Push/">iOS Push</a>
           </li>
         
       </ul>
