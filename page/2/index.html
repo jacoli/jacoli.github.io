@@ -53,7 +53,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -252,13 +252,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li>1、height缓存，ios8对height的理解较ios7有所改变，认为height随时变化，对获取height的方法调用更频繁。</li>
-<li>2、cell的缓存。</li>
-<li>3、cell的content的缓存和异步加载。</li>
-<li>4、content渲染优化，不透明、无圆角等。</li>
-<li>5、cell的subviews的层次尽量少，可重载<code>drawRect</code>手动绘制。</li>
-<li>6、image资源的提前解压。</li>
-<li>7、减少刷新次数，尽量减少<code>reloadData</code>的调用，改用<code>insertRows</code>、<code>reloadRows</code>等。</li>
+<li>height缓存，ios8对height的理解较ios7有所改变，认为height随时变化，对获取height的方法调用更频繁。</li>
+<li>cell的缓存。</li>
+<li>cell的content的缓存和异步加载。</li>
+<li>content渲染优化，不透明、无圆角等。</li>
+<li>cell的subviews的层次尽量少。</li>
+<li>image资源的提前解压。</li>
+<li>减少刷新次数，尽量减少<code>reloadData</code>的调用，改用<code>insertRows</code>、<code>reloadRows</code>等。</li>
 </ul>
 
       
@@ -487,10 +487,7 @@
         <p> 本文简单罗列了下iOS相关的点。</p>
 <h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><p><img src="/images/iOS应用开发基础.png" alt=""></p>
 <ul>
-<li><p>Swift，<a href="https://github.com/apple/swift" target="_blank" rel="external">Swift开源地址</a>，iOS7.0之后开始支持Swift。</p>
-</li>
-<li><p>Runloop</p>
-</li>
+<li>Runloop</li>
 </ul>
 <p><a href="http://blog.ibireme.com/2015/05/18/runloop/" target="_blank" rel="external">深入理解RunLoop</a></p>
 <ul>
@@ -550,7 +547,6 @@
 <p>16、TTTAttributedLabel<br>UILabel 的替代品, 使 iOS 上的 Label 功能更加丰富, 可支持链接植入等功能</p>
 <p>17、wax<br>Wax 就是使用 Lua 脚本语言来编写 ios原生应用 的一个框架,它把Lua脚本语言和原生 Objective-C 应用编程接口(API)结合起来</p>
 <p>18、ZipArchive<br>可用于压缩和解压缩文</p>
-<h3 id="第三方服务平台"><a href="#第三方服务平台" class="headerlink" title="第三方服务平台"></a>第三方服务平台</h3><p>TODO</p>
 <h3 id="应用优化"><a href="#应用优化" class="headerlink" title="应用优化"></a>应用优化</h3><ul>
 <li><p><a href="http://blog.ibireme.com/2015/11/12/smooth_user_interfaces_for_ios/" target="_blank" rel="external">iOS 保持界面流畅的技巧</a></p>
 </li>
@@ -685,7 +681,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Kategorier</h3>
+    <h3 class="widget-title">Categories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Objective-C/">Objective-C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/iOS基础/">iOS基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/博客-论坛-会议/">博客&论坛&会议</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/工具/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/服务端开发/">服务端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/源码分析/">源码分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/移动开发/">移动开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/软件设计/">软件设计</a></li></ul></li></ul>
     </div>
@@ -714,7 +710,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Arkiv</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li></ul>
     </div>
@@ -724,7 +720,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Siste innlegg</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         

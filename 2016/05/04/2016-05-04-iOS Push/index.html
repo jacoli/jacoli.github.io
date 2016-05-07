@@ -5,43 +5,43 @@
   
   <title>iOS Push | Jacoli&#39;Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="原理
+  <meta name="description" content="基础方案
+苹果官方的APNS，支持App不同状态下（前台、后台、未启动等）的消息推送。
+
+另外个方案是，App和应用服务间维护一个长链接，应用服务通过心跳感知App状态。当App为在线状态时，应用服务可以通过该长链接推送消息。一般作为APNS的备用。
+
+
+相关博客
 一步一步实现iOS应用PUSH功能 - 咪咕咪咕
 iOS上简单推送通知（Push Notification）的实现
-
-三方服务平台
-个推
-腾讯信鸽
-友盟U-Push
-
-十大豪门推送sdk，哪个更适合你推送,使得开发者可以即时地向其应用程序的用户推送通知或者消息,与用户保持互动,从而有效地提高留存率,提升用户体验。平台整合了Android推送、iOS推送的统一推送服务。但是在众多的推送服务中那">
+十大豪门推送sdk">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS Push">
 <meta property="og:url" content="http://yoursite.com/2016/05/04/2016-05-04-iOS Push/index.html">
 <meta property="og:site_name" content="Jacoli'Home">
-<meta property="og:description" content="原理
+<meta property="og:description" content="基础方案
+苹果官方的APNS，支持App不同状态下（前台、后台、未启动等）的消息推送。
+
+另外个方案是，App和应用服务间维护一个长链接，应用服务通过心跳感知App状态。当App为在线状态时，应用服务可以通过该长链接推送消息。一般作为APNS的备用。
+
+
+相关博客
 一步一步实现iOS应用PUSH功能 - 咪咕咪咕
 iOS上简单推送通知（Push Notification）的实现
-
-三方服务平台
-个推
-腾讯信鸽
-友盟U-Push
-
-十大豪门推送sdk，哪个更适合你推送,使得开发者可以即时地向其应用程序的用户推送通知或者消息,与用户保持互动,从而有效地提高留存率,提升用户体验。平台整合了Android推送、iOS推送的统一推送服务。但是在众多的推送服务中那">
-<meta property="og:updated_time" content="2016-05-04T15:00:33.000Z">
+十大豪门推送sdk">
+<meta property="og:updated_time" content="2016-05-07T01:09:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS Push">
-<meta name="twitter:description" content="原理
+<meta name="twitter:description" content="基础方案
+苹果官方的APNS，支持App不同状态下（前台、后台、未启动等）的消息推送。
+
+另外个方案是，App和应用服务间维护一个长链接，应用服务通过心跳感知App状态。当App为在线状态时，应用服务可以通过该长链接推送消息。一般作为APNS的备用。
+
+
+相关博客
 一步一步实现iOS应用PUSH功能 - 咪咕咪咕
 iOS上简单推送通知（Push Notification）的实现
-
-三方服务平台
-个推
-腾讯信鸽
-友盟U-Push
-
-十大豪门推送sdk，哪个更适合你推送,使得开发者可以即时地向其应用程序的用户推送通知或者消息,与用户保持互动,从而有效地提高留存率,提升用户体验。平台整合了Android推送、iOS推送的统一推送服务。但是在众多的推送服务中那">
+十大豪门推送sdk">
   
     <link rel="alternate" href="/atom.xml" title="Jacoli&#39;Home" type="application/atom+xml">
   
@@ -81,7 +81,7 @@ iOS上简单推送通知（Push Notification）的实现
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -116,58 +116,23 @@ iOS上简单推送通知（Push Notification）的实现
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><ul>
+        <h3 id="基础方案"><a href="#基础方案" class="headerlink" title="基础方案"></a>基础方案</h3><ul>
+<li><p>苹果官方的APNS，支持App不同状态下（前台、后台、未启动等）的消息推送。</p>
+</li>
+<li><p>另外个方案是，App和应用服务间维护一个长链接，应用服务通过心跳感知App状态。当App为在线状态时，应用服务可以通过该长链接推送消息。一般作为APNS的备用。</p>
+</li>
+</ul>
+<h3 id="相关博客"><a href="#相关博客" class="headerlink" title="相关博客"></a>相关博客</h3><ul>
 <li><a href="http://www.tuicool.com/articles/Y77Ffe" target="_blank" rel="external">一步一步实现iOS应用PUSH功能 - 咪咕咪咕</a></li>
 <li><a href="http://blog.csdn.net/daydreamingboy/article/details/7977098" target="_blank" rel="external">iOS上简单推送通知（Push Notification）的实现</a></li>
+<li><a href="http://blog.csdn.net/c101012221/article/details/34433425" target="_blank" rel="external">十大豪门推送sdk，哪个更适合你</a></li>
 </ul>
 <h3 id="三方服务平台"><a href="#三方服务平台" class="headerlink" title="三方服务平台"></a>三方服务平台</h3><ul>
+<li>目前，有许多开放平台提供了推送服务。</li>
 <li><a href="http://www.getui.com/" target="_blank" rel="external">个推</a></li>
 <li><a href="http://www.qcloud.com/product/XGPush.html" target="_blank" rel="external">腾讯信鸽</a></li>
 <li><a href="http://mobile.umeng.com/push?spm=0.0.0.0.pphrqW" target="_blank" rel="external">友盟U-Push</a></li>
 </ul>
-<h3 id="十大豪门推送sdk，哪个更适合你"><a href="#十大豪门推送sdk，哪个更适合你" class="headerlink" title="十大豪门推送sdk，哪个更适合你"></a>十大豪门推送sdk，哪个更适合你</h3><p>推送,使得开发者可以即时地向其应用程序的用户推送通知或者消息,与用户保持互动,从而有效地提高留存率,提升用户体验。平台整合了Android推送、iOS推送的统一推送服务。但是在众多的推送服务中那个更好用,更适合你的需求呢,小编给你介绍十大豪门推送,自己对比下吧。</p>
-<ul>
-<li>百度云推送</li>
-</ul>
-<p>点评:百度云推送可谓为用户体验而生,它实现了多项创新,并通过百度各大产品线千万级连<br>接的可用性测试,迅速成为国内第三方云推送平台的标杆。据了解,在百度云推送正式发布之前,大部分的百度产品其实都已在使用百度云推送,例如百度框、百度<br>网盘、百度地图、百度视频,已覆盖数亿的用户规模百度的技术品牌为百度云推送的先进性、大规模并发与稳定性提供了保障。</p>
-<ul>
-<li>腾讯信鸽推送</li>
-</ul>
-<p>点评:互联网巨无霸腾讯的产品,咱有用户优势!据信鸽产品团队表示,其实信鸽在产品功能上和个推、极光推送等服务并没有特别大的差异,而其优<br>势在于后期可以通过腾讯的大数据分析为用户划分标签,并结合 7 亿 qq 用户的画像标签,比如人口属性、消费能力、短时兴趣、LBS<br>信息等等,从而让开发者可以针对不同用户群体推送不同的内容。</p>
-<ul>
-<li>极光推送</li>
-</ul>
-<p>点评:由于极光进入的时间比较早,服务很稳定,<br>在开发者中间形成了一定的口碑;像这种to<br>B的服务面向的都是专业用户,商业推广并不奏效,开发者之间的口口相传才是业务不断做大的原因。极光建立了一些QQ群、官网问答社区,也在开发者聚集的论<br>坛做了一些曝光,截至今天Jpush已经拥有近6000名开发者用户。</p>
-<p>极光是一个20多人的研发团队专注一年的结果。“有新团队要切入这个领域当然还是有机会,但是要作好持续投入的准备。”</p>
-<ul>
-<li>个推推送</li>
-</ul>
-<p>点评:2012年,公司全面开放其核心竞争力–推送技术,面向公众提供专业的手机推送决方案,即个推,成为国内该领域的先驱和最专业服务商。通过个推的推送解决方案,开发者可以在应用推送功能上节省开发成本,并达到节省公司资源、保证用户推送质量,省用户流量和电能的效果。开发者还可获得推送的BI数据。个推还提供智能推送服务,通过属性分析与推送测试的功能,帮助找到APP用户中最精准的人群,摒弃盲目推送技术,从而进行精细化运营。</p>
-<ul>
-<li>友盟推送</li>
-</ul>
-<p>点评:友盟消息推送的优势在于,能够在更大程度上发挥友盟各产品线的协同效应。具体来<br>说,开发者使用友盟统计分析、社会化组件、自动更新等产品,之前更多的是辅助其进行分析和决策,而消息推送则把决策成果输送到用户的设备上,开发者通过推<br>送实现与用户的互动,并使用推送数据指导新的策略跟进。至此,开发者也经历了从数据监测、运营策划到用户互动的完整环节,从产品形态上实现闭环。</p>
-<ul>
-<li>智游推送</li>
-</ul>
-<p>点评:智游推送是北京智游网安科技有限公司为开发者设计的一款推送服务,推送包括移动端SDK和网页后端控制,帮助开发者解决消息推送难题。<br>并且保证推送服务的稳定、高效和即时性。开发者通过添加SDK后,服务消息可以推送到其客户端,通过IP通道实现用户间免费实时通讯服务,支持文字,图片等。</p>
-<ul>
-<li>华为推送</li>
-</ul>
-<p>点评:华为推送平台是华为开发者联盟为开发者提供的基于Push技术的PaaS服务平台,<br>它建立了从云端到手机端的推送通道,可以将最新信息及时通知用户,从而构筑良好的用户关系,持续提升用户互动价值。华为推送使用分布式云服务器,多云协同<br>工作,安全可靠,容量巨大,可处理每秒100万以上的并发发送。华为针对不同的网络设备做不同的优化,华为推送是达到电信级水平的推送平台。</p>
-<ul>
-<li>小米推送</li>
-</ul>
-<p>点评:小米推送(MiPush)是小米公司为开发者提供的消息推送服务,通过在云端和客户端之间建立一条稳定、可靠的长连接,为开发者提供向客户端应用推送实时消息的服务,帮助开发者有效地拉动用户活跃。<br>省电,是手机的最核心竞争力之一,如果能够统一小米手机上的推送服务,则小米手机便毫无争议的成为最省电的安卓手机。这是小米做推送服务的初<br>衷,也是最根本的出发点。同时作为一家互联网公司,服务一直是小米的铁人三项的很重要的一项,而开发者服务则是互联网服务的重中之重,是企业的创建自己生<br>态圈的重要根基。微软、谷歌、苹果的成功无不说明“得开发者得天下”这一事实。小米抱着同样的开放心态,不惜投入大量的人力和服务器资源,以推送服务为切<br>入点,一步步完善整个小米生态圈。</p>
-<ul>
-<li>魔桥推送</li>
-</ul>
-<p>点评:魔桥推送服务是基于MQTT协议实现的Android、IOS推送功能。魔桥构建的推送服务,旨在降低移动应用开发者的开发、运维成本。MQTT是一个轻量级的消息发布/订阅协议,它是实现基于手机客户端的消息推送服务器的理想解决方案。</p>
-<ul>
-<li>盛大云推送</li>
-</ul>
-<p>点评:盛大移动云推送服务是基于盛大云计算Iaas平台所构建的推送服务平台,旨在降低移动应用开发者的开发、运维成本。<br>使用盛大移动云推送服务,移动应用开发者无需为推送服务搭建服务端,只需在应用开发时集成云推送服务提供的sdk,即可轻松的让应用支持推送服务。</p>
-<p>根据你的需求做好你的开发,你还在苦苦埋头敲代码改bug么?devstore集成开发者需要的服务整合类平台,设计开发、运营维护到市场推广一站式开发服务,需要的尽管拿去。</p>
 
       
     </div>
@@ -209,7 +174,7 @@ iOS上简单推送通知（Push Notification）的实现
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Kategorier</h3>
+    <h3 class="widget-title">Categories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Objective-C/">Objective-C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/iOS基础/">iOS基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/博客-论坛-会议/">博客&论坛&会议</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/工具/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/服务端开发/">服务端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/源码分析/">源码分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/移动开发/">移动开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/软件设计/">软件设计</a></li></ul></li></ul>
     </div>
@@ -238,7 +203,7 @@ iOS上简单推送通知（Push Notification）的实现
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Arkiv</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li></ul>
     </div>
@@ -248,7 +213,7 @@ iOS上简单推送通知（Push Notification）的实现
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Siste innlegg</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
