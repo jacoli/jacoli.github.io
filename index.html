@@ -110,7 +110,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/06/25/2016-06-25-写在饭美App首版上线前/" data-id="cipuqu57l0008qm5o39qpyn21" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/06/25/2016-06-25-写在饭美App首版上线前/" data-id="ciq4vaepu003mr05onhwb5r9p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
@@ -168,7 +168,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/06/18/2016-06-18-iOS Push/" data-id="cipusjvbq00008i5odnhmjl9o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/06/18/2016-06-18-iOS Push/" data-id="ciq4vaept003ir05o5exxvpsc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
@@ -207,6 +207,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="相关博文"><a href="#相关博文" class="headerlink" title="相关博文"></a>相关博文</h3><ul>
+<li><a href="http://security.ios-wiki.com/" target="_blank" rel="external">ios-security</a></li>
 <li><a href="http://drops.wooyun.org/papers/345" target="_blank" rel="external">在线支付逻辑漏洞总结</a></li>
 <li><a href="https://program-think.blogspot.com/2013/02/file-integrity-check.html?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">扫盲文件完整性校验——关于散列值和数字签名</a></li>
 <li><a href="https://program-think.blogspot.com/2010/02/introduce-digital-certificate-and-ca.html" target="_blank" rel="external">数字证书及 CA 的扫盲介绍</a></li>
@@ -215,7 +216,7 @@
 <h3 id="安全检查项"><a href="#安全检查项" class="headerlink" title="安全检查项"></a>安全检查项</h3><ul>
 <li>移动App上关键数据（密码、个人信息等）在存储、传输等各个阶段需要做一定的安全保护。下图罗列了常见的检查项。</li>
 </ul>
-<p><img src="images/appsecurity.png" alt="app安全"></p>
+<p><img src="/images/app_security_checks.png" alt="app安全"></p>
 <h3 id="传输安全"><a href="#传输安全" class="headerlink" title="传输安全"></a>传输安全</h3><ul>
 <li><p>保密性，消息是加密的，内容没有泄露，可以用对称加密算法进行加解密，如AES256。</p>
 </li>
@@ -250,7 +251,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/04/2016-05-04-移动安全/" data-id="cinszsgqn0001f95o3ipupaqz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/04/2016-05-04-移动安全/" data-id="ciq4vaepk0033r05os0i8mcf1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安全/">安全</a></li></ul>
@@ -262,9 +263,9 @@
 
 
   
-    <article id="post-2016-05-03-编程模式" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2016-05-03-模式和架构" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/05/03/2016-05-03-编程模式/" class="article-date">
+    <a href="/2016/05/03/2016-05-03-模式和架构/" class="article-date">
   <time datetime="2016-05-02T16:00:00.000Z" itemprop="datePublished">2016-05-03</time>
 </a>
     
@@ -280,7 +281,101 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/03/2016-05-03-编程模式/">编程模式</a>
+      <a class="article-title" href="/2016/05/03/2016-05-03-模式和架构/">模式和架构</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="编程模式"><a href="#编程模式" class="headerlink" title="编程模式"></a>编程模式</h3><ul>
+<li>函数式编程 vs 面向对象编程</li>
+<li>响应式编程 vs 命令式编程</li>
+<li>promise</li>
+</ul>
+<h3 id="架构、框架、设计模式："><a href="#架构、框架、设计模式：" class="headerlink" title="架构、框架、设计模式："></a>架构、框架、设计模式：</h3><ul>
+<li>1、架构属于顶层的设计，划分软件或解决方案的整体结构，倾向于抽象，常见的有分层架构、事件驱动架构、微内核架构、微服务架构等。</li>
+<li>2、框架类似于提供工具库或类库，倾向于实现。</li>
+<li>3、设计模式应该是更细力度的代码层级的复用、可维护性、可扩展性的设计。</li>
+</ul>
+<h3 id="设计模式："><a href="#设计模式：" class="headerlink" title="设计模式："></a>设计模式：</h3><ul>
+<li>1、基于某种具体场景，代码组织结构或交互行为的设计方法，使得代码更易于复用、维护、扩展。</li>
+<li>2、基本的6个原则：开闭原则、里氏替换原则、依赖倒置原则、接口隔离原则、单一职责原则、最少知识原则。</li>
+<li>3、创建型模式：工厂方法、抽象工厂、原型、单例、builder</li>
+<li>4、结构型:适配器、组合、桥接、decorator、facade、享元、proxy</li>
+<li>5、行为型:解释器、模版方法、责任链、命令、迭代器、中介者、memento、观察者、状态、策略、访问者等。</li>
+</ul>
+<h3 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h3><p><a href="http://www.cnblogs.com/beijiguangyong/archive/2010/11/15/2302807.html#_Toc281750445" target="_blank" rel="external">23种设计模式</a></p>
+<p><a href="http://www.cnblogs.com/hegezhou_hot/archive/2010/10/08/1846200.html" target="_blank" rel="external">系统架构师</a></p>
+<p>前篇</p>
+<pre><code>1、系统架构师-基础到企业应用架构系列之--开卷有益
+2、系统架构师-基础到企业应用架构-系统建模[上篇]
+3、系统架构师-基础到企业应用架构-系统建模[中篇](上)
+4、系统架构师-基础到企业应用架构-系统建模[中篇](下)
+5、系统架构师-基础到企业应用架构-系统建模[下篇]
+6、系统架构师-基础到企业应用架构-系统设计规范与原则[上篇]
+7、系统架构师-基础到企业应用架构-系统设计规范与原则[下篇]
+8、系统架构师-基础到企业应用架构-设计模式[上篇]
+9、系统架构师-基础到企业应用架构-设计模式[中篇]
+10、系统架构师-基础到企业应用架构-设计模式[下篇]
+</code></pre><p>中篇</p>
+<pre><code>11、系统架构师-基础到企业应用架构-企业应用架构
+12、系统架构师-基础到企业应用架构-分层[上篇]
+13、系统架构师-基础到企业应用架构-分层[中篇]
+14、系统架构师-基础到企业应用架构-分层[下篇]
+15、系统架构师-基础到企业应用架构-表现层
+16、系统架构师-基础到企业应用架构-服务层
+17、系统架构师-基础到企业应用架构-业务逻辑层
+18、系统架构师-基础到企业应用架构-数据访问层
+19、系统架构师-基础到企业应用架构-组件服务
+20、系统架构师-基础到企业应用架构-安全机制
+</code></pre><p>后篇</p>
+<pre><code>21、单机应用、客户端/服务器、多服务、企业数据总线全解析
+22、系统架构师-基础到企业应用架构-单机应用(实例及demo)
+23、系统架构师-基础到企业应用架构-客户端/服务器(实例及demo)
+24、系统架构师-基础到企业应用架构-多服务(实例及demo)
+25、系统架构师-基础到企业应用架构-企业数据总线(实例及demo)
+26、系统架构师-基础到企业应用架构-性能优化(架构瓶颈)
+27、系统架构师-基础到企业应用架构-完整的架构方案实例[上篇]
+28、系统架构师-基础到企业应用架构-完整的架构方案实例[中篇]
+29、系统架构师-基础到企业应用架构-完整的架构方案实例[下篇]
+30、系统架构师-基础到企业应用架构-总结及后续
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/03/2016-05-03-模式和架构/" data-id="ciq4vruc40000rx5ofecvbmru" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模式和架构/">模式和架构</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-05-03-iOS原生Alert和ActionSheet" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/03/2016-05-03-iOS原生Alert和ActionSheet/" class="article-date">
+  <time datetime="2016-05-02T16:00:00.000Z" itemprop="datePublished">2016-05-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/移动开发/">移动开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/03/2016-05-03-iOS原生Alert和ActionSheet/">iOS原生Alert和ActionSheet</a>
     </h1>
   
 
@@ -289,18 +384,21 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li>函数式编程 vs 面向对象编程</li>
-<li>响应式编程 vs 命令式编程</li>
-<li>promise</li>
+<li><img src="/images/alert.png" alt="alert"></li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">UIAlertController *vc = [UIAlertController alertControllerWithTitle:@&quot;alertTitle&quot;</span><br><span class="line">                                                            message:@&quot;message&quot;</span><br><span class="line">                                                     preferredStyle:UIAlertControllerStyleAlert];</span><br><span class="line">[vc addAction:[UIAlertAction actionWithTitle:@&quot;done&quot;</span><br><span class="line">                                       style:UIAlertActionStyleDefault</span><br><span class="line">                                     handler:^(UIAlertAction * _Nonnull action) &#123;</span><br><span class="line">&#125;]];</span><br><span class="line"></span><br><span class="line">[vc addAction:[UIAlertAction actionWithTitle:@&quot;cancel&quot;</span><br><span class="line">                                       style:UIAlertActionStyleCancel</span><br><span class="line">                                     handler:^(UIAlertAction * _Nonnull action) &#123;</span><br><span class="line">&#125;]];</span><br><span class="line"></span><br><span class="line">[vc addAction:[UIAlertAction actionWithTitle:@&quot;warning&quot;</span><br><span class="line">                                       style:UIAlertActionStyleDestructive</span><br><span class="line">                                     handler:^(UIAlertAction * _Nonnull action) &#123;</span><br><span class="line">&#125;]];</span><br><span class="line"></span><br><span class="line">[self presentViewController:vc animated:YES completion:nil];</span><br></pre></td></tr></table></figure>
+<ul>
+<li><img src="/images/actionsheet.png" alt="actionsheet"></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">UIAlertController *vc = [UIAlertController alertControllerWithTitle:@&quot;alertTitle&quot;</span><br><span class="line">                                                            message:@&quot;message&quot;</span><br><span class="line">                                                     preferredStyle:UIAlertControllerStyleActionSheet];</span><br><span class="line">[vc addAction:[UIAlertAction actionWithTitle:@&quot;done&quot;</span><br><span class="line">                                       style:UIAlertActionStyleDefault</span><br><span class="line">                                     handler:^(UIAlertAction * _Nonnull action) &#123;</span><br><span class="line">&#125;]];</span><br><span class="line"></span><br><span class="line">[vc addAction:[UIAlertAction actionWithTitle:@&quot;cancel&quot;</span><br><span class="line">                                       style:UIAlertActionStyleCancel</span><br><span class="line">                                     handler:^(UIAlertAction * _Nonnull action) &#123;</span><br><span class="line">&#125;]];</span><br><span class="line"></span><br><span class="line">[vc addAction:[UIAlertAction actionWithTitle:@&quot;warning&quot;</span><br><span class="line">                                       style:UIAlertActionStyleDestructive</span><br><span class="line">                                     handler:^(UIAlertAction * _Nonnull action) &#123;</span><br><span class="line">&#125;]];</span><br><span class="line"></span><br><span class="line">[self presentViewController:vc animated:YES completion:nil];</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/03/2016-05-03-编程模式/" data-id="cinrnv9a2000bnf5o6zd2vp0j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/03/2016-05-03-iOS原生Alert和ActionSheet/" data-id="ciq4vaepo003br05ospac6k1m" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程模式/">编程模式</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
 
     </footer>
   </div>
@@ -368,7 +466,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/03/2016-05-03-移动三方应用分享/" data-id="cinrnv99x0005nf5op3thydm1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/03/2016-05-03-移动三方应用分享/" data-id="ciq4vaepa002zr05o35da1ms7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
@@ -410,57 +508,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/03/2016-05-03-三方认证/" data-id="cinrnv99v0003nf5o0fyy4jk0" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2016-05-03-iOS原生Alert和ActionSheet" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/03/2016-05-03-iOS原生Alert和ActionSheet/" class="article-date">
-  <time datetime="2016-05-02T16:00:00.000Z" itemprop="datePublished">2016-05-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/移动开发/">移动开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/03/2016-05-03-iOS原生Alert和ActionSheet/">iOS原生Alert和ActionSheet</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><img src="/images/alert.png" alt="alert"></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">UIAlertController *vc = [UIAlertController alertControllerWithTitle:@&quot;alertTitle&quot;</span><br><span class="line">                                                            message:@&quot;message&quot;</span><br><span class="line">                                                     preferredStyle:UIAlertControllerStyleAlert];</span><br><span class="line">[vc addAction:[UIAlertAction actionWithTitle:@&quot;done&quot;</span><br><span class="line">                                       style:UIAlertActionStyleDefault</span><br><span class="line">                                     handler:^(UIAlertAction * _Nonnull action) &#123;</span><br><span class="line">&#125;]];</span><br><span class="line"></span><br><span class="line">[vc addAction:[UIAlertAction actionWithTitle:@&quot;cancel&quot;</span><br><span class="line">                                       style:UIAlertActionStyleCancel</span><br><span class="line">                                     handler:^(UIAlertAction * _Nonnull action) &#123;</span><br><span class="line">&#125;]];</span><br><span class="line"></span><br><span class="line">[vc addAction:[UIAlertAction actionWithTitle:@&quot;warning&quot;</span><br><span class="line">                                       style:UIAlertActionStyleDestructive</span><br><span class="line">                                     handler:^(UIAlertAction * _Nonnull action) &#123;</span><br><span class="line">&#125;]];</span><br><span class="line"></span><br><span class="line">[self presentViewController:vc animated:YES completion:nil];</span><br></pre></td></tr></table></figure>
-<ul>
-<li><img src="/images/actionsheet.png" alt="actionsheet"></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">UIAlertController *vc = [UIAlertController alertControllerWithTitle:@&quot;alertTitle&quot;</span><br><span class="line">                                                            message:@&quot;message&quot;</span><br><span class="line">                                                     preferredStyle:UIAlertControllerStyleActionSheet];</span><br><span class="line">[vc addAction:[UIAlertAction actionWithTitle:@&quot;done&quot;</span><br><span class="line">                                       style:UIAlertActionStyleDefault</span><br><span class="line">                                     handler:^(UIAlertAction * _Nonnull action) &#123;</span><br><span class="line">&#125;]];</span><br><span class="line"></span><br><span class="line">[vc addAction:[UIAlertAction actionWithTitle:@&quot;cancel&quot;</span><br><span class="line">                                       style:UIAlertActionStyleCancel</span><br><span class="line">                                     handler:^(UIAlertAction * _Nonnull action) &#123;</span><br><span class="line">&#125;]];</span><br><span class="line"></span><br><span class="line">[vc addAction:[UIAlertAction actionWithTitle:@&quot;warning&quot;</span><br><span class="line">                                       style:UIAlertActionStyleDestructive</span><br><span class="line">                                     handler:^(UIAlertAction * _Nonnull action) &#123;</span><br><span class="line">&#125;]];</span><br><span class="line"></span><br><span class="line">[self presentViewController:vc animated:YES completion:nil];</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/03/2016-05-03-iOS原生Alert和ActionSheet/" data-id="cinrnv99s0001nf5oha0hbsky" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/03/2016-05-03-三方认证/" data-id="ciq4vaep8002wr05o8uryuvw2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
@@ -508,10 +556,58 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/02/2016-05-02-Nodejs学习/" data-id="cinrnv9ae000enf5op1kurfcp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/02/2016-05-02-Nodejs学习/" data-id="ciq4vaeou002gr05olz5cg13m" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nodejs/">Nodejs</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-04-29-Swift学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/29/2016-04-29-Swift学习/" class="article-date">
+  <time datetime="2016-04-28T16:00:00.000Z" itemprop="datePublished">2016-04-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/移动开发/">移动开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/29/2016-04-29-Swift学习/">Swift学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p><a href="http://www.cocoachina.com/special/swift/" target="_blank" rel="external">Swift专题</a></p>
+</li>
+<li><p><a href="http://mp.weixin.qq.com/s?__biz=MzA3ODg4MDk0Ng==&amp;mid=403153173&amp;idx=1&amp;sn=c631f95b28a0eb4b842a9494e43a30e5#rd&amp;utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">Swift Runtime分析：还像OC Runtime一样吗？</a></p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/29/2016-04-29-Swift学习/" data-id="ciq4vaep1002or05ob1mhucz2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/">Swift</a></li></ul>
 
     </footer>
   </div>
@@ -561,58 +657,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/29/2016-04-29-iOS App安装包过大/" data-id="cinmv0kzw000r985oqxtqe2fo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/29/2016-04-29-iOS App安装包过大/" data-id="ciq4vaeoz002jr05orjhfqt85" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2016-04-29-Swift学习" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/04/29/2016-04-29-Swift学习/" class="article-date">
-  <time datetime="2016-04-28T16:00:00.000Z" itemprop="datePublished">2016-04-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/移动开发/">移动开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/29/2016-04-29-Swift学习/">Swift学习</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p><a href="http://www.cocoachina.com/special/swift/" target="_blank" rel="external">Swift专题</a></p>
-</li>
-<li><p><a href="http://mp.weixin.qq.com/s?__biz=MzA3ODg4MDk0Ng==&amp;mid=403153173&amp;idx=1&amp;sn=c631f95b28a0eb4b842a9494e43a30e5#rd&amp;utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">Swift Runtime分析：还像OC Runtime一样吗？</a></p>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/29/2016-04-29-Swift学习/" data-id="cinmv0kzl000n985olz7yg18s" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/">Swift</a></li></ul>
 
     </footer>
   </div>
@@ -644,7 +692,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OC-Runtime/">OC Runtime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/会议/">会议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安全/">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程模式/">编程模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OC-Runtime/">OC Runtime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/会议/">会议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安全/">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模式和架构/">模式和架构</a></li></ul>
     </div>
   </div>
 
@@ -654,7 +702,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/OC-Runtime/" style="font-size: 16.67px;">OC Runtime</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/会议/" style="font-size: 10px;">会议</a> <a href="/tags/安全/" style="font-size: 10px;">安全</a> <a href="/tags/编程模式/" style="font-size: 10px;">编程模式</a> <a href="/tags/设计模式/" style="font-size: 13.33px;">设计模式</a>
+      <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/OC-Runtime/" style="font-size: 16.67px;">OC Runtime</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/会议/" style="font-size: 10px;">会议</a> <a href="/tags/安全/" style="font-size: 10px;">安全</a> <a href="/tags/模式和架构/" style="font-size: 13.33px;">模式和架构</a>
     </div>
   </div>
 
@@ -688,11 +736,11 @@
           </li>
         
           <li>
-            <a href="/2016/05/03/2016-05-03-编程模式/">编程模式</a>
+            <a href="/2016/05/03/2016-05-03-模式和架构/">模式和架构</a>
           </li>
         
           <li>
-            <a href="/2016/05/03/2016-05-03-移动三方应用分享/">移动三方应用分享</a>
+            <a href="/2016/05/03/2016-05-03-iOS原生Alert和ActionSheet/">iOS原生Alert和ActionSheet</a>
           </li>
         
       </ul>
