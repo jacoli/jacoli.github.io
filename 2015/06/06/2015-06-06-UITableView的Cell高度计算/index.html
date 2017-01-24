@@ -3,23 +3,14 @@
 <head>
   <meta charset="utf-8">
   
-<<<<<<< HEAD
   <title>UITableView的Cell高度计算 | 李传格的博客</title>
-=======
-  <title>UITableView的Cell高度计算 | Jacoli&#39;Home</title>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="iOS7和iOS8有所区别，iOS7在需要调整布局时，计算一遍高度信息，而iOS8只要重新显示就会计算高度（iOS8 把高度计算搞成这个样子，从 WWDC 也倒是能找到点解释，cell 被认为随时都可能改变高度（如从设置中调整动态字体大小），所以每次滑动出来后都要重新计算高度。 ）
 iOS7:1)获取section数和每个section中的row数2)获取所有cell的高度，计算出tableVie">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UITableView的Cell高度计算">
-<<<<<<< HEAD
 <meta property="og:url" content="https://jacoli.github.io/2015/06/06/2015-06-06-UITableView的Cell高度计算/index.html">
 <meta property="og:site_name" content="李传格的博客">
-=======
-<meta property="og:url" content="http://yoursite.com/2015/06/06/2015-06-06-UITableView的Cell高度计算/index.html">
-<meta property="og:site_name" content="Jacoli'Home">
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
 <meta property="og:description" content="iOS7和iOS8有所区别，iOS7在需要调整布局时，计算一遍高度信息，而iOS8只要重新显示就会计算高度（iOS8 把高度计算搞成这个样子，从 WWDC 也倒是能找到点解释，cell 被认为随时都可能改变高度（如从设置中调整动态字体大小），所以每次滑动出来后都要重新计算高度。 ）
 iOS7:1)获取section数和每个section中的row数2)获取所有cell的高度，计算出tableVie">
 <meta property="og:updated_time" content="2016-04-22T15:30:29.000Z">
@@ -28,11 +19,7 @@ iOS7:1)获取section数和每个section中的row数2)获取所有cell的高度�
 <meta name="twitter:description" content="iOS7和iOS8有所区别，iOS7在需要调整布局时，计算一遍高度信息，而iOS8只要重新显示就会计算高度（iOS8 把高度计算搞成这个样子，从 WWDC 也倒是能找到点解释，cell 被认为随时都可能改变高度（如从设置中调整动态字体大小），所以每次滑动出来后都要重新计算高度。 ）
 iOS7:1)获取section数和每个section中的row数2)获取所有cell的高度，计算出tableVie">
   
-<<<<<<< HEAD
     <link rel="alternate" href="/atom.xml" title="李传格的博客" type="application/atom+xml">
-=======
-    <link rel="alternate" href="/atom.xml" title="Jacoli&#39;Home" type="application/atom+xml">
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
   
   
     <link rel="icon" href="/favicon.png">
@@ -53,11 +40,7 @@ iOS7:1)获取section数和每个section中的row数2)获取所有cell的高度�
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-<<<<<<< HEAD
         <a href="/" id="logo">李传格的博客</a>
-=======
-        <a href="/" id="logo">Jacoli&#39;Home</a>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       </h1>
       
     </div>
@@ -77,11 +60,7 @@ iOS7:1)获取section数和每个section中的row数2)获取所有cell的高度�
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-<<<<<<< HEAD
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jacoli.github.io"></form>
-=======
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       </div>
     </div>
   </div>
@@ -119,19 +98,11 @@ iOS7:1)获取section数和每个section中的row数2)获取所有cell的高度�
 <p>1)获取section数和每个section中的row数<br>2)获取所有cell的高度，计算出tableView的contentSize（iOS8中该步骤调用更频繁）<br>3)重新获取当前需要显示cell的高度，调整tableView的contentSize，显示cell</p>
 <p>UITableView的Cell高度计算＋估算</p>
 <p>如果估算，则2）步骤中计算所有cell的高度改成估算所有cell的高度</p>
-<<<<<<< HEAD
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">// All methods that trigger height cache&apos;s invalidation</div><div class="line"></div><div class="line">SEL selectors[] = &#123;</div><div class="line"></div><div class="line">    @selector(reloadData),</div><div class="line"></div><div class="line">    @selector(insertSections:withRowAnimation:),</div><div class="line"></div><div class="line">    @selector(deleteSections:withRowAnimation:),</div><div class="line"></div><div class="line">    @selector(reloadSections:withRowAnimation:),</div><div class="line"></div><div class="line">    @selector(moveSection:toSection:),</div><div class="line"></div><div class="line">    @selector(insertRowsAtIndexPaths:withRowAnimation:),</div><div class="line"></div><div class="line">    @selector(deleteRowsAtIndexPaths:withRowAnimation:),</div><div class="line"></div><div class="line">    @selector(reloadRowsAtIndexPaths:withRowAnimation:),</div><div class="line"></div><div class="line">    @selector(moveRowAtIndexPath:toIndexPath:)</div><div class="line"></div><div class="line">&#125;;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">for (NSUInteger index = 0; index &lt; sizeof(selectors) / sizeof(SEL); ++index) &#123;</div><div class="line"></div><div class="line">    SEL originalSelector = selectors[index];</div><div class="line"></div><div class="line">    SEL swizzledSelector = NSSelectorFromString([@&quot;fd_&quot; stringByAppendingString:NSStringFromSelector(originalSelector)]);</div><div class="line"></div><div class="line">    </div><div class="line"></div><div class="line">    Method originalMethod = class_getInstanceMethod(self, originalSelector);</div><div class="line"></div><div class="line">    Method swizzledMethod = class_getInstanceMethod(self, swizzledSelector);</div><div class="line"></div><div class="line">    </div><div class="line"></div><div class="line">    method_exchangeImplementations(originalMethod, swizzledMethod);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
       <a data-url="https://jacoli.github.io/2015/06/06/2015-06-06-UITableView的Cell高度计算/" data-id="ciyb2tc3a000tov5oe9lonxam" class="article-share-link">Share</a>
-=======
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">// All methods that trigger height cache&apos;s invalidation</span><br><span class="line"></span><br><span class="line">SEL selectors[] = &#123;</span><br><span class="line"></span><br><span class="line">    @selector(reloadData),</span><br><span class="line"></span><br><span class="line">    @selector(insertSections:withRowAnimation:),</span><br><span class="line"></span><br><span class="line">    @selector(deleteSections:withRowAnimation:),</span><br><span class="line"></span><br><span class="line">    @selector(reloadSections:withRowAnimation:),</span><br><span class="line"></span><br><span class="line">    @selector(moveSection:toSection:),</span><br><span class="line"></span><br><span class="line">    @selector(insertRowsAtIndexPaths:withRowAnimation:),</span><br><span class="line"></span><br><span class="line">    @selector(deleteRowsAtIndexPaths:withRowAnimation:),</span><br><span class="line"></span><br><span class="line">    @selector(reloadRowsAtIndexPaths:withRowAnimation:),</span><br><span class="line"></span><br><span class="line">    @selector(moveRowAtIndexPath:toIndexPath:)</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">for (NSUInteger index = 0; index &lt; sizeof(selectors) / sizeof(SEL); ++index) &#123;</span><br><span class="line"></span><br><span class="line">    SEL originalSelector = selectors[index];</span><br><span class="line"></span><br><span class="line">    SEL swizzledSelector = NSSelectorFromString([@&quot;fd_&quot; stringByAppendingString:NSStringFromSelector(originalSelector)]);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    Method originalMethod = class_getInstanceMethod(self, originalSelector);</span><br><span class="line"></span><br><span class="line">    Method swizzledMethod = class_getInstanceMethod(self, swizzledSelector);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    method_exchangeImplementations(originalMethod, swizzledMethod);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/06/06/2015-06-06-UITableView的Cell高度计算/" data-id="ciq4vaen2000mr05opyx8s53x" class="article-share-link">Share</a>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
@@ -212,10 +183,6 @@ iOS7:1)获取section数和每个section中的row数2)获取所有cell的高度�
       <ul>
         
           <li>
-            <a href="/2016/06/25/2016-06-25-写在饭美App首版上线前/">写在饭美App首版上线前</a>
-          </li>
-        
-          <li>
             <a href="/2016/06/18/2016-06-18-iOS Push/">iOS Push</a>
           </li>
         
@@ -224,19 +191,15 @@ iOS7:1)获取section数和每个section中的row数2)获取所有cell的高度�
           </li>
         
           <li>
-<<<<<<< HEAD
             <a href="/2016/05/03/2016-05-03-移动三方应用分享/">移动三方应用分享</a>
           </li>
         
           <li>
             <a href="/2016/05/03/2016-05-03-模式和架构/">模式和架构</a>
-=======
-            <a href="/2016/05/03/2016-05-03-模式和架构/">模式和架构</a>
           </li>
         
           <li>
-            <a href="/2016/05/03/2016-05-03-iOS原生Alert和ActionSheet/">iOS原生Alert和ActionSheet</a>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
+            <a href="/2016/05/03/2016-05-03-三方认证/">三方认证</a>
           </li>
         
       </ul>
@@ -251,11 +214,7 @@ iOS7:1)获取section数和每个section中的row数2)获取所有cell的高度�
   
   <div class="outer">
     <div id="footer-info" class="inner">
-<<<<<<< HEAD
       &copy; 2017 jacoli<br>
-=======
-      &copy; 2016 Jaco Li<br>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

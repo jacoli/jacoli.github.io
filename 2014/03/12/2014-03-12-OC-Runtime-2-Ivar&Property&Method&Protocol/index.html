@@ -3,11 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-<<<<<<< HEAD
   <title>OC Runtime(2)之Ivar&amp;Property&amp;Method&amp;Protocol | 李传格的博客</title>
-=======
-  <title>OC Runtime(2)之Ivar&amp;Property&amp;Method&amp;Protocol | Jacoli&#39;Home</title>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Runtime系列笔记
 Runtime之对象和类
@@ -21,13 +17,8 @@ Runtime之Load&amp;amp;Initialize
 Ivar12345678struct old_ivar &amp;#123;    char *ivar_name;    char *ivar_type;    int ivar_offse">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OC Runtime(2)之Ivar&Property&Method&Protocol">
-<<<<<<< HEAD
 <meta property="og:url" content="https://jacoli.github.io/2014/03/12/2014-03-12-OC-Runtime-2-Ivar&Property&Method&Protocol/index.html">
 <meta property="og:site_name" content="李传格的博客">
-=======
-<meta property="og:url" content="http://yoursite.com/2014/03/12/2014-03-12-OC-Runtime-2-Ivar&Property&Method&Protocol/index.html">
-<meta property="og:site_name" content="Jacoli'Home">
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
 <meta property="og:description" content="Runtime系列笔记
 Runtime之对象和类
 Runtime之属性和方法
@@ -38,11 +29,7 @@ Runtime之Load&amp;amp;Initialize
 
 
 Ivar12345678struct old_ivar &amp;#123;    char *ivar_name;    char *ivar_type;    int ivar_offse">
-<<<<<<< HEAD
 <meta property="og:image" content="https://jacoli.github.io/images/OC-Runtime.png">
-=======
-<meta property="og:image" content="http://yoursite.com/images/OC-Runtime.png">
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
 <meta property="og:updated_time" content="2016-04-22T15:30:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OC Runtime(2)之Ivar&Property&Method&Protocol">
@@ -56,15 +43,9 @@ Runtime之Load&amp;amp;Initialize
 
 
 Ivar12345678struct old_ivar &amp;#123;    char *ivar_name;    char *ivar_type;    int ivar_offse">
-<<<<<<< HEAD
 <meta name="twitter:image" content="https://jacoli.github.io/images/OC-Runtime.png">
   
     <link rel="alternate" href="/atom.xml" title="李传格的博客" type="application/atom+xml">
-=======
-<meta name="twitter:image" content="http://yoursite.com/images/OC-Runtime.png">
-  
-    <link rel="alternate" href="/atom.xml" title="Jacoli&#39;Home" type="application/atom+xml">
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
   
   
     <link rel="icon" href="/favicon.png">
@@ -85,11 +66,7 @@ Ivar12345678struct old_ivar &amp;#123;    char *ivar_name;    char *ivar_type;  
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-<<<<<<< HEAD
         <a href="/" id="logo">李传格的博客</a>
-=======
-        <a href="/" id="logo">Jacoli&#39;Home</a>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       </h1>
       
     </div>
@@ -109,11 +86,7 @@ Ivar12345678struct old_ivar &amp;#123;    char *ivar_name;    char *ivar_type;  
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-<<<<<<< HEAD
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jacoli.github.io"></form>
-=======
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       </div>
     </div>
   </div>
@@ -154,21 +127,12 @@ Ivar12345678struct old_ivar &amp;#123;    char *ivar_name;    char *ivar_type;  
 <li><a href="/2014/04/09/001-OC-Runtime-6-Load&amp;Initialize/">Runtime之Load&amp;Initialize</a></li>
 </ul>
 <p><img src="/images/OC-Runtime.png" alt="OC-Runtime"></p>
-<<<<<<< HEAD
 <h3 id="Ivar"><a href="#Ivar" class="headerlink" title="Ivar"></a>Ivar</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">struct old_ivar &#123;</div><div class="line">    char *ivar_name;</div><div class="line">    char *ivar_type;</div><div class="line">    int ivar_offset;</div><div class="line">#ifdef __LP64__</div><div class="line">    int space;</div><div class="line">#endif</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <h3 id="Property"><a href="#Property" class="headerlink" title="Property"></a>Property</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">struct old_property &#123;</div><div class="line">    const char *name;</div><div class="line">    const char *attributes;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <h3 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">struct old_method &#123;</div><div class="line">    SEL method_name;</div><div class="line">    char *method_types;</div><div class="line">    IMP method_imp;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <h3 id="protocol"><a href="#protocol" class="headerlink" title="protocol"></a>protocol</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">struct old_protocol &#123;</div><div class="line">    Class isa;</div><div class="line">    const char *protocol_name;</div><div class="line">    struct old_protocol_list *protocol_list;</div><div class="line">    struct objc_method_description_list *instance_methods;</div><div class="line">    struct objc_method_description_list *class_methods;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">struct objc_method_description *</div><div class="line">lookup_protocol_method(old_protocol *proto, SEL aSel, </div><div class="line">                       bool isRequiredMethod, bool isInstanceMethod, </div><div class="line">                       bool recursive)</div><div class="line">&#123;</div><div class="line">    struct objc_method_description *m = nil;</div><div class="line">    old_protocol_ext *ext;</div><div class="line"></div><div class="line">    if (isRequiredMethod) &#123;</div><div class="line">        if (isInstanceMethod) &#123;</div><div class="line">            m = lookup_method(proto-&gt;instance_methods, aSel);</div><div class="line">        &#125; else &#123;</div><div class="line">            m = lookup_method(proto-&gt;class_methods, aSel);</div><div class="line">        &#125;</div><div class="line">    &#125; else if ((ext = ext_for_protocol(proto))) &#123;</div><div class="line">        if (isInstanceMethod) &#123;</div><div class="line">            m = lookup_method(ext-&gt;optional_instance_methods, aSel);</div><div class="line">        &#125; else &#123;</div><div class="line">            m = lookup_method(ext-&gt;optional_class_methods, aSel);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    if (!m  &amp;&amp;  recursive  &amp;&amp;  proto-&gt;protocol_list) &#123;</div><div class="line">        int i;</div><div class="line">        for (i = 0; !m  &amp;&amp;  i &lt; proto-&gt;protocol_list-&gt;count; i++) &#123;</div><div class="line">            m = lookup_protocol_method(proto-&gt;protocol_list-&gt;list[i], aSel, </div><div class="line">                                       isRequiredMethod,isInstanceMethod,true);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return m;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="category"><a href="#category" class="headerlink" title="category"></a>category</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">struct old_category &#123;</div><div class="line">    char *category_name;</div><div class="line">    char *class_name;</div><div class="line">    struct old_method_list *instance_methods;</div><div class="line">    struct old_method_list *class_methods;</div><div class="line">    struct old_protocol_list *protocols;</div><div class="line">    uint32_t size;</div><div class="line">    struct old_property_list *instance_properties;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-=======
-<h3 id="Ivar"><a href="#Ivar" class="headerlink" title="Ivar"></a>Ivar</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">struct old_ivar &#123;</span><br><span class="line">    char *ivar_name;</span><br><span class="line">    char *ivar_type;</span><br><span class="line">    int ivar_offset;</span><br><span class="line">#ifdef __LP64__</span><br><span class="line">    int space;</span><br><span class="line">#endif</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="Property"><a href="#Property" class="headerlink" title="Property"></a>Property</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">struct old_property &#123;</span><br><span class="line">    const char *name;</span><br><span class="line">    const char *attributes;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct old_method &#123;</span><br><span class="line">    SEL method_name;</span><br><span class="line">    char *method_types;</span><br><span class="line">    IMP method_imp;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="protocol"><a href="#protocol" class="headerlink" title="protocol"></a>protocol</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">struct old_protocol &#123;</span><br><span class="line">    Class isa;</span><br><span class="line">    const char *protocol_name;</span><br><span class="line">    struct old_protocol_list *protocol_list;</span><br><span class="line">    struct objc_method_description_list *instance_methods;</span><br><span class="line">    struct objc_method_description_list *class_methods;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">struct objc_method_description *</span><br><span class="line">lookup_protocol_method(old_protocol *proto, SEL aSel, </span><br><span class="line">                       bool isRequiredMethod, bool isInstanceMethod, </span><br><span class="line">                       bool recursive)</span><br><span class="line">&#123;</span><br><span class="line">    struct objc_method_description *m = nil;</span><br><span class="line">    old_protocol_ext *ext;</span><br><span class="line"></span><br><span class="line">    if (isRequiredMethod) &#123;</span><br><span class="line">        if (isInstanceMethod) &#123;</span><br><span class="line">            m = lookup_method(proto-&gt;instance_methods, aSel);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            m = lookup_method(proto-&gt;class_methods, aSel);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else if ((ext = ext_for_protocol(proto))) &#123;</span><br><span class="line">        if (isInstanceMethod) &#123;</span><br><span class="line">            m = lookup_method(ext-&gt;optional_instance_methods, aSel);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            m = lookup_method(ext-&gt;optional_class_methods, aSel);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (!m  &amp;&amp;  recursive  &amp;&amp;  proto-&gt;protocol_list) &#123;</span><br><span class="line">        int i;</span><br><span class="line">        for (i = 0; !m  &amp;&amp;  i &lt; proto-&gt;protocol_list-&gt;count; i++) &#123;</span><br><span class="line">            m = lookup_protocol_method(proto-&gt;protocol_list-&gt;list[i], aSel, </span><br><span class="line">                                       isRequiredMethod,isInstanceMethod,true);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return m;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="category"><a href="#category" class="headerlink" title="category"></a>category</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">struct old_category &#123;</span><br><span class="line">    char *category_name;</span><br><span class="line">    char *class_name;</span><br><span class="line">    struct old_method_list *instance_methods;</span><br><span class="line">    struct old_method_list *class_methods;</span><br><span class="line">    struct old_protocol_list *protocols;</span><br><span class="line">    uint32_t size;</span><br><span class="line">    struct old_property_list *instance_properties;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
 <li><a href="http://cocoasamurai.blogspot.jp/2010/01/understanding-objective-c-runtime.html" target="_blank" rel="external">understanding-objective-c-runtime</a></li>
 <li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048" target="_blank" rel="external">ObjCRuntimeGuide</a></li>
@@ -182,11 +146,7 @@ Ivar12345678struct old_ivar &amp;#123;    char *ivar_name;    char *ivar_type;  
       
     </div>
     <footer class="article-footer">
-<<<<<<< HEAD
       <a data-url="https://jacoli.github.io/2014/03/12/2014-03-12-OC-Runtime-2-Ivar&Property&Method&Protocol/" data-id="ciyb2tc2f0003ov5oqfb63j0p" class="article-share-link">Share</a>
-=======
-      <a data-url="http://yoursite.com/2014/03/12/2014-03-12-OC-Runtime-2-Ivar&Property&Method&Protocol/" data-id="ciq4vaema0002r05otmhx5xjg" class="article-share-link">Share</a>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OC-Runtime/">OC Runtime</a></li></ul>
@@ -267,10 +227,6 @@ Ivar12345678struct old_ivar &amp;#123;    char *ivar_name;    char *ivar_type;  
       <ul>
         
           <li>
-            <a href="/2016/06/25/2016-06-25-写在饭美App首版上线前/">写在饭美App首版上线前</a>
-          </li>
-        
-          <li>
             <a href="/2016/06/18/2016-06-18-iOS Push/">iOS Push</a>
           </li>
         
@@ -279,19 +235,15 @@ Ivar12345678struct old_ivar &amp;#123;    char *ivar_name;    char *ivar_type;  
           </li>
         
           <li>
-<<<<<<< HEAD
             <a href="/2016/05/03/2016-05-03-移动三方应用分享/">移动三方应用分享</a>
           </li>
         
           <li>
             <a href="/2016/05/03/2016-05-03-模式和架构/">模式和架构</a>
-=======
-            <a href="/2016/05/03/2016-05-03-模式和架构/">模式和架构</a>
           </li>
         
           <li>
-            <a href="/2016/05/03/2016-05-03-iOS原生Alert和ActionSheet/">iOS原生Alert和ActionSheet</a>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
+            <a href="/2016/05/03/2016-05-03-三方认证/">三方认证</a>
           </li>
         
       </ul>
@@ -306,11 +258,7 @@ Ivar12345678struct old_ivar &amp;#123;    char *ivar_name;    char *ivar_type;  
   
   <div class="outer">
     <div id="footer-info" class="inner">
-<<<<<<< HEAD
       &copy; 2017 jacoli<br>
-=======
-      &copy; 2016 Jaco Li<br>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

@@ -3,11 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-<<<<<<< HEAD
   <title>OC Runtime(3)之Associated Objects | 李传格的博客</title>
-=======
-  <title>OC Runtime(3)之Associated Objects | Jacoli&#39;Home</title>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Runtime系列笔记
 Runtime之对象和类
@@ -24,13 +20,8 @@ Runtime之Load&amp;amp;Initialize
 123void objc_setAssociatedObject(id object, const void *key,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OC Runtime(3)之Associated Objects">
-<<<<<<< HEAD
 <meta property="og:url" content="https://jacoli.github.io/2014/03/18/2014-03-18-OC-Runtime-3-Associated Objects/index.html">
 <meta property="og:site_name" content="李传格的博客">
-=======
-<meta property="og:url" content="http://yoursite.com/2014/03/18/2014-03-18-OC-Runtime-3-Associated Objects/index.html">
-<meta property="og:site_name" content="Jacoli'Home">
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
 <meta property="og:description" content="Runtime系列笔记
 Runtime之对象和类
 Runtime之属性和方法
@@ -44,11 +35,7 @@ Runtime之Load&amp;amp;Initialize
 提供了三个方法，分别是get、set、remove
 
 123void objc_setAssociatedObject(id object, const void *key,">
-<<<<<<< HEAD
 <meta property="og:image" content="https://jacoli.github.io/images/OC-Runtime.png">
-=======
-<meta property="og:image" content="http://yoursite.com/images/OC-Runtime.png">
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
 <meta property="og:updated_time" content="2016-04-22T15:30:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OC Runtime(3)之Associated Objects">
@@ -65,15 +52,9 @@ Runtime之Load&amp;amp;Initialize
 提供了三个方法，分别是get、set、remove
 
 123void objc_setAssociatedObject(id object, const void *key,">
-<<<<<<< HEAD
 <meta name="twitter:image" content="https://jacoli.github.io/images/OC-Runtime.png">
   
     <link rel="alternate" href="/atom.xml" title="李传格的博客" type="application/atom+xml">
-=======
-<meta name="twitter:image" content="http://yoursite.com/images/OC-Runtime.png">
-  
-    <link rel="alternate" href="/atom.xml" title="Jacoli&#39;Home" type="application/atom+xml">
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
   
   
     <link rel="icon" href="/favicon.png">
@@ -94,11 +75,7 @@ Runtime之Load&amp;amp;Initialize
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-<<<<<<< HEAD
         <a href="/" id="logo">李传格的博客</a>
-=======
-        <a href="/" id="logo">Jacoli&#39;Home</a>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       </h1>
       
     </div>
@@ -118,11 +95,7 @@ Runtime之Load&amp;amp;Initialize
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-<<<<<<< HEAD
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jacoli.github.io"></form>
-=======
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       </div>
     </div>
   </div>
@@ -166,7 +139,6 @@ Runtime之Load&amp;amp;Initialize
 <h3 id="关联对象"><a href="#关联对象" class="headerlink" title="关联对象"></a>关联对象</h3><ul>
 <li><objc runtime.h="">提供了三个方法，分别是get、set、remove</objc></li>
 </ul>
-<<<<<<< HEAD
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">void objc_setAssociatedObject(id object, const void *key, id value, objc_AssociationPolicy policy);</div><div class="line">id objc_getAssociatedObject(id object, const void *key);</div><div class="line">void objc_removeAssociatedObjects(id object);</div></pre></td></tr></table></figure>
 <h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><ul>
 <li>获取</li>
@@ -180,21 +152,6 @@ Runtime之Load&amp;amp;Initialize
 <li>释放</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line">id </div><div class="line">object_dispose(id obj)</div><div class="line">&#123;</div><div class="line">    if (!obj) return nil;</div><div class="line"></div><div class="line">    objc_destructInstance(obj);</div><div class="line"></div><div class="line">    free(obj);</div><div class="line"></div><div class="line">    return nil;</div><div class="line">&#125;</div><div class="line"></div><div class="line">void *objc_destructInstance(id obj) </div><div class="line">&#123;</div><div class="line">    if (obj) &#123;</div><div class="line">        // Read all of the flags at once for performance.</div><div class="line">        bool cxx = obj-&gt;hasCxxDtor();</div><div class="line">        bool assoc = !UseGC &amp;&amp; obj-&gt;hasAssociatedObjects();</div><div class="line">        bool dealloc = !UseGC;</div><div class="line"></div><div class="line">        // This order is important.</div><div class="line">        if (cxx) object_cxxDestruct(obj);</div><div class="line">        if (assoc) _object_remove_assocations(obj);</div><div class="line">        if (dealloc) obj-&gt;clearDeallocating();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return obj;</div><div class="line">&#125;</div><div class="line"></div><div class="line">void _object_remove_assocations(id object) &#123;</div><div class="line">    vector&lt; ObjcAssociation,ObjcAllocator&lt;ObjcAssociation&gt; &gt; elements;</div><div class="line">    &#123;</div><div class="line">        AssociationsManager manager;</div><div class="line">        AssociationsHashMap &amp;associations(manager.associations());</div><div class="line">        if (associations.size() == 0) return;</div><div class="line">        disguised_ptr_t disguised_object = DISGUISE(object);</div><div class="line">        AssociationsHashMap::iterator i = associations.find(disguised_object);</div><div class="line">        if (i != associations.end()) &#123;</div><div class="line">            // copy all of the associations that need to be removed.</div><div class="line">            ObjectAssociationMap *refs = i-&gt;second;</div><div class="line">            for (ObjectAssociationMap::iterator j = refs-&gt;begin(), end = refs-&gt;end(); j != end; ++j) &#123;</div><div class="line">                elements.push_back(j-&gt;second);</div><div class="line">            &#125;</div><div class="line">            // remove the secondary table.</div><div class="line">            delete refs;</div><div class="line">            associations.erase(i);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    // the calls to releaseValue() happen outside of the lock.</div><div class="line">    for_each(elements.begin(), elements.end(), ReleaseValue());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-=======
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">void objc_setAssociatedObject(id object, const void *key, id value, objc_AssociationPolicy policy);</span><br><span class="line">id objc_getAssociatedObject(id object, const void *key);</span><br><span class="line">void objc_removeAssociatedObjects(id object);</span><br></pre></td></tr></table></figure>
-<h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><ul>
-<li>获取</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">id _object_get_associative_reference(id object, void *key) &#123;</span><br><span class="line">    id value = nil;</span><br><span class="line">    uintptr_t policy = OBJC_ASSOCIATION_ASSIGN;</span><br><span class="line">    &#123;</span><br><span class="line">        AssociationsManager manager;</span><br><span class="line">        AssociationsHashMap &amp;associations(manager.associations());</span><br><span class="line">        disguised_ptr_t disguised_object = DISGUISE(object);</span><br><span class="line">        AssociationsHashMap::iterator i = associations.find(disguised_object);</span><br><span class="line">        if (i != associations.end()) &#123;</span><br><span class="line">            ObjectAssociationMap *refs = i-&gt;second;</span><br><span class="line">            ObjectAssociationMap::iterator j = refs-&gt;find(key);</span><br><span class="line">            if (j != refs-&gt;end()) &#123;</span><br><span class="line">                ObjcAssociation &amp;entry = j-&gt;second;</span><br><span class="line">                value = entry.value();</span><br><span class="line">                policy = entry.policy();</span><br><span class="line">                if (policy &amp; OBJC_ASSOCIATION_GETTER_RETAIN) ((id(*)(id, SEL))objc_msgSend)(value, SEL_retain);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (value &amp;&amp; (policy &amp; OBJC_ASSOCIATION_GETTER_AUTORELEASE)) &#123;</span><br><span class="line">        ((id(*)(id, SEL))objc_msgSend)(value, SEL_autorelease);</span><br><span class="line">    &#125;</span><br><span class="line">    return value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>设置</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">void _object_set_associative_reference(id object, void *key, id value, uintptr_t policy) &#123;</span><br><span class="line">    // retain the new value (if any) outside the lock.</span><br><span class="line">    ObjcAssociation old_association(0, nil);</span><br><span class="line">    id new_value = value ? acquireValue(value, policy) : nil;</span><br><span class="line">    &#123;</span><br><span class="line">        AssociationsManager manager;</span><br><span class="line">        AssociationsHashMap &amp;associations(manager.associations());</span><br><span class="line">        disguised_ptr_t disguised_object = DISGUISE(object);</span><br><span class="line">        if (new_value) &#123;</span><br><span class="line">            // break any existing association.</span><br><span class="line">            AssociationsHashMap::iterator i = associations.find(disguised_object);</span><br><span class="line">            if (i != associations.end()) &#123;</span><br><span class="line">                // secondary table exists</span><br><span class="line">                ObjectAssociationMap *refs = i-&gt;second;</span><br><span class="line">                ObjectAssociationMap::iterator j = refs-&gt;find(key);</span><br><span class="line">                if (j != refs-&gt;end()) &#123;</span><br><span class="line">                    old_association = j-&gt;second;</span><br><span class="line">                    j-&gt;second = ObjcAssociation(policy, new_value);</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    (*refs)[key] = ObjcAssociation(policy, new_value);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                // create the new association (first time).</span><br><span class="line">                ObjectAssociationMap *refs = new ObjectAssociationMap;</span><br><span class="line">                associations[disguised_object] = refs;</span><br><span class="line">                (*refs)[key] = ObjcAssociation(policy, new_value);</span><br><span class="line">                object-&gt;setHasAssociatedObjects();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            // setting the association to nil breaks the association.</span><br><span class="line">            AssociationsHashMap::iterator i = associations.find(disguised_object);</span><br><span class="line">            if (i !=  associations.end()) &#123;</span><br><span class="line">                ObjectAssociationMap *refs = i-&gt;second;</span><br><span class="line">                ObjectAssociationMap::iterator j = refs-&gt;find(key);</span><br><span class="line">                if (j != refs-&gt;end()) &#123;</span><br><span class="line">                    old_association = j-&gt;second;</span><br><span class="line">                    refs-&gt;erase(j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // release the old value (outside of the lock).</span><br><span class="line">    if (old_association.hasValue()) ReleaseValue()(old_association);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>释放</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">id </span><br><span class="line">object_dispose(id obj)</span><br><span class="line">&#123;</span><br><span class="line">    if (!obj) return nil;</span><br><span class="line"></span><br><span class="line">    objc_destructInstance(obj);</span><br><span class="line"></span><br><span class="line">    free(obj);</span><br><span class="line"></span><br><span class="line">    return nil;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void *objc_destructInstance(id obj) </span><br><span class="line">&#123;</span><br><span class="line">    if (obj) &#123;</span><br><span class="line">        // Read all of the flags at once for performance.</span><br><span class="line">        bool cxx = obj-&gt;hasCxxDtor();</span><br><span class="line">        bool assoc = !UseGC &amp;&amp; obj-&gt;hasAssociatedObjects();</span><br><span class="line">        bool dealloc = !UseGC;</span><br><span class="line"></span><br><span class="line">        // This order is important.</span><br><span class="line">        if (cxx) object_cxxDestruct(obj);</span><br><span class="line">        if (assoc) _object_remove_assocations(obj);</span><br><span class="line">        if (dealloc) obj-&gt;clearDeallocating();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void _object_remove_assocations(id object) &#123;</span><br><span class="line">    vector&lt; ObjcAssociation,ObjcAllocator&lt;ObjcAssociation&gt; &gt; elements;</span><br><span class="line">    &#123;</span><br><span class="line">        AssociationsManager manager;</span><br><span class="line">        AssociationsHashMap &amp;associations(manager.associations());</span><br><span class="line">        if (associations.size() == 0) return;</span><br><span class="line">        disguised_ptr_t disguised_object = DISGUISE(object);</span><br><span class="line">        AssociationsHashMap::iterator i = associations.find(disguised_object);</span><br><span class="line">        if (i != associations.end()) &#123;</span><br><span class="line">            // copy all of the associations that need to be removed.</span><br><span class="line">            ObjectAssociationMap *refs = i-&gt;second;</span><br><span class="line">            for (ObjectAssociationMap::iterator j = refs-&gt;begin(), end = refs-&gt;end(); j != end; ++j) &#123;</span><br><span class="line">                elements.push_back(j-&gt;second);</span><br><span class="line">            &#125;</span><br><span class="line">            // remove the secondary table.</span><br><span class="line">            delete refs;</span><br><span class="line">            associations.erase(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // the calls to releaseValue() happen outside of the lock.</span><br><span class="line">    for_each(elements.begin(), elements.end(), ReleaseValue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
 <li><a href="http://cocoasamurai.blogspot.jp/2010/01/understanding-objective-c-runtime.html" target="_blank" rel="external">understanding-objective-c-runtime</a></li>
 <li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048" target="_blank" rel="external">ObjCRuntimeGuide</a></li>
@@ -208,11 +165,7 @@ Runtime之Load&amp;amp;Initialize
       
     </div>
     <footer class="article-footer">
-<<<<<<< HEAD
       <a data-url="https://jacoli.github.io/2014/03/18/2014-03-18-OC-Runtime-3-Associated Objects/" data-id="ciyb2tc2m0007ov5ojget3tyg" class="article-share-link">Share</a>
-=======
-      <a data-url="http://yoursite.com/2014/03/18/2014-03-18-OC-Runtime-3-Associated Objects/" data-id="ciq4vaemw000er05ovn7gmt3t" class="article-share-link">Share</a>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OC-Runtime/">OC Runtime</a></li></ul>
@@ -293,10 +246,6 @@ Runtime之Load&amp;amp;Initialize
       <ul>
         
           <li>
-            <a href="/2016/06/25/2016-06-25-写在饭美App首版上线前/">写在饭美App首版上线前</a>
-          </li>
-        
-          <li>
             <a href="/2016/06/18/2016-06-18-iOS Push/">iOS Push</a>
           </li>
         
@@ -305,19 +254,15 @@ Runtime之Load&amp;amp;Initialize
           </li>
         
           <li>
-<<<<<<< HEAD
             <a href="/2016/05/03/2016-05-03-移动三方应用分享/">移动三方应用分享</a>
           </li>
         
           <li>
             <a href="/2016/05/03/2016-05-03-模式和架构/">模式和架构</a>
-=======
-            <a href="/2016/05/03/2016-05-03-模式和架构/">模式和架构</a>
           </li>
         
           <li>
-            <a href="/2016/05/03/2016-05-03-iOS原生Alert和ActionSheet/">iOS原生Alert和ActionSheet</a>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
+            <a href="/2016/05/03/2016-05-03-三方认证/">三方认证</a>
           </li>
         
       </ul>
@@ -332,11 +277,7 @@ Runtime之Load&amp;amp;Initialize
   
   <div class="outer">
     <div id="footer-info" class="inner">
-<<<<<<< HEAD
       &copy; 2017 jacoli<br>
-=======
-      &copy; 2016 Jaco Li<br>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

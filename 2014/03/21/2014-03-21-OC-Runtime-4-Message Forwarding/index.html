@@ -3,11 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-<<<<<<< HEAD
   <title>OC Runtime(4)之Message Forwarding | 李传格的博客</title>
-=======
-  <title>OC Runtime(4)之Message Forwarding | Jacoli&#39;Home</title>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Runtime系列笔记
 Runtime之对象和类
@@ -24,13 +20,8 @@ Runtime之Load&amp;amp;Initialize
 12345OCHelper *object = [[OCHelper alloc] init];// 以下两句代码效果是相同的。[ob">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OC Runtime(4)之Message Forwarding">
-<<<<<<< HEAD
 <meta property="og:url" content="https://jacoli.github.io/2014/03/21/2014-03-21-OC-Runtime-4-Message Forwarding/index.html">
 <meta property="og:site_name" content="李传格的博客">
-=======
-<meta property="og:url" content="http://yoursite.com/2014/03/21/2014-03-21-OC-Runtime-4-Message Forwarding/index.html">
-<meta property="og:site_name" content="Jacoli'Home">
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
 <meta property="og:description" content="Runtime系列笔记
 Runtime之对象和类
 Runtime之属性和方法
@@ -44,13 +35,8 @@ Runtime之Load&amp;amp;Initialize
 对象方法的调用就是向该对象发送消息。
 
 12345OCHelper *object = [[OCHelper alloc] init];// 以下两句代码效果是相同的。[ob">
-<<<<<<< HEAD
 <meta property="og:image" content="https://jacoli.github.io/images/OC-Runtime.png">
 <meta property="og:image" content="https://jacoli.github.io/images/messaging.png">
-=======
-<meta property="og:image" content="http://yoursite.com/images/OC-Runtime.png">
-<meta property="og:image" content="http://yoursite.com/images/messaging.png">
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
 <meta property="og:updated_time" content="2016-04-22T15:30:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OC Runtime(4)之Message Forwarding">
@@ -67,15 +53,9 @@ Runtime之Load&amp;amp;Initialize
 对象方法的调用就是向该对象发送消息。
 
 12345OCHelper *object = [[OCHelper alloc] init];// 以下两句代码效果是相同的。[ob">
-<<<<<<< HEAD
 <meta name="twitter:image" content="https://jacoli.github.io/images/OC-Runtime.png">
   
     <link rel="alternate" href="/atom.xml" title="李传格的博客" type="application/atom+xml">
-=======
-<meta name="twitter:image" content="http://yoursite.com/images/OC-Runtime.png">
-  
-    <link rel="alternate" href="/atom.xml" title="Jacoli&#39;Home" type="application/atom+xml">
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
   
   
     <link rel="icon" href="/favicon.png">
@@ -96,11 +76,7 @@ Runtime之Load&amp;amp;Initialize
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-<<<<<<< HEAD
         <a href="/" id="logo">李传格的博客</a>
-=======
-        <a href="/" id="logo">Jacoli&#39;Home</a>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       </h1>
       
     </div>
@@ -120,11 +96,7 @@ Runtime之Load&amp;amp;Initialize
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-<<<<<<< HEAD
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jacoli.github.io"></form>
-=======
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       </div>
     </div>
   </div>
@@ -168,11 +140,7 @@ Runtime之Load&amp;amp;Initialize
 <h3 id="消息发送"><a href="#消息发送" class="headerlink" title="消息发送"></a>消息发送</h3><ul>
 <li>对象方法的调用就是向该对象发送消息。</li>
 </ul>
-<<<<<<< HEAD
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">OCHelper *object = [[OCHelper alloc] init];</div><div class="line"></div><div class="line">// 以下两句代码效果是相同的。</div><div class="line">[object onHandler];</div><div class="line">objc_msgSend(object, @selector(onHandler));</div></pre></td></tr></table></figure>
-=======
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">OCHelper *object = [[OCHelper alloc] init];</span><br><span class="line"></span><br><span class="line">// 以下两句代码效果是相同的。</span><br><span class="line">[object onHandler];</span><br><span class="line">objc_msgSend(object, @selector(onHandler));</span><br></pre></td></tr></table></figure>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
 <ul>
 <li>编译阶段，会自动将OC方法调用转化成内联的<code>objc_msgSend</code>方法调用。</li>
 </ul>
@@ -183,21 +151,13 @@ Runtime之Load&amp;amp;Initialize
 <li><p><code>lookUpImpOrForward</code>的源码如下：</p>
 </li>
 </ul>
-<<<<<<< HEAD
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div></pre></td><td class="code"><pre><div class="line">IMP lookUpImpOrForward(Class cls, SEL sel, id inst, </div><div class="line">                       bool initialize, bool cache, bool resolver)</div><div class="line">&#123;</div><div class="line">    Class curClass;</div><div class="line">    IMP methodPC = nil;</div><div class="line">    Method meth;</div><div class="line">    bool triedResolver = NO;</div><div class="line"></div><div class="line">    methodListLock.assertUnlocked();</div><div class="line"></div><div class="line">    // Optimistic cache lookup</div><div class="line">    if (cache) &#123;</div><div class="line">        methodPC = _cache_getImp(cls, sel);</div><div class="line">        if (methodPC) return methodPC;    </div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // Check for freed class</div><div class="line">    if (cls == _class_getFreedObjectClass())</div><div class="line">        return (IMP) _freedHandler;</div><div class="line"></div><div class="line">    // Check for +initialize</div><div class="line">    if (initialize  &amp;&amp;  !cls-&gt;isInitialized()) &#123;</div><div class="line">        _class_initialize (_class_getNonMetaClass(cls, inst));</div><div class="line">        // If sel == initialize, _class_initialize will send +initialize and </div><div class="line">        // then the messenger will send +initialize again after this </div><div class="line">        // procedure finishes. Of course, if this is not being called </div><div class="line">        // from the messenger then it won&apos;t happen. 2778172</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // The lock is held to make method-lookup + cache-fill atomic </div><div class="line">    // with respect to method addition. Otherwise, a category could </div><div class="line">    // be added but ignored indefinitely because the cache was re-filled </div><div class="line">    // with the old value after the cache flush on behalf of the category.</div><div class="line"> retry:</div><div class="line">    methodListLock.lock();</div><div class="line"></div><div class="line">    // Ignore GC selectors</div><div class="line">    if (ignoreSelector(sel)) &#123;</div><div class="line">        methodPC = _cache_addIgnoredEntry(cls, sel);</div><div class="line">        goto done;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // Try this class&apos;s cache.</div><div class="line"></div><div class="line">    methodPC = _cache_getImp(cls, sel);</div><div class="line">    if (methodPC) goto done;</div><div class="line"></div><div class="line">    // Try this class&apos;s method lists.</div><div class="line"></div><div class="line">    meth = _class_getMethodNoSuper_nolock(cls, sel);</div><div class="line">    if (meth) &#123;</div><div class="line">        log_and_fill_cache(cls, cls, meth, sel);</div><div class="line">        methodPC = method_getImplementation(meth);</div><div class="line">        goto done;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // Try superclass caches and method lists.</div><div class="line"></div><div class="line">    curClass = cls;</div><div class="line">    while ((curClass = curClass-&gt;superclass)) &#123;</div><div class="line">        // Superclass cache.</div><div class="line">        meth = _cache_getMethod(curClass, sel, _objc_msgForward_impcache);</div><div class="line">        if (meth) &#123;</div><div class="line">            if (meth != (Method)1) &#123;</div><div class="line">                // Found the method in a superclass. Cache it in this class.</div><div class="line">                log_and_fill_cache(cls, curClass, meth, sel);</div><div class="line">                methodPC = method_getImplementation(meth);</div><div class="line">                goto done;</div><div class="line">            &#125;</div><div class="line">            else &#123;</div><div class="line">                // Found a forward:: entry in a superclass.</div><div class="line">                // Stop searching, but don&apos;t cache yet; call method </div><div class="line">                // resolver for this class first.</div><div class="line">                break;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        // Superclass method list.</div><div class="line">        meth = _class_getMethodNoSuper_nolock(curClass, sel);</div><div class="line">        if (meth) &#123;</div><div class="line">            log_and_fill_cache(cls, curClass, meth, sel);</div><div class="line">            methodPC = method_getImplementation(meth);</div><div class="line">            goto done;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // No implementation found. Try method resolver once.</div><div class="line"></div><div class="line">    if (resolver  &amp;&amp;  !triedResolver) &#123;</div><div class="line">        methodListLock.unlock();</div><div class="line">        _class_resolveMethod(cls, sel, inst);</div><div class="line">        triedResolver = YES;</div><div class="line">        goto retry;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // No implementation found, and method resolver didn&apos;t help. </div><div class="line">    // Use forwarding.</div><div class="line"></div><div class="line">    _cache_addForwardEntry(cls, sel);</div><div class="line">    methodPC = _objc_msgForward_impcache;</div><div class="line"></div><div class="line"> done:</div><div class="line">    methodListLock.unlock();</div><div class="line"></div><div class="line">    // paranoia: look for ignored selectors with non-ignored implementations</div><div class="line">    assert(!(ignoreSelector(sel)  &amp;&amp;  methodPC != (IMP)&amp;_objc_ignored_method));</div><div class="line"></div><div class="line">    return methodPC;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-=======
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line">IMP lookUpImpOrForward(Class cls, SEL sel, id inst, </span><br><span class="line">                       bool initialize, bool cache, bool resolver)</span><br><span class="line">&#123;</span><br><span class="line">    Class curClass;</span><br><span class="line">    IMP methodPC = nil;</span><br><span class="line">    Method meth;</span><br><span class="line">    bool triedResolver = NO;</span><br><span class="line"></span><br><span class="line">    methodListLock.assertUnlocked();</span><br><span class="line"></span><br><span class="line">    // Optimistic cache lookup</span><br><span class="line">    if (cache) &#123;</span><br><span class="line">        methodPC = _cache_getImp(cls, sel);</span><br><span class="line">        if (methodPC) return methodPC;    </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Check for freed class</span><br><span class="line">    if (cls == _class_getFreedObjectClass())</span><br><span class="line">        return (IMP) _freedHandler;</span><br><span class="line"></span><br><span class="line">    // Check for +initialize</span><br><span class="line">    if (initialize  &amp;&amp;  !cls-&gt;isInitialized()) &#123;</span><br><span class="line">        _class_initialize (_class_getNonMetaClass(cls, inst));</span><br><span class="line">        // If sel == initialize, _class_initialize will send +initialize and </span><br><span class="line">        // then the messenger will send +initialize again after this </span><br><span class="line">        // procedure finishes. Of course, if this is not being called </span><br><span class="line">        // from the messenger then it won&apos;t happen. 2778172</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // The lock is held to make method-lookup + cache-fill atomic </span><br><span class="line">    // with respect to method addition. Otherwise, a category could </span><br><span class="line">    // be added but ignored indefinitely because the cache was re-filled </span><br><span class="line">    // with the old value after the cache flush on behalf of the category.</span><br><span class="line"> retry:</span><br><span class="line">    methodListLock.lock();</span><br><span class="line"></span><br><span class="line">    // Ignore GC selectors</span><br><span class="line">    if (ignoreSelector(sel)) &#123;</span><br><span class="line">        methodPC = _cache_addIgnoredEntry(cls, sel);</span><br><span class="line">        goto done;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Try this class&apos;s cache.</span><br><span class="line"></span><br><span class="line">    methodPC = _cache_getImp(cls, sel);</span><br><span class="line">    if (methodPC) goto done;</span><br><span class="line"></span><br><span class="line">    // Try this class&apos;s method lists.</span><br><span class="line"></span><br><span class="line">    meth = _class_getMethodNoSuper_nolock(cls, sel);</span><br><span class="line">    if (meth) &#123;</span><br><span class="line">        log_and_fill_cache(cls, cls, meth, sel);</span><br><span class="line">        methodPC = method_getImplementation(meth);</span><br><span class="line">        goto done;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Try superclass caches and method lists.</span><br><span class="line"></span><br><span class="line">    curClass = cls;</span><br><span class="line">    while ((curClass = curClass-&gt;superclass)) &#123;</span><br><span class="line">        // Superclass cache.</span><br><span class="line">        meth = _cache_getMethod(curClass, sel, _objc_msgForward_impcache);</span><br><span class="line">        if (meth) &#123;</span><br><span class="line">            if (meth != (Method)1) &#123;</span><br><span class="line">                // Found the method in a superclass. Cache it in this class.</span><br><span class="line">                log_and_fill_cache(cls, curClass, meth, sel);</span><br><span class="line">                methodPC = method_getImplementation(meth);</span><br><span class="line">                goto done;</span><br><span class="line">            &#125;</span><br><span class="line">            else &#123;</span><br><span class="line">                // Found a forward:: entry in a superclass.</span><br><span class="line">                // Stop searching, but don&apos;t cache yet; call method </span><br><span class="line">                // resolver for this class first.</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // Superclass method list.</span><br><span class="line">        meth = _class_getMethodNoSuper_nolock(curClass, sel);</span><br><span class="line">        if (meth) &#123;</span><br><span class="line">            log_and_fill_cache(cls, curClass, meth, sel);</span><br><span class="line">            methodPC = method_getImplementation(meth);</span><br><span class="line">            goto done;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // No implementation found. Try method resolver once.</span><br><span class="line"></span><br><span class="line">    if (resolver  &amp;&amp;  !triedResolver) &#123;</span><br><span class="line">        methodListLock.unlock();</span><br><span class="line">        _class_resolveMethod(cls, sel, inst);</span><br><span class="line">        triedResolver = YES;</span><br><span class="line">        goto retry;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // No implementation found, and method resolver didn&apos;t help. </span><br><span class="line">    // Use forwarding.</span><br><span class="line"></span><br><span class="line">    _cache_addForwardEntry(cls, sel);</span><br><span class="line">    methodPC = _objc_msgForward_impcache;</span><br><span class="line"></span><br><span class="line"> done:</span><br><span class="line">    methodListLock.unlock();</span><br><span class="line"></span><br><span class="line">    // paranoia: look for ignored selectors with non-ignored implementations</span><br><span class="line">    assert(!(ignoreSelector(sel)  &amp;&amp;  methodPC != (IMP)&amp;_objc_ignored_method));</span><br><span class="line"></span><br><span class="line">    return methodPC;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
 <ul>
 <li>如果找到方法，则直接执行。</li>
 <li>如果没有找到方法，则提供一套Hock机制，允许运行时解决。</li>
 <li><code>NSObject</code>提供了些可重载的方法，如下：</li>
 </ul>
-<<<<<<< HEAD
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@interface NSObject</div><div class="line">- (id)forwardingTargetForSelector:(SEL)aSelector;</div><div class="line">- (void)forwardInvocation:(NSInvocation *)anInvocation;</div><div class="line">- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector;</div><div class="line">+ (BOOL)resolveClassMethod:(SEL)sel;</div><div class="line">+ (BOOL)resolveInstanceMethod:(SEL)sel;</div><div class="line">@end</div></pre></td></tr></table></figure>
-=======
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@interface NSObject</span><br><span class="line">- (id)forwardingTargetForSelector:(SEL)aSelector;</span><br><span class="line">- (void)forwardInvocation:(NSInvocation *)anInvocation;</span><br><span class="line">- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector;</span><br><span class="line">+ (BOOL)resolveClassMethod:(SEL)sel;</span><br><span class="line">+ (BOOL)resolveInstanceMethod:(SEL)sel;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
 <ul>
 <li>如果没有找到方法，会先调用<code>resolveInstanceMethod</code>，在该方法中可动态添加方法到类。</li>
 </ul>
@@ -220,11 +180,7 @@ Runtime之Load&amp;amp;Initialize
       
     </div>
     <footer class="article-footer">
-<<<<<<< HEAD
       <a data-url="https://jacoli.github.io/2014/03/21/2014-03-21-OC-Runtime-4-Message Forwarding/" data-id="ciyb2tc2q0009ov5ozk5cixxq" class="article-share-link">Share</a>
-=======
-      <a data-url="http://yoursite.com/2014/03/21/2014-03-21-OC-Runtime-4-Message Forwarding/" data-id="ciq4vaeml0008r05oodmhhnb1" class="article-share-link">Share</a>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OC-Runtime/">OC Runtime</a></li></ul>
@@ -305,10 +261,6 @@ Runtime之Load&amp;amp;Initialize
       <ul>
         
           <li>
-            <a href="/2016/06/25/2016-06-25-写在饭美App首版上线前/">写在饭美App首版上线前</a>
-          </li>
-        
-          <li>
             <a href="/2016/06/18/2016-06-18-iOS Push/">iOS Push</a>
           </li>
         
@@ -317,19 +269,15 @@ Runtime之Load&amp;amp;Initialize
           </li>
         
           <li>
-<<<<<<< HEAD
             <a href="/2016/05/03/2016-05-03-移动三方应用分享/">移动三方应用分享</a>
           </li>
         
           <li>
             <a href="/2016/05/03/2016-05-03-模式和架构/">模式和架构</a>
-=======
-            <a href="/2016/05/03/2016-05-03-模式和架构/">模式和架构</a>
           </li>
         
           <li>
-            <a href="/2016/05/03/2016-05-03-iOS原生Alert和ActionSheet/">iOS原生Alert和ActionSheet</a>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
+            <a href="/2016/05/03/2016-05-03-三方认证/">三方认证</a>
           </li>
         
       </ul>
@@ -344,11 +292,7 @@ Runtime之Load&amp;amp;Initialize
   
   <div class="outer">
     <div id="footer-info" class="inner">
-<<<<<<< HEAD
       &copy; 2017 jacoli<br>
-=======
-      &copy; 2016 Jaco Li<br>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

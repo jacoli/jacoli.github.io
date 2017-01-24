@@ -3,11 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-<<<<<<< HEAD
   <title>OC Runtime(6)之Load&amp;Initialize | 李传格的博客</title>
-=======
-  <title>OC Runtime(6)之Load&amp;Initialize | Jacoli&#39;Home</title>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Runtime系列笔记
 Runtime之对象和类
@@ -25,13 +21,8 @@ Runtime之Load&amp;amp;Initialize
 12341、依赖库的`+load`。2、当前库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OC Runtime(6)之Load&Initialize">
-<<<<<<< HEAD
 <meta property="og:url" content="https://jacoli.github.io/2014/04/09/2014-04-09-OC-Runtime-6-Load&Initialize/index.html">
 <meta property="og:site_name" content="李传格的博客">
-=======
-<meta property="og:url" content="http://yoursite.com/2014/04/09/2014-04-09-OC-Runtime-6-Load&Initialize/index.html">
-<meta property="og:site_name" content="Jacoli'Home">
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
 <meta property="og:description" content="Runtime系列笔记
 Runtime之对象和类
 Runtime之属性和方法
@@ -46,11 +37,7 @@ Runtime之Load&amp;amp;Initialize
 不同类或类别的+load方法会按一定顺序被执行。
 
 12341、依赖库的`+load`。2、当前库">
-<<<<<<< HEAD
 <meta property="og:image" content="https://jacoli.github.io/images/OC-Runtime.png">
-=======
-<meta property="og:image" content="http://yoursite.com/images/OC-Runtime.png">
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
 <meta property="og:updated_time" content="2016-04-22T15:30:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OC Runtime(6)之Load&Initialize">
@@ -68,15 +55,9 @@ Runtime之Load&amp;amp;Initialize
 不同类或类别的+load方法会按一定顺序被执行。
 
 12341、依赖库的`+load`。2、当前库">
-<<<<<<< HEAD
 <meta name="twitter:image" content="https://jacoli.github.io/images/OC-Runtime.png">
   
     <link rel="alternate" href="/atom.xml" title="李传格的博客" type="application/atom+xml">
-=======
-<meta name="twitter:image" content="http://yoursite.com/images/OC-Runtime.png">
-  
-    <link rel="alternate" href="/atom.xml" title="Jacoli&#39;Home" type="application/atom+xml">
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
   
   
     <link rel="icon" href="/favicon.png">
@@ -97,11 +78,7 @@ Runtime之Load&amp;amp;Initialize
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-<<<<<<< HEAD
         <a href="/" id="logo">李传格的博客</a>
-=======
-        <a href="/" id="logo">Jacoli&#39;Home</a>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       </h1>
       
     </div>
@@ -121,11 +98,7 @@ Runtime之Load&amp;amp;Initialize
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-<<<<<<< HEAD
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jacoli.github.io"></form>
-=======
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       </div>
     </div>
   </div>
@@ -170,32 +143,19 @@ Runtime之Load&amp;amp;Initialize
 <li><code>+load</code>方法只会被执行一次，且是在程序加载阶段，这时运行环境并不完备。</li>
 <li>不同类或类别的<code>+load</code>方法会按一定顺序被执行。</li>
 </ul>
-<<<<<<< HEAD
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1、依赖库的`+load`。</div><div class="line">2、当前库`+load`，`class`的`+load`优先于`category`，父`class`优先于子`class`。</div><div class="line">3、当前库的`All C++ static initializers and C/C++ __attribute__(constructor) functions`。</div><div class="line">4、被依赖库的`+load`。</div></pre></td></tr></table></figure>
-=======
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、依赖库的`+load`。</span><br><span class="line">2、当前库`+load`，`class`的`+load`优先于`category`，父`class`优先于子`class`。</span><br><span class="line">3、当前库的`All C++ static initializers and C/C++ __attribute__(constructor) functions`。</span><br><span class="line">4、被依赖库的`+load`。</span><br></pre></td></tr></table></figure>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
 <ul>
 <li><p>在<code>+load</code>方法中可以安全地发送消息给当前库内其他类的消息，虽然这些类的<code>+load</code>可能还没有执行过。</p>
 </li>
 <li><p>从源码中，也可以看出<code>class</code>的<code>+load</code>优先于<code>category</code>，父<code>class</code>优先于子<code>class</code>。</p>
 </li>
 </ul>
-<<<<<<< HEAD
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">void prepare_load_methods(const headerType *mhdr)</div><div class="line">&#123;</div><div class="line">    size_t count, i;</div><div class="line"></div><div class="line">    runtimeLock.assertWriting();</div><div class="line"></div><div class="line">    classref_t *classlist = </div><div class="line">        _getObjc2NonlazyClassList(mhdr, &amp;count);</div><div class="line">    for (i = 0; i &lt; count; i++) &#123;</div><div class="line">        schedule_class_load(remapClass(classlist[i]));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    category_t **categorylist = _getObjc2NonlazyCategoryList(mhdr, &amp;count);</div><div class="line">    for (i = 0; i &lt; count; i++) &#123;</div><div class="line">        category_t *cat = categorylist[i];</div><div class="line">        Class cls = remapClass(cat-&gt;cls);</div><div class="line">        if (!cls) continue;  // category for ignored weak-linked class</div><div class="line">        realizeClass(cls);</div><div class="line">        assert(cls-&gt;ISA()-&gt;isRealized());</div><div class="line">        add_category_to_loadable_list(cat);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">static void schedule_class_load(Class cls)</div><div class="line">&#123;</div><div class="line">    if (!cls) return;</div><div class="line">    assert(cls-&gt;isRealized());  // _read_images should realize</div><div class="line"></div><div class="line">    if (cls-&gt;data()-&gt;flags &amp; RW_LOADED) return;</div><div class="line"></div><div class="line">    // Ensure superclass-first ordering</div><div class="line">    schedule_class_load(cls-&gt;superclass);</div><div class="line"></div><div class="line">    add_class_to_loadable_list(cls);</div><div class="line">    cls-&gt;setInfo(RW_LOADED); </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="initialize"><a href="#initialize" class="headerlink" title="initialize"></a>initialize</h3><ul>
 <li>向类或对象发送消息时，会调用<code>lookUpImpOrForward</code>查找，并会检查是否初始化过，如果没有，则会调用<code>_class_initialize</code>做初始化。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">IMP lookUpImpOrForward(Class cls, SEL sel, id inst, </div><div class="line">                       bool initialize, bool cache, bool resolver)</div><div class="line">&#123;</div><div class="line">    // ...</div><div class="line"></div><div class="line">    if (initialize  &amp;&amp;  !cls-&gt;isInitialized()) &#123;</div><div class="line">        _class_initialize (_class_getNonMetaClass(cls, inst));</div><div class="line">        // If sel == initialize, _class_initialize will send +initialize and </div><div class="line">        // then the messenger will send +initialize again after this </div><div class="line">        // procedure finishes. Of course, if this is not being called </div><div class="line">        // from the messenger then it won&apos;t happen. 2778172</div><div class="line">    &#125;</div><div class="line"></div><div class="line">	// ...</div><div class="line"></div><div class="line">    return imp;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-=======
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">void prepare_load_methods(const headerType *mhdr)</span><br><span class="line">&#123;</span><br><span class="line">    size_t count, i;</span><br><span class="line"></span><br><span class="line">    runtimeLock.assertWriting();</span><br><span class="line"></span><br><span class="line">    classref_t *classlist = </span><br><span class="line">        _getObjc2NonlazyClassList(mhdr, &amp;count);</span><br><span class="line">    for (i = 0; i &lt; count; i++) &#123;</span><br><span class="line">        schedule_class_load(remapClass(classlist[i]));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    category_t **categorylist = _getObjc2NonlazyCategoryList(mhdr, &amp;count);</span><br><span class="line">    for (i = 0; i &lt; count; i++) &#123;</span><br><span class="line">        category_t *cat = categorylist[i];</span><br><span class="line">        Class cls = remapClass(cat-&gt;cls);</span><br><span class="line">        if (!cls) continue;  // category for ignored weak-linked class</span><br><span class="line">        realizeClass(cls);</span><br><span class="line">        assert(cls-&gt;ISA()-&gt;isRealized());</span><br><span class="line">        add_category_to_loadable_list(cat);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">static void schedule_class_load(Class cls)</span><br><span class="line">&#123;</span><br><span class="line">    if (!cls) return;</span><br><span class="line">    assert(cls-&gt;isRealized());  // _read_images should realize</span><br><span class="line"></span><br><span class="line">    if (cls-&gt;data()-&gt;flags &amp; RW_LOADED) return;</span><br><span class="line"></span><br><span class="line">    // Ensure superclass-first ordering</span><br><span class="line">    schedule_class_load(cls-&gt;superclass);</span><br><span class="line"></span><br><span class="line">    add_class_to_loadable_list(cls);</span><br><span class="line">    cls-&gt;setInfo(RW_LOADED); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="initialize"><a href="#initialize" class="headerlink" title="initialize"></a>initialize</h3><ul>
-<li>向类或对象发送消息时，会调用<code>lookUpImpOrForward</code>查找，并会检查是否初始化过，如果没有，则会调用<code>_class_initialize</code>做初始化。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">IMP lookUpImpOrForward(Class cls, SEL sel, id inst, </span><br><span class="line">                       bool initialize, bool cache, bool resolver)</span><br><span class="line">&#123;</span><br><span class="line">    // ...</span><br><span class="line"></span><br><span class="line">    if (initialize  &amp;&amp;  !cls-&gt;isInitialized()) &#123;</span><br><span class="line">        _class_initialize (_class_getNonMetaClass(cls, inst));</span><br><span class="line">        // If sel == initialize, _class_initialize will send +initialize and </span><br><span class="line">        // then the messenger will send +initialize again after this </span><br><span class="line">        // procedure finishes. Of course, if this is not being called </span><br><span class="line">        // from the messenger then it won&apos;t happen. 2778172</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	// ...</span><br><span class="line"></span><br><span class="line">    return imp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
 <li><a href="http://cocoasamurai.blogspot.jp/2010/01/understanding-objective-c-runtime.html" target="_blank" rel="external">understanding-objective-c-runtime</a></li>
 <li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048" target="_blank" rel="external">ObjCRuntimeGuide</a></li>
@@ -209,11 +169,7 @@ Runtime之Load&amp;amp;Initialize
       
     </div>
     <footer class="article-footer">
-<<<<<<< HEAD
       <a data-url="https://jacoli.github.io/2014/04/09/2014-04-09-OC-Runtime-6-Load&Initialize/" data-id="ciyb2tc2x000gov5oxqjwc8h3" class="article-share-link">Share</a>
-=======
-      <a data-url="http://yoursite.com/2014/04/09/2014-04-09-OC-Runtime-6-Load&Initialize/" data-id="ciq4vaemi0006r05oc404mihn" class="article-share-link">Share</a>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OC-Runtime/">OC Runtime</a></li></ul>
@@ -294,10 +250,6 @@ Runtime之Load&amp;amp;Initialize
       <ul>
         
           <li>
-            <a href="/2016/06/25/2016-06-25-写在饭美App首版上线前/">写在饭美App首版上线前</a>
-          </li>
-        
-          <li>
             <a href="/2016/06/18/2016-06-18-iOS Push/">iOS Push</a>
           </li>
         
@@ -306,19 +258,15 @@ Runtime之Load&amp;amp;Initialize
           </li>
         
           <li>
-<<<<<<< HEAD
             <a href="/2016/05/03/2016-05-03-移动三方应用分享/">移动三方应用分享</a>
           </li>
         
           <li>
             <a href="/2016/05/03/2016-05-03-模式和架构/">模式和架构</a>
-=======
-            <a href="/2016/05/03/2016-05-03-模式和架构/">模式和架构</a>
           </li>
         
           <li>
-            <a href="/2016/05/03/2016-05-03-iOS原生Alert和ActionSheet/">iOS原生Alert和ActionSheet</a>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
+            <a href="/2016/05/03/2016-05-03-三方认证/">三方认证</a>
           </li>
         
       </ul>
@@ -333,11 +281,7 @@ Runtime之Load&amp;amp;Initialize
   
   <div class="outer">
     <div id="footer-info" class="inner">
-<<<<<<< HEAD
       &copy; 2017 jacoli<br>
-=======
-      &copy; 2016 Jaco Li<br>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

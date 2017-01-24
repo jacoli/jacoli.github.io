@@ -3,11 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-<<<<<<< HEAD
   <title>UIKit事件处理 | 李传格的博客</title>
-=======
-  <title>UIKit事件处理 | Jacoli&#39;Home</title>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="先梳理下用户点击事件的传递及处理流程，如下：
 
@@ -17,13 +13,8 @@
 4、U">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UIKit事件处理">
-<<<<<<< HEAD
 <meta property="og:url" content="https://jacoli.github.io/2015/09/16/2015-09-16-iOS事件处理/index.html">
 <meta property="og:site_name" content="李传格的博客">
-=======
-<meta property="og:url" content="http://yoursite.com/2015/09/16/2015-09-16-iOS事件处理/index.html">
-<meta property="og:site_name" content="Jacoli'Home">
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
 <meta property="og:description" content="先梳理下用户点击事件的传递及处理流程，如下：
 
 1、首先，用户触发的点击事件会被添加到事件队列。
@@ -40,11 +31,7 @@
 3、UIWindow先通过hit-test找出第一响应的视图，可以重载这两个函数，-* [pointInside:withEvent:],-[hitTest:withEvent:]
 4、U">
   
-<<<<<<< HEAD
     <link rel="alternate" href="/atom.xml" title="李传格的博客" type="application/atom+xml">
-=======
-    <link rel="alternate" href="/atom.xml" title="Jacoli&#39;Home" type="application/atom+xml">
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
   
   
     <link rel="icon" href="/favicon.png">
@@ -65,11 +52,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-<<<<<<< HEAD
         <a href="/" id="logo">李传格的博客</a>
-=======
-        <a href="/" id="logo">Jacoli&#39;Home</a>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       </h1>
       
     </div>
@@ -89,11 +72,7 @@
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-<<<<<<< HEAD
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jacoli.github.io"></form>
-=======
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       </div>
     </div>
   </div>
@@ -133,11 +112,7 @@
 <li>4、UIWindow将Event和Touchs传递给第一响应的视图，如果该视图上存在Gesture，则优先由Gesture处理。</li>
 <li>5、如果该视图没有Gesture或Gesture没有识别成功或没有处理-[touchesBegan:withEvent:]，事件则沿着响应链传递，直到被处理。</li>
 </ul>
-<<<<<<< HEAD
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">When a user-generated event occurs, UIKit creates an event object containing the information needed to process the event. Then it places the event object in the active app’sevent queue. For touch events, that object is a set of touches packaged in a UIEventobject. For motion events, the event object varies depending on which framework you use and what type of motion event you are interested in.</div><div class="line"></div><div class="line">An event travels along a specific path until it is delivered to an object that can handle it. First, the singleton  UIApplication object takes an event from the top of the queue and dispatches it for handling. Typically, it sends the event to the app’s key window object, which passes the event to an initial object for handling. The initial object depends on the type of event.</div><div class="line"></div><div class="line">Touch events. For touch events, the window object first tries to deliver the event to the view where the touch occurred. That view is known as the hit-test view. The process of finding the hit-test view is called hit-testing, which is described in Hit-Testing Returns the View Where a Touch Occurred.</div><div class="line"></div><div class="line">Motion and remote control events. With these events, the window object sends the shaking-motion or remote control event to the first responder for handling. The first responder is described in The Responder Chain Is Made Up of Responder Objects.</div></pre></td></tr></table></figure>
-=======
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">When a user-generated event occurs, UIKit creates an event object containing the information needed to process the event. Then it places the event object in the active app’sevent queue. For touch events, that object is a set of touches packaged in a UIEventobject. For motion events, the event object varies depending on which framework you use and what type of motion event you are interested in.</span><br><span class="line"></span><br><span class="line">An event travels along a specific path until it is delivered to an object that can handle it. First, the singleton  UIApplication object takes an event from the top of the queue and dispatches it for handling. Typically, it sends the event to the app’s key window object, which passes the event to an initial object for handling. The initial object depends on the type of event.</span><br><span class="line"></span><br><span class="line">Touch events. For touch events, the window object first tries to deliver the event to the view where the touch occurred. That view is known as the hit-test view. The process of finding the hit-test view is called hit-testing, which is described in Hit-Testing Returns the View Where a Touch Occurred.</span><br><span class="line"></span><br><span class="line">Motion and remote control events. With these events, the window object sends the shaking-motion or remote control event to the first responder for handling. The first responder is described in The Responder Chain Is Made Up of Responder Objects.</span><br></pre></td></tr></table></figure>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
 <p>Motion和remote control事件也是类似流程，不同的是没有hit-test，而是找First responder，由First respinder优先处理。</p>
 <p>几个关键点：</p>
 <ul>
@@ -147,21 +122,13 @@
 <li>4、touch事件通过-[touchesBegan:withEvent:]，-[touchesMoved:withEvent:]，-[touchesEnded:withEvent:]等方法传递，在-[UIResponder  touchesBegan:withEvent:]中为空实现，-[UIView  touchesBegan:withEvent:]重载后增加传递到下个Responder的逻辑。</li>
 <li>5、如果存在多个Gesture都在识别手势，则可以通过Gesture的属性和委托处理多个Gesture的协同问题。</li>
 </ul>
-<<<<<<< HEAD
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Within an event handling method, you get information about the event by retrieving touch objects from:</div><div class="line"></div><div class="line">The set object. The passed-in NSSet contains all touches that are new or have changed in the phase represented by the method, such as UITouchPhaseBegan for the touchesBegan:withEvent: method.</div><div class="line"></div><div class="line">The event object. The passed-in UIEvent object contains all of the touches for a given multitouch sequence.</div><div class="line"></div><div class="line">The multipleTouchEnabled property is set to NO by default, which means that a view receives only the first touch in a multitouch sequence. When this property is disabled, you can retrieve a touch object by calling the anyObject method on the set object because there is only one object in the set.</div></pre></td></tr></table></figure>
-=======
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Within an event handling method, you get information about the event by retrieving touch objects from:</span><br><span class="line"></span><br><span class="line">The set object. The passed-in NSSet contains all touches that are new or have changed in the phase represented by the method, such as UITouchPhaseBegan for the touchesBegan:withEvent: method.</span><br><span class="line"></span><br><span class="line">The event object. The passed-in UIEvent object contains all of the touches for a given multitouch sequence.</span><br><span class="line"></span><br><span class="line">The multipleTouchEnabled property is set to NO by default, which means that a view receives only the first touch in a multitouch sequence. When this property is disabled, you can retrieve a touch object by calling the anyObject method on the set object because there is only one object in the set.</span><br></pre></td></tr></table></figure>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
 <p>参考文档：Event Handling Guide for iOS</p>
 
       
     </div>
     <footer class="article-footer">
-<<<<<<< HEAD
       <a data-url="https://jacoli.github.io/2015/09/16/2015-09-16-iOS事件处理/" data-id="ciyb2tc3i0013ov5o70phe41n" class="article-share-link">Share</a>
-=======
-      <a data-url="http://yoursite.com/2015/09/16/2015-09-16-iOS事件处理/" data-id="ciq4vaena000tr05o5hmcb25e" class="article-share-link">Share</a>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
@@ -242,10 +209,6 @@
       <ul>
         
           <li>
-            <a href="/2016/06/25/2016-06-25-写在饭美App首版上线前/">写在饭美App首版上线前</a>
-          </li>
-        
-          <li>
             <a href="/2016/06/18/2016-06-18-iOS Push/">iOS Push</a>
           </li>
         
@@ -254,19 +217,15 @@
           </li>
         
           <li>
-<<<<<<< HEAD
             <a href="/2016/05/03/2016-05-03-移动三方应用分享/">移动三方应用分享</a>
           </li>
         
           <li>
             <a href="/2016/05/03/2016-05-03-模式和架构/">模式和架构</a>
-=======
-            <a href="/2016/05/03/2016-05-03-模式和架构/">模式和架构</a>
           </li>
         
           <li>
-            <a href="/2016/05/03/2016-05-03-iOS原生Alert和ActionSheet/">iOS原生Alert和ActionSheet</a>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
+            <a href="/2016/05/03/2016-05-03-三方认证/">三方认证</a>
           </li>
         
       </ul>
@@ -281,11 +240,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-<<<<<<< HEAD
       &copy; 2017 jacoli<br>
-=======
-      &copy; 2016 Jaco Li<br>
->>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
