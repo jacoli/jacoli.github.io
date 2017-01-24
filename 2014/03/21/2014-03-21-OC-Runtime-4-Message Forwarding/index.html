@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>OC Runtime(4)之Message Forwarding | 李传格的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Runtime系列笔记
+Runtime之对象和类
+Runtime之属性和方法
+Runtime之关联对象
+Runtime之消息转发
+Runtime之方法替换
+Runtime之Load&amp;amp;Initialize
+
+
+消息发送
+对象方法的调用就是向该对象发送消息。
+
+12345OCHelper *object = [[OCHelper alloc] init];// 以下两句代码效果是相同的。[ob">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OC Runtime(4)之Message Forwarding">
+<meta property="og:url" content="https://jacoli.github.io/2014/03/21/2014-03-21-OC-Runtime-4-Message Forwarding/index.html">
+<meta property="og:site_name" content="李传格的博客">
+<meta property="og:description" content="Runtime系列笔记
+Runtime之对象和类
+Runtime之属性和方法
+Runtime之关联对象
+Runtime之消息转发
+Runtime之方法替换
+Runtime之Load&amp;amp;Initialize
+
+
+消息发送
+对象方法的调用就是向该对象发送消息。
+
+12345OCHelper *object = [[OCHelper alloc] init];// 以下两句代码效果是相同的。[ob">
+<meta property="og:image" content="https://jacoli.github.io/images/OC-Runtime.png">
+<meta property="og:image" content="https://jacoli.github.io/images/messaging.png">
+<meta property="og:updated_time" content="2016-04-22T15:30:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OC Runtime(4)之Message Forwarding">
+<meta name="twitter:description" content="Runtime系列笔记
+Runtime之对象和类
+Runtime之属性和方法
+Runtime之关联对象
+Runtime之消息转发
+Runtime之方法替换
+Runtime之Load&amp;amp;Initialize
+
+
+消息发送
+对象方法的调用就是向该对象发送消息。
+
+12345OCHelper *object = [[OCHelper alloc] init];// 以下两句代码效果是相同的。[ob">
+<meta name="twitter:image" content="https://jacoli.github.io/images/OC-Runtime.png">
+  
+    <link rel="alternate" href="/atom.xml" title="李传格的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">李传格的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jacoli.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2014-03-21-OC-Runtime-4-Message Forwarding" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/03/21/2014-03-21-OC-Runtime-4-Message Forwarding/" class="article-date">
+  <time datetime="2014-03-20T16:00:00.000Z" itemprop="datePublished">2014-03-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/Objective-C/">Objective-C</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      OC Runtime(4)之Message Forwarding
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Runtime系列笔记"><a href="#Runtime系列笔记" class="headerlink" title="Runtime系列笔记"></a>Runtime系列笔记</h3><ul>
+<li><a href="/2014/03/07/001-OC-Runtime-1-Object&amp;Class/">Runtime之对象和类</a></li>
+<li><a href="/2014/03/12/001-OC-Runtime-2-Ivar&amp;Property&amp;Method&amp;Protocol/">Runtime之属性和方法</a></li>
+<li><a href="/2014/03/18/001-OC-Runtime-3-Associated%20Objects/">Runtime之关联对象</a></li>
+<li><a href="/2014/03/21/001-OC-Runtime-4-Message%20Forwarding/">Runtime之消息转发</a></li>
+<li><a href="/2014/04/02/001-OC-Runtime-5-Method%20Swizzling/">Runtime之方法替换</a></li>
+<li><a href="/2014/04/09/001-OC-Runtime-6-Load&amp;Initialize/">Runtime之Load&amp;Initialize</a></li>
+</ul>
+<p><img src="/images/OC-Runtime.png" alt="OC-Runtime"></p>
+<h3 id="消息发送"><a href="#消息发送" class="headerlink" title="消息发送"></a>消息发送</h3><ul>
+<li>对象方法的调用就是向该对象发送消息。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">OCHelper *object = [[OCHelper alloc] init];</div><div class="line"></div><div class="line">// 以下两句代码效果是相同的。</div><div class="line">[object onHandler];</div><div class="line">objc_msgSend(object, @selector(onHandler));</div></pre></td></tr></table></figure>
+<ul>
+<li>编译阶段，会自动将OC方法调用转化成内联的<code>objc_msgSend</code>方法调用。</li>
+</ul>
+<h3 id="消息转发"><a href="#消息转发" class="headerlink" title="消息转发"></a>消息转发</h3><ul>
+<li>有了OC的消息机制，就可以在运行时修改消息执行路径。</li>
+<li><p><code>objc_msgSend</code>会调用<code>lookUpImpOrForward</code>从类（或父类）的<code>methodsCache</code>或<code>methodList</code>寻找方法。</p>
+</li>
+<li><p><code>lookUpImpOrForward</code>的源码如下：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div></pre></td><td class="code"><pre><div class="line">IMP lookUpImpOrForward(Class cls, SEL sel, id inst, </div><div class="line">                       bool initialize, bool cache, bool resolver)</div><div class="line">&#123;</div><div class="line">    Class curClass;</div><div class="line">    IMP methodPC = nil;</div><div class="line">    Method meth;</div><div class="line">    bool triedResolver = NO;</div><div class="line"></div><div class="line">    methodListLock.assertUnlocked();</div><div class="line"></div><div class="line">    // Optimistic cache lookup</div><div class="line">    if (cache) &#123;</div><div class="line">        methodPC = _cache_getImp(cls, sel);</div><div class="line">        if (methodPC) return methodPC;    </div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // Check for freed class</div><div class="line">    if (cls == _class_getFreedObjectClass())</div><div class="line">        return (IMP) _freedHandler;</div><div class="line"></div><div class="line">    // Check for +initialize</div><div class="line">    if (initialize  &amp;&amp;  !cls-&gt;isInitialized()) &#123;</div><div class="line">        _class_initialize (_class_getNonMetaClass(cls, inst));</div><div class="line">        // If sel == initialize, _class_initialize will send +initialize and </div><div class="line">        // then the messenger will send +initialize again after this </div><div class="line">        // procedure finishes. Of course, if this is not being called </div><div class="line">        // from the messenger then it won&apos;t happen. 2778172</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // The lock is held to make method-lookup + cache-fill atomic </div><div class="line">    // with respect to method addition. Otherwise, a category could </div><div class="line">    // be added but ignored indefinitely because the cache was re-filled </div><div class="line">    // with the old value after the cache flush on behalf of the category.</div><div class="line"> retry:</div><div class="line">    methodListLock.lock();</div><div class="line"></div><div class="line">    // Ignore GC selectors</div><div class="line">    if (ignoreSelector(sel)) &#123;</div><div class="line">        methodPC = _cache_addIgnoredEntry(cls, sel);</div><div class="line">        goto done;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // Try this class&apos;s cache.</div><div class="line"></div><div class="line">    methodPC = _cache_getImp(cls, sel);</div><div class="line">    if (methodPC) goto done;</div><div class="line"></div><div class="line">    // Try this class&apos;s method lists.</div><div class="line"></div><div class="line">    meth = _class_getMethodNoSuper_nolock(cls, sel);</div><div class="line">    if (meth) &#123;</div><div class="line">        log_and_fill_cache(cls, cls, meth, sel);</div><div class="line">        methodPC = method_getImplementation(meth);</div><div class="line">        goto done;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // Try superclass caches and method lists.</div><div class="line"></div><div class="line">    curClass = cls;</div><div class="line">    while ((curClass = curClass-&gt;superclass)) &#123;</div><div class="line">        // Superclass cache.</div><div class="line">        meth = _cache_getMethod(curClass, sel, _objc_msgForward_impcache);</div><div class="line">        if (meth) &#123;</div><div class="line">            if (meth != (Method)1) &#123;</div><div class="line">                // Found the method in a superclass. Cache it in this class.</div><div class="line">                log_and_fill_cache(cls, curClass, meth, sel);</div><div class="line">                methodPC = method_getImplementation(meth);</div><div class="line">                goto done;</div><div class="line">            &#125;</div><div class="line">            else &#123;</div><div class="line">                // Found a forward:: entry in a superclass.</div><div class="line">                // Stop searching, but don&apos;t cache yet; call method </div><div class="line">                // resolver for this class first.</div><div class="line">                break;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        // Superclass method list.</div><div class="line">        meth = _class_getMethodNoSuper_nolock(curClass, sel);</div><div class="line">        if (meth) &#123;</div><div class="line">            log_and_fill_cache(cls, curClass, meth, sel);</div><div class="line">            methodPC = method_getImplementation(meth);</div><div class="line">            goto done;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // No implementation found. Try method resolver once.</div><div class="line"></div><div class="line">    if (resolver  &amp;&amp;  !triedResolver) &#123;</div><div class="line">        methodListLock.unlock();</div><div class="line">        _class_resolveMethod(cls, sel, inst);</div><div class="line">        triedResolver = YES;</div><div class="line">        goto retry;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // No implementation found, and method resolver didn&apos;t help. </div><div class="line">    // Use forwarding.</div><div class="line"></div><div class="line">    _cache_addForwardEntry(cls, sel);</div><div class="line">    methodPC = _objc_msgForward_impcache;</div><div class="line"></div><div class="line"> done:</div><div class="line">    methodListLock.unlock();</div><div class="line"></div><div class="line">    // paranoia: look for ignored selectors with non-ignored implementations</div><div class="line">    assert(!(ignoreSelector(sel)  &amp;&amp;  methodPC != (IMP)&amp;_objc_ignored_method));</div><div class="line"></div><div class="line">    return methodPC;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>如果找到方法，则直接执行。</li>
+<li>如果没有找到方法，则提供一套Hock机制，允许运行时解决。</li>
+<li><code>NSObject</code>提供了些可重载的方法，如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@interface NSObject</div><div class="line">- (id)forwardingTargetForSelector:(SEL)aSelector;</div><div class="line">- (void)forwardInvocation:(NSInvocation *)anInvocation;</div><div class="line">- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector;</div><div class="line">+ (BOOL)resolveClassMethod:(SEL)sel;</div><div class="line">+ (BOOL)resolveInstanceMethod:(SEL)sel;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<ul>
+<li>如果没有找到方法，会先调用<code>resolveInstanceMethod</code>，在该方法中可动态添加方法到类。</li>
+</ul>
+<p><img src="/images/messaging.png" alt="resolveInstanceMethod"></p>
+<ul>
+<li>如果不行，接下来会调用<code>forwardingTargetForSelector</code>转发，可动态替换掉响应对象。</li>
+<li>如果还不行，则调用<code>methodSignatureForSelector</code>和<code>forwardInvocation</code>转发<code>Invocation</code>。</li>
+<li>如果还不行，则会抛异常<code>doesNotRecognizeSelector</code>。</li>
+</ul>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="http://cocoasamurai.blogspot.jp/2010/01/understanding-objective-c-runtime.html" target="_blank" rel="external">understanding-objective-c-runtime</a></li>
+<li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048" target="_blank" rel="external">ObjCRuntimeGuide</a></li>
+<li><a href="http://opensource.apple.com/tarballs/objc4/" target="_blank" rel="external">runtime源码</a></li>
+<li><a href="http://blog.jobbole.com/45963/" target="_blank" rel="external">Objective-C 的动态提示和技巧</a></li>
+<li><a href="http://www.cocoachina.com/ios/20150104/10826.html" target="_blank" rel="external">NSObject的load和initialize方法</a></li>
+<li><a href="http://esoftmobile.com/2014/02/18/associated-objects/" target="_blank" rel="external">associated-objects</a></li>
+<li><a href="http://esoftmobile.com/2014/02/19/method-swizzling/" target="_blank" rel="external">method-swizzling</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jacoli.github.io/2014/03/21/2014-03-21-OC-Runtime-4-Message Forwarding/" data-id="ciyb2tc2q0009ov5ozk5cixxq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OC-Runtime/">OC Runtime</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/04/02/2014-04-02-OC-Runtime-5-Method Swizzling/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          OC Runtime(5)之Method Swizzling
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/03/18/2014-03-18-OC-Runtime-3-Associated Objects/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">OC Runtime(3)之Associated Objects</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Objective-C/">Objective-C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/iOS基础/">iOS基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/博客-论坛-会议/">博客&论坛&会议</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/工具/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/服务端开发/">服务端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/移动开发/">移动开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/软件设计/">软件设计</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OC-Runtime/">OC Runtime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/会议/">会议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安全/">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模式和架构/">模式和架构</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/OC-Runtime/" style="font-size: 16.67px;">OC Runtime</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/会议/" style="font-size: 10px;">会议</a> <a href="/tags/安全/" style="font-size: 10px;">安全</a> <a href="/tags/模式和架构/" style="font-size: 13.33px;">模式和架构</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/06/25/2016-06-25-写在饭美App首版上线前/">写在饭美App首版上线前</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/18/2016-06-18-iOS Push/">iOS Push</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/04/2016-05-04-移动安全/">移动安全</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/03/2016-05-03-移动三方应用分享/">移动三方应用分享</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/03/2016-05-03-模式和架构/">模式和架构</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 jacoli<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
