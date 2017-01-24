@@ -3,7 +3,11 @@
 <head>
   <meta charset="utf-8">
   
+<<<<<<< HEAD
   <title>OC Runtime(5)之Method Swizzling | 李传格的博客</title>
+=======
+  <title>OC Runtime(5)之Method Swizzling | Jacoli&#39;Home</title>
+>>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Runtime系列笔记
 Runtime之对象和类
@@ -20,8 +24,13 @@ Method包含方法名Selector、函数地址IMP、参数类型TypeEncoding。
 1234NSLog(@&amp;quot;    method name">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OC Runtime(5)之Method Swizzling">
+<<<<<<< HEAD
 <meta property="og:url" content="https://jacoli.github.io/2014/04/02/2014-04-02-OC-Runtime-5-Method Swizzling/index.html">
 <meta property="og:site_name" content="李传格的博客">
+=======
+<meta property="og:url" content="http://yoursite.com/2014/04/02/2014-04-02-OC-Runtime-5-Method Swizzling/index.html">
+<meta property="og:site_name" content="Jacoli'Home">
+>>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
 <meta property="og:description" content="Runtime系列笔记
 Runtime之对象和类
 Runtime之属性和方法
@@ -35,7 +44,11 @@ Method的几个概念
 Method包含方法名Selector、函数地址IMP、参数类型TypeEncoding。
 
 1234NSLog(@&amp;quot;    method name">
+<<<<<<< HEAD
 <meta property="og:image" content="https://jacoli.github.io/images/OC-Runtime.png">
+=======
+<meta property="og:image" content="http://yoursite.com/images/OC-Runtime.png">
+>>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
 <meta property="og:updated_time" content="2016-04-22T15:30:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OC Runtime(5)之Method Swizzling">
@@ -52,9 +65,15 @@ Method的几个概念
 Method包含方法名Selector、函数地址IMP、参数类型TypeEncoding。
 
 1234NSLog(@&amp;quot;    method name">
+<<<<<<< HEAD
 <meta name="twitter:image" content="https://jacoli.github.io/images/OC-Runtime.png">
   
     <link rel="alternate" href="/atom.xml" title="李传格的博客" type="application/atom+xml">
+=======
+<meta name="twitter:image" content="http://yoursite.com/images/OC-Runtime.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Jacoli&#39;Home" type="application/atom+xml">
+>>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
   
   
     <link rel="icon" href="/favicon.png">
@@ -75,7 +94,11 @@ Method包含方法名Selector、函数地址IMP、参数类型TypeEncoding。
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
+<<<<<<< HEAD
         <a href="/" id="logo">李传格的博客</a>
+=======
+        <a href="/" id="logo">Jacoli&#39;Home</a>
+>>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       </h1>
       
     </div>
@@ -95,7 +118,11 @@ Method包含方法名Selector、函数地址IMP、参数类型TypeEncoding。
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
+<<<<<<< HEAD
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jacoli.github.io"></form>
+=======
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+>>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       </div>
     </div>
   </div>
@@ -139,6 +166,7 @@ Method包含方法名Selector、函数地址IMP、参数类型TypeEncoding。
 <h3 id="Method的几个概念"><a href="#Method的几个概念" class="headerlink" title="Method的几个概念"></a>Method的几个概念</h3><ul>
 <li><code>Method</code>包含方法名<code>Selector</code>、函数地址<code>IMP</code>、参数类型<code>TypeEncoding</code>。</li>
 </ul>
+<<<<<<< HEAD
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">NSLog(@&quot;    method name = %s&quot;, sel_getName(method_getName(method)));</div><div class="line">NSLog(@&quot;    method type encode = %s&quot;, method_getTypeEncoding(method));</div><div class="line">NSLog(@&quot;    NumberOfArguments = %d&quot;, method_getNumberOfArguments(method));</div><div class="line">NSLog(@&quot;    ReturnType = %s&quot;, method_copyReturnType(method));</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">2016-04-08 20:54:59.351 OCRuntime[54195:953880]     method name = setNumberProperty:</div><div class="line">2016-04-08 20:54:59.352 OCRuntime[54195:953880]     method type encode = v24@0:8@16</div><div class="line">2016-04-08 20:54:59.352 OCRuntime[54195:953880]     NumberOfArguments = 3</div><div class="line">2016-04-08 20:54:59.352 OCRuntime[54195:953880]     ReturnType = v</div></pre></td></tr></table></figure>
 <h3 id="动态修改Method的几个接口"><a href="#动态修改Method的几个接口" class="headerlink" title="动态修改Method的几个接口"></a>动态修改Method的几个接口</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">// 设置或交换IMP</div><div class="line">IMP method_setImplementation(Method m, IMP imp);</div><div class="line">void method_exchangeImplementations(Method m1, Method m2);</div></pre></td></tr></table></figure>
@@ -147,6 +175,16 @@ Method包含方法名Selector、函数地址IMP、参数类型TypeEncoding。
 <li>例子：</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">+ (void)load &#123;</div><div class="line">    static dispatch_once_t onceToken;</div><div class="line">    dispatch_once(&amp;onceToken, ^&#123;</div><div class="line">        Class class = [self class];</div><div class="line"></div><div class="line">        // When swizzling a class method, use the following:</div><div class="line">        // Class class = object_getClass((id)self);</div><div class="line"></div><div class="line">        SEL originalSelector = @selector(viewWillAppear:);</div><div class="line">        SEL swizzledSelector = @selector(xxx_viewWillAppear:);</div><div class="line"></div><div class="line">        Method originalMethod = class_getInstanceMethod(class, originalSelector);</div><div class="line">        Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);</div><div class="line"></div><div class="line">        BOOL didAddMethod =</div><div class="line">            class_addMethod(class,</div><div class="line">                originalSelector,</div><div class="line">                method_getImplementation(swizzledMethod),</div><div class="line">                method_getTypeEncoding(swizzledMethod));</div><div class="line"></div><div class="line">        if (didAddMethod) &#123;</div><div class="line">            class_replaceMethod(class,</div><div class="line">                swizzledSelector,</div><div class="line">                method_getImplementation(originalMethod),</div><div class="line">                method_getTypeEncoding(originalMethod));</div><div class="line">        &#125; else &#123;</div><div class="line">            method_exchangeImplementations(originalMethod, swizzledMethod);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+=======
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NSLog(@&quot;    method name = %s&quot;, sel_getName(method_getName(method)));</span><br><span class="line">NSLog(@&quot;    method type encode = %s&quot;, method_getTypeEncoding(method));</span><br><span class="line">NSLog(@&quot;    NumberOfArguments = %d&quot;, method_getNumberOfArguments(method));</span><br><span class="line">NSLog(@&quot;    ReturnType = %s&quot;, method_copyReturnType(method));</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">2016-04-08 20:54:59.351 OCRuntime[54195:953880]     method name = setNumberProperty:</span><br><span class="line">2016-04-08 20:54:59.352 OCRuntime[54195:953880]     method type encode = v24@0:8@16</span><br><span class="line">2016-04-08 20:54:59.352 OCRuntime[54195:953880]     NumberOfArguments = 3</span><br><span class="line">2016-04-08 20:54:59.352 OCRuntime[54195:953880]     ReturnType = v</span><br></pre></td></tr></table></figure>
+<h3 id="动态修改Method的几个接口"><a href="#动态修改Method的几个接口" class="headerlink" title="动态修改Method的几个接口"></a>动态修改Method的几个接口</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 设置或交换IMP</span><br><span class="line">IMP method_setImplementation(Method m, IMP imp);</span><br><span class="line">void method_exchangeImplementations(Method m1, Method m2);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BOOL class_addMethod(Class cls, SEL name, IMP imp, const char *types);</span><br><span class="line">                                 </span><br><span class="line">// 如果原来没有这个方法，则直接添加Method，效果同class_addMethod</span><br><span class="line">// 如果原来有，则替换掉原来的IMP，忽略参数类型</span><br><span class="line">IMP class_replaceMethod(Class cls, SEL name, IMP imp, const char *types);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>例子：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">+ (void)load &#123;</span><br><span class="line">    static dispatch_once_t onceToken;</span><br><span class="line">    dispatch_once(&amp;onceToken, ^&#123;</span><br><span class="line">        Class class = [self class];</span><br><span class="line"></span><br><span class="line">        // When swizzling a class method, use the following:</span><br><span class="line">        // Class class = object_getClass((id)self);</span><br><span class="line"></span><br><span class="line">        SEL originalSelector = @selector(viewWillAppear:);</span><br><span class="line">        SEL swizzledSelector = @selector(xxx_viewWillAppear:);</span><br><span class="line"></span><br><span class="line">        Method originalMethod = class_getInstanceMethod(class, originalSelector);</span><br><span class="line">        Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);</span><br><span class="line"></span><br><span class="line">        BOOL didAddMethod =</span><br><span class="line">            class_addMethod(class,</span><br><span class="line">                originalSelector,</span><br><span class="line">                method_getImplementation(swizzledMethod),</span><br><span class="line">                method_getTypeEncoding(swizzledMethod));</span><br><span class="line"></span><br><span class="line">        if (didAddMethod) &#123;</span><br><span class="line">            class_replaceMethod(class,</span><br><span class="line">                swizzledSelector,</span><br><span class="line">                method_getImplementation(originalMethod),</span><br><span class="line">                method_getTypeEncoding(originalMethod));</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            method_exchangeImplementations(originalMethod, swizzledMethod);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+>>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
 <li><a href="http://cocoasamurai.blogspot.jp/2010/01/understanding-objective-c-runtime.html" target="_blank" rel="external">understanding-objective-c-runtime</a></li>
 <li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048" target="_blank" rel="external">ObjCRuntimeGuide</a></li>
@@ -160,7 +198,11 @@ Method包含方法名Selector、函数地址IMP、参数类型TypeEncoding。
       
     </div>
     <footer class="article-footer">
+<<<<<<< HEAD
       <a data-url="https://jacoli.github.io/2014/04/02/2014-04-02-OC-Runtime-5-Method Swizzling/" data-id="ciyb2tc2t000bov5oalpv02xk" class="article-share-link">Share</a>
+=======
+      <a data-url="http://yoursite.com/2014/04/02/2014-04-02-OC-Runtime-5-Method Swizzling/" data-id="ciq4vaemg0005r05oiqctisp7" class="article-share-link">Share</a>
+>>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OC-Runtime/">OC Runtime</a></li></ul>
@@ -253,11 +295,19 @@ Method包含方法名Selector、函数地址IMP、参数类型TypeEncoding。
           </li>
         
           <li>
+<<<<<<< HEAD
             <a href="/2016/05/03/2016-05-03-移动三方应用分享/">移动三方应用分享</a>
           </li>
         
           <li>
             <a href="/2016/05/03/2016-05-03-模式和架构/">模式和架构</a>
+=======
+            <a href="/2016/05/03/2016-05-03-模式和架构/">模式和架构</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/03/2016-05-03-iOS原生Alert和ActionSheet/">iOS原生Alert和ActionSheet</a>
+>>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
           </li>
         
       </ul>
@@ -272,7 +322,11 @@ Method包含方法名Selector、函数地址IMP、参数类型TypeEncoding。
   
   <div class="outer">
     <div id="footer-info" class="inner">
+<<<<<<< HEAD
       &copy; 2017 jacoli<br>
+=======
+      &copy; 2016 Jaco Li<br>
+>>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

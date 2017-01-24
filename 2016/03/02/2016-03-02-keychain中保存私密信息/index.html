@@ -3,15 +3,24 @@
 <head>
   <meta charset="utf-8">
   
+<<<<<<< HEAD
   <title>keychain中保存私密信息 | 李传格的博客</title>
+=======
+  <title>keychain中保存私密信息 | Jacoli&#39;Home</title>
+>>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="通常情况下，IOS系统用NSUserDefaults存储数据信息，但是对于一些私密信息，比如密码、证书等等，就需要使用更为安全的keychain了。
 keychain里保存的信息不会因App被删除而丢失。所以，可以利用这个keychain这个特点来保存设备唯一标识。
 那么，如何在应用里使用使用keyChain呢，我们需要导入Security.framework ，keychain的操作接口声明在头">
 <meta property="og:type" content="article">
 <meta property="og:title" content="keychain中保存私密信息">
+<<<<<<< HEAD
 <meta property="og:url" content="https://jacoli.github.io/2016/03/02/2016-03-02-keychain中保存私密信息/index.html">
 <meta property="og:site_name" content="李传格的博客">
+=======
+<meta property="og:url" content="http://yoursite.com/2016/03/02/2016-03-02-keychain中保存私密信息/index.html">
+<meta property="og:site_name" content="Jacoli'Home">
+>>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
 <meta property="og:description" content="通常情况下，IOS系统用NSUserDefaults存储数据信息，但是对于一些私密信息，比如密码、证书等等，就需要使用更为安全的keychain了。
 keychain里保存的信息不会因App被删除而丢失。所以，可以利用这个keychain这个特点来保存设备唯一标识。
 那么，如何在应用里使用使用keyChain呢，我们需要导入Security.framework ，keychain的操作接口声明在头">
@@ -22,7 +31,11 @@ keychain里保存的信息不会因App被删除而丢失。所以，可以利用
 keychain里保存的信息不会因App被删除而丢失。所以，可以利用这个keychain这个特点来保存设备唯一标识。
 那么，如何在应用里使用使用keyChain呢，我们需要导入Security.framework ，keychain的操作接口声明在头">
   
+<<<<<<< HEAD
     <link rel="alternate" href="/atom.xml" title="李传格的博客" type="application/atom+xml">
+=======
+    <link rel="alternate" href="/atom.xml" title="Jacoli&#39;Home" type="application/atom+xml">
+>>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
   
   
     <link rel="icon" href="/favicon.png">
@@ -43,7 +56,11 @@ keychain里保存的信息不会因App被删除而丢失。所以，可以利用
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
+<<<<<<< HEAD
         <a href="/" id="logo">李传格的博客</a>
+=======
+        <a href="/" id="logo">Jacoli&#39;Home</a>
+>>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       </h1>
       
     </div>
@@ -63,7 +80,11 @@ keychain里保存的信息不会因App被删除而丢失。所以，可以利用
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
+<<<<<<< HEAD
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jacoli.github.io"></form>
+=======
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+>>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       </div>
     </div>
   </div>
@@ -101,13 +122,21 @@ keychain里保存的信息不会因App被删除而丢失。所以，可以利用
 <p>直接使用SecItem.h里方法操作keychain，需要写的代码较为复杂，我们可以使用已经封装好了的工具类KeychainItemWrapper来对keychain进行操作。</p>
 <p>KeychainItemWrapper是apple官方例子“GenericKeychain”里一个访问keychain常用操作的封装类，在官网上下载了GenericKeychain项目后，</p>
 <p>只需要把“KeychainItemWrapper.h”和“KeychainItemWrapper.m”拷贝到我们项目，并导入Security.framework 。KeychainItemWrapper的用法：</p>
+<<<<<<< HEAD
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/** 初始化一个保存用户帐号的KeychainItemWrapper */</div><div class="line">KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@&quot;Account Number&quot;</div><div class="line">                                                                   accessGroup:@&quot;YOUR_APP_ID_HERE.com.yourcompany.AppIdentifier&quot;];  </div><div class="line"> </div><div class="line">//保存数据</div><div class="line">[wrapper setObject:@&quot;&lt;帐号&gt;&quot; forKey:(id)kSecAttrAccount];    </div><div class="line"> </div><div class="line">[wrapper setObject:@&quot;&lt;帐号密码&gt;&quot; forKey:(id)kSecValueData];    </div><div class="line"> </div><div class="line">//从keychain里取出帐号密码</div><div class="line">NSString *password = [wrapper objectForKey:(id)kSecValueData];      </div><div class="line"> </div><div class="line">//清空设置</div><div class="line">[wrapper resetKeychainItem];</div><div class="line">其中方法“- (void)setObject:(id)inObject forKey:(id)key;”里参数“forKey”的值应该是Security.framework 里头文件“SecItem.h”里定义好的key，用其他字符串做key程序会出错！</div></pre></td></tr></table></figure>
+=======
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/** 初始化一个保存用户帐号的KeychainItemWrapper */</span><br><span class="line">KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@&quot;Account Number&quot;</span><br><span class="line">                                                                   accessGroup:@&quot;YOUR_APP_ID_HERE.com.yourcompany.AppIdentifier&quot;];  </span><br><span class="line"> </span><br><span class="line">//保存数据</span><br><span class="line">[wrapper setObject:@&quot;&lt;帐号&gt;&quot; forKey:(id)kSecAttrAccount];    </span><br><span class="line"> </span><br><span class="line">[wrapper setObject:@&quot;&lt;帐号密码&gt;&quot; forKey:(id)kSecValueData];    </span><br><span class="line"> </span><br><span class="line">//从keychain里取出帐号密码</span><br><span class="line">NSString *password = [wrapper objectForKey:(id)kSecValueData];      </span><br><span class="line"> </span><br><span class="line">//清空设置</span><br><span class="line">[wrapper resetKeychainItem];</span><br><span class="line">其中方法“- (void)setObject:(id)inObject forKey:(id)key;”里参数“forKey”的值应该是Security.framework 里头文件“SecItem.h”里定义好的key，用其他字符串做key程序会出错！</span><br></pre></td></tr></table></figure>
+>>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
 <p>keychain<br><a href="http://my.oschina.net/w11h22j33/blog/206713" target="_blank" rel="external">http://my.oschina.net/w11h22j33/blog/206713</a></p>
 
       
     </div>
     <footer class="article-footer">
+<<<<<<< HEAD
       <a data-url="https://jacoli.github.io/2016/03/02/2016-03-02-keychain中保存私密信息/" data-id="ciyb2tc3u001qov5of8pazbek" class="article-share-link">Share</a>
+=======
+      <a data-url="http://yoursite.com/2016/03/02/2016-03-02-keychain中保存私密信息/" data-id="ciq4vaenw0018r05oflrd9a1i" class="article-share-link">Share</a>
+>>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
@@ -118,11 +147,19 @@ keychain里保存的信息不会因App被删除而丢失。所以，可以利用
     
 <nav id="article-nav">
   
+<<<<<<< HEAD
     <a href="/2016/04/06/2016-04-06-阅读笔记一/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           阅读笔记一
+=======
+    <a href="/2016/03/02/2016-03-02-模拟器及profile路径/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          模拟器及profile路径
+>>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
         
       </div>
     </a>
@@ -200,11 +237,19 @@ keychain里保存的信息不会因App被删除而丢失。所以，可以利用
           </li>
         
           <li>
+<<<<<<< HEAD
             <a href="/2016/05/03/2016-05-03-移动三方应用分享/">移动三方应用分享</a>
           </li>
         
           <li>
             <a href="/2016/05/03/2016-05-03-模式和架构/">模式和架构</a>
+=======
+            <a href="/2016/05/03/2016-05-03-模式和架构/">模式和架构</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/03/2016-05-03-iOS原生Alert和ActionSheet/">iOS原生Alert和ActionSheet</a>
+>>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
           </li>
         
       </ul>
@@ -219,7 +264,11 @@ keychain里保存的信息不会因App被删除而丢失。所以，可以利用
   
   <div class="outer">
     <div id="footer-info" class="inner">
+<<<<<<< HEAD
       &copy; 2017 jacoli<br>
+=======
+      &copy; 2016 Jaco Li<br>
+>>>>>>> a0908660df27ce1a09ed5520b1a9f515b8b343ad
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
