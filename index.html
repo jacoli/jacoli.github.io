@@ -61,16 +61,12 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-2016-06-18-iOS Push" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-iOS Push" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/06/18/2016-06-18-iOS Push/" class="article-date">
+    <a href="/2016/06/18/iOS Push/" class="article-date">
   <time datetime="2016-06-17T16:00:00.000Z" itemprop="datePublished">2016-06-18</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/移动开发/">移动开发</a>
-  </div>
-
   </div>
   <div class="article-inner">
     
@@ -79,7 +75,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/18/2016-06-18-iOS Push/">iOS Push</a>
+      <a class="article-title" href="/2016/06/18/iOS Push/">iOS Push相关的资料</a>
     </h1>
   
 
@@ -90,12 +86,15 @@
         <ul>
 <li><p>苹果官方的APNS，支持App不同状态下（前台、后台、未启动等）的消息推送。</p>
 </li>
-<li><p>另外个方案是，App和应用服务间维护一个长链接，应用服务通过心跳感知App状态。当App为在线状态时，应用服务可以通过该长链接推送消息。一般作为APNS的备用。</p>
+<li><p>另外个方案是，App和应用服务间维护一个长链接，应用服务通过心跳感知App状态。当App为在线状态时，应用服务可以通过该长链接推送消息。一般跟APNS配合使用。</p>
+</li>
+<li><p>自己的项目中使用的是友盟推送。</p>
 </li>
 <li><p>在Push消息中设置自定义参数，App在<code>- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo</code>收到消息后解析参数并做相应逻辑（如跳转到相应页面等）</p>
 </li>
 </ul>
-<h3 id="相关"><a href="#相关" class="headerlink" title="相关"></a>相关</h3><ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken &#123;</div><div class="line">    NSLog(@&quot;didRegisterForRemoteNotificationsWithDeviceToken&quot;);</div><div class="line">    </div><div class="line">    // 注册用户登录登出监听</div><div class="line">    [self handleRemoteNotificationDidRegistered];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error &#123;</div><div class="line">    NSLog(@&quot;didFailToRegisterForRemoteNotificationsWithError&quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo &#123;</div><div class="line">    NSLog(@&quot;didReceiveRemoteNotification&quot;);</div><div class="line">    </div><div class="line">    [UMessage didReceiveRemoteNotification:userInfo];</div><div class="line">    </div><div class="line">    NSString *jsonString = [userInfo objectForKey:@&quot;custom&quot;];</div><div class="line">    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];</div><div class="line">    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData</div><div class="line">                                                        options:NSJSONReadingMutableContainers</div><div class="line">                                                          error:nil];</div><div class="line">    if (dic==nil || [dic isEqual:[NSNull null]]) &#123;</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    [self handleRemoteNotification:dic];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="其他一些资料"><a href="#其他一些资料" class="headerlink" title="其他一些资料"></a>其他一些资料</h3><ul>
 <li><a href="http://www.tuicool.com/articles/Y77Ffe" target="_blank" rel="external">一步一步实现iOS应用PUSH功能 - 咪咕咪咕</a></li>
 <li><a href="http://blog.csdn.net/daydreamingboy/article/details/7977098" target="_blank" rel="external">iOS上简单推送通知（Push Notification）的实现</a></li>
 <li><a href="http://blog.csdn.net/c101012221/article/details/34433425" target="_blank" rel="external">十大豪门推送sdk，哪个更适合你</a></li>
@@ -107,11 +106,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jacoli.github.io/2016/06/18/2016-06-18-iOS Push/" data-id="ciyb2tc51003oov5omg5ow0se" class="article-share-link">Partager</a>
+      <a data-url="https://jacoli.github.io/2016/06/18/iOS Push/" data-id="ciyb9lrmp0000ug5o8hfo04gg" class="article-share-link">Partager</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-
     </footer>
   </div>
   
@@ -119,16 +116,12 @@
 
 
   
-    <article id="post-2016-05-04-移动安全" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-移动安全相关" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/05/04/2016-05-04-移动安全/" class="article-date">
+    <a href="/2016/05/04/移动安全相关/" class="article-date">
   <time datetime="2016-05-03T16:00:00.000Z" itemprop="datePublished">2016-05-04</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/移动开发/">移动开发</a>
-  </div>
-
   </div>
   <div class="article-inner">
     
@@ -137,7 +130,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/04/2016-05-04-移动安全/">移动安全</a>
+      <a class="article-title" href="/2016/05/04/移动安全相关/">移动安全相关</a>
     </h1>
   
 
@@ -190,11 +183,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jacoli.github.io/2016/05/04/2016-05-04-移动安全/" data-id="ciyb2tc4w003gov5ob3ajltr0" class="article-share-link">Partager</a>
+      <a data-url="https://jacoli.github.io/2016/05/04/移动安全相关/" data-id="ciyba0w0t0005ug5obmr5n5pl" class="article-share-link">Partager</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安全/">安全</a></li></ul>
-
     </footer>
   </div>
   
@@ -202,16 +193,12 @@
 
 
   
-    <article id="post-2016-05-03-移动三方应用分享" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-模式和架构" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/05/03/2016-05-03-移动三方应用分享/" class="article-date">
+    <a href="/2016/05/03/模式和架构/" class="article-date">
   <time datetime="2016-05-02T16:00:00.000Z" itemprop="datePublished">2016-05-03</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/移动开发/">移动开发</a>
-  </div>
-
   </div>
   <div class="article-inner">
     
@@ -220,78 +207,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/03/2016-05-03-移动三方应用分享/">移动三方应用分享</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="iOS原生分享控件"><a href="#iOS原生分享控件" class="headerlink" title="iOS原生分享控件"></a>iOS原生分享控件</h3><p><img src="images/activity.png" alt="原生Share&amp;Action"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">NSString *textToShare = @&quot;要分享的文本内容&quot;;</div><div class="line">UIImage *imageToShare = [UIImage imageNamed:@&quot;shop&quot;];</div><div class="line">NSURL *urlToShare = [NSURL URLWithString:@&quot;http://blog.csdn.net/hitwhylz&quot;];</div><div class="line">NSArray *activityItems = @[textToShare, imageToShare, urlToShare];</div><div class="line"></div><div class="line">UIActivityViewController *vc = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];</div><div class="line">[self presentViewController:vc animated:YES completion:nil];</div></pre></td></tr></table></figure>
-<h3 id="三方开放平台"><a href="#三方开放平台" class="headerlink" title="三方开放平台"></a>三方开放平台</h3><ul>
-<li>新浪微博 <a href="http://open.weibo.com" target="_blank" rel="external">http://open.weibo.com</a></li>
-<li>腾讯微博 <a href="http://dev.t.qq.com" target="_blank" rel="external">http://dev.t.qq.com</a></li>
-<li>QQ空间，朋友网 <a href="http://connect.qq.com/intro/login/" target="_blank" rel="external">http://connect.qq.com/intro/login/</a></li>
-<li>QQ分享（QQ好友，QQ群等）<a href="http://mobile.qq.com/api/" target="_blank" rel="external">http://mobile.qq.com/api/</a></li>
-<li>豆瓣社区 <a href="http://developers.douban.com" target="_blank" rel="external">http://developers.douban.com</a></li>
-<li>人人网 <a href="http://dev.renren.com" target="_blank" rel="external">http://dev.renren.com</a></li>
-<li>微信好友 微信朋友圈 <a href="http://open.weixin.qq.com" target="_blank" rel="external">http://open.weixin.qq.com</a></li>
-<li><a href="http://mobile.umeng.com/social?spm=0.0.0.0.lW5N4c" target="_blank" rel="external">友盟U-Share</a></li>
-<li>用过友盟Share，但是遇到友盟ShareSDK中使用的微信SDK版本与官方不同步的问题，后来放弃了友盟ShareSDK，全部采用原生官方SDK，如微信（好友、朋友圈）、QQ、微博，在国内，这三个分享渠道已经能覆盖80%了。</li>
-</ul>
-<h3 id="URL-Schemes"><a href="#URL-Schemes" class="headerlink" title="URL Schemes"></a>URL Schemes</h3><ul>
-<li>iOS应用间可以通过<code>URL Schemes</code>解决相互通信的问题。</li>
-<li>DemoA通过<code>openURL</code>唤起DemoB，并带上参数。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">DemoA</div><div class="line"></div><div class="line">[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@&quot;demob://page?sourcescheme=demoa&quot;]];</div></pre></td></tr></table></figure>
-<ul>
-<li>DemoB收到并解析参数并作逻辑处理，然后同样通过<code>openURL</code>返回到DemoA，并带上参数。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">DemoB</div><div class="line"></div><div class="line">- (BOOL)handleUrl:(NSURL *)url &#123;</div><div class="line">    NSArray *querys = [url.query componentsSeparatedByString:@&quot;&amp;&quot;];</div><div class="line">    </div><div class="line">    NSMutableDictionary *queryDict = [[NSMutableDictionary alloc] init];</div><div class="line">    for (NSString *q in querys) &#123;</div><div class="line">        NSArray *kv = [q componentsSeparatedByString:@&quot;=&quot;];</div><div class="line">        if (kv.count == 2) &#123;</div><div class="line">            queryDict[kv[0]] = kv[1];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    NSString *returnScheme = queryDict[@&quot;sourcescheme&quot;];</div><div class="line">    </div><div class="line">    UIAlertController *vc = [UIAlertController alertControllerWithTitle:@&quot;url&quot;</div><div class="line">                                                                message:url.absoluteString</div><div class="line">                                                         preferredStyle:UIAlertControllerStyleAlert];</div><div class="line">    [vc addAction:[UIAlertAction actionWithTitle:@&quot;返回原应用&quot;</div><div class="line">                                           style:UIAlertActionStyleDefault</div><div class="line">                                         handler:^(UIAlertAction * _Nonnull action) &#123;</div><div class="line">                                             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@&quot;%@://&quot;, returnScheme]]];</div><div class="line">                                         &#125;]];</div><div class="line">    </div><div class="line">    [vc addAction:[UIAlertAction actionWithTitle:@&quot;留在当前应用&quot;</div><div class="line">                                           style:UIAlertActionStyleCancel</div><div class="line">                                         handler:^(UIAlertAction * _Nonnull action) &#123;</div><div class="line">                                         &#125;]];</div><div class="line">    </div><div class="line">    [self.window.rootViewController presentViewController:vc animated:YES completion:nil];</div><div class="line">    </div><div class="line">    return YES;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url NS_DEPRECATED_IOS(2_0, 9_0, &quot;Please use application:openURL:options:&quot;) __TVOS_PROHIBITED &#123;</div><div class="line">    return [self handleUrl:url];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation NS_DEPRECATED_IOS(4_2, 9_0, &quot;Please use application:openURL:options:&quot;) __TVOS_PROHIBITED &#123;</div><div class="line">    return [self handleUrl:url];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary&lt;NSString*, id&gt; *)options NS_AVAILABLE_IOS(9_0) &#123;</div><div class="line">    return [self handleUrl:url];</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><img src="/images/urlschemedemo.png" alt="urlschemedemo"></p>
-<p><img src="images/iosappsinteraction.png" alt="iosappsinteraction"></p>
-<h3 id="三方分享或认证"><a href="#三方分享或认证" class="headerlink" title="三方分享或认证"></a>三方分享或认证</h3><ul>
-<li>三方应用分享或认证都会用到<code>URL Schemes</code>流程，实际过程和参数会更复杂点，还需要考虑安全性。</li>
-<li>如微信三方登录认证，除了三方应用通过URL Scheme跳转微信拿到code，再通过https请求微信后台拿到access_token，后续用https带上access_token可以请求各种资源。<br><img src="images/weixinlogin.png" alt="weixinlogin"></li>
-<li>三方分享则是通过<code>URL Schemes</code>带上不同格式的数据（文本、图片、链接等）。</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://jacoli.github.io/2016/05/03/2016-05-03-移动三方应用分享/" data-id="ciyb2tc4u003cov5o2266m5gp" class="article-share-link">Partager</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2016-05-03-模式和架构" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/03/2016-05-03-模式和架构/" class="article-date">
-  <time datetime="2016-05-02T16:00:00.000Z" itemprop="datePublished">2016-05-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/软件设计/">软件设计</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/03/2016-05-03-模式和架构/">模式和架构</a>
+      <a class="article-title" href="/2016/05/03/模式和架构/">模式和架构</a>
     </h1>
   
 
@@ -355,11 +271,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jacoli.github.io/2016/05/03/2016-05-03-模式和架构/" data-id="ciyb2tc4r0038ov5ojz70ng6m" class="article-share-link">Partager</a>
+      <a data-url="https://jacoli.github.io/2016/05/03/模式和架构/" data-id="ciyba69iz0007ug5o01rylici" class="article-share-link">Partager</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模式和架构/">模式和架构</a></li></ul>
-
     </footer>
   </div>
   
@@ -367,16 +281,12 @@
 
 
   
-    <article id="post-2016-05-03-三方认证" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-移动三方应用分享" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/05/03/2016-05-03-三方认证/" class="article-date">
+    <a href="/2016/05/03/移动三方应用分享/" class="article-date">
   <time datetime="2016-05-02T16:00:00.000Z" itemprop="datePublished">2016-05-03</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/移动开发/">移动开发</a>
-  </div>
-
   </div>
   <div class="article-inner">
     
@@ -385,7 +295,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/03/2016-05-03-三方认证/">三方认证</a>
+      <a class="article-title" href="/2016/05/03/移动三方应用分享/">移动三方应用分享</a>
     </h1>
   
 
@@ -393,65 +303,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="三方认证"><a href="#三方认证" class="headerlink" title="三方认证"></a>三方认证</h3><h3 id="OAuth2"><a href="#OAuth2" class="headerlink" title="OAuth2"></a>OAuth2</h3>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://jacoli.github.io/2016/05/03/2016-05-03-三方认证/" data-id="ciyb2tc4p0034ov5op1ckizyd" class="article-share-link">Partager</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2016-05-03-iOS原生Alert和ActionSheet" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/03/2016-05-03-iOS原生Alert和ActionSheet/" class="article-date">
-  <time datetime="2016-05-02T16:00:00.000Z" itemprop="datePublished">2016-05-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/移动开发/">移动开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/03/2016-05-03-iOS原生Alert和ActionSheet/">iOS原生Alert和ActionSheet</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><img src="/images/alert.png" alt="alert"></li>
+        <h3 id="iOS原生分享控件"><a href="#iOS原生分享控件" class="headerlink" title="iOS原生分享控件"></a>iOS原生分享控件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">NSString *textToShare = @&quot;要分享的文本内容&quot;;</div><div class="line">UIImage *imageToShare = [UIImage imageNamed:@&quot;shop&quot;];</div><div class="line">NSURL *urlToShare = [NSURL URLWithString:@&quot;http://blog.csdn.net/hitwhylz&quot;];</div><div class="line">NSArray *activityItems = @[textToShare, imageToShare, urlToShare];</div><div class="line"></div><div class="line">UIActivityViewController *vc = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];</div><div class="line">[self presentViewController:vc animated:YES completion:nil];</div></pre></td></tr></table></figure>
+<h3 id="三方开放平台"><a href="#三方开放平台" class="headerlink" title="三方开放平台"></a>三方开放平台</h3><ul>
+<li>新浪微博 <a href="http://open.weibo.com" target="_blank" rel="external">http://open.weibo.com</a></li>
+<li>腾讯微博 <a href="http://dev.t.qq.com" target="_blank" rel="external">http://dev.t.qq.com</a></li>
+<li>QQ空间，朋友网 <a href="http://connect.qq.com/intro/login/" target="_blank" rel="external">http://connect.qq.com/intro/login/</a></li>
+<li>QQ分享（QQ好友，QQ群等）<a href="http://mobile.qq.com/api/" target="_blank" rel="external">http://mobile.qq.com/api/</a></li>
+<li>豆瓣社区 <a href="http://developers.douban.com" target="_blank" rel="external">http://developers.douban.com</a></li>
+<li>人人网 <a href="http://dev.renren.com" target="_blank" rel="external">http://dev.renren.com</a></li>
+<li>微信好友 微信朋友圈 <a href="http://open.weixin.qq.com" target="_blank" rel="external">http://open.weixin.qq.com</a></li>
+<li><a href="http://mobile.umeng.com/social?spm=0.0.0.0.lW5N4c" target="_blank" rel="external">友盟U-Share</a></li>
+<li>用过友盟Share，但是遇到友盟ShareSDK中使用的微信SDK版本与官方不同步的问题，后来放弃了友盟ShareSDK，全部采用原生官方SDK，如微信（好友、朋友圈）、QQ、微博，在国内，这三个分享渠道已经能覆盖80%了。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">UIAlertController *vc = [UIAlertController alertControllerWithTitle:@&quot;alertTitle&quot;</div><div class="line">                                                            message:@&quot;message&quot;</div><div class="line">                                                     preferredStyle:UIAlertControllerStyleAlert];</div><div class="line">[vc addAction:[UIAlertAction actionWithTitle:@&quot;done&quot;</div><div class="line">                                       style:UIAlertActionStyleDefault</div><div class="line">                                     handler:^(UIAlertAction * _Nonnull action) &#123;</div><div class="line">&#125;]];</div><div class="line"></div><div class="line">[vc addAction:[UIAlertAction actionWithTitle:@&quot;cancel&quot;</div><div class="line">                                       style:UIAlertActionStyleCancel</div><div class="line">                                     handler:^(UIAlertAction * _Nonnull action) &#123;</div><div class="line">&#125;]];</div><div class="line"></div><div class="line">[vc addAction:[UIAlertAction actionWithTitle:@&quot;warning&quot;</div><div class="line">                                       style:UIAlertActionStyleDestructive</div><div class="line">                                     handler:^(UIAlertAction * _Nonnull action) &#123;</div><div class="line">&#125;]];</div><div class="line"></div><div class="line">[self presentViewController:vc animated:YES completion:nil];</div></pre></td></tr></table></figure>
+<h3 id="URL-Schemes"><a href="#URL-Schemes" class="headerlink" title="URL Schemes"></a>URL Schemes</h3><ul>
+<li>iOS应用间可以通过<code>URL Schemes</code>解决相互通信的问题。</li>
+<li>DemoA通过<code>openURL</code>唤起DemoB，并带上参数。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">DemoA</div><div class="line"></div><div class="line">[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@&quot;demob://page?sourcescheme=demoa&quot;]];</div></pre></td></tr></table></figure>
 <ul>
-<li><img src="/images/actionsheet.png" alt="actionsheet"></li>
+<li>DemoB收到并解析参数并作逻辑处理，然后同样通过<code>openURL</code>返回到DemoA，并带上参数。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">UIAlertController *vc = [UIAlertController alertControllerWithTitle:@&quot;alertTitle&quot;</div><div class="line">                                                            message:@&quot;message&quot;</div><div class="line">                                                     preferredStyle:UIAlertControllerStyleActionSheet];</div><div class="line">[vc addAction:[UIAlertAction actionWithTitle:@&quot;done&quot;</div><div class="line">                                       style:UIAlertActionStyleDefault</div><div class="line">                                     handler:^(UIAlertAction * _Nonnull action) &#123;</div><div class="line">&#125;]];</div><div class="line"></div><div class="line">[vc addAction:[UIAlertAction actionWithTitle:@&quot;cancel&quot;</div><div class="line">                                       style:UIAlertActionStyleCancel</div><div class="line">                                     handler:^(UIAlertAction * _Nonnull action) &#123;</div><div class="line">&#125;]];</div><div class="line"></div><div class="line">[vc addAction:[UIAlertAction actionWithTitle:@&quot;warning&quot;</div><div class="line">                                       style:UIAlertActionStyleDestructive</div><div class="line">                                     handler:^(UIAlertAction * _Nonnull action) &#123;</div><div class="line">&#125;]];</div><div class="line"></div><div class="line">[self presentViewController:vc animated:YES completion:nil];</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">DemoB</div><div class="line"></div><div class="line">- (BOOL)handleUrl:(NSURL *)url &#123;</div><div class="line">    NSArray *querys = [url.query componentsSeparatedByString:@&quot;&amp;&quot;];</div><div class="line">    </div><div class="line">    NSMutableDictionary *queryDict = [[NSMutableDictionary alloc] init];</div><div class="line">    for (NSString *q in querys) &#123;</div><div class="line">        NSArray *kv = [q componentsSeparatedByString:@&quot;=&quot;];</div><div class="line">        if (kv.count == 2) &#123;</div><div class="line">            queryDict[kv[0]] = kv[1];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    NSString *returnScheme = queryDict[@&quot;sourcescheme&quot;];</div><div class="line">    </div><div class="line">    UIAlertController *vc = [UIAlertController alertControllerWithTitle:@&quot;url&quot;</div><div class="line">                                                                message:url.absoluteString</div><div class="line">                                                         preferredStyle:UIAlertControllerStyleAlert];</div><div class="line">    [vc addAction:[UIAlertAction actionWithTitle:@&quot;返回原应用&quot;</div><div class="line">                                           style:UIAlertActionStyleDefault</div><div class="line">                                         handler:^(UIAlertAction * _Nonnull action) &#123;</div><div class="line">                                             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@&quot;%@://&quot;, returnScheme]]];</div><div class="line">                                         &#125;]];</div><div class="line">    </div><div class="line">    [vc addAction:[UIAlertAction actionWithTitle:@&quot;留在当前应用&quot;</div><div class="line">                                           style:UIAlertActionStyleCancel</div><div class="line">                                         handler:^(UIAlertAction * _Nonnull action) &#123;</div><div class="line">                                         &#125;]];</div><div class="line">    </div><div class="line">    [self.window.rootViewController presentViewController:vc animated:YES completion:nil];</div><div class="line">    </div><div class="line">    return YES;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url NS_DEPRECATED_IOS(2_0, 9_0, &quot;Please use application:openURL:options:&quot;) __TVOS_PROHIBITED &#123;</div><div class="line">    return [self handleUrl:url];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation NS_DEPRECATED_IOS(4_2, 9_0, &quot;Please use application:openURL:options:&quot;) __TVOS_PROHIBITED &#123;</div><div class="line">    return [self handleUrl:url];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary&lt;NSString*, id&gt; *)options NS_AVAILABLE_IOS(9_0) &#123;</div><div class="line">    return [self handleUrl:url];</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="/images/urlschemedemo.png" alt="urlschemedemo"></p>
+<p><img src="images/iosappsinteraction.png" alt="iosappsinteraction"></p>
+<h3 id="三方分享或认证"><a href="#三方分享或认证" class="headerlink" title="三方分享或认证"></a>三方分享或认证</h3><ul>
+<li>三方应用分享或认证都会用到<code>URL Schemes</code>流程，实际过程和参数会更复杂点，还需要考虑安全性。</li>
+<li>如微信三方登录认证，除了三方应用通过URL Scheme跳转微信拿到code，再通过https请求微信后台拿到access_token，后续用https带上access_token可以请求各种资源。<br><img src="images/weixinlogin.png" alt="weixinlogin"></li>
+<li>三方分享则是通过<code>URL Schemes</code>带上不同格式的数据（文本、图片、链接等）。</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jacoli.github.io/2016/05/03/2016-05-03-iOS原生Alert和ActionSheet/" data-id="ciyb2tc4o0030ov5on8s5ggnu" class="article-share-link">Partager</a>
+      <a data-url="https://jacoli.github.io/2016/05/03/移动三方应用分享/" data-id="ciyba5j5c0006ug5o1t0bz9gq" class="article-share-link">Partager</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-
     </footer>
   </div>
   
@@ -459,64 +345,12 @@
 
 
   
-    <article id="post-2016-05-02-Nodejs学习" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-iOS App安装包过大" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/05/02/2016-05-02-Nodejs学习/" class="article-date">
-  <time datetime="2016-05-01T16:00:00.000Z" itemprop="datePublished">2016-05-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/服务端开发/">服务端开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/02/2016-05-02-Nodejs学习/">Nodejs学习</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>Node.js是一个Javascript运行环境(runtime)。</li>
-<li>基于V8引擎。</li>
-<li>使用事件驱动、非阻塞IO模型，应用轻量、高效。</li>
-<li><a href="http://www.runoob.com/nodejs/nodejs-tutorial.html" target="_blank" rel="external">Node.js 教程</a></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://jacoli.github.io/2016/05/02/2016-05-02-Nodejs学习/" data-id="ciyb2tc4m002wov5oos4avt0l" class="article-share-link">Partager</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nodejs/">Nodejs</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2016-04-29-iOS App安装包过大" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/04/29/2016-04-29-iOS App安装包过大/" class="article-date">
+    <a href="/2016/04/29/iOS App安装包过大/" class="article-date">
   <time datetime="2016-04-28T16:00:00.000Z" itemprop="datePublished">2016-04-29</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/移动开发/">移动开发</a>
-  </div>
-
   </div>
   <div class="article-inner">
     
@@ -525,7 +359,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/29/2016-04-29-iOS App安装包过大/">iOS App安装包过大</a>
+      <a class="article-title" href="/2016/04/29/iOS App安装包过大/">iOS App安装包过大</a>
     </h1>
   
 
@@ -548,11 +382,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jacoli.github.io/2016/04/29/2016-04-29-iOS App安装包过大/" data-id="ciyb2tc4j002tov5oweh4th9u" class="article-share-link">Partager</a>
+      <a data-url="https://jacoli.github.io/2016/04/29/iOS App安装包过大/" data-id="ciyba6jq80008ug5oh87kubp4" class="article-share-link">Partager</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-
     </footer>
   </div>
   
@@ -560,16 +392,12 @@
 
 
   
-    <article id="post-2016-04-29-Swift学习" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-iOS程序生命周期" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/04/29/2016-04-29-Swift学习/" class="article-date">
-  <time datetime="2016-04-28T16:00:00.000Z" itemprop="datePublished">2016-04-29</time>
+    <a href="/2016/04/27/iOS程序生命周期/" class="article-date">
+  <time datetime="2016-04-26T16:00:00.000Z" itemprop="datePublished">2016-04-27</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/移动开发/">移动开发</a>
-  </div>
-
   </div>
   <div class="article-inner">
     
@@ -578,7 +406,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/29/2016-04-29-Swift学习/">Swift学习</a>
+      <a class="article-title" href="/2016/04/27/iOS程序生命周期/">iOS程序生命周期</a>
     </h1>
   
 
@@ -586,21 +414,27 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li><p><a href="http://www.cocoachina.com/special/swift/" target="_blank" rel="external">Swift专题</a></p>
+        <h3 id="程序的生命周期"><a href="#程序的生命周期" class="headerlink" title="程序的生命周期"></a>程序的生命周期</h3><ul>
+<li><p>程序的生命周期，包含非运行、非激活、激活、后台、挂起五个状态</p>
 </li>
-<li><p><a href="http://mp.weixin.qq.com/s?__biz=MzA3ODg4MDk0Ng==&amp;mid=403153173&amp;idx=1&amp;sn=c631f95b28a0eb4b842a9494e43a30e5#rd&amp;utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">Swift Runtime分析：还像OC Runtime一样吗？</a></p>
+<li><p>状态间切换都会有响应的回调和通知</p>
 </li>
+<li><p>程序挂起状态将接收不到Terminate通知，因此进入后台，能够处理程序随时被结束。 applicationWillTerminate:—Lets you know that your app is being terminated. This method is not called if your app is suspended.</p>
+</li>
+</ul>
+<h3 id="程序如何在后台运行"><a href="#程序如何在后台运行" class="headerlink" title="程序如何在后台运行"></a>程序如何在后台运行</h3><ul>
+<li>1、短时间运行，进入后台后，可以调用beginBackgroundTaskWithName方法启动有限时间的任务。</li>
+<li>2、NSURLSession支持后台下载。</li>
+<li>3、长时间运行，支持以下几种模式，音频及视频（airplay）播放、更新定位、VOIP、下载Newsstand、外部附件、蓝牙、push，在info.plist添加相应配置，代码中引入相应的framework并调用相应接口。</li>
+<li>调用application:performFetchWithCompletionHandler: 在后台获取少量数据。</li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jacoli.github.io/2016/04/29/2016-04-29-Swift学习/" data-id="ciyb2tc4h002oov5oebwhqxfv" class="article-share-link">Partager</a>
+      <a data-url="https://jacoli.github.io/2016/04/27/iOS程序生命周期/" data-id="ciyba8ccw000aug5o0dxqhgbq" class="article-share-link">Partager</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/">Swift</a></li></ul>
-
     </footer>
   </div>
   
@@ -608,16 +442,12 @@
 
 
   
-    <article id="post-2016-04-29-QCon2016" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-iOS设备ID" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/04/29/2016-04-29-QCon2016/" class="article-date">
-  <time datetime="2016-04-28T16:00:00.000Z" itemprop="datePublished">2016-04-29</time>
+    <a href="/2016/04/27/iOS设备ID/" class="article-date">
+  <time datetime="2016-04-26T16:00:00.000Z" itemprop="datePublished">2016-04-27</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>►<a class="article-category-link" href="/categories/技术/博客-论坛-会议/">博客&论坛&会议</a>
-  </div>
-
   </div>
   <div class="article-inner">
     
@@ -626,7 +456,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/29/2016-04-29-QCon2016/">QCon2016</a>
+      <a class="article-title" href="/2016/04/27/iOS设备ID/">iOS设备ID</a>
     </h1>
   
 
@@ -634,30 +464,221 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li><a href="http://2016.qconbeijing.com/" target="_blank" rel="external">QCon开发者大会2016</a></li>
-</ul>
-<p>先收藏慢慢整理</p>
-<h3 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h3><ul>
-<li><a href="http://www.cnblogs.com/kym/archive/2011/03/07/1976519.html" target="_blank" rel="external">函数式编程扫盲篇</a></li>
-</ul>
-<h3 id="移动开发"><a href="#移动开发" class="headerlink" title="移动开发"></a>移动开发</h3><ul>
-<li><p>随时在线的用户 - Anytime, Anywhere</p>
-</li>
-<li><p>一切皆组件:告别插件,拥抱组件(bundle)</p>
-</li>
-<li><p>领域知识</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">游戏引擎、缓存、酷炫特效、RN、滤镜美化、拍照摄像、UI控件、数据同步、图片库、碎片化、swift、持续集成、Weex、数据库、跨平台、MVVM、kotlin、Hybrid、短视频、直播、启动优化、动态发版、线上度量、包混淆、安全加固、图文混排、热修复、性能优化、ART、Davilk、Flux、运营商网络优化、动态化、Relay、长链接、方法数超限、AOP等等。</div></pre></td></tr></table></figure>
+        <p>NSString <em>identifierForVendor = [[UIDevice currentDevice].identifierForVendor UUIDString];<br>NSString </em>identifierForAdvertising = [[ASIdentifierManager sharedManager].advertisingIdentifier UUIDString]; </p>
+<p>设备标识<br>identifierForVendor，<br>app在一个device上的标识，从ios6开始支持。一个设备上相同vendor的app获取到相同值，不同vendor则不同值。<br>app如果从App Store直接下载，该值由App Store分配，如果app是企业版、Ad Hoc、或开发版，则该值由bundle identifier计算。<br>设备上删除所有该Vendor的apps后，下次再安装app，值会发生变化。<br>If the value is nil, wait and get the value again later. This happens, for example, after the device has been restarted but before the user has unlocked the device.</p>
+<p>advertisingIdentifier<br>一个设备上所有app获取到都是相同的值。<br>If the value is nil, wait and get the value again later. This happens, for example, after the device has been restarted but before the user has unlocked the device.</p>
+<h3 id="iOS获取设备唯一标识的各种方法？IDFA、IDFV、UDID分别是什么含义？"><a href="#iOS获取设备唯一标识的各种方法？IDFA、IDFV、UDID分别是什么含义？" class="headerlink" title="iOS获取设备唯一标识的各种方法？IDFA、IDFV、UDID分别是什么含义？"></a>iOS获取设备唯一标识的各种方法？IDFA、IDFV、UDID分别是什么含义？</h3><p>[摘要：1、UDID (Unique Device Identifier) UDID的齐称是Unique Device Identifier，望文生义，它便是苹果IOS装备的独一辨认码，它由40个字符的字母战数字构成。正在良多须要限定] </p>
+<p>一、UDID (Unique Device Identifier)</p>
+<pre><code>UDID的全称是Unique Device Identifier，顾名思义，它就是苹果IOS设备的唯一识别码，它由40个字符的字母和数字组成。在很多需要限制一台设备一个账号的应用中经常会用到。在iOS5中可以获取到设备的UDID，后来被苹果禁止了。
+</code></pre><p>二、UUID（Universally Unique Identifier）</p>
+<pre><code>UUID是Universally Unique Identifier的缩写，中文意思是通用唯一识别码。它是让分布式系统中的所有元素，都能有唯一的辨识资讯，而不需要透过中央控制端来做辨识资讯的指定。这样，每个人都可以建立不与其它人冲突的 UUID。在此情况下，就不需考虑数据库建立时的名称重复问题。苹果公司建议使用UUID为应用生成唯一标识字符串。
+开发者可以在应用第一次启动时调用一 次，然后将该串存储起来，替代UDID来使用。但是，如果用户删除该应用再次安装时，又会生成新的字符串，所以不能保证唯一识别该设备。使用UUID，就要考虑应用被删除后再重新安装时的处理。一个解决的办法是：UUID一般只生成一次，保存在iOS系统里面，如果应用删除了，重装应用之后它的UUID还是一样的，除非系统重置 。但是不能保证在以后的系统升级后还能用（如果系统保存了该信息就能用）。
+</code></pre><p>三、MAC Address</p>
+<p>用来表示互联网上每一个站点的标识符，采用十六进制数表示，共六个字节（48位）。其中，前三个字节是由IEEE的注册管理机构 RA负责给不同厂家分配的代码(高位24位)，也称为“编制上唯一的标识符” （Organizationally Unique Identifier)，后三个字节(低位24位)由各厂家自行指派给生产的适配器接口，称为扩展标识符（唯一性）。</p>
+<p>MAC地址在网络上用来区分设备的唯一性，接入网络的设备都有一个MAC地址，他们肯定都是不同的，是唯一的。一部iPhone上可能有多个MAC地址，包括WIFI的、SIM的等，但是iTouch和iPad上就有一个WIFI的，因此只需获取WIFI的MAC地址就好了，也就是en0的地址。<br>MAC地址就如同我们身份证上的身份证号码，具有全球唯一性。这样就可以非常好的标识设备唯一性，类似与苹果设备的UDID号，通常的用途有：1）用于一些统计与分析目的，利用用户的操作习惯和数据更好的规划产品；2）作为用户ID来唯一识别用户，可以用游客身份使用app又能在服务器端保存相应的信息，省去用户名、密码等注册过程。<br>使用Mac地址生成设备的唯一标识主要分三种：<br>1、直接使用“MAC Address”<br>2、使用“MD5(MAC Address)”<br>3、使用“MD5(Mac Address+bundle_id)”获得“机器＋应用”的唯一标识（bundle_id 是应用的唯一标识）<br>在iOS7之后，如果请求Mac地址都会返回一个固定值。<br>四、IDFA（identifierForIdentifier）</p>
+<p>广告标示符，适用于对外：例如广告推广，换量等跨应用的用户追踪等。</p>
+<pre><code>是iOS 6中另外一个新的方法，提供了一个方法advertisingIdentifier，通过调用该方法会返回一个NSUUID实例，最后可以获得一个UUID，由系统存储着的。不过即使这是由系统存储的，但是有几种情况下，会重新生成广告标示符。如果用户完全重置系统（(设置程序 -&gt; 通用 -&gt; 还原 -&gt; 还原位置与隐私) ，这个广告标示符会重新生成。另外如果用户明确的还原广告(设置程序-&gt; 通用 -&gt; 关于本机 -&gt; 广告 -&gt; 还原广告标示符) ，那么广告标示符也会重新生成。关于广告标示符的还原，有一点需要注意：如果程序在后台运行，此时用户“还原广告标示符”，然后再回到程序中，此时获取广 告标示符并不会立即获得还原后的标示符。必须要终止程序，然后再重新启动程序，才能获得还原后的广告标示符。
+</code></pre><p>在同一个设备上的所有App都会取到相同的值，是苹果专门给各广告提供商用来追踪用户而设的，用户可以在 设置|隐私|广告追踪 里重置此id的值，或限制此id的使用，故此id有可能会取不到值，但好在Apple默认是允许追踪的，而且一般用户都不知道有这么个设置，所以基本上用来监测推广效果，是戳戳有余了。</p>
+<p>注意：由于idfa会出现取不到的情况，故绝不可以作为业务分析的主id，来识别用户。</p>
+<p>代码：</p>
+<p>#import <adsupport adsupport.h=""></adsupport></p>
+<p>  NSString *adId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];<br>五、IDFV（identifierForVendor）</p>
+<p>Vindor标示符，适用于对内：例如分析用户在应用内的行为等。</p>
+<p>是给Vendor标识用户用的，每个设备在所属同一个Vender的应用里，都有相同的值。其中的Vender是指应用提供商，但准确点说，是通过BundleID的DNS反转的前两部分进行匹配，如果相同就是同一个Vender，例如对于com.somecompany.appone,com.somecompany.apptwo 这两个BundleID来说，就属于同一个Vender，共享同一个idfv的值。和idfa不同的是，idfv的值是一定能取到的，所以非常适合于作为内部用户行为分析的主id，来标识用户，替代OpenUDID。</p>
+<p>注意：如果用户将属于此Vender的所有App卸载，则idfv的值会被重置，即再重装此Vender的App，idfv的值和之前不同。</p>
+<p>代码：</p>
+<p>  NSString *idfv = [[[UIDevice currentDevice] identifierForVendor] UUIDString];<br>六、OPEN UDID</p>
+<pre><code>每台iOS设备的OpenUDID是通过第一个带有OpenUDID SDK包的App生成，如果你完全删除全部带有OpenUDID SDK包的App（比如恢复系统等），那么OpenUDID会重新生成，而且和之前的值会不同，相当于新设备；
+优点是没有用到MAC地址；不同设备能够获取各自唯一的识别码，保证了唯一性，可以用于以往UDID的相关用途；从代码分析OpenUDID的获取，识别码获取方便并且保存谨慎。缺点是当将设备上所有使用了OpenUDID方案的应用程序删除，且设备关机重启，xcode彻底清除并重启，重装应用程序去获取OpenUDID，此时OpenUDID变化，与之前不一样了，所有OpenUDID应用卸载后，由UIPasteboard保存的数据即被清除，重装故会重新获取新的OpenUDID。
+</code></pre><p>那么当因为用户干预或者恶意程序，致使UIPasteboard数据清除，从而导致OpenUDID被删除，重装也会获取新的OpenUDID。</p>
+<pre><code>OpenUDID生成唯一识别码的代码：    
+</code></pre><p>unsigned char result[16];<br>        const charchar *cStr = [[[NSProcessInfo processInfo] globallyUniqueString] UTF8String];<br>        CC_MD5( cStr, strlen(cStr), result );<br>        _openUDID = [NSString stringWithFormat:<br>                     @”%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%08x”,<br>                     result[0], result[1], result[2], result[3],<br>                     result[4], result[5], result[6], result[7],<br>                     result[8], result[9], result[10], result[11],<br>                     result[12], result[13], result[14], result[15],<br>                     arc4random() % 4294967295]; </p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jacoli.github.io/2016/04/29/2016-04-29-QCon2016/" data-id="ciyb2tc4f002lov5opxnc42q7" class="article-share-link">Partager</a>
+      <a data-url="https://jacoli.github.io/2016/04/27/iOS设备ID/" data-id="ciyba7zcs0009ug5oxt1uyamj" class="article-share-link">Partager</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/会议/">会议</a></li></ul>
+    </footer>
+  </div>
+  
+</article>
 
+
+  
+    <article id="post-iOS学习导图" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/12/iOS学习导图/" class="article-date">
+  <time datetime="2016-04-11T16:00:00.000Z" itemprop="datePublished">2016-04-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/12/iOS学习导图/">iOS学习导图</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> 本文简单罗列了下iOS相关的点。</p>
+<h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><p><img src="/images/iOS应用开发基础.png" alt=""></p>
+<ul>
+<li>Runloop</li>
+</ul>
+<p><a href="http://blog.ibireme.com/2015/05/18/runloop/" target="_blank" rel="external">深入理解RunLoop</a></p>
+<ul>
+<li>多线程&amp;同步</li>
+</ul>
+<p><a href="http://www.dreamingwish.com/article/ios-multi-threaded-programming-a-multi-threaded-programming.html" target="_blank" rel="external">iOS多线程编程指南</a></p>
+<ul>
+<li>Core Animation</li>
+</ul>
+<p><a href="http://www.dreamingwish.com/article/coreanimation-programming-guide-summary.html" target="_blank" rel="external">CoreAnimation编程指南</a></p>
+<p><a href="http://www.cnblogs.com/xdream86/p/3250782.html" target="_blank" rel="external">Core Animation编程指南</a><br><a href="http://www.cocoachina.com/ios/20150104/10814.html" target="_blank" rel="external">iOS-Core-Animation-Advanced-Techniques</a></p>
+<ul>
+<li>Block</li>
+</ul>
+<p><a href="http://www.dreamingwish.com/article/block%E4%BB%8B%E7%BB%8D%EF%BC%88%E4%B8%80%EF%BC%89%E5%9F%BA%E7%A1%80.html" target="_blank" rel="external">Block介绍</a></p>
+<ul>
+<li>GCD</li>
+</ul>
+<p><a href="http://www.dreamingwish.com/article/grand-central-dispatch-basic-1.html" target="_blank" rel="external">GCD入门</a></p>
+<ul>
+<li>Core Foundation</li>
+</ul>
+<p><a href="http://opensource.apple.com/tarballs/CF/" target="_blank" rel="external">Core Foundation源码</a></p>
+<h3 id="应用优化"><a href="#应用优化" class="headerlink" title="应用优化"></a>应用优化</h3><ul>
+<li><p><a href="http://blog.ibireme.com/2015/11/12/smooth_user_interfaces_for_ios/" target="_blank" rel="external">iOS 保持界面流畅的技巧</a></p>
+</li>
+<li><p><a href="http://www.cocoachina.com/ios/20150429/11712.html" target="_blank" rel="external">WWDC心得与延伸:iOS图形性能</a></p>
+</li>
+<li><p><a href="http://www.cocoachina.com/ios/20151203/14549.html" target="_blank" rel="external">iOS 事件处理机制与图像渲染过程</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s?__biz=MzAwNDY1ODY2OQ==&amp;mid=207890859&amp;idx=1&amp;sn=e98dd604cdb854e7a5808d2072c29162&amp;scene=1&amp;srcid=1119D98cPepPAys5UJjzKkFU&amp;key=d72a47206eca0ea99e5bfedd27c4e1979bafb09babd40343f279933377d574eeac88cdf63260b257d9bf187a90b30d1b&amp;ascene=0&amp;uin=NDEzMTA2OTc1&amp;devicetype=iMac+MacBookPro11%2C2+OSX+OSX+10.11+build(15A284" target="_blank" rel="external">微信iOS卡顿监控系统</a>&amp;version=11020201&amp;pass_ticket=WqTD03t23%2Fz4yjGdIgJ7hHJdRAUd2Xh4DPQpswxoclHSqzbaxr%2B%2F%2B16u%2Fg0PXgMQ)</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jacoli.github.io/2016/04/12/iOS学习导图/" data-id="ciybaasyg000cug5oddtk1yeg" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-DeepLink&amp;UniversalLink" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/12/DeepLink&UniversalLink/" class="article-date">
+  <time datetime="2016-04-11T16:00:00.000Z" itemprop="datePublished">2016-04-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/12/DeepLink&UniversalLink/">Deep Linking</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="概念理解"><a href="#概念理解" class="headerlink" title="概念理解"></a>概念理解</h3><ul>
+<li><code>Deep Link</code>深度链接，打破APP沙盒壁垒，链接到App内具体的内容。另外，iOS9 <code>CoreSpotlight.framework</code>提供了些APP内容搜索的API，也可以认为是深度链接。</li>
+<li><code>Defferred Deep Link</code>延迟深度链接，在深度链接基础上改进，如果链接的App未安装，则先跳转到应用中心或AppStore提示安装App。</li>
+<li><code>Universal Link</code>，iOS9上提供了Associated－Domain关联域名，用于在网页或App内唤起其他App。<a href="http://www.jianshu.com/p/16374288c976" target="_blank" rel="external">Universal Links通用链接应用跳转总结以及坑</a></li>
+<li><code>Custom URL Scheme</code>，iOS提供的App间跳转的协议。</li>
+</ul>
+<h3 id="产品"><a href="#产品" class="headerlink" title="产品"></a>产品</h3><ul>
+<li><a href="http://deepshare.io/deeplink/" target="_blank" rel="external">DeepShare</a></li>
+</ul>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="http://www.cocoachina.com/ios/20160105/14871.html" target="_blank" rel="external">iOS 中的 Deferred Deep Linking</a></li>
+<li><a href="http://www.csdn.net/article/2015-07-16/2825222-search-apis" target="_blank" rel="external">实战iOS 9：开发者必须掌握的三种搜索API</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jacoli.github.io/2016/04/12/DeepLink&UniversalLink/" data-id="ciybaafj4000bug5o30k544nh" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-iOS Touch事件处理流程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/16/iOS Touch事件处理流程/" class="article-date">
+  <time datetime="2015-09-16T15:07:56.000Z" itemprop="datePublished">2015-09-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/16/iOS Touch事件处理流程/">iOS Touch事件处理流程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ul>
+<li><p>本文简单地梳理下Touch事件的处理流程。</p>
+</li>
+<li><p>参考文档：<a href="https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Introduction/Introduction.html" target="_blank" rel="external">Event Handling Guide for iOS</a></p>
+</li>
+<li><p>Touch事件流程可以分成，找第一响应和事件传递处理。</p>
+</li>
+</ul>
+<h3 id="Hit-Test找第一响应视图"><a href="#Hit-Test找第一响应视图" class="headerlink" title="Hit-Test找第一响应视图"></a>Hit-Test找第一响应视图</h3><ol>
+<li>用户在屏幕上的点击、滑动等都会转换成Touch事件，并加到待处理队列。</li>
+<li>接着，RunLoop设置的回调<code>__CFRUNLOOP_IS_CALLING_OUT_TO_A_SOURCE0_PERFORM_FUNCTION__</code>被触发，然后由<code>_UIApplicationHandleEventQueue</code>从待处理队列取出事件并分发给<code>UIApplication</code>。</li>
+<li><code>-[UIApplication sendEvent:]</code>分发事件到<code>UIWindow</code>。</li>
+<li><code>UIWindow</code>先通过<code>hit-test</code>递归找出第一响应的视图，然后再从第一响应视图开始处理该事件。这里可以重载这两个函数改变第一响应视图的查找，<code>- [pointInside:withEvent:]</code>，<code>-[hitTest:withEvent:]</code>。</li>
+</ol>
+<h3 id="基于响应链的事件传递"><a href="#基于响应链的事件传递" class="headerlink" title="基于响应链的事件传递"></a>基于响应链的事件传递</h3><ol>
+<li>第一响应视图通过重载以下几个方法<code>-[touchesBegan:withEvent:]</code>，<code>-[touchesMoved:withEvent:]</code>，<code>-[touchesEnded:withEvent:]</code>开始处理touch事件。</li>
+<li>如果第一响应视图上存在Gesture，则Gesture也会收到touch事件并将自己置为<code>UIGestureRecognizerStatePossible</code>状态。</li>
+<li>Gesture识别到对应手势后，则切换到<code>UIGestureRecognizerStateBegan</code>状态，并cancel掉第一响应视图的事件处理<code>-[touchesCancelled:withEvent:]</code>。</li>
+<li>如果存在多个Gesture都在识别手势，则可以通过Gesture的属性和委托处理多个Gesture的协同问题。</li>
+<li>如果第一响应视图没有处理，则事件沿着响应链继续传递。（默认的响应链是当前视图-&gt;父视图-&gt;当前视图控制器-&gt;<code>UIWindow</code>-&gt;<code>UIApplication</code>）</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jacoli.github.io/2015/09/16/iOS Touch事件处理流程/" data-id="ciyb3cp1f0004lo5op9u3vlkh" class="article-share-link">Partager</a>
+      
+      
     </footer>
   </div>
   
@@ -668,7 +689,7 @@
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
   </nav>
 </section>
         
@@ -678,7 +699,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Catégories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/iOS基础/">iOS基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/博客-论坛-会议/">博客&论坛&会议</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/工具/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/服务端开发/">服务端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/移动开发/">移动开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/软件设计/">软件设计</a></li></ul></li></ul>
+      <ul class="category-list"></ul>
     </div>
   </div>
 
@@ -688,7 +709,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Mot-clés</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/会议/">会议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安全/">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模式和架构/">模式和架构</a></li></ul>
+      <ul class="tag-list"></ul>
     </div>
   </div>
 
@@ -698,7 +719,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Nuage de mot-clés</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/会议/" style="font-size: 10px;">会议</a> <a href="/tags/安全/" style="font-size: 10px;">安全</a> <a href="/tags/模式和架构/" style="font-size: 15px;">模式和架构</a>
+      
     </div>
   </div>
 
@@ -707,7 +728,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li></ul>
     </div>
   </div>
 
@@ -720,23 +741,23 @@
       <ul>
         
           <li>
-            <a href="/2016/06/18/2016-06-18-iOS Push/">iOS Push</a>
+            <a href="/2016/06/18/iOS Push/">iOS Push相关的资料</a>
           </li>
         
           <li>
-            <a href="/2016/05/04/2016-05-04-移动安全/">移动安全</a>
+            <a href="/2016/05/04/移动安全相关/">移动安全相关</a>
           </li>
         
           <li>
-            <a href="/2016/05/03/2016-05-03-移动三方应用分享/">移动三方应用分享</a>
+            <a href="/2016/05/03/模式和架构/">模式和架构</a>
           </li>
         
           <li>
-            <a href="/2016/05/03/2016-05-03-模式和架构/">模式和架构</a>
+            <a href="/2016/05/03/移动三方应用分享/">移动三方应用分享</a>
           </li>
         
           <li>
-            <a href="/2016/05/03/2016-05-03-三方认证/">三方认证</a>
+            <a href="/2016/04/29/iOS App安装包过大/">iOS App安装包过大</a>
           </li>
         
       </ul>

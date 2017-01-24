@@ -3,42 +3,27 @@
 <head>
   <meta charset="utf-8">
   
-  <title>李传格的博客</title>
+  <title>Deep Linking | 李传格的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="iOS视图编程
-布局
-渲染
-层次
-跟CALayer交互
-事件
-动画
-
-参考文档：View Programming Guide for iOS">
-<meta property="og:type" content="website">
-<meta property="og:title" content="李传格的博客">
-<meta property="og:url" content="https://jacoli.github.io/files/iOS视图编程.html">
+  <meta name="description" content="概念理解
+Deep Link深度链接，打破APP沙盒壁垒，链接到App内具体的内容。另外，iOS9 CoreSpotlight.framework提供了些APP内容搜索的API，也可以认为是深度链接。
+Defferred Deep Link延迟深度链接，在深度链接基础上改进，如果链接的App未安装，则先跳转到应用中心或AppStore提示安装App。
+Universal Link，iOS9上提供了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deep Linking">
+<meta property="og:url" content="https://jacoli.github.io/2016/04/12/DeepLink&UniversalLink/index.html">
 <meta property="og:site_name" content="李传格的博客">
-<meta property="og:description" content="iOS视图编程
-布局
-渲染
-层次
-跟CALayer交互
-事件
-动画
-
-参考文档：View Programming Guide for iOS">
-<meta property="og:updated_time" content="2016-04-22T15:30:29.000Z">
+<meta property="og:description" content="概念理解
+Deep Link深度链接，打破APP沙盒壁垒，链接到App内具体的内容。另外，iOS9 CoreSpotlight.framework提供了些APP内容搜索的API，也可以认为是深度链接。
+Defferred Deep Link延迟深度链接，在深度链接基础上改进，如果链接的App未安装，则先跳转到应用中心或AppStore提示安装App。
+Universal Link，iOS9上提供了">
+<meta property="og:updated_time" content="2017-01-24T08:52:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="李传格的博客">
-<meta name="twitter:description" content="iOS视图编程
-布局
-渲染
-层次
-跟CALayer交互
-事件
-动画
-
-参考文档：View Programming Guide for iOS">
+<meta name="twitter:title" content="Deep Linking">
+<meta name="twitter:description" content="概念理解
+Deep Link深度链接，打破APP沙盒壁垒，链接到App内具体的内容。另外，iOS9 CoreSpotlight.framework提供了些APP内容搜索的API，也可以认为是深度链接。
+Defferred Deep Link延迟深度链接，在深度链接基础上改进，如果链接的App未安装，则先跳转到应用中心或AppStore提示安装App。
+Universal Link，iOS9上提供了">
   
     <link rel="alternate" href="/atom.xml" title="李传格的博客" type="application/atom+xml">
   
@@ -87,38 +72,71 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-DeepLink&amp;UniversalLink" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/files/iOS视图编程.html" class="article-date">
-  <time datetime="2017-01-24T05:19:58.000Z" itemprop="datePublished">2017-01-24</time>
+    <a href="/2016/04/12/DeepLink&UniversalLink/" class="article-date">
+  <time datetime="2016-04-11T16:00:00.000Z" itemprop="datePublished">2016-04-12</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Deep Linking
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="iOS视图编程"><a href="#iOS视图编程" class="headerlink" title="iOS视图编程"></a>iOS视图编程</h3><ul>
-<li>布局</li>
-<li>渲染</li>
-<li>层次</li>
-<li>跟CALayer交互</li>
-<li>事件</li>
-<li>动画</li>
+        <h3 id="概念理解"><a href="#概念理解" class="headerlink" title="概念理解"></a>概念理解</h3><ul>
+<li><code>Deep Link</code>深度链接，打破APP沙盒壁垒，链接到App内具体的内容。另外，iOS9 <code>CoreSpotlight.framework</code>提供了些APP内容搜索的API，也可以认为是深度链接。</li>
+<li><code>Defferred Deep Link</code>延迟深度链接，在深度链接基础上改进，如果链接的App未安装，则先跳转到应用中心或AppStore提示安装App。</li>
+<li><code>Universal Link</code>，iOS9上提供了Associated－Domain关联域名，用于在网页或App内唤起其他App。<a href="http://www.jianshu.com/p/16374288c976" target="_blank" rel="external">Universal Links通用链接应用跳转总结以及坑</a></li>
+<li><code>Custom URL Scheme</code>，iOS提供的App间跳转的协议。</li>
 </ul>
-<p>参考文档：View Programming Guide for iOS</p>
+<h3 id="产品"><a href="#产品" class="headerlink" title="产品"></a>产品</h3><ul>
+<li><a href="http://deepshare.io/deeplink/" target="_blank" rel="external">DeepShare</a></li>
+</ul>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="http://www.cocoachina.com/ios/20160105/14871.html" target="_blank" rel="external">iOS 中的 Deferred Deep Linking</a></li>
+<li><a href="http://www.csdn.net/article/2015-07-16/2825222-search-apis" target="_blank" rel="external">实战iOS 9：开发者必须掌握的三种搜索API</a></li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jacoli.github.io/files/iOS视图编程.html" data-id="ciyb2tc2o0008ov5orahi3m8d" class="article-share-link">Partager</a>
+      <a data-url="https://jacoli.github.io/2016/04/12/DeepLink&UniversalLink/" data-id="ciybaafj4000bug5o30k544nh" class="article-share-link">Partager</a>
       
       
     </footer>
   </div>
   
     
+<nav id="article-nav">
+  
+    <a href="/2016/04/12/iOS学习导图/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          iOS学习导图
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/09/16/iOS Touch事件处理流程/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">iOS Touch事件处理流程</div>
+    </a>
+  
+</nav>
+
   
 </article>
 

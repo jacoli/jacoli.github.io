@@ -3,48 +3,92 @@
 <head>
   <meta charset="utf-8">
   
-  <title>iOS Touch事件处理流程 | 李传格的博客</title>
+  <title>iOS学习导图 | 李传格的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="概述
-本文简单地梳理下Touch事件的处理流程。
+  <meta name="description" content="本文简单罗列了下iOS相关的点。
+基础
 
-参考文档：Event Handling Guide for iOS
+Runloop
 
-Touch事件流程可以分成，找第一响应和事件传递处理。
+深入理解RunLoop
 
+多线程&amp;amp;同步
 
-Hit-Test找第一响应视图
-用户在屏幕上的点击、滑动等都会转换成Touch事件，并加到待处理队列。
-接着，RunLoop设置的回调__CFRUNLOOP_IS_CALLING_OUT_TO_A_SOURCE0_PE">
+iOS多线程编程指南
+
+Core Animation
+
+CoreAnimation编程指南
+Core Animation编程指南iOS-Core-Animation-Advanced-Techniques
+
+Block
+
+Block介绍
+
+GCD
+
+GCD入门
+
+Core Foundat">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS Touch事件处理流程">
-<meta property="og:url" content="https://jacoli.github.io/2015/09/16/iOS Touch事件处理流程/index.html">
+<meta property="og:title" content="iOS学习导图">
+<meta property="og:url" content="https://jacoli.github.io/2016/04/12/iOS学习导图/index.html">
 <meta property="og:site_name" content="李传格的博客">
-<meta property="og:description" content="概述
-本文简单地梳理下Touch事件的处理流程。
+<meta property="og:description" content="本文简单罗列了下iOS相关的点。
+基础
 
-参考文档：Event Handling Guide for iOS
+Runloop
 
-Touch事件流程可以分成，找第一响应和事件传递处理。
+深入理解RunLoop
 
+多线程&amp;amp;同步
 
-Hit-Test找第一响应视图
-用户在屏幕上的点击、滑动等都会转换成Touch事件，并加到待处理队列。
-接着，RunLoop设置的回调__CFRUNLOOP_IS_CALLING_OUT_TO_A_SOURCE0_PE">
-<meta property="og:updated_time" content="2017-01-24T07:24:40.000Z">
+iOS多线程编程指南
+
+Core Animation
+
+CoreAnimation编程指南
+Core Animation编程指南iOS-Core-Animation-Advanced-Techniques
+
+Block
+
+Block介绍
+
+GCD
+
+GCD入门
+
+Core Foundat">
+<meta property="og:image" content="https://jacoli.github.io/images/iOS应用开发基础.png">
+<meta property="og:updated_time" content="2017-01-24T08:52:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS Touch事件处理流程">
-<meta name="twitter:description" content="概述
-本文简单地梳理下Touch事件的处理流程。
+<meta name="twitter:title" content="iOS学习导图">
+<meta name="twitter:description" content="本文简单罗列了下iOS相关的点。
+基础
 
-参考文档：Event Handling Guide for iOS
+Runloop
 
-Touch事件流程可以分成，找第一响应和事件传递处理。
+深入理解RunLoop
 
+多线程&amp;amp;同步
 
-Hit-Test找第一响应视图
-用户在屏幕上的点击、滑动等都会转换成Touch事件，并加到待处理队列。
-接着，RunLoop设置的回调__CFRUNLOOP_IS_CALLING_OUT_TO_A_SOURCE0_PE">
+iOS多线程编程指南
+
+Core Animation
+
+CoreAnimation编程指南
+Core Animation编程指南iOS-Core-Animation-Advanced-Techniques
+
+Block
+
+Block介绍
+
+GCD
+
+GCD入门
+
+Core Foundat">
+<meta name="twitter:image" content="https://jacoli.github.io/images/iOS应用开发基础.png">
   
     <link rel="alternate" href="/atom.xml" title="李传格的博客" type="application/atom+xml">
   
@@ -93,10 +137,10 @@ Hit-Test找第一响应视图
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-iOS Touch事件处理流程" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-iOS学习导图" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/09/16/iOS Touch事件处理流程/" class="article-date">
-  <time datetime="2015-09-16T15:07:56.000Z" itemprop="datePublished">2015-09-16</time>
+    <a href="/2016/04/12/iOS学习导图/" class="article-date">
+  <time datetime="2016-04-11T16:00:00.000Z" itemprop="datePublished">2016-04-12</time>
 </a>
     
   </div>
@@ -107,7 +151,7 @@ Hit-Test找第一响应视图
         
   
     <h1 class="article-title" itemprop="name">
-      iOS Touch事件处理流程
+      iOS学习导图
     </h1>
   
 
@@ -115,32 +159,48 @@ Hit-Test找第一响应视图
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ul>
-<li><p>本文简单地梳理下Touch事件的处理流程。</p>
+        <p> 本文简单罗列了下iOS相关的点。</p>
+<h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><p><img src="/images/iOS应用开发基础.png" alt=""></p>
+<ul>
+<li>Runloop</li>
+</ul>
+<p><a href="http://blog.ibireme.com/2015/05/18/runloop/" target="_blank" rel="external">深入理解RunLoop</a></p>
+<ul>
+<li>多线程&amp;同步</li>
+</ul>
+<p><a href="http://www.dreamingwish.com/article/ios-multi-threaded-programming-a-multi-threaded-programming.html" target="_blank" rel="external">iOS多线程编程指南</a></p>
+<ul>
+<li>Core Animation</li>
+</ul>
+<p><a href="http://www.dreamingwish.com/article/coreanimation-programming-guide-summary.html" target="_blank" rel="external">CoreAnimation编程指南</a></p>
+<p><a href="http://www.cnblogs.com/xdream86/p/3250782.html" target="_blank" rel="external">Core Animation编程指南</a><br><a href="http://www.cocoachina.com/ios/20150104/10814.html" target="_blank" rel="external">iOS-Core-Animation-Advanced-Techniques</a></p>
+<ul>
+<li>Block</li>
+</ul>
+<p><a href="http://www.dreamingwish.com/article/block%E4%BB%8B%E7%BB%8D%EF%BC%88%E4%B8%80%EF%BC%89%E5%9F%BA%E7%A1%80.html" target="_blank" rel="external">Block介绍</a></p>
+<ul>
+<li>GCD</li>
+</ul>
+<p><a href="http://www.dreamingwish.com/article/grand-central-dispatch-basic-1.html" target="_blank" rel="external">GCD入门</a></p>
+<ul>
+<li>Core Foundation</li>
+</ul>
+<p><a href="http://opensource.apple.com/tarballs/CF/" target="_blank" rel="external">Core Foundation源码</a></p>
+<h3 id="应用优化"><a href="#应用优化" class="headerlink" title="应用优化"></a>应用优化</h3><ul>
+<li><p><a href="http://blog.ibireme.com/2015/11/12/smooth_user_interfaces_for_ios/" target="_blank" rel="external">iOS 保持界面流畅的技巧</a></p>
 </li>
-<li><p>参考文档：<a href="https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Introduction/Introduction.html" target="_blank" rel="external">Event Handling Guide for iOS</a></p>
+<li><p><a href="http://www.cocoachina.com/ios/20150429/11712.html" target="_blank" rel="external">WWDC心得与延伸:iOS图形性能</a></p>
 </li>
-<li><p>Touch事件流程可以分成，找第一响应和事件传递处理。</p>
+<li><p><a href="http://www.cocoachina.com/ios/20151203/14549.html" target="_blank" rel="external">iOS 事件处理机制与图像渲染过程</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s?__biz=MzAwNDY1ODY2OQ==&amp;mid=207890859&amp;idx=1&amp;sn=e98dd604cdb854e7a5808d2072c29162&amp;scene=1&amp;srcid=1119D98cPepPAys5UJjzKkFU&amp;key=d72a47206eca0ea99e5bfedd27c4e1979bafb09babd40343f279933377d574eeac88cdf63260b257d9bf187a90b30d1b&amp;ascene=0&amp;uin=NDEzMTA2OTc1&amp;devicetype=iMac+MacBookPro11%2C2+OSX+OSX+10.11+build(15A284" target="_blank" rel="external">微信iOS卡顿监控系统</a>&amp;version=11020201&amp;pass_ticket=WqTD03t23%2Fz4yjGdIgJ7hHJdRAUd2Xh4DPQpswxoclHSqzbaxr%2B%2F%2B16u%2Fg0PXgMQ)</p>
 </li>
 </ul>
-<h3 id="Hit-Test找第一响应视图"><a href="#Hit-Test找第一响应视图" class="headerlink" title="Hit-Test找第一响应视图"></a>Hit-Test找第一响应视图</h3><ol>
-<li>用户在屏幕上的点击、滑动等都会转换成Touch事件，并加到待处理队列。</li>
-<li>接着，RunLoop设置的回调<code>__CFRUNLOOP_IS_CALLING_OUT_TO_A_SOURCE0_PERFORM_FUNCTION__</code>被触发，然后由<code>_UIApplicationHandleEventQueue</code>从待处理队列取出事件并分发给<code>UIApplication</code>。</li>
-<li><code>-[UIApplication sendEvent:]</code>分发事件到<code>UIWindow</code>。</li>
-<li><code>UIWindow</code>先通过<code>hit-test</code>递归找出第一响应的视图，然后再从第一响应视图开始处理该事件。这里可以重载这两个函数改变第一响应视图的查找，<code>- [pointInside:withEvent:]</code>，<code>-[hitTest:withEvent:]</code>。</li>
-</ol>
-<h3 id="基于响应链的事件传递"><a href="#基于响应链的事件传递" class="headerlink" title="基于响应链的事件传递"></a>基于响应链的事件传递</h3><ol>
-<li>第一响应视图通过重载以下几个方法<code>-[touchesBegan:withEvent:]</code>，<code>-[touchesMoved:withEvent:]</code>，<code>-[touchesEnded:withEvent:]</code>开始处理touch事件。</li>
-<li>如果第一响应视图上存在Gesture，则Gesture也会收到touch事件并将自己置为<code>UIGestureRecognizerStatePossible</code>状态。</li>
-<li>Gesture识别到对应手势后，则切换到<code>UIGestureRecognizerStateBegan</code>状态，并cancel掉第一响应视图的事件处理<code>-[touchesCancelled:withEvent:]</code>。</li>
-<li>如果存在多个Gesture都在识别手势，则可以通过Gesture的属性和委托处理多个Gesture的协同问题。</li>
-<li>如果第一响应视图没有处理，则事件沿着响应链继续传递。（默认的响应链是当前视图-&gt;父视图-&gt;当前视图控制器-&gt;<code>UIWindow</code>-&gt;<code>UIApplication</code>）</li>
-</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jacoli.github.io/2015/09/16/iOS Touch事件处理流程/" data-id="ciyb3cp1f0004lo5op9u3vlkh" class="article-share-link">Partager</a>
+      <a data-url="https://jacoli.github.io/2016/04/12/iOS学习导图/" data-id="ciybaasyg000cug5oddtk1yeg" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -149,19 +209,19 @@ Hit-Test找第一响应视图
     
 <nav id="article-nav">
   
-    <a href="/2016/04/12/DeepLink&UniversalLink/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/04/27/iOS设备ID/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Récent</strong>
       <div class="article-nav-title">
         
-          Deep Linking
+          iOS设备ID
         
       </div>
     </a>
   
   
-    <a href="/2014/04/09/OC-Runtime-6-Load&Initialize/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/04/12/DeepLink&UniversalLink/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Ancien</strong>
-      <div class="article-nav-title">OC Runtime(6)之Load&amp;Initialize</div>
+      <div class="article-nav-title">Deep Linking</div>
     </a>
   
 </nav>
