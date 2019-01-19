@@ -4,7 +4,7 @@
   <title><![CDATA[李传格的博客]]></title>
   <link href="https://jacoli.github.io/atom.xml" rel="self"/>
   <link href="https://jacoli.github.io/"/>
-  <updated>2019-01-19T22:43:50+08:00</updated>
+  <updated>2019-01-19T22:59:45+08:00</updated>
   <id>https://jacoli.github.io/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -13,16 +13,66 @@
   <generator uri="http://www.mweb.im/">MWeb</generator>
   
   <entry>
-    <title type="html"><![CDATA[---]]></title>
+    <title type="html"><![CDATA[移动安全相关]]></title>
+    <link href="https://jacoli.github.io/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8%E7%9B%B8%E5%85%B3.html"/>
+    <updated>2019-01-19T21:49:31+08:00</updated>
+    <id>https://jacoli.github.io/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8%E7%9B%B8%E5%85%B3.html</id>
+    <content type="html"><![CDATA[
+<h3 id="toc_0">相关博文</h3>
+
+<ul>
+<li><a href="http://security.ios-wiki.com/">ios-security</a></li>
+<li><a href="http://drops.wooyun.org/papers/345">在线支付逻辑漏洞总结</a></li>
+<li><a href="https://program-think.blogspot.com/2013/02/file-integrity-check.html?utm_source=tuicool&amp;utm_medium=referral">扫盲文件完整性校验——关于散列值和数字签名</a></li>
+<li><a href="https://program-think.blogspot.com/2010/02/introduce-digital-certificate-and-ca.html">数字证书及 CA 的扫盲介绍</a></li>
+<li><a href="http://www.techug.com/https-ssl-tls">https-ssl-tls</a></li>
+</ul>
+
+<h3 id="toc_1">安全检查项</h3>
+
+<ul>
+<li>移动App上关键数据（密码、个人信息等）在存储、传输等各个阶段需要做一定的安全保护。下图罗列了常见的检查项。
+<img src="media/15479057717084/app_security_checks.png" alt="app_security_checks"/></li>
+</ul>
+
+<h3 id="toc_2">传输安全</h3>
+
+<ul>
+<li><p>保密性，消息是加密的，内容没有泄露，可以用对称加密算法进行加解密，如AES256。</p></li>
+<li><p>完整性，消息是完整的，内容没有被篡改，对消息做哈希得到摘要，作为消息的签名。哈希算法有SHA256等，MD5、SHA1已经不太安全，尽量用SHA256等相对安全的算法。</p></li>
+<li><p>真实性，消息是可靠的，内容来自受信的来源，验证来源的数字证书是否可靠。</p></li>
+</ul>
+
+<h3 id="toc_3">常见工具</h3>
+
+<ul>
+<li><p>class-dump-z<br/>
+一个跨平台的 Objective-C 接口提取器,用于分析 iPhoneOS 可执行文件中私有的 API。需 通过 Cydia 安装。</p></li>
+<li><p>darwin cc tools (otools) 一个开源的苹果程序编译和连接器。需通过 Cydia 安装。</p></li>
+<li><p>HTTP代理抓包工具(Fiddler)</p></li>
+<li><p>Plist文件查看器(plistEditor) </p></li>
+<li><p>iOS内存修改工具(iGameGuard) </p></li>
+<li><p>内购破解工具(LocalIAPStore、iAPFree) </p></li>
+<li><p>keychain-dumper<br/>
+该工具可以读取已越狱 IOS 设备中的 keychain。需通过 Cydia 安装。 </p></li>
+<li><p>Link Identity Editor (ldid)<br/>
+该工具可以协助测试人员修改 Mach-O 二进制文件的签名信息。需通过 Cydia 安装。 </p></li>
+<li><p>OpenSSH<br/>
+OpenSSH 是 Linux 下常用的服务,装上后设备可充当 SSH 服务端。需通过 Cydia 安装。 </p></li>
+<li><p>Snoop-it<br/>
+IOS APP 安全评估工具。可对 APP 进行静态、动态分析。需通过 Cydia 安装。</p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[模式和架构]]></title>
     <link href="https://jacoli.github.io/15479057717214.html"/>
     <updated>2019-01-19T21:49:31+08:00</updated>
     <id>https://jacoli.github.io/15479057717214.html</id>
     <content type="html"><![CDATA[
-<p>title: 模式和架构</p>
-
-<h2 id="toc_0">date: 2016-05-03</h2>
-
-<h3 id="toc_1">编程模式</h3>
+<h3 id="toc_0">编程模式</h3>
 
 <ul>
 <li>函数式编程 vs 面向对象编程</li>
@@ -30,7 +80,7 @@
 <li>promise</li>
 </ul>
 
-<h3 id="toc_2">架构、框架、设计模式：</h3>
+<h3 id="toc_1">架构、框架、设计模式：</h3>
 
 <ul>
 <li>1、架构属于顶层的设计，划分软件或解决方案的整体结构，倾向于抽象，常见的有分层架构、事件驱动架构、微内核架构、微服务架构等。</li>
@@ -38,7 +88,7 @@
 <li>3、设计模式应该是更细力度的代码层级的复用、可维护性、可扩展性的设计。</li>
 </ul>
 
-<h3 id="toc_3">设计模式：</h3>
+<h3 id="toc_2">设计模式：</h3>
 
 <ul>
 <li>1、基于某种具体场景，代码组织结构或交互行为的设计方法，使得代码更易于复用、维护、扩展。</li>
@@ -48,7 +98,7 @@
 <li>5、行为型:解释器、模版方法、责任链、命令、迭代器、中介者、memento、观察者、状态、策略、访问者等。</li>
 </ul>
 
-<h3 id="toc_4">相关文章</h3>
+<h3 id="toc_3">相关文章</h3>
 
 <p><a href="http://www.cnblogs.com/beijiguangyong/archive/2010/11/15/2302807.html#_Toc281750445">23种设计模式</a></p>
 
@@ -95,65 +145,6 @@
   29、系统架构师-基础到企业应用架构-完整的架构方案实例[下篇]
   30、系统架构师-基础到企业应用架构-总结及后续
 </code></pre>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[---]]></title>
-    <link href="https://jacoli.github.io/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8%E7%9B%B8%E5%85%B3.html"/>
-    <updated>2019-01-19T21:49:31+08:00</updated>
-    <id>https://jacoli.github.io/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8%E7%9B%B8%E5%85%B3.html</id>
-    <content type="html"><![CDATA[
-<p>title: 移动安全相关</p>
-
-<h2 id="toc_0">date: 2016-05-04</h2>
-
-<h3 id="toc_1">相关博文</h3>
-
-<ul>
-<li><a href="http://security.ios-wiki.com/">ios-security</a></li>
-<li><a href="http://drops.wooyun.org/papers/345">在线支付逻辑漏洞总结</a></li>
-<li><a href="https://program-think.blogspot.com/2013/02/file-integrity-check.html?utm_source=tuicool&amp;utm_medium=referral">扫盲文件完整性校验——关于散列值和数字签名</a></li>
-<li><a href="https://program-think.blogspot.com/2010/02/introduce-digital-certificate-and-ca.html">数字证书及 CA 的扫盲介绍</a></li>
-<li><a href="http://www.techug.com/https-ssl-tls">https-ssl-tls</a></li>
-</ul>
-
-<h3 id="toc_2">安全检查项</h3>
-
-<ul>
-<li>移动App上关键数据（密码、个人信息等）在存储、传输等各个阶段需要做一定的安全保护。下图罗列了常见的检查项。</li>
-</ul>
-
-<p><img src="/images/app_security_checks.png" alt="app安全"/></p>
-
-<h3 id="toc_3">传输安全</h3>
-
-<ul>
-<li><p>保密性，消息是加密的，内容没有泄露，可以用对称加密算法进行加解密，如AES256。</p></li>
-<li><p>完整性，消息是完整的，内容没有被篡改，对消息做哈希得到摘要，作为消息的签名。哈希算法有SHA256等，MD5、SHA1已经不太安全，尽量用SHA256等相对安全的算法。</p></li>
-<li><p>真实性，消息是可靠的，内容来自受信的来源，验证来源的数字证书是否可靠。</p></li>
-</ul>
-
-<h3 id="toc_4">常见工具</h3>
-
-<ul>
-<li><p>class-dump-z<br/>
-一个跨平台的 Objective-C 接口提取器,用于分析 iPhoneOS 可执行文件中私有的 API。需 通过 Cydia 安装。</p></li>
-<li><p>darwin cc tools (otools) 一个开源的苹果程序编译和连接器。需通过 Cydia 安装。</p></li>
-<li><p>HTTP代理抓包工具(Fiddler)</p></li>
-<li><p>Plist文件查看器(plistEditor) </p></li>
-<li><p>iOS内存修改工具(iGameGuard) </p></li>
-<li><p>内购破解工具(LocalIAPStore、iAPFree) </p></li>
-<li><p>keychain-dumper<br/>
-该工具可以读取已越狱 IOS 设备中的 keychain。需通过 Cydia 安装。 </p></li>
-<li><p>Link Identity Editor (ldid)<br/>
-该工具可以协助测试人员修改 Mach-O 二进制文件的签名信息。需通过 Cydia 安装。 </p></li>
-<li><p>OpenSSH<br/>
-OpenSSH 是 Linux 下常用的服务,装上后设备可充当 SSH 服务端。需通过 Cydia 安装。 </p></li>
-<li><p>Snoop-it<br/>
-IOS APP 安全评估工具。可对 APP 进行静态、动态分析。需通过 Cydia 安装。</p></li>
-</ul>
 
 ]]></content>
   </entry>
