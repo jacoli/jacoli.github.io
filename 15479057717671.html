@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  Archives - 李传格的博客
+  iOS程序生命周期 - 李传格的博客
   
   </title>
   
@@ -90,98 +90,83 @@
 
  <script type="text/javascript">
   $(function(){
-    $('#menu_item_archives').addClass('is_active');
+    $('#menu_item_index').addClass('is_active');
   });
 </script>
 <div class="row">
   <div class="large-8 medium-8 columns">
-    <div id="archives-page-wrap">
-        <h1>Archives</h1>
-        <div class="markdown-body archives-wrap">
+      <div class="markdown-body article-wrap">
+       <div class="article">
           
-             
-                <h1>2016</h1>
-            
-            <div class="article">
-              <a class="clearlink" href="15479057717732.html">
-                <h1>iOS学习导图</h1>
-              </a>
-              <div class="read-more clearfix">
-                <span class="date">2016/6/19</span>
-                
-                 
-              </div>
-            </div><!-- article -->
+          <h1>iOS程序生命周期</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2016/4/27</span>
 
           
-            
-            <div class="article">
-              <a class="clearlink" href="%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8.html">
-                <h1>移动安全</h1>
-              </a>
-              <div class="read-more clearfix">
-                <span class="date">2016/5/4</span>
-                
-                 
-              </div>
-            </div><!-- article -->
-
-          
-            
-            <div class="article">
-              <a class="clearlink" href="15479057717149.html">
-                <h1>移动三方应用分享</h1>
-              </a>
-              <div class="read-more clearfix">
-                <span class="date">2016/5/3</span>
-                
-                 
-              </div>
-            </div><!-- article -->
-
-          
-            
-            <div class="article">
-              <a class="clearlink" href="15479057717214.html">
-                <h1>模式和架构</h1>
-              </a>
-              <div class="read-more clearfix">
-                <span class="date">2016/5/3</span>
-                
-                 
-              </div>
-            </div><!-- article -->
-
-          
-            
-            <div class="article">
-              <a class="clearlink" href="15479057717614.html">
-                <h1>iOS设备ID</h1>
-              </a>
-              <div class="read-more clearfix">
-                <span class="date">2016/4/27</span>
-                
-                 
-              </div>
-            </div><!-- article -->
-
-          
-            
-            <div class="article">
-              <a class="clearlink" href="15479057717671.html">
-                <h1>iOS程序生命周期</h1>
-              </a>
-              <div class="read-more clearfix">
-                <span class="date">2016/4/27</span>
-                
-                 
-              </div>
-            </div><!-- article -->
-
            
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <h3 id="toc_0">程序的生命周期</h3>
+
+<ul>
+<li><p>程序的生命周期，包含非运行、非激活、激活、后台、挂起五个状态</p></li>
+<li><p>状态间切换都会有响应的回调和通知</p></li>
+<li><p>程序挂起状态将接收不到Terminate通知，因此进入后台，能够处理程序随时被结束。 applicationWillTerminate:—Lets you know that your app is being terminated. This method is not called if your app is suspended.</p></li>
+</ul>
+
+<h3 id="toc_1">程序如何在后台运行</h3>
+
+<ul>
+<li>1、短时间运行，进入后台后，可以调用beginBackgroundTaskWithName方法启动有限时间的任务。</li>
+<li>2、NSURLSession支持后台下载。</li>
+<li>3、长时间运行，支持以下几种模式，音频及视频（airplay）播放、更新定位、VOIP、下载Newsstand、外部附件、蓝牙、push，在info.plist添加相应配置，代码中引入相应的framework并调用相应接口。</li>
+<li>调用application:performFetchWithCompletionHandler: 在后台获取少量数据。</li>
+</ul>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15479057717614.html" 
+          title="Previous Post: iOS设备ID">&laquo; iOS设备ID</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+      </p>
         </div>
       </div>
-  </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
 
  <div class="large-4 medium-4 columns">
   <div class="hide-for-small">

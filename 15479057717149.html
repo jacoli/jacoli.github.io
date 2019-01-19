@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  模式和架构 - 李传格的博客
+  移动三方应用分享 - 李传格的博客
   
   </title>
   
@@ -98,7 +98,7 @@
       <div class="markdown-body article-wrap">
        <div class="article">
           
-          <h1>模式和架构</h1>
+          <h1>移动三方应用分享</h1>
      
         <div class="read-more clearfix">
           <span class="date">2016/5/3</span>
@@ -116,79 +116,107 @@
       </div><!-- article -->
 
       <div class="article-content">
-      <h3 id="toc_0">编程模式</h3>
+      <h3 id="toc_0">iOS原生分享控件</h3>
 
-<ul>
-<li>函数式编程 vs 面向对象编程</li>
-<li>响应式编程 vs 命令式编程</li>
-<li>promise</li>
-</ul>
-
-<h3 id="toc_1">架构、框架、设计模式：</h3>
-
-<ul>
-<li>1、架构属于顶层的设计，划分软件或解决方案的整体结构，倾向于抽象，常见的有分层架构、事件驱动架构、微内核架构、微服务架构等。</li>
-<li>2、框架类似于提供工具库或类库，倾向于实现。</li>
-<li>3、设计模式应该是更细力度的代码层级的复用、可维护性、可扩展性的设计。</li>
-</ul>
-
-<h3 id="toc_2">设计模式：</h3>
-
-<ul>
-<li>1、基于某种具体场景，代码组织结构或交互行为的设计方法，使得代码更易于复用、维护、扩展。</li>
-<li>2、基本的6个原则：开闭原则、里氏替换原则、依赖倒置原则、接口隔离原则、单一职责原则、最少知识原则。</li>
-<li>3、创建型模式：工厂方法、抽象工厂、原型、单例、builder</li>
-<li>4、结构型:适配器、组合、桥接、decorator、facade、享元、proxy</li>
-<li>5、行为型:解释器、模版方法、责任链、命令、迭代器、中介者、memento、观察者、状态、策略、访问者等。</li>
-</ul>
-
-<h3 id="toc_3">相关文章</h3>
-
-<p><a href="http://www.cnblogs.com/beijiguangyong/archive/2010/11/15/2302807.html#_Toc281750445">23种设计模式</a></p>
-
-<p><a href="http://www.cnblogs.com/hegezhou_hot/archive/2010/10/08/1846200.html">系统架构师</a></p>
-
-<p>前篇</p>
-
-<pre><code class="language-text">  1、系统架构师-基础到企业应用架构系列之--开卷有益
-  2、系统架构师-基础到企业应用架构-系统建模[上篇]
-  3、系统架构师-基础到企业应用架构-系统建模[中篇](上)
-  4、系统架构师-基础到企业应用架构-系统建模[中篇](下)
-  5、系统架构师-基础到企业应用架构-系统建模[下篇]
-  6、系统架构师-基础到企业应用架构-系统设计规范与原则[上篇]
-  7、系统架构师-基础到企业应用架构-系统设计规范与原则[下篇]
-  8、系统架构师-基础到企业应用架构-设计模式[上篇]
-  9、系统架构师-基础到企业应用架构-设计模式[中篇]
-  10、系统架构师-基础到企业应用架构-设计模式[下篇]
+<pre><code class="language-text">    NSString *textToShare = @&quot;要分享的文本内容&quot;;
+    UIImage *imageToShare = [UIImage imageNamed:@&quot;shop&quot;];
+    NSURL *urlToShare = [NSURL URLWithString:@&quot;http://blog.csdn.net/hitwhylz&quot;];
+    NSArray *activityItems = @[textToShare, imageToShare, urlToShare];
+    
+    UIActivityViewController *vc = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];
+    [self presentViewController:vc animated:YES completion:nil];
 </code></pre>
 
-<p>中篇</p>
+<h3 id="toc_1">三方开放平台</h3>
 
-<pre><code class="language-text">  11、系统架构师-基础到企业应用架构-企业应用架构
-  12、系统架构师-基础到企业应用架构-分层[上篇]
-  13、系统架构师-基础到企业应用架构-分层[中篇]
-  14、系统架构师-基础到企业应用架构-分层[下篇]
-  15、系统架构师-基础到企业应用架构-表现层
-  16、系统架构师-基础到企业应用架构-服务层
-  17、系统架构师-基础到企业应用架构-业务逻辑层
-  18、系统架构师-基础到企业应用架构-数据访问层
-  19、系统架构师-基础到企业应用架构-组件服务
-  20、系统架构师-基础到企业应用架构-安全机制
+<ul>
+<li>新浪微博 <a href="http://open.weibo.com">http://open.weibo.com</a></li>
+<li>腾讯微博 <a href="http://dev.t.qq.com">http://dev.t.qq.com</a></li>
+<li>QQ空间，朋友网 <a href="http://connect.qq.com/intro/login/">http://connect.qq.com/intro/login/</a></li>
+<li>QQ分享（QQ好友，QQ群等）<a href="http://mobile.qq.com/api/">http://mobile.qq.com/api/</a></li>
+<li>豆瓣社区 <a href="http://developers.douban.com">http://developers.douban.com</a></li>
+<li>人人网 <a href="http://dev.renren.com">http://dev.renren.com</a></li>
+<li>微信好友 微信朋友圈 <a href="http://open.weixin.qq.com">http://open.weixin.qq.com</a></li>
+<li><a href="http://mobile.umeng.com/social?spm=0.0.0.0.lW5N4c">友盟U-Share</a></li>
+<li>用过友盟Share，但是遇到友盟ShareSDK中使用的微信SDK版本与官方不同步的问题，后来放弃了友盟ShareSDK，全部采用原生官方SDK，如微信（好友、朋友圈）、QQ、微博，在国内，这三个分享渠道已经能覆盖80%了。</li>
+</ul>
+
+<h3 id="toc_2">URL Schemes</h3>
+
+<ul>
+<li>iOS应用间可以通过<code>URL Schemes</code>解决相互通信的问题。</li>
+<li>DemoA通过<code>openURL</code>唤起DemoB，并带上参数。</li>
+</ul>
+
+<pre><code class="language-text">DemoA
+
+[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@&quot;demob://page?sourcescheme=demoa&quot;]];
 </code></pre>
 
-<p>后篇</p>
+<ul>
+<li>DemoB收到并解析参数并作逻辑处理，然后同样通过<code>openURL</code>返回到DemoA，并带上参数。</li>
+</ul>
 
-<pre><code class="language-text">  21、单机应用、客户端/服务器、多服务、企业数据总线全解析
-  22、系统架构师-基础到企业应用架构-单机应用(实例及demo)
-  23、系统架构师-基础到企业应用架构-客户端/服务器(实例及demo)
-  24、系统架构师-基础到企业应用架构-多服务(实例及demo)
-  25、系统架构师-基础到企业应用架构-企业数据总线(实例及demo)
-  26、系统架构师-基础到企业应用架构-性能优化(架构瓶颈)
-  27、系统架构师-基础到企业应用架构-完整的架构方案实例[上篇]
-  28、系统架构师-基础到企业应用架构-完整的架构方案实例[中篇]
-  29、系统架构师-基础到企业应用架构-完整的架构方案实例[下篇]
-  30、系统架构师-基础到企业应用架构-总结及后续
+<pre><code class="language-text">DemoB
+
+- (BOOL)handleUrl:(NSURL *)url {
+    NSArray *querys = [url.query componentsSeparatedByString:@&quot;&amp;&quot;];
+    
+    NSMutableDictionary *queryDict = [[NSMutableDictionary alloc] init];
+    for (NSString *q in querys) {
+        NSArray *kv = [q componentsSeparatedByString:@&quot;=&quot;];
+        if (kv.count == 2) {
+            queryDict[kv[0]] = kv[1];
+        }
+    }
+    
+    NSString *returnScheme = queryDict[@&quot;sourcescheme&quot;];
+    
+    UIAlertController *vc = [UIAlertController alertControllerWithTitle:@&quot;url&quot;
+                                                                message:url.absoluteString
+                                                         preferredStyle:UIAlertControllerStyleAlert];
+    [vc addAction:[UIAlertAction actionWithTitle:@&quot;返回原应用&quot;
+                                           style:UIAlertActionStyleDefault
+                                         handler:^(UIAlertAction * _Nonnull action) {
+                                             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@&quot;%@://&quot;, returnScheme]]];
+                                         }]];
+    
+    [vc addAction:[UIAlertAction actionWithTitle:@&quot;留在当前应用&quot;
+                                           style:UIAlertActionStyleCancel
+                                         handler:^(UIAlertAction * _Nonnull action) {
+                                         }]];
+    
+    [self.window.rootViewController presentViewController:vc animated:YES completion:nil];
+    
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url NS_DEPRECATED_IOS(2_0, 9_0, &quot;Please use application:openURL:options:&quot;) __TVOS_PROHIBITED {
+    return [self handleUrl:url];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation NS_DEPRECATED_IOS(4_2, 9_0, &quot;Please use application:openURL:options:&quot;) __TVOS_PROHIBITED {
+    return [self handleUrl:url];
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary&lt;NSString*, id&gt; *)options NS_AVAILABLE_IOS(9_0) {
+    return [self handleUrl:url];
+
+}
 </code></pre>
+
+<p><img src="media/15479057717149/urlschemedemo.png" alt="urlschemedemo"/></p>
+
+<p><img src="media/15479057717149/iosappsinteraction.png" alt="iosappsinteraction"/></p>
+
+<h3 id="toc_3">三方分享或认证</h3>
+
+<ul>
+<li>三方应用分享或认证都会用到<code>URL Schemes</code>流程，实际过程和参数会更复杂点，还需要考虑安全性。</li>
+<li><p>如微信三方登录认证，除了三方应用通过URL Scheme跳转微信拿到code，再通过https请求微信后台拿到access_token，后续用https带上access_token可以请求各种资源。<br/>
+<img src="media/15479057717149/weixinlogin.png" alt="weixinlogin"/></p></li>
+<li><p>三方分享则是通过<code>URL Schemes</code>带上不同格式的数据（文本、图片、链接等）。</p></li>
+</ul>
 
 
     
@@ -199,16 +227,16 @@
         <div class="large-6 columns">
         <p class="text-left" style="padding:15px 0px;">
       
-          <a href="15479057717149.html" 
-          title="Previous Post: 移动三方应用分享">&laquo; 移动三方应用分享</a>
+          <a href="%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8.html" 
+          title="Previous Post: 移动安全">&laquo; 移动安全</a>
       
         </p>
         </div>
         <div class="large-6 columns">
       <p class="text-right" style="padding:15px 0px;">
       
-          <a  href="15479057717614.html" 
-          title="Next Post: iOS设备ID">iOS设备ID &raquo;</a>
+          <a  href="15479057717214.html" 
+          title="Next Post: 模式和架构">模式和架构 &raquo;</a>
       
       </p>
         </div>
