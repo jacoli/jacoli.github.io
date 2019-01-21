@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  模式和架构 - 李传格的博客
+  OC Runtime(2)之Ivar&Property&Method&Protocol - 李传格的博客
   
   </title>
   
@@ -98,10 +98,10 @@
       <div class="markdown-body article-wrap">
        <div class="article">
           
-          <h1>模式和架构</h1>
+          <h1>OC Runtime(2)之Ivar&Property&Method&Protocol</h1>
      
         <div class="read-more clearfix">
-          <span class="date">2016/5/3</span>
+          <span class="date">2014/3/12</span>
 
           
            
@@ -116,79 +116,102 @@
       </div><!-- article -->
 
       <div class="article-content">
-      <h3 id="toc_0">编程模式</h3>
+      <h3 id="toc_0">Ivar</h3>
 
-<ul>
-<li>函数式编程 vs 面向对象编程</li>
-<li>响应式编程 vs 命令式编程</li>
-<li>promise</li>
-</ul>
-
-<h3 id="toc_1">架构、框架、设计模式：</h3>
-
-<ul>
-<li>1、架构属于顶层的设计，划分软件或解决方案的整体结构，倾向于抽象，常见的有分层架构、事件驱动架构、微内核架构、微服务架构等。</li>
-<li>2、框架类似于提供工具库或类库，倾向于实现。</li>
-<li>3、设计模式应该是更细力度的代码层级的复用、可维护性、可扩展性的设计。</li>
-</ul>
-
-<h3 id="toc_2">设计模式：</h3>
-
-<ul>
-<li>1、基于某种具体场景，代码组织结构或交互行为的设计方法，使得代码更易于复用、维护、扩展。</li>
-<li>2、基本的6个原则：开闭原则、里氏替换原则、依赖倒置原则、接口隔离原则、单一职责原则、最少知识原则。</li>
-<li>3、创建型模式：工厂方法、抽象工厂、原型、单例、builder</li>
-<li>4、结构型:适配器、组合、桥接、decorator、facade、享元、proxy</li>
-<li>5、行为型:解释器、模版方法、责任链、命令、迭代器、中介者、memento、观察者、状态、策略、访问者等。</li>
-</ul>
-
-<h3 id="toc_3">相关文章</h3>
-
-<p><a href="http://www.cnblogs.com/beijiguangyong/archive/2010/11/15/2302807.html#_Toc281750445">23种设计模式</a></p>
-
-<p><a href="http://www.cnblogs.com/hegezhou_hot/archive/2010/10/08/1846200.html">系统架构师</a></p>
-
-<p>前篇</p>
-
-<pre><code class="language-text">  1、系统架构师-基础到企业应用架构系列之--开卷有益
-  2、系统架构师-基础到企业应用架构-系统建模[上篇]
-  3、系统架构师-基础到企业应用架构-系统建模[中篇](上)
-  4、系统架构师-基础到企业应用架构-系统建模[中篇](下)
-  5、系统架构师-基础到企业应用架构-系统建模[下篇]
-  6、系统架构师-基础到企业应用架构-系统设计规范与原则[上篇]
-  7、系统架构师-基础到企业应用架构-系统设计规范与原则[下篇]
-  8、系统架构师-基础到企业应用架构-设计模式[上篇]
-  9、系统架构师-基础到企业应用架构-设计模式[中篇]
-  10、系统架构师-基础到企业应用架构-设计模式[下篇]
+<pre><code class="language-text">struct old_ivar {
+    char *ivar_name;
+    char *ivar_type;
+    int ivar_offset;
+#ifdef __LP64__
+    int space;
+#endif
+};
 </code></pre>
 
-<p>中篇</p>
+<h3 id="toc_1">Property</h3>
 
-<pre><code class="language-text">  11、系统架构师-基础到企业应用架构-企业应用架构
-  12、系统架构师-基础到企业应用架构-分层[上篇]
-  13、系统架构师-基础到企业应用架构-分层[中篇]
-  14、系统架构师-基础到企业应用架构-分层[下篇]
-  15、系统架构师-基础到企业应用架构-表现层
-  16、系统架构师-基础到企业应用架构-服务层
-  17、系统架构师-基础到企业应用架构-业务逻辑层
-  18、系统架构师-基础到企业应用架构-数据访问层
-  19、系统架构师-基础到企业应用架构-组件服务
-  20、系统架构师-基础到企业应用架构-安全机制
+<pre><code class="language-text">struct old_property {
+    const char *name;
+    const char *attributes;
+};
 </code></pre>
 
-<p>后篇</p>
+<h3 id="toc_2">Method</h3>
 
-<pre><code class="language-text">  21、单机应用、客户端/服务器、多服务、企业数据总线全解析
-  22、系统架构师-基础到企业应用架构-单机应用(实例及demo)
-  23、系统架构师-基础到企业应用架构-客户端/服务器(实例及demo)
-  24、系统架构师-基础到企业应用架构-多服务(实例及demo)
-  25、系统架构师-基础到企业应用架构-企业数据总线(实例及demo)
-  26、系统架构师-基础到企业应用架构-性能优化(架构瓶颈)
-  27、系统架构师-基础到企业应用架构-完整的架构方案实例[上篇]
-  28、系统架构师-基础到企业应用架构-完整的架构方案实例[中篇]
-  29、系统架构师-基础到企业应用架构-完整的架构方案实例[下篇]
-  30、系统架构师-基础到企业应用架构-总结及后续
+<pre><code class="language-text">struct old_method {
+    SEL method_name;
+    char *method_types;
+    IMP method_imp;
+};
 </code></pre>
+
+<h3 id="toc_3">protocol</h3>
+
+<pre><code class="language-text">struct old_protocol {
+    Class isa;
+    const char *protocol_name;
+    struct old_protocol_list *protocol_list;
+    struct objc_method_description_list *instance_methods;
+    struct objc_method_description_list *class_methods;
+};
+</code></pre>
+
+<pre><code class="language-text">struct objc_method_description *
+lookup_protocol_method(old_protocol *proto, SEL aSel, 
+                       bool isRequiredMethod, bool isInstanceMethod, 
+                       bool recursive)
+{
+    struct objc_method_description *m = nil;
+    old_protocol_ext *ext;
+
+    if (isRequiredMethod) {
+        if (isInstanceMethod) {
+            m = lookup_method(proto-&gt;instance_methods, aSel);
+        } else {
+            m = lookup_method(proto-&gt;class_methods, aSel);
+        }
+    } else if ((ext = ext_for_protocol(proto))) {
+        if (isInstanceMethod) {
+            m = lookup_method(ext-&gt;optional_instance_methods, aSel);
+        } else {
+            m = lookup_method(ext-&gt;optional_class_methods, aSel);
+        }
+    }
+
+    if (!m  &amp;&amp;  recursive  &amp;&amp;  proto-&gt;protocol_list) {
+        int i;
+        for (i = 0; !m  &amp;&amp;  i &lt; proto-&gt;protocol_list-&gt;count; i++) {
+            m = lookup_protocol_method(proto-&gt;protocol_list-&gt;list[i], aSel, 
+                                       isRequiredMethod,isInstanceMethod,true);
+        }
+    }
+
+    return m;
+}
+</code></pre>
+
+<h3 id="toc_4">category</h3>
+
+<pre><code class="language-text">struct old_category {
+    char *category_name;
+    char *class_name;
+    struct old_method_list *instance_methods;
+    struct old_method_list *class_methods;
+    struct old_protocol_list *protocols;
+    uint32_t size;
+    struct old_property_list *instance_properties;
+};
+</code></pre>
+
+<h3 id="toc_5">参考</h3>
+
+<ul>
+<li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048">ObjCRuntimeGuide</a></li>
+<li><a href="http://opensource.apple.com/tarballs/objc4/">runtime源码</a></li>
+<li><a href="http://blog.jobbole.com/45963/">Objective-C 的动态提示和技巧</a></li>
+<li><a href="http://www.cocoachina.com/ios/20150104/10826.html">NSObject的load和initialize方法</a></li>
+<li><a href="http://esoftmobile.com/2014/02/18/associated-objects/">associated-objects</a></li>
+</ul>
 
 
     
@@ -199,16 +222,13 @@
         <div class="large-6 columns">
         <p class="text-left" style="padding:15px 0px;">
       
-          <a href="15479057717149.html" 
-          title="Previous Post: 移动三方应用分享">&laquo; 移动三方应用分享</a>
+          <a href="15479057717556.html" 
+          title="Previous Post: OC Runtime(1)之Object&Class">&laquo; OC Runtime(1)之Object&Class</a>
       
         </p>
         </div>
         <div class="large-6 columns">
       <p class="text-right" style="padding:15px 0px;">
-      
-          <a  href="15479057717614.html" 
-          title="Next Post: iOS设备ID">iOS设备ID &raquo;</a>
       
       </p>
         </div>

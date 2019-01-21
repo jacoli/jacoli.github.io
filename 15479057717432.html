@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  模式和架构 - 李传格的博客
+  OC Runtime(3)之Associated Objects - 李传格的博客
   
   </title>
   
@@ -98,10 +98,10 @@
       <div class="markdown-body article-wrap">
        <div class="article">
           
-          <h1>模式和架构</h1>
+          <h1>OC Runtime(3)之Associated Objects</h1>
      
         <div class="read-more clearfix">
-          <span class="date">2016/5/3</span>
+          <span class="date">2014/3/18</span>
 
           
            
@@ -116,79 +116,166 @@
       </div><!-- article -->
 
       <div class="article-content">
-      <h3 id="toc_0">编程模式</h3>
+      <h3 id="toc_0">关联对象</h3>
 
 <ul>
-<li>函数式编程 vs 面向对象编程</li>
-<li>响应式编程 vs 命令式编程</li>
-<li>promise</li>
+<li><objc/runtime.h>提供了三个方法，分别是get、set、remove</li>
 </ul>
 
-<h3 id="toc_1">架构、框架、设计模式：</h3>
+<pre><code class="language-text">void objc_setAssociatedObject(id object, const void *key, id value, objc_AssociationPolicy policy);
+id objc_getAssociatedObject(id object, const void *key);
+void objc_removeAssociatedObjects(id object);
+</code></pre>
+
+<h3 id="toc_1">源码</h3>
 
 <ul>
-<li>1、架构属于顶层的设计，划分软件或解决方案的整体结构，倾向于抽象，常见的有分层架构、事件驱动架构、微内核架构、微服务架构等。</li>
-<li>2、框架类似于提供工具库或类库，倾向于实现。</li>
-<li>3、设计模式应该是更细力度的代码层级的复用、可维护性、可扩展性的设计。</li>
+<li>获取</li>
 </ul>
 
-<h3 id="toc_2">设计模式：</h3>
+<pre><code class="language-text">id _object_get_associative_reference(id object, void *key) {
+    id value = nil;
+    uintptr_t policy = OBJC_ASSOCIATION_ASSIGN;
+    {
+        AssociationsManager manager;
+        AssociationsHashMap &amp;associations(manager.associations());
+        disguised_ptr_t disguised_object = DISGUISE(object);
+        AssociationsHashMap::iterator i = associations.find(disguised_object);
+        if (i != associations.end()) {
+            ObjectAssociationMap *refs = i-&gt;second;
+            ObjectAssociationMap::iterator j = refs-&gt;find(key);
+            if (j != refs-&gt;end()) {
+                ObjcAssociation &amp;entry = j-&gt;second;
+                value = entry.value();
+                policy = entry.policy();
+                if (policy &amp; OBJC_ASSOCIATION_GETTER_RETAIN) ((id(*)(id, SEL))objc_msgSend)(value, SEL_retain);
+            }
+        }
+    }
+    if (value &amp;&amp; (policy &amp; OBJC_ASSOCIATION_GETTER_AUTORELEASE)) {
+        ((id(*)(id, SEL))objc_msgSend)(value, SEL_autorelease);
+    }
+    return value;
+}
+</code></pre>
 
 <ul>
-<li>1、基于某种具体场景，代码组织结构或交互行为的设计方法，使得代码更易于复用、维护、扩展。</li>
-<li>2、基本的6个原则：开闭原则、里氏替换原则、依赖倒置原则、接口隔离原则、单一职责原则、最少知识原则。</li>
-<li>3、创建型模式：工厂方法、抽象工厂、原型、单例、builder</li>
-<li>4、结构型:适配器、组合、桥接、decorator、facade、享元、proxy</li>
-<li>5、行为型:解释器、模版方法、责任链、命令、迭代器、中介者、memento、观察者、状态、策略、访问者等。</li>
+<li>设置</li>
 </ul>
 
-<h3 id="toc_3">相关文章</h3>
-
-<p><a href="http://www.cnblogs.com/beijiguangyong/archive/2010/11/15/2302807.html#_Toc281750445">23种设计模式</a></p>
-
-<p><a href="http://www.cnblogs.com/hegezhou_hot/archive/2010/10/08/1846200.html">系统架构师</a></p>
-
-<p>前篇</p>
-
-<pre><code class="language-text">  1、系统架构师-基础到企业应用架构系列之--开卷有益
-  2、系统架构师-基础到企业应用架构-系统建模[上篇]
-  3、系统架构师-基础到企业应用架构-系统建模[中篇](上)
-  4、系统架构师-基础到企业应用架构-系统建模[中篇](下)
-  5、系统架构师-基础到企业应用架构-系统建模[下篇]
-  6、系统架构师-基础到企业应用架构-系统设计规范与原则[上篇]
-  7、系统架构师-基础到企业应用架构-系统设计规范与原则[下篇]
-  8、系统架构师-基础到企业应用架构-设计模式[上篇]
-  9、系统架构师-基础到企业应用架构-设计模式[中篇]
-  10、系统架构师-基础到企业应用架构-设计模式[下篇]
+<pre><code class="language-text">void _object_set_associative_reference(id object, void *key, id value, uintptr_t policy) {
+    // retain the new value (if any) outside the lock.
+    ObjcAssociation old_association(0, nil);
+    id new_value = value ? acquireValue(value, policy) : nil;
+    {
+        AssociationsManager manager;
+        AssociationsHashMap &amp;associations(manager.associations());
+        disguised_ptr_t disguised_object = DISGUISE(object);
+        if (new_value) {
+            // break any existing association.
+            AssociationsHashMap::iterator i = associations.find(disguised_object);
+            if (i != associations.end()) {
+                // secondary table exists
+                ObjectAssociationMap *refs = i-&gt;second;
+                ObjectAssociationMap::iterator j = refs-&gt;find(key);
+                if (j != refs-&gt;end()) {
+                    old_association = j-&gt;second;
+                    j-&gt;second = ObjcAssociation(policy, new_value);
+                } else {
+                    (*refs)[key] = ObjcAssociation(policy, new_value);
+                }
+            } else {
+                // create the new association (first time).
+                ObjectAssociationMap *refs = new ObjectAssociationMap;
+                associations[disguised_object] = refs;
+                (*refs)[key] = ObjcAssociation(policy, new_value);
+                object-&gt;setHasAssociatedObjects();
+            }
+        } else {
+            // setting the association to nil breaks the association.
+            AssociationsHashMap::iterator i = associations.find(disguised_object);
+            if (i !=  associations.end()) {
+                ObjectAssociationMap *refs = i-&gt;second;
+                ObjectAssociationMap::iterator j = refs-&gt;find(key);
+                if (j != refs-&gt;end()) {
+                    old_association = j-&gt;second;
+                    refs-&gt;erase(j);
+                }
+            }
+        }
+    }
+    // release the old value (outside of the lock).
+    if (old_association.hasValue()) ReleaseValue()(old_association);
+}
 </code></pre>
 
-<p>中篇</p>
+<ul>
+<li>释放</li>
+</ul>
 
-<pre><code class="language-text">  11、系统架构师-基础到企业应用架构-企业应用架构
-  12、系统架构师-基础到企业应用架构-分层[上篇]
-  13、系统架构师-基础到企业应用架构-分层[中篇]
-  14、系统架构师-基础到企业应用架构-分层[下篇]
-  15、系统架构师-基础到企业应用架构-表现层
-  16、系统架构师-基础到企业应用架构-服务层
-  17、系统架构师-基础到企业应用架构-业务逻辑层
-  18、系统架构师-基础到企业应用架构-数据访问层
-  19、系统架构师-基础到企业应用架构-组件服务
-  20、系统架构师-基础到企业应用架构-安全机制
+<pre><code class="language-text">id 
+object_dispose(id obj)
+{
+    if (!obj) return nil;
+
+    objc_destructInstance(obj);
+
+    free(obj);
+
+    return nil;
+}
+
+void *objc_destructInstance(id obj) 
+{
+    if (obj) {
+        // Read all of the flags at once for performance.
+        bool cxx = obj-&gt;hasCxxDtor();
+        bool assoc = !UseGC &amp;&amp; obj-&gt;hasAssociatedObjects();
+        bool dealloc = !UseGC;
+
+        // This order is important.
+        if (cxx) object_cxxDestruct(obj);
+        if (assoc) _object_remove_assocations(obj);
+        if (dealloc) obj-&gt;clearDeallocating();
+    }
+
+    return obj;
+}
+
+void _object_remove_assocations(id object) {
+    vector&lt; ObjcAssociation,ObjcAllocator&lt;ObjcAssociation&gt; &gt; elements;
+    {
+        AssociationsManager manager;
+        AssociationsHashMap &amp;associations(manager.associations());
+        if (associations.size() == 0) return;
+        disguised_ptr_t disguised_object = DISGUISE(object);
+        AssociationsHashMap::iterator i = associations.find(disguised_object);
+        if (i != associations.end()) {
+            // copy all of the associations that need to be removed.
+            ObjectAssociationMap *refs = i-&gt;second;
+            for (ObjectAssociationMap::iterator j = refs-&gt;begin(), end = refs-&gt;end(); j != end; ++j) {
+                elements.push_back(j-&gt;second);
+            }
+            // remove the secondary table.
+            delete refs;
+            associations.erase(i);
+        }
+    }
+    // the calls to releaseValue() happen outside of the lock.
+    for_each(elements.begin(), elements.end(), ReleaseValue());
+}
+
 </code></pre>
 
-<p>后篇</p>
+<h3 id="toc_2">参考</h3>
 
-<pre><code class="language-text">  21、单机应用、客户端/服务器、多服务、企业数据总线全解析
-  22、系统架构师-基础到企业应用架构-单机应用(实例及demo)
-  23、系统架构师-基础到企业应用架构-客户端/服务器(实例及demo)
-  24、系统架构师-基础到企业应用架构-多服务(实例及demo)
-  25、系统架构师-基础到企业应用架构-企业数据总线(实例及demo)
-  26、系统架构师-基础到企业应用架构-性能优化(架构瓶颈)
-  27、系统架构师-基础到企业应用架构-完整的架构方案实例[上篇]
-  28、系统架构师-基础到企业应用架构-完整的架构方案实例[中篇]
-  29、系统架构师-基础到企业应用架构-完整的架构方案实例[下篇]
-  30、系统架构师-基础到企业应用架构-总结及后续
-</code></pre>
+<ul>
+<li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048">ObjCRuntimeGuide</a></li>
+<li><a href="http://opensource.apple.com/tarballs/objc4/">runtime源码</a></li>
+<li><a href="http://blog.jobbole.com/45963/">Objective-C 的动态提示和技巧</a></li>
+<li><a href="http://www.cocoachina.com/ios/20150104/10826.html">NSObject的load和initialize方法</a></li>
+<li><a href="http://esoftmobile.com/2014/02/18/associated-objects/">associated-objects</a></li>
+</ul>
 
 
     
@@ -199,16 +286,16 @@
         <div class="large-6 columns">
         <p class="text-left" style="padding:15px 0px;">
       
-          <a href="15479057717149.html" 
-          title="Previous Post: 移动三方应用分享">&laquo; 移动三方应用分享</a>
+          <a href="15479057717367.html" 
+          title="Previous Post: OC Runtime(4)之Message Forwarding">&laquo; OC Runtime(4)之Message Forwarding</a>
       
         </p>
         </div>
         <div class="large-6 columns">
       <p class="text-right" style="padding:15px 0px;">
       
-          <a  href="15479057717614.html" 
-          title="Next Post: iOS设备ID">iOS设备ID &raquo;</a>
+          <a  href="15479057717556.html" 
+          title="Next Post: OC Runtime(1)之Object&Class">OC Runtime(1)之Object&Class &raquo;</a>
       
       </p>
         </div>

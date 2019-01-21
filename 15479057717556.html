@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  模式和架构 - 李传格的博客
+  OC Runtime(1)之Object&Class - 李传格的博客
   
   </title>
   
@@ -98,10 +98,10 @@
       <div class="markdown-body article-wrap">
        <div class="article">
           
-          <h1>模式和架构</h1>
+          <h1>OC Runtime(1)之Object&Class</h1>
      
         <div class="read-more clearfix">
-          <span class="date">2016/5/3</span>
+          <span class="date">2014/3/17</span>
 
           
            
@@ -116,79 +116,134 @@
       </div><!-- article -->
 
       <div class="article-content">
-      <h3 id="toc_0">编程模式</h3>
+      <h3 id="toc_0">Objective-C Runtime</h3>
+
+<p><img src="media/15479057717556/OC-Runtime.png" alt="OC-Runtime"/></p>
 
 <ul>
-<li>函数式编程 vs 面向对象编程</li>
-<li>响应式编程 vs 命令式编程</li>
-<li>promise</li>
+<li><p>Objective-C是面向运行时的编程语言，这就意味着运行阶段才知道如何执行，而不是编译链接阶段就确定好。</p></li>
+<li><p>What is the Objective-C Runtime?</p></li>
 </ul>
 
-<h3 id="toc_1">架构、框架、设计模式：</h3>
+<pre><code class="language-text">The Objective-C Runtime is a Runtime Library, it&#39;s a library written 
+mainly in C &amp; Assembler that adds the Object Oriented capabilities 
+to C to create Objective-C. This means it loads in Class information, 
+does all method dispatching, method forwarding, etc. The Objective-C 
+runtime essentially creates all the support structures that make 
+Object Oriented Programming with Objective-C Possible.
+</code></pre>
 
 <ul>
-<li>1、架构属于顶层的设计，划分软件或解决方案的整体结构，倾向于抽象，常见的有分层架构、事件驱动架构、微内核架构、微服务架构等。</li>
-<li>2、框架类似于提供工具库或类库，倾向于实现。</li>
-<li>3、设计模式应该是更细力度的代码层级的复用、可维护性、可扩展性的设计。</li>
+<li>有了Objective-C Runtime，就有了各种在运行时修改代码的hack手段。</li>
 </ul>
 
-<h3 id="toc_2">设计模式：</h3>
+<h3 id="toc_1">类</h3>
 
 <ul>
-<li>1、基于某种具体场景，代码组织结构或交互行为的设计方法，使得代码更易于复用、维护、扩展。</li>
-<li>2、基本的6个原则：开闭原则、里氏替换原则、依赖倒置原则、接口隔离原则、单一职责原则、最少知识原则。</li>
-<li>3、创建型模式：工厂方法、抽象工厂、原型、单例、builder</li>
-<li>4、结构型:适配器、组合、桥接、decorator、facade、享元、proxy</li>
-<li>5、行为型:解释器、模版方法、责任链、命令、迭代器、中介者、memento、观察者、状态、策略、访问者等。</li>
+<li>先看下<code>类</code>的结构体定义，除了存放类的基本信息，还存放对象的变量、方法、协议的元信息。程序加载时，<code>类</code>结构体会被实例化，并放到全局列表中<code>g_classList</code>，结构体的<code>isa</code>、<code>super_class</code>、<code>methodLists</code>等属性也一起被初始化。</li>
 </ul>
 
-<h3 id="toc_3">相关文章</h3>
+<pre><code class="language-text">// 伪代码，对源码稍做修改。
 
-<p><a href="http://www.cnblogs.com/beijiguangyong/archive/2010/11/15/2302807.html#_Toc281750445">23种设计模式</a></p>
+static Class *g_classList;
 
-<p><a href="http://www.cnblogs.com/hegezhou_hot/archive/2010/10/08/1846200.html">系统架构师</a></p>
+struct objc_class {
+    Class isa;          // 指向元类
+    Class super_class;  // 指向父类
+    
+    // 类基本信息
+    const char *name;
+    long version;
+    long info;
+    long instance_size;
+    
+    // 类的变量、方法、协议的元信息
+    struct objc_ivar_list *ivars;
+    struct objc_method_list **methodLists;
+    struct objc_protocol_list *protocols;
+    
+    // 方法缓存
+    struct objc_cache *cache;
+};
+typedef struct objc_class *Class;
 
-<p>前篇</p>
-
-<pre><code class="language-text">  1、系统架构师-基础到企业应用架构系列之--开卷有益
-  2、系统架构师-基础到企业应用架构-系统建模[上篇]
-  3、系统架构师-基础到企业应用架构-系统建模[中篇](上)
-  4、系统架构师-基础到企业应用架构-系统建模[中篇](下)
-  5、系统架构师-基础到企业应用架构-系统建模[下篇]
-  6、系统架构师-基础到企业应用架构-系统设计规范与原则[上篇]
-  7、系统架构师-基础到企业应用架构-系统设计规范与原则[下篇]
-  8、系统架构师-基础到企业应用架构-设计模式[上篇]
-  9、系统架构师-基础到企业应用架构-设计模式[中篇]
-  10、系统架构师-基础到企业应用架构-设计模式[下篇]
+bool isMetaClass() {
+        return info &amp; CLS_META;
+    }
 </code></pre>
 
-<p>中篇</p>
+<h3 id="toc_2">元类</h3>
 
-<pre><code class="language-text">  11、系统架构师-基础到企业应用架构-企业应用架构
-  12、系统架构师-基础到企业应用架构-分层[上篇]
-  13、系统架构师-基础到企业应用架构-分层[中篇]
-  14、系统架构师-基础到企业应用架构-分层[下篇]
-  15、系统架构师-基础到企业应用架构-表现层
-  16、系统架构师-基础到企业应用架构-服务层
-  17、系统架构师-基础到企业应用架构-业务逻辑层
-  18、系统架构师-基础到企业应用架构-数据访问层
-  19、系统架构师-基础到企业应用架构-组件服务
-  20、系统架构师-基础到企业应用架构-安全机制
+<ul>
+<li><code>元类</code>跟<code>类</code>使用相同的结构体，只是通过<code>isMetaClass</code>方法做区分。</li>
+<li><p><code>元类</code>结构体中，存放类的变量、方法、协议的元信息。</p></li>
+<li><p>对象、类、元类的关系如下：</p></li>
+</ul>
+
+<p><img src="media/15479057717556/OC-Runtime-%E7%B1%BB%E5%9B%BE.png" alt="OC-Runtime-类图"/></p>
+
+<h3 id="toc_3">对象</h3>
+
+<ul>
+<li>对象的结构体如下，存放对象的变量数据，其他的都是先通过<code>isa</code>找到类，再从类中找出变量、方法等的元信息。</li>
+</ul>
+
+<pre><code class="language-text">// 伪代码，对源码稍做修改。
+
+struct objc_object {
+    Class isa;
+    
+    // 变量的数据
+    void *varsLayout;
+}
+
+typedef struct objc_object *id
 </code></pre>
 
-<p>后篇</p>
+<ul>
+<li>创建对象，<code>NSObject *obj = [[NSObject alloc] init];</code>可能对应以下一些动作。</li>
+</ul>
 
-<pre><code class="language-text">  21、单机应用、客户端/服务器、多服务、企业数据总线全解析
-  22、系统架构师-基础到企业应用架构-单机应用(实例及demo)
-  23、系统架构师-基础到企业应用架构-客户端/服务器(实例及demo)
-  24、系统架构师-基础到企业应用架构-多服务(实例及demo)
-  25、系统架构师-基础到企业应用架构-企业数据总线(实例及demo)
-  26、系统架构师-基础到企业应用架构-性能优化(架构瓶颈)
-  27、系统架构师-基础到企业应用架构-完整的架构方案实例[上篇]
-  28、系统架构师-基础到企业应用架构-完整的架构方案实例[中篇]
-  29、系统架构师-基础到企业应用架构-完整的架构方案实例[下篇]
-  30、系统架构师-基础到企业应用架构-总结及后续
+<pre><code class="language-text">// 伪代码
+
+{
+    // 找到类
+    Class cls = findClass(&quot;NSObject&quot;);
+    
+    // 找到alloc方法，执行生成对象
+    IMP imp = findImp(cls, &quot;alloc&quot;);
+    id obj = imp(cls);
+    
+    // 找到init方法，执行初始化对象
+    IMP imp = findImp(cls, &quot;init&quot;);
+    imp(obj);
+    
+    // 返回对象
+    return obj;
+}   
+    
+id alloc(Class cls) {
+    id obj = malloc(sizeof(struct objc_object));
+    obj-&gt;isa = cls;
+    return obj;
+}
+
+id init(id obj) {
+    obj-&gt;varsLayout = xxx;
+}   
 </code></pre>
+
+<h3 id="toc_4">总结</h3>
+
+<ul>
+<li>总的来说，全局维护一张类表，存放类方法、实例方法、实例变量的元信息等。程序加载阶段会初始化这张表。运行阶段，也可以通过<code>addMethod</code>、<code>class_replaceMethod</code>、<code>class_addIvar</code>、<code>class_addProtocol</code>、<code>class_addProperty</code>等接口动态修改这张表。<br/>
+### 参考</li>
+<li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048">ObjCRuntimeGuide</a></li>
+<li><a href="http://opensource.apple.com/tarballs/objc4/">runtime源码</a></li>
+<li><a href="http://blog.jobbole.com/45963/">Objective-C 的动态提示和技巧</a></li>
+<li><a href="http://www.cocoachina.com/ios/20150104/10826.html">NSObject的load和initialize方法</a></li>
+<li><a href="http://esoftmobile.com/2014/02/18/associated-objects/">associated-objects</a></li>
+</ul>
 
 
     
@@ -199,16 +254,16 @@
         <div class="large-6 columns">
         <p class="text-left" style="padding:15px 0px;">
       
-          <a href="15479057717149.html" 
-          title="Previous Post: 移动三方应用分享">&laquo; 移动三方应用分享</a>
+          <a href="15479057717432.html" 
+          title="Previous Post: OC Runtime(3)之Associated Objects">&laquo; OC Runtime(3)之Associated Objects</a>
       
         </p>
         </div>
         <div class="large-6 columns">
       <p class="text-right" style="padding:15px 0px;">
       
-          <a  href="15479057717614.html" 
-          title="Next Post: iOS设备ID">iOS设备ID &raquo;</a>
+          <a  href="15479057717489.html" 
+          title="Next Post: OC Runtime(2)之Ivar&Property&Method&Protocol">OC Runtime(2)之Ivar&Property&Method&Protocol &raquo;</a>
       
       </p>
         </div>

@@ -4,7 +4,7 @@
   <title><![CDATA[李传格的博客]]></title>
   <link href="https://jacoli.github.io/atom.xml" rel="self"/>
   <link href="https://jacoli.github.io/"/>
-  <updated>2019-01-19T23:14:56+08:00</updated>
+  <updated>2019-01-21T15:55:49+08:00</updated>
   <id>https://jacoli.github.io/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -442,6 +442,797 @@ MAC地址就如同我们身份证上的身份证号码，具有全球唯一性�
 <li>2、NSURLSession支持后台下载。</li>
 <li>3、长时间运行，支持以下几种模式，音频及视频（airplay）播放、更新定位、VOIP、下载Newsstand、外部附件、蓝牙、push，在info.plist添加相应配置，代码中引入相应的framework并调用相应接口。</li>
 <li>调用application:performFetchWithCompletionHandler: 在后台获取少量数据。</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[OC Runtime(6)之Load&Initialize]]></title>
+    <link href="https://jacoli.github.io/15479057717263.html"/>
+    <updated>2019-01-19T21:49:31+08:00</updated>
+    <id>https://jacoli.github.io/15479057717263.html</id>
+    <content type="html"><![CDATA[
+<h3 id="toc_0">+load</h3>
+
+<ul>
+<li><code>+load</code>方法只会被执行一次，且是在程序加载阶段，这时运行环境并不完备。</li>
+<li>不同类或类别的<code>+load</code>方法会按一定顺序被执行。</li>
+</ul>
+
+<pre><code class="language-text">1、依赖库的`+load`。
+2、当前库`+load`，`class`的`+load`优先于`category`，父`class`优先于子`class`。
+3、当前库的`All C++ static initializers and C/C++ __attribute__(constructor) functions`。
+4、被依赖库的`+load`。
+
+</code></pre>
+
+<ul>
+<li><p>在<code>+load</code>方法中可以安全地发送消息给当前库内其他类的消息，虽然这些类的<code>+load</code>可能还没有执行过。</p></li>
+<li><p>从源码中，也可以看出<code>class</code>的<code>+load</code>优先于<code>category</code>，父<code>class</code>优先于子<code>class</code>。</p></li>
+</ul>
+
+<pre><code class="language-text">void prepare_load_methods(const headerType *mhdr)
+{
+    size_t count, i;
+
+    runtimeLock.assertWriting();
+
+    classref_t *classlist = 
+        _getObjc2NonlazyClassList(mhdr, &amp;count);
+    for (i = 0; i &lt; count; i++) {
+        schedule_class_load(remapClass(classlist[i]));
+    }
+
+    category_t **categorylist = _getObjc2NonlazyCategoryList(mhdr, &amp;count);
+    for (i = 0; i &lt; count; i++) {
+        category_t *cat = categorylist[i];
+        Class cls = remapClass(cat-&gt;cls);
+        if (!cls) continue;  // category for ignored weak-linked class
+        realizeClass(cls);
+        assert(cls-&gt;ISA()-&gt;isRealized());
+        add_category_to_loadable_list(cat);
+    }
+}
+</code></pre>
+
+<pre><code class="language-text">static void schedule_class_load(Class cls)
+{
+    if (!cls) return;
+    assert(cls-&gt;isRealized());  // _read_images should realize
+
+    if (cls-&gt;data()-&gt;flags &amp; RW_LOADED) return;
+
+    // Ensure superclass-first ordering
+    schedule_class_load(cls-&gt;superclass);
+
+    add_class_to_loadable_list(cls);
+    cls-&gt;setInfo(RW_LOADED); 
+}
+</code></pre>
+
+<h3 id="toc_1">initialize</h3>
+
+<ul>
+<li>向类或对象发送消息时，会调用<code>lookUpImpOrForward</code>查找，并会检查是否初始化过，如果没有，则会调用<code>_class_initialize</code>做初始化。</li>
+</ul>
+
+<pre><code class="language-text">IMP lookUpImpOrForward(Class cls, SEL sel, id inst, 
+                       bool initialize, bool cache, bool resolver)
+{
+    // ...
+
+    if (initialize  &amp;&amp;  !cls-&gt;isInitialized()) {
+        _class_initialize (_class_getNonMetaClass(cls, inst));
+        // If sel == initialize, _class_initialize will send +initialize and 
+        // then the messenger will send +initialize again after this 
+        // procedure finishes. Of course, if this is not being called 
+        // from the messenger then it won&#39;t happen. 2778172
+    }
+
+    // ...
+
+    return imp;
+}
+</code></pre>
+
+<h3 id="toc_2">参考</h3>
+
+<ul>
+<li><a href="http://cocoasamurai.blogspot.jp/2010/01/understanding-objective-c-runtime.html">understanding-objective-c-runtime</a></li>
+<li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048">ObjCRuntimeGuide</a></li>
+<li><a href="http://opensource.apple.com/tarballs/objc4/">runtime源码</a></li>
+<li><a href="http://blog.jobbole.com/45963/">Objective-C 的动态提示和技巧</a></li>
+<li><a href="http://www.cocoachina.com/ios/20150104/10826.html">NSObject的load和initialize方法</a></li>
+<li><a href="http://esoftmobile.com/2014/02/18/associated-objects/">associated-objects</a></li>
+<li><a href="http://esoftmobile.com/2014/02/19/method-swizzling/">method-swizzling</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[OC Runtime(5)之Method Swizzling]]></title>
+    <link href="https://jacoli.github.io/15479057717312.html"/>
+    <updated>2019-01-19T21:49:31+08:00</updated>
+    <id>https://jacoli.github.io/15479057717312.html</id>
+    <content type="html"><![CDATA[
+<h3 id="toc_0">Method的几个概念</h3>
+
+<ul>
+<li><code>Method</code>包含方法名<code>Selector</code>、函数地址<code>IMP</code>、参数类型<code>TypeEncoding</code>。</li>
+</ul>
+
+<pre><code class="language-text">NSLog(@&quot;    method name = %s&quot;, sel_getName(method_getName(method)));
+NSLog(@&quot;    method type encode = %s&quot;, method_getTypeEncoding(method));
+NSLog(@&quot;    NumberOfArguments = %d&quot;, method_getNumberOfArguments(method));
+NSLog(@&quot;    ReturnType = %s&quot;, method_copyReturnType(method));
+</code></pre>
+
+<pre><code class="language-text">2016-04-08 20:54:59.351 OCRuntime[54195:953880]     method name = setNumberProperty:
+2016-04-08 20:54:59.352 OCRuntime[54195:953880]     method type encode = v24@0:8@16
+2016-04-08 20:54:59.352 OCRuntime[54195:953880]     NumberOfArguments = 3
+2016-04-08 20:54:59.352 OCRuntime[54195:953880]     ReturnType = v
+</code></pre>
+
+<h3 id="toc_1">动态修改Method的几个接口</h3>
+
+<pre><code class="language-text">// 设置或交换IMP
+IMP method_setImplementation(Method m, IMP imp);
+void method_exchangeImplementations(Method m1, Method m2);
+</code></pre>
+
+<pre><code class="language-text">BOOL class_addMethod(Class cls, SEL name, IMP imp, const char *types);
+                                 
+// 如果原来没有这个方法，则直接添加Method，效果同class_addMethod
+// 如果原来有，则替换掉原来的IMP，忽略参数类型
+IMP class_replaceMethod(Class cls, SEL name, IMP imp, const char *types);
+</code></pre>
+
+<ul>
+<li>例子：</li>
+</ul>
+
+<pre><code class="language-text">+ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&amp;onceToken, ^{
+        Class class = [self class];
+
+        // When swizzling a class method, use the following:
+        // Class class = object_getClass((id)self);
+
+        SEL originalSelector = @selector(viewWillAppear:);
+        SEL swizzledSelector = @selector(xxx_viewWillAppear:);
+
+        Method originalMethod = class_getInstanceMethod(class, originalSelector);
+        Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
+
+        BOOL didAddMethod =
+            class_addMethod(class,
+                originalSelector,
+                method_getImplementation(swizzledMethod),
+                method_getTypeEncoding(swizzledMethod));
+
+        if (didAddMethod) {
+            class_replaceMethod(class,
+                swizzledSelector,
+                method_getImplementation(originalMethod),
+                method_getTypeEncoding(originalMethod));
+        } else {
+            method_exchangeImplementations(originalMethod, swizzledMethod);
+        }
+    });
+}
+</code></pre>
+
+<h3 id="toc_2">参考</h3>
+
+<ul>
+<li><a href="http://cocoasamurai.blogspot.jp/2010/01/understanding-objective-c-runtime.html">understanding-objective-c-runtime</a></li>
+<li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048">ObjCRuntimeGuide</a></li>
+<li><a href="http://opensource.apple.com/tarballs/objc4/">runtime源码</a></li>
+<li><a href="http://blog.jobbole.com/45963/">Objective-C 的动态提示和技巧</a></li>
+<li><a href="http://www.cocoachina.com/ios/20150104/10826.html">NSObject的load和initialize方法</a></li>
+<li><a href="http://esoftmobile.com/2014/02/18/associated-objects/">associated-objects</a></li>
+<li><a href="http://esoftmobile.com/2014/02/19/method-swizzling/">method-swizzling</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[OC Runtime(4)之Message Forwarding]]></title>
+    <link href="https://jacoli.github.io/15479057717367.html"/>
+    <updated>2019-01-19T21:49:31+08:00</updated>
+    <id>https://jacoli.github.io/15479057717367.html</id>
+    <content type="html"><![CDATA[
+<h3 id="toc_0">消息发送</h3>
+
+<ul>
+<li>对象方法的调用就是向该对象发送消息。</li>
+</ul>
+
+<pre><code class="language-text">    OCHelper *object = [[OCHelper alloc] init];
+    
+    // 以下两句代码效果是相同的。
+    [object onHandler];
+    objc_msgSend(object, @selector(onHandler));
+</code></pre>
+
+<ul>
+<li>编译阶段，会自动将OC方法调用转化成内联的<code>objc_msgSend</code>方法调用。</li>
+</ul>
+
+<h3 id="toc_1">消息转发</h3>
+
+<ul>
+<li>有了OC的消息机制，就可以在运行时修改消息执行路径。</li>
+<li><p><code>objc_msgSend</code>会调用<code>lookUpImpOrForward</code>从类（或父类）的<code>methodsCache</code>或<code>methodList</code>寻找方法。</p></li>
+<li><p><code>lookUpImpOrForward</code>的源码如下：</p></li>
+</ul>
+
+<pre><code class="language-text">IMP lookUpImpOrForward(Class cls, SEL sel, id inst, 
+                       bool initialize, bool cache, bool resolver)
+{
+    Class curClass;
+    IMP methodPC = nil;
+    Method meth;
+    bool triedResolver = NO;
+
+    methodListLock.assertUnlocked();
+
+    // Optimistic cache lookup
+    if (cache) {
+        methodPC = _cache_getImp(cls, sel);
+        if (methodPC) return methodPC;    
+    }
+
+    // Check for freed class
+    if (cls == _class_getFreedObjectClass())
+        return (IMP) _freedHandler;
+
+    // Check for +initialize
+    if (initialize  &amp;&amp;  !cls-&gt;isInitialized()) {
+        _class_initialize (_class_getNonMetaClass(cls, inst));
+        // If sel == initialize, _class_initialize will send +initialize and 
+        // then the messenger will send +initialize again after this 
+        // procedure finishes. Of course, if this is not being called 
+        // from the messenger then it won&#39;t happen. 2778172
+    }
+
+    // The lock is held to make method-lookup + cache-fill atomic 
+    // with respect to method addition. Otherwise, a category could 
+    // be added but ignored indefinitely because the cache was re-filled 
+    // with the old value after the cache flush on behalf of the category.
+ retry:
+    methodListLock.lock();
+
+    // Ignore GC selectors
+    if (ignoreSelector(sel)) {
+        methodPC = _cache_addIgnoredEntry(cls, sel);
+        goto done;
+    }
+
+    // Try this class&#39;s cache.
+
+    methodPC = _cache_getImp(cls, sel);
+    if (methodPC) goto done;
+
+    // Try this class&#39;s method lists.
+
+    meth = _class_getMethodNoSuper_nolock(cls, sel);
+    if (meth) {
+        log_and_fill_cache(cls, cls, meth, sel);
+        methodPC = method_getImplementation(meth);
+        goto done;
+    }
+
+    // Try superclass caches and method lists.
+
+    curClass = cls;
+    while ((curClass = curClass-&gt;superclass)) {
+        // Superclass cache.
+        meth = _cache_getMethod(curClass, sel, _objc_msgForward_impcache);
+        if (meth) {
+            if (meth != (Method)1) {
+                // Found the method in a superclass. Cache it in this class.
+                log_and_fill_cache(cls, curClass, meth, sel);
+                methodPC = method_getImplementation(meth);
+                goto done;
+            }
+            else {
+                // Found a forward:: entry in a superclass.
+                // Stop searching, but don&#39;t cache yet; call method 
+                // resolver for this class first.
+                break;
+            }
+        }
+
+        // Superclass method list.
+        meth = _class_getMethodNoSuper_nolock(curClass, sel);
+        if (meth) {
+            log_and_fill_cache(cls, curClass, meth, sel);
+            methodPC = method_getImplementation(meth);
+            goto done;
+        }
+    }
+
+    // No implementation found. Try method resolver once.
+
+    if (resolver  &amp;&amp;  !triedResolver) {
+        methodListLock.unlock();
+        _class_resolveMethod(cls, sel, inst);
+        triedResolver = YES;
+        goto retry;
+    }
+
+    // No implementation found, and method resolver didn&#39;t help. 
+    // Use forwarding.
+
+    _cache_addForwardEntry(cls, sel);
+    methodPC = _objc_msgForward_impcache;
+
+ done:
+    methodListLock.unlock();
+
+    // paranoia: look for ignored selectors with non-ignored implementations
+    assert(!(ignoreSelector(sel)  &amp;&amp;  methodPC != (IMP)&amp;_objc_ignored_method));
+
+    return methodPC;
+}
+</code></pre>
+
+<ul>
+<li>如果找到方法，则直接执行。</li>
+<li>如果没有找到方法，则提供一套Hock机制，允许运行时解决。</li>
+<li><code>NSObject</code>提供了些可重载的方法，如下：</li>
+</ul>
+
+<pre><code class="language-text">@interface NSObject
+- (id)forwardingTargetForSelector:(SEL)aSelector;
+- (void)forwardInvocation:(NSInvocation *)anInvocation;
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector;
++ (BOOL)resolveClassMethod:(SEL)sel;
++ (BOOL)resolveInstanceMethod:(SEL)sel;
+@end
+</code></pre>
+
+<ul>
+<li>如果没有找到方法，会先调用<code>resolveInstanceMethod</code>，在该方法中可动态添加方法到类。</li>
+</ul>
+
+<p><img src="media/15479057717367/messaging.png" alt="messaging"/></p>
+
+<ul>
+<li>如果不行，接下来会调用<code>forwardingTargetForSelector</code>转发，可动态替换掉响应对象。</li>
+<li>如果还不行，则调用<code>methodSignatureForSelector</code>和<code>forwardInvocation</code>转发<code>Invocation</code>。</li>
+<li>如果还不行，则会抛异常<code>doesNotRecognizeSelector</code>。</li>
+</ul>
+
+<h3 id="toc_2">参考</h3>
+
+<ul>
+<li><a href="http://cocoasamurai.blogspot.jp/2010/01/understanding-objective-c-runtime.html">understanding-objective-c-runtime</a></li>
+<li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048">ObjCRuntimeGuide</a></li>
+<li><a href="http://opensource.apple.com/tarballs/objc4/">runtime源码</a></li>
+<li><a href="http://blog.jobbole.com/45963/">Objective-C 的动态提示和技巧</a></li>
+<li><a href="http://www.cocoachina.com/ios/20150104/10826.html">NSObject的load和initialize方法</a></li>
+<li><a href="http://esoftmobile.com/2014/02/18/associated-objects/">associated-objects</a></li>
+<li><a href="http://esoftmobile.com/2014/02/19/method-swizzling/">method-swizzling</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[OC Runtime(3)之Associated Objects]]></title>
+    <link href="https://jacoli.github.io/15479057717432.html"/>
+    <updated>2019-01-19T21:49:31+08:00</updated>
+    <id>https://jacoli.github.io/15479057717432.html</id>
+    <content type="html"><![CDATA[
+<h3 id="toc_0">关联对象</h3>
+
+<ul>
+<li><objc/runtime.h>提供了三个方法，分别是get、set、remove</li>
+</ul>
+
+<pre><code class="language-text">void objc_setAssociatedObject(id object, const void *key, id value, objc_AssociationPolicy policy);
+id objc_getAssociatedObject(id object, const void *key);
+void objc_removeAssociatedObjects(id object);
+</code></pre>
+
+<h3 id="toc_1">源码</h3>
+
+<ul>
+<li>获取</li>
+</ul>
+
+<pre><code class="language-text">id _object_get_associative_reference(id object, void *key) {
+    id value = nil;
+    uintptr_t policy = OBJC_ASSOCIATION_ASSIGN;
+    {
+        AssociationsManager manager;
+        AssociationsHashMap &amp;associations(manager.associations());
+        disguised_ptr_t disguised_object = DISGUISE(object);
+        AssociationsHashMap::iterator i = associations.find(disguised_object);
+        if (i != associations.end()) {
+            ObjectAssociationMap *refs = i-&gt;second;
+            ObjectAssociationMap::iterator j = refs-&gt;find(key);
+            if (j != refs-&gt;end()) {
+                ObjcAssociation &amp;entry = j-&gt;second;
+                value = entry.value();
+                policy = entry.policy();
+                if (policy &amp; OBJC_ASSOCIATION_GETTER_RETAIN) ((id(*)(id, SEL))objc_msgSend)(value, SEL_retain);
+            }
+        }
+    }
+    if (value &amp;&amp; (policy &amp; OBJC_ASSOCIATION_GETTER_AUTORELEASE)) {
+        ((id(*)(id, SEL))objc_msgSend)(value, SEL_autorelease);
+    }
+    return value;
+}
+</code></pre>
+
+<ul>
+<li>设置</li>
+</ul>
+
+<pre><code class="language-text">void _object_set_associative_reference(id object, void *key, id value, uintptr_t policy) {
+    // retain the new value (if any) outside the lock.
+    ObjcAssociation old_association(0, nil);
+    id new_value = value ? acquireValue(value, policy) : nil;
+    {
+        AssociationsManager manager;
+        AssociationsHashMap &amp;associations(manager.associations());
+        disguised_ptr_t disguised_object = DISGUISE(object);
+        if (new_value) {
+            // break any existing association.
+            AssociationsHashMap::iterator i = associations.find(disguised_object);
+            if (i != associations.end()) {
+                // secondary table exists
+                ObjectAssociationMap *refs = i-&gt;second;
+                ObjectAssociationMap::iterator j = refs-&gt;find(key);
+                if (j != refs-&gt;end()) {
+                    old_association = j-&gt;second;
+                    j-&gt;second = ObjcAssociation(policy, new_value);
+                } else {
+                    (*refs)[key] = ObjcAssociation(policy, new_value);
+                }
+            } else {
+                // create the new association (first time).
+                ObjectAssociationMap *refs = new ObjectAssociationMap;
+                associations[disguised_object] = refs;
+                (*refs)[key] = ObjcAssociation(policy, new_value);
+                object-&gt;setHasAssociatedObjects();
+            }
+        } else {
+            // setting the association to nil breaks the association.
+            AssociationsHashMap::iterator i = associations.find(disguised_object);
+            if (i !=  associations.end()) {
+                ObjectAssociationMap *refs = i-&gt;second;
+                ObjectAssociationMap::iterator j = refs-&gt;find(key);
+                if (j != refs-&gt;end()) {
+                    old_association = j-&gt;second;
+                    refs-&gt;erase(j);
+                }
+            }
+        }
+    }
+    // release the old value (outside of the lock).
+    if (old_association.hasValue()) ReleaseValue()(old_association);
+}
+</code></pre>
+
+<ul>
+<li>释放</li>
+</ul>
+
+<pre><code class="language-text">id 
+object_dispose(id obj)
+{
+    if (!obj) return nil;
+
+    objc_destructInstance(obj);
+
+    free(obj);
+
+    return nil;
+}
+
+void *objc_destructInstance(id obj) 
+{
+    if (obj) {
+        // Read all of the flags at once for performance.
+        bool cxx = obj-&gt;hasCxxDtor();
+        bool assoc = !UseGC &amp;&amp; obj-&gt;hasAssociatedObjects();
+        bool dealloc = !UseGC;
+
+        // This order is important.
+        if (cxx) object_cxxDestruct(obj);
+        if (assoc) _object_remove_assocations(obj);
+        if (dealloc) obj-&gt;clearDeallocating();
+    }
+
+    return obj;
+}
+
+void _object_remove_assocations(id object) {
+    vector&lt; ObjcAssociation,ObjcAllocator&lt;ObjcAssociation&gt; &gt; elements;
+    {
+        AssociationsManager manager;
+        AssociationsHashMap &amp;associations(manager.associations());
+        if (associations.size() == 0) return;
+        disguised_ptr_t disguised_object = DISGUISE(object);
+        AssociationsHashMap::iterator i = associations.find(disguised_object);
+        if (i != associations.end()) {
+            // copy all of the associations that need to be removed.
+            ObjectAssociationMap *refs = i-&gt;second;
+            for (ObjectAssociationMap::iterator j = refs-&gt;begin(), end = refs-&gt;end(); j != end; ++j) {
+                elements.push_back(j-&gt;second);
+            }
+            // remove the secondary table.
+            delete refs;
+            associations.erase(i);
+        }
+    }
+    // the calls to releaseValue() happen outside of the lock.
+    for_each(elements.begin(), elements.end(), ReleaseValue());
+}
+
+</code></pre>
+
+<h3 id="toc_2">参考</h3>
+
+<ul>
+<li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048">ObjCRuntimeGuide</a></li>
+<li><a href="http://opensource.apple.com/tarballs/objc4/">runtime源码</a></li>
+<li><a href="http://blog.jobbole.com/45963/">Objective-C 的动态提示和技巧</a></li>
+<li><a href="http://www.cocoachina.com/ios/20150104/10826.html">NSObject的load和initialize方法</a></li>
+<li><a href="http://esoftmobile.com/2014/02/18/associated-objects/">associated-objects</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[OC Runtime(1)之Object&Class]]></title>
+    <link href="https://jacoli.github.io/15479057717556.html"/>
+    <updated>2019-01-19T21:49:31+08:00</updated>
+    <id>https://jacoli.github.io/15479057717556.html</id>
+    <content type="html"><![CDATA[
+<h3 id="toc_0">Objective-C Runtime</h3>
+
+<p><img src="media/15479057717556/OC-Runtime.png" alt="OC-Runtime"/></p>
+
+<ul>
+<li><p>Objective-C是面向运行时的编程语言，这就意味着运行阶段才知道如何执行，而不是编译链接阶段就确定好。</p></li>
+<li><p>What is the Objective-C Runtime?</p></li>
+</ul>
+
+<pre><code class="language-text">The Objective-C Runtime is a Runtime Library, it&#39;s a library written 
+mainly in C &amp; Assembler that adds the Object Oriented capabilities 
+to C to create Objective-C. This means it loads in Class information, 
+does all method dispatching, method forwarding, etc. The Objective-C 
+runtime essentially creates all the support structures that make 
+Object Oriented Programming with Objective-C Possible.
+</code></pre>
+
+<ul>
+<li>有了Objective-C Runtime，就有了各种在运行时修改代码的hack手段。</li>
+</ul>
+
+<h3 id="toc_1">类</h3>
+
+<ul>
+<li>先看下<code>类</code>的结构体定义，除了存放类的基本信息，还存放对象的变量、方法、协议的元信息。程序加载时，<code>类</code>结构体会被实例化，并放到全局列表中<code>g_classList</code>，结构体的<code>isa</code>、<code>super_class</code>、<code>methodLists</code>等属性也一起被初始化。</li>
+</ul>
+
+<pre><code class="language-text">// 伪代码，对源码稍做修改。
+
+static Class *g_classList;
+
+struct objc_class {
+    Class isa;          // 指向元类
+    Class super_class;  // 指向父类
+    
+    // 类基本信息
+    const char *name;
+    long version;
+    long info;
+    long instance_size;
+    
+    // 类的变量、方法、协议的元信息
+    struct objc_ivar_list *ivars;
+    struct objc_method_list **methodLists;
+    struct objc_protocol_list *protocols;
+    
+    // 方法缓存
+    struct objc_cache *cache;
+};
+typedef struct objc_class *Class;
+
+bool isMetaClass() {
+        return info &amp; CLS_META;
+    }
+</code></pre>
+
+<h3 id="toc_2">元类</h3>
+
+<ul>
+<li><code>元类</code>跟<code>类</code>使用相同的结构体，只是通过<code>isMetaClass</code>方法做区分。</li>
+<li><p><code>元类</code>结构体中，存放类的变量、方法、协议的元信息。</p></li>
+<li><p>对象、类、元类的关系如下：</p></li>
+</ul>
+
+<p><img src="media/15479057717556/OC-Runtime-%E7%B1%BB%E5%9B%BE.png" alt="OC-Runtime-类图"/></p>
+
+<h3 id="toc_3">对象</h3>
+
+<ul>
+<li>对象的结构体如下，存放对象的变量数据，其他的都是先通过<code>isa</code>找到类，再从类中找出变量、方法等的元信息。</li>
+</ul>
+
+<pre><code class="language-text">// 伪代码，对源码稍做修改。
+
+struct objc_object {
+    Class isa;
+    
+    // 变量的数据
+    void *varsLayout;
+}
+
+typedef struct objc_object *id
+</code></pre>
+
+<ul>
+<li>创建对象，<code>NSObject *obj = [[NSObject alloc] init];</code>可能对应以下一些动作。</li>
+</ul>
+
+<pre><code class="language-text">// 伪代码
+
+{
+    // 找到类
+    Class cls = findClass(&quot;NSObject&quot;);
+    
+    // 找到alloc方法，执行生成对象
+    IMP imp = findImp(cls, &quot;alloc&quot;);
+    id obj = imp(cls);
+    
+    // 找到init方法，执行初始化对象
+    IMP imp = findImp(cls, &quot;init&quot;);
+    imp(obj);
+    
+    // 返回对象
+    return obj;
+}   
+    
+id alloc(Class cls) {
+    id obj = malloc(sizeof(struct objc_object));
+    obj-&gt;isa = cls;
+    return obj;
+}
+
+id init(id obj) {
+    obj-&gt;varsLayout = xxx;
+}   
+</code></pre>
+
+<h3 id="toc_4">总结</h3>
+
+<ul>
+<li>总的来说，全局维护一张类表，存放类方法、实例方法、实例变量的元信息等。程序加载阶段会初始化这张表。运行阶段，也可以通过<code>addMethod</code>、<code>class_replaceMethod</code>、<code>class_addIvar</code>、<code>class_addProtocol</code>、<code>class_addProperty</code>等接口动态修改这张表。<br/>
+### 参考</li>
+<li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048">ObjCRuntimeGuide</a></li>
+<li><a href="http://opensource.apple.com/tarballs/objc4/">runtime源码</a></li>
+<li><a href="http://blog.jobbole.com/45963/">Objective-C 的动态提示和技巧</a></li>
+<li><a href="http://www.cocoachina.com/ios/20150104/10826.html">NSObject的load和initialize方法</a></li>
+<li><a href="http://esoftmobile.com/2014/02/18/associated-objects/">associated-objects</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[OC Runtime(2)之Ivar&Property&Method&Protocol]]></title>
+    <link href="https://jacoli.github.io/15479057717489.html"/>
+    <updated>2019-01-19T21:49:31+08:00</updated>
+    <id>https://jacoli.github.io/15479057717489.html</id>
+    <content type="html"><![CDATA[
+<h3 id="toc_0">Ivar</h3>
+
+<pre><code class="language-text">struct old_ivar {
+    char *ivar_name;
+    char *ivar_type;
+    int ivar_offset;
+#ifdef __LP64__
+    int space;
+#endif
+};
+</code></pre>
+
+<h3 id="toc_1">Property</h3>
+
+<pre><code class="language-text">struct old_property {
+    const char *name;
+    const char *attributes;
+};
+</code></pre>
+
+<h3 id="toc_2">Method</h3>
+
+<pre><code class="language-text">struct old_method {
+    SEL method_name;
+    char *method_types;
+    IMP method_imp;
+};
+</code></pre>
+
+<h3 id="toc_3">protocol</h3>
+
+<pre><code class="language-text">struct old_protocol {
+    Class isa;
+    const char *protocol_name;
+    struct old_protocol_list *protocol_list;
+    struct objc_method_description_list *instance_methods;
+    struct objc_method_description_list *class_methods;
+};
+</code></pre>
+
+<pre><code class="language-text">struct objc_method_description *
+lookup_protocol_method(old_protocol *proto, SEL aSel, 
+                       bool isRequiredMethod, bool isInstanceMethod, 
+                       bool recursive)
+{
+    struct objc_method_description *m = nil;
+    old_protocol_ext *ext;
+
+    if (isRequiredMethod) {
+        if (isInstanceMethod) {
+            m = lookup_method(proto-&gt;instance_methods, aSel);
+        } else {
+            m = lookup_method(proto-&gt;class_methods, aSel);
+        }
+    } else if ((ext = ext_for_protocol(proto))) {
+        if (isInstanceMethod) {
+            m = lookup_method(ext-&gt;optional_instance_methods, aSel);
+        } else {
+            m = lookup_method(ext-&gt;optional_class_methods, aSel);
+        }
+    }
+
+    if (!m  &amp;&amp;  recursive  &amp;&amp;  proto-&gt;protocol_list) {
+        int i;
+        for (i = 0; !m  &amp;&amp;  i &lt; proto-&gt;protocol_list-&gt;count; i++) {
+            m = lookup_protocol_method(proto-&gt;protocol_list-&gt;list[i], aSel, 
+                                       isRequiredMethod,isInstanceMethod,true);
+        }
+    }
+
+    return m;
+}
+</code></pre>
+
+<h3 id="toc_4">category</h3>
+
+<pre><code class="language-text">struct old_category {
+    char *category_name;
+    char *class_name;
+    struct old_method_list *instance_methods;
+    struct old_method_list *class_methods;
+    struct old_protocol_list *protocols;
+    uint32_t size;
+    struct old_property_list *instance_properties;
+};
+</code></pre>
+
+<h3 id="toc_5">参考</h3>
+
+<ul>
+<li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048">ObjCRuntimeGuide</a></li>
+<li><a href="http://opensource.apple.com/tarballs/objc4/">runtime源码</a></li>
+<li><a href="http://blog.jobbole.com/45963/">Objective-C 的动态提示和技巧</a></li>
+<li><a href="http://www.cocoachina.com/ios/20150104/10826.html">NSObject的load和initialize方法</a></li>
+<li><a href="http://esoftmobile.com/2014/02/18/associated-objects/">associated-objects</a></li>
 </ul>
 
 ]]></content>
