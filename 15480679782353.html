@@ -1,0 +1,554 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  概述 - 李传格的博客
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="李传格的博客" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:jacoli.github.io ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; 李传格的博客</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">Home</a></li>
+        
+        <li><a target="_self" href="archives.html">Archives</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>概述</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2019/1/22</span>
+
+          
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <ul>
+<li><p><code>Alamofire</code>跟<a href="https://github.com/AFNetworking/AFNetworking">AFNetworking</a>的功能差不多，都是对URLSession的封装，对上层提供易用的网络请求接口。</p></li>
+<li><p><code>Alamofire</code>和<a href="https://github.com/AFNetworking/AFNetworking">AFNetworking</a>分别是Swift和OC的实现版本。</p></li>
+<li><p>目前，这两个网络封装库的关注度和使用率非常高，代码质量也相当不错。本文想通过对<code>Alamofire</code>源码的简单分析，了解其基本框架和设计思路。</p></li>
+<li><p>源码链接：<a href="https://github.com/Alamofire/Alamofire">Alamofire</a></p></li>
+</ul>
+
+<h3 id="toc_0">一个GET请求的源码分析</h3>
+
+<ul>
+<li>从最简单的Get请求入手，分析<code>Alamofire</code>的代码。一个请求流程，可以分为请求发送流程和请求响应流程，下文将从这两个流程展开分析。</li>
+</ul>
+
+<pre><code class="language-text">// Get请求的调用方式
+Alamofire.request(&quot;https://httpbin.org/get&quot;).responseJSON { response in
+    print(response.request)  // original URL request
+    print(response.response) // HTTP URL response
+    print(response.data)     // server data
+    print(response.result)   // result of response serialization
+
+    if let JSON = response.result.value {
+        print(&quot;JSON: \(JSON)&quot;)
+    }
+}
+</code></pre>
+
+<h4 id="toc_1">请求发送流程</h4>
+
+<ul>
+<li><code>Alamofire.Swift</code>可以认为<code>Alamofire</code>一些对外接口的包装（Facade API）。
+<code>Alamofire.request</code>实际上是调用了<code>SessionManager.request</code>。</li>
+</ul>
+
+<pre><code class="language-text">// 调用request方法
+/// Creates a `DataRequest` using the default `SessionManager` to retrieve the contents of a URL based on the specified `urlRequest`.
+@discardableResult
+public func request(_ urlRequest: URLRequestConvertible) -&gt; DataRequest {
+    return SessionManager.default.request(urlRequest)
+}
+</code></pre>
+
+<ul>
+<li>在<code>SessionManager.request</code>，<code>Request</code>被组装创建，并加到发送队列中，然后等待一系列的响应事件。而<code>SessionManager</code>主要职责是管理发送队列，组装请求消息，设置Session相关的配置，设置工作线程等。</li>
+</ul>
+
+<pre><code class="language-text">// 创建request对象，并开始发送
+/// Creates a `DataRequest` to retrieve the contents of a URL based on the specified `urlRequest`.
+    open func request(_ urlRequest: URLRequestConvertible) -&gt; DataRequest {
+        var originalRequest: URLRequest?
+
+        do {
+            originalRequest = try urlRequest.asURLRequest()
+            let originalTask = DataRequest.Requestable(urlRequest: originalRequest!)
+
+            let task = try originalTask.task(session: session, adapter: adapter, queue: queue)
+            let request = DataRequest(session: session, requestTask: .data(originalTask, task))
+
+            delegate[task] = request
+
+            if startRequestsImmediately { request.resume() }
+
+            return request
+        } catch {
+            return request(originalRequest, failedWith: error)
+        }
+    }
+</code></pre>
+
+<ul>
+<li>接着，通过<code>Request.responseJSON</code>设置JSON响应回调的处理方法。</li>
+</ul>
+
+<pre><code class="language-text">// 设置回调
+/// Adds a handler to be called once the request has finished.
+    @discardableResult
+    public func responseJSON(
+        queue: DispatchQueue? = nil,
+        options: JSONSerialization.ReadingOptions = .allowFragments,
+        completionHandler: @escaping (DataResponse&lt;Any&gt;) -&gt; Void)
+        -&gt; Self
+    {
+        return response(
+            queue: queue,
+            responseSerializer: DataRequest.jsonResponseSerializer(options: options),
+            completionHandler: completionHandler
+        )
+    }
+</code></pre>
+
+<ul>
+<li><code>Request.responseJSON</code>实际上是调用<code>Request.response</code>，将回调添加到<code>Request.delegate.queue</code>，然后等待响应事件。</li>
+</ul>
+
+<pre><code class="language-text">    /// Adds a handler to be called once the request has finished.
+    @discardableResult
+    public func response&lt;T: DataResponseSerializerProtocol&gt;(
+        queue: DispatchQueue? = nil,
+        responseSerializer: T,
+        completionHandler: @escaping (DataResponse&lt;T.SerializedObject&gt;) -&gt; Void)
+        -&gt; Self
+    {
+        delegate.queue.addOperation {
+            let result = responseSerializer.serializeResponse(
+                self.request,
+                self.response,
+                self.delegate.data,
+                self.delegate.error
+            )
+
+            var dataResponse = DataResponse&lt;T.SerializedObject&gt;(
+                request: self.request,
+                response: self.response,
+                data: self.delegate.data,
+                result: result,
+                timeline: self.timeline
+            )
+
+            dataResponse.add(self.delegate.metrics)
+
+            (queue ?? DispatchQueue.main).async { completionHandler(dataResponse) }
+        }
+
+        return self
+    }
+
+</code></pre>
+
+<ul>
+<li>至此，发送流程完成，接着就等待响应事件。</li>
+</ul>
+
+<h4 id="toc_2">请求响应流程</h4>
+
+<ul>
+<li><p>一个请求的响应事件会有多个，并按循序上报，例如以下几个主要事件，</p></li>
+<li><p>HTTPS鉴权事件 <code>func urlSession(_ session: URLSession,task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -&gt; Void)</code></p></li>
+<li><p>收到Response响应头事件 <code>func urlSession(_ session: URLSession,dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -&gt; Void)</code></p></li>
+<li><p>收到Response Body数据事件 <code>func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data)</code></p></li>
+<li><p>响应流程完成事件 <code>func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?)</code></p></li>
+<li><p>本文以最后一个响应流程完成事件为例，梳理下整个响应流程。</p></li>
+<li><p>首先，<code>SessionDelegate</code>会收到由<code>URLSession.delegate</code>上报的<code>urlSession:task:didCompleteWithError</code>，根据<code>task</code>找到<code>URLSessionTask</code>并通过其<code>delegate</code>上报事件给<code>TaskDelegate</code>。</p></li>
+</ul>
+
+<pre><code class="language-text">    /// Tells the delegate that the task finished transferring data.
+    open func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        /// Executed after it is determined that the request is not going to be retried
+        let completeTask: (URLSession, URLSessionTask, Error?) -&gt; Void = { [weak self] session, task, error in
+            guard let strongSelf = self else { return }
+
+            if let taskDidComplete = strongSelf.taskDidComplete {
+                taskDidComplete(session, task, error)
+            } else if let delegate = strongSelf[task]?.delegate {
+                delegate.urlSession(session, task: task, didCompleteWithError: error)
+            }
+
+            NotificationCenter.default.post(
+                name: Notification.Name.Task.DidComplete,
+                object: strongSelf,
+                userInfo: [Notification.Key.Task: task]
+            )
+
+            strongSelf[task] = nil
+        }
+
+        guard let request = self[task], let sessionManager = sessionManager else {
+            completeTask(session, task, error)
+            return
+        }
+
+        // Run all validations on the request before checking if an error occurred
+        request.validations.forEach { $0() }
+
+        // Determine whether an error has occurred
+        var error: Error? = error
+
+        if let taskDelegate = self[task]?.delegate, taskDelegate.error != nil {
+            error = taskDelegate.error
+        }
+
+        /// If an error occurred and the retrier is set, asynchronously ask the retrier if the request
+        /// should be retried. Otherwise, complete the task by notifying the task delegate.
+        if let retrier = retrier, let error = error {
+            retrier.should(sessionManager, retry: request, with: error) { [weak self] shouldRetry, timeDelay in
+                guard shouldRetry else { completeTask(session, task, error) ; return }
+
+                DispatchQueue.utility.after(timeDelay) { [weak self] in
+                    guard let strongSelf = self else { return }
+
+                    let retrySucceeded = strongSelf.sessionManager?.retry(request) ?? false
+
+                    if retrySucceeded, let task = request.task {
+                        strongSelf[task] = request
+                        return
+                    } else {
+                        completeTask(session, task, error)
+                    }
+                }
+            }
+        } else {
+            completeTask(session, task, error)
+        }
+    }
+</code></pre>
+
+<ul>
+<li>接着，<code>TaskDelegate</code>收到该事件后，恢复queue队列，按循序执行其中的回调，如<code>ResponseJSON</code>。</li>
+</ul>
+
+<pre><code class="language-text">    @objc(URLSession:task:didCompleteWithError:)
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        if let taskDidCompleteWithError = taskDidCompleteWithError {
+            taskDidCompleteWithError(session, task, error)
+        } else {
+            if let error = error {
+                if self.error == nil { self.error = error }
+
+                if
+                    let downloadDelegate = self as? DownloadTaskDelegate,
+                    let resumeData = (error as NSError).userInfo[NSURLSessionDownloadTaskResumeData] as? Data
+                {
+                    downloadDelegate.resumeData = resumeData
+                }
+            }
+
+            // queue队列中的operaion开始按循序执行，回调到上层。
+            queue.isSuspended = false
+        }
+    }
+</code></pre>
+
+<h3 id="toc_3">其他模块</h3>
+
+<ul>
+<li><p>除了发送，响应相关的代码，<code>Alamofire</code>还有许多其他模块。例如，</p></li>
+<li><p><code>NetworkReachabilityManager</code>管理网络状态。</p></li>
+<li><p><code>ParameterEncoding</code> 入参编解码方式。</p></li>
+<li><p><code>ResponseSerialization</code> 响应的反序列化方式。</p></li>
+<li><p><code>ServerTrustPolicy</code> HTTPS的鉴权</p></li>
+<li><p>等等。</p></li>
+</ul>
+
+<h3 id="toc_4">总结</h3>
+
+<ul>
+<li>分析得比较简单，抱砖引玉。</li>
+</ul>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15480679782584.html" 
+          title="Previous Post: iOS存储">&laquo; iOS存储</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>李传格的博客</h1>
+                <div class="site-des"></div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15480679782005.html">问题：UICollectionView Cell之间存在缝隙</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15480679782500.html">Auto Layout</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15480679782446.html">AppLink</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15480679782625.html">WebView In Mobile App</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15480679570014.html">关于电商的脑爆、YY</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+
+
+  </body>
+</html>

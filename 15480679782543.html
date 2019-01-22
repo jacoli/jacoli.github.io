@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  OC Runtime(2)之Ivar&Property&Method&Protocol - 李传格的博客
+  iOS测试框架XCTest - 李传格的博客
   
   </title>
   
@@ -98,10 +98,10 @@
       <div class="markdown-body article-wrap">
        <div class="article">
           
-          <h1>OC Runtime(2)之Ivar&Property&Method&Protocol</h1>
+          <h1>iOS测试框架XCTest</h1>
      
         <div class="read-more clearfix">
-          <span class="date">2014/3/17</span>
+          <span class="date">2017/6/3</span>
 
           
            
@@ -116,101 +116,16 @@
       </div><!-- article -->
 
       <div class="article-content">
-      <h3 id="toc_0">Ivar</h3>
-
-<pre><code class="language-text">struct old_ivar {
-    char *ivar_name;
-    char *ivar_type;
-    int ivar_offset;
-#ifdef __LP64__
-    int space;
-#endif
-};
-</code></pre>
-
-<h3 id="toc_1">Property</h3>
-
-<pre><code class="language-text">struct old_property {
-    const char *name;
-    const char *attributes;
-};
-</code></pre>
-
-<h3 id="toc_2">Method</h3>
-
-<pre><code class="language-text">struct old_method {
-    SEL method_name;
-    char *method_types;
-    IMP method_imp;
-};
-</code></pre>
-
-<h3 id="toc_3">protocol</h3>
-
-<pre><code class="language-text">struct old_protocol {
-    Class isa;
-    const char *protocol_name;
-    struct old_protocol_list *protocol_list;
-    struct objc_method_description_list *instance_methods;
-    struct objc_method_description_list *class_methods;
-};
-</code></pre>
-
-<pre><code class="language-text">struct objc_method_description *
-lookup_protocol_method(old_protocol *proto, SEL aSel, 
-                       bool isRequiredMethod, bool isInstanceMethod, 
-                       bool recursive)
-{
-    struct objc_method_description *m = nil;
-    old_protocol_ext *ext;
-
-    if (isRequiredMethod) {
-        if (isInstanceMethod) {
-            m = lookup_method(proto-&gt;instance_methods, aSel);
-        } else {
-            m = lookup_method(proto-&gt;class_methods, aSel);
-        }
-    } else if ((ext = ext_for_protocol(proto))) {
-        if (isInstanceMethod) {
-            m = lookup_method(ext-&gt;optional_instance_methods, aSel);
-        } else {
-            m = lookup_method(ext-&gt;optional_class_methods, aSel);
-        }
-    }
-
-    if (!m  &amp;&amp;  recursive  &amp;&amp;  proto-&gt;protocol_list) {
-        int i;
-        for (i = 0; !m  &amp;&amp;  i &lt; proto-&gt;protocol_list-&gt;count; i++) {
-            m = lookup_protocol_method(proto-&gt;protocol_list-&gt;list[i], aSel, 
-                                       isRequiredMethod,isInstanceMethod,true);
-        }
-    }
-
-    return m;
-}
-</code></pre>
-
-<h3 id="toc_4">category</h3>
-
-<pre><code class="language-text">struct old_category {
-    char *category_name;
-    char *class_name;
-    struct old_method_list *instance_methods;
-    struct old_method_list *class_methods;
-    struct old_protocol_list *protocols;
-    uint32_t size;
-    struct old_property_list *instance_properties;
-};
-</code></pre>
-
-<h3 id="toc_5">参考</h3>
-
-<ul>
-<li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048">ObjCRuntimeGuide</a></li>
-<li><a href="http://opensource.apple.com/tarballs/objc4/">runtime源码</a></li>
-<li><a href="http://blog.jobbole.com/45963/">Objective-C 的动态提示和技巧</a></li>
-<li><a href="http://www.cocoachina.com/ios/20150104/10826.html">NSObject的load和initialize方法</a></li>
-<li><a href="http://esoftmobile.com/2014/02/18/associated-objects/">associated-objects</a></li>
+      <ul>
+<li>XCTest已基本满足单元测试和UI测试的需求，支持对同步流程、异步流程、性能的测试，UI测试代码的自动生成，代码测试覆盖率的统计等。</li>
+<li>UI测试也还有不足的地方，例如录制生成的代码仍不够完善，无法直接访问目标APP的接口，无法修改边界条件，在单设备或单模拟器运行效率过低，每次重启目标App后只能运行一个Case。</li>
+<li><a href="https://github.com/vsouza/awesome-ios#ui-testing">一些三方库</a></li>
+<li><a href="https://github.com/linkedin/bluepill">Bluepill is a tool to run iOS tests in parallel using multiple simulators.</a></li>
+<li><a href="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/testing_with_xcode/chapters/01-introduction.html">XCTest官方手册 </a></li>
+<li><a href="http://www.tuicool.com/articles/ZJNzYbY">iOS单元测试和UI测试</a></li>
+<li><a href="http://www.tuicool.com/articles/nyQBN3B">单元测试之旅--预见优秀</a></li>
+<li><a href="http://www.tuicool.com/articles/fE3Uvqb">iOS UnitTest单元测试</a></li>
+<li><a href="http://www.tuicool.com/articles/QfA73qy">Android单元测试的整理</a></li>
 </ul>
 
 
@@ -222,16 +137,16 @@ lookup_protocol_method(old_protocol *proto, SEL aSel,
         <div class="large-6 columns">
         <p class="text-left" style="padding:15px 0px;">
       
-          <a href="15479057717432.html" 
-          title="Previous Post: OC Runtime(3)之Associated Objects">&laquo; OC Runtime(3)之Associated Objects</a>
+          <a href="15480679782229.html" 
+          title="Previous Post: 开发笔记3">&laquo; 开发笔记3</a>
       
         </p>
         </div>
         <div class="large-6 columns">
       <p class="text-right" style="padding:15px 0px;">
       
-          <a  href="15479057717556.html" 
-          title="Next Post: OC Runtime(1)之Object&Class">OC Runtime(1)之Object&Class &raquo;</a>
+          <a  href="15480679782141.html" 
+          title="Next Post: 开发笔记1">开发笔记1 &raquo;</a>
       
       </p>
         </div>

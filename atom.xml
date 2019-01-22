@@ -4,13 +4,523 @@
   <title><![CDATA[李传格的博客]]></title>
   <link href="https://jacoli.github.io/atom.xml" rel="self"/>
   <link href="https://jacoli.github.io/"/>
-  <updated>2019-01-21T15:55:49+08:00</updated>
+  <updated>2019-01-22T15:27:37+08:00</updated>
   <id>https://jacoli.github.io/</id>
   <author>
     <name><![CDATA[]]></name>
     
   </author>
   <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[问题：UICollectionView Cell之间存在缝隙]]></title>
+    <link href="https://jacoli.github.io/15480679782005.html"/>
+    <updated>2019-01-21T18:52:58+08:00</updated>
+    <id>https://jacoli.github.io/15480679782005.html</id>
+    <content type="html"><![CDATA[
+<h2 id="toc_0">原因</h2>
+
+<ul>
+<li><p>当<code>UICollectionViewCell</code>的size不为整数时，<code>UICollectionViewFlowLayout</code>在布局计算时，可能会调整Cell的frame.origin，使Cell按照最小物理像素（渲染像素）对齐，导致出现缝隙。</p></li>
+<li><p>假设当前Cell的frame.origin.y=100.8（逻辑像素），转化成渲染像素（参考备注）是201.6（iPhone 8）或302.4（iPhone 8 Plus）。为了按渲染像素对齐，<code>UICollectionViewFlowLayout</code>应该会四舍五入取整，取整后为202（iPhone 8）或302（iPhone 8 Plus），转成逻辑像素101（iPhone 8）或100.667（iPhone 8 Plus），导致在iphone8上就会出现0.2像素的缝隙。</p></li>
+<li><p>分辨率相关的，可以百度下。</p></li>
+</ul>
+
+<h2 id="toc_1">简单解决办法：</h2>
+
+<ul>
+<li>主动把Cell的size取整，不丢给<code>UICollectionViewFlowLayout</code>处理。
+<code>
+- (CGSize)fixedCollectionCellSize:(CGSize)size {<br/>
+CGFloat scale = [UIScreen mainScreen].scale;<br/>
+return CGSizeMake(round(scale * size.width) / scale, round(scale * size.height) / scale);<br/>
+}
+</code></li>
+</ul>
+
+<h2 id="toc_2">Demo实验</h2>
+
+<ul>
+<li>UITableView，Cell高度设置成100.12，没有强制被按渲染像素对齐，如 <code>99.62</code> <code>1802.16</code>  <code>1902.28</code></li>
+</ul>
+
+<pre><code class="language-text">(lldb) po [0x7fb85b83b800 recursiveDescription]
+&lt;UITableView: 0x7fb85b83b800; frame = (0 0; 375 667); clipsToBounds = YES; gestureRecognizers = &lt;NSArray: 0x6000004451f0&gt;; layer = &lt;CALayer: 0x60000022dc40&gt;; contentOffset: {0, 1272.5}; contentSize: {375, 2002.4000549316406}; adjustedContentInset: {20, 0, 0, 0}&gt;
+   | &lt;UITableViewCell: 0x7fb85c862a00; frame = (0 1902.28; 375 100.12); autoresize = W; layer = &lt;CALayer: 0x6040004265a0&gt;&gt;
+   |    | &lt;UITableViewCellContentView: 0x7fb85b70fea0; frame = (0 0; 375 99.62); gestureRecognizers = &lt;NSArray: 0x6040002426a0&gt;; layer = &lt;CALayer: 0x604000425e80&gt;&gt;
+   |    |    | &lt;UIImageView: 0x7fb85b41a330; frame = (0 0; 0 0); userInteractionEnabled = NO; layer = &lt;CALayer: 0x6000008215c0&gt;&gt;
+   |    | &lt;_UITableViewCellSeparatorView: 0x7fb85b710820; frame = (15 99.62; 360 0.5); layer = &lt;CALayer: 0x604000427640&gt;&gt;
+   | &lt;UITableViewCell: 0x7fb85c862400; frame = (0 1802.16; 375 100.12); autoresize = W; layer = &lt;CALayer: 0x6040002212e0&gt;&gt;
+</code></pre>
+
+<ul>
+<li>iPhone Plus 8，UICollectionView，Cell高度设置成100.12，强制被按渲染像素对齐了，frame.origin.y被调整后的值，如<code>200.333</code> <code>500.667</code> <code>600.667</code></li>
+</ul>
+
+<pre><code class="language-text">   | &lt;UICollectionViewCell: 0x7fdd9f71f010; frame = (0 200.333; 414 100.12); hidden = YES; layer = &lt;CALayer: 0x60000023d800&gt;&gt;
+   | &lt;UICollectionViewCell: 0x7fdd9f71f470; frame = (0 300.333; 414 100.12); layer = &lt;CALayer: 0x60000023e380&gt;&gt;
+   | &lt;UICollectionViewCell: 0x7fdd9f72aa30; frame = (0 400.333; 414 100.12); layer = &lt;CALayer: 0x60000023f4e0&gt;&gt;
+   | &lt;UICollectionViewCell: 0x7fdd9f72ae90; frame = (0 500.667; 414 100.12); layer = &lt;CALayer: 0x60000023f9a0&gt;&gt;
+   | &lt;UICollectionViewCell: 0x7fdd9f72b510; frame = (0 600.667; 414 100.12); layer = &lt;CALayer: 0x60000023fbc0&gt;&gt;
+   | &lt;UICollectionViewCell: 0x7fdd9f72d1a0; frame = (0 701; 414 100.12); layer = &lt;CALayer: 0x60000023fdc0&gt;&gt;
+</code></pre>
+
+<ul>
+<li>iPhone Plus，UICollectionView，Cell高度设置成100.12，强制被按渲染像素对齐了，frame.origin.y被调整后的值，如<code>300.5</code> <code>400.5</code> <code>500.5</code></li>
+</ul>
+
+<pre><code class="language-text">   | &lt;UICollectionViewCell: 0x7f85b441b6c0; frame = (0 0; 375 100.12); hidden = YES; layer = &lt;CALayer: 0x600000035ec0&gt;&gt;
+   | &lt;UICollectionViewCell: 0x7f85b4502e10; frame = (0 100; 375 100.12); hidden = YES; layer = &lt;CALayer: 0x600000035c20&gt;&gt;
+   | &lt;UICollectionViewCell: 0x7f85b4505c10; frame = (0 200; 375 100.12); layer = &lt;CALayer: 0x600000036300&gt;&gt;
+   | &lt;UICollectionViewCell: 0x7f85b4506400; frame = (0 300.5; 375 100.12); layer = &lt;CALayer: 0x600000036be0&gt;&gt;
+   | &lt;UICollectionViewCell: 0x7f85b4506d70; frame = (0 400.5; 375 100.12); layer = &lt;CALayer: 0x600000227ac0&gt;&gt;
+   | &lt;UICollectionViewCell: 0x7f85b4507560; frame = (0 500.5; 375 100.12); layer = &lt;CALayer: 0x6000002277c0&gt;&gt;
+</code></pre>
+
+<h3 id="toc_3">备注</h3>
+
+<p>Points（逻辑像素）&lt;---&gt;Rendered Pixels（渲染像素）&lt;---&gt;Physical Pixels（物理像素）</p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/1824896-195d0d1574cf13c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="iOS不同机型尺寸.png"/></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Auto Layout]]></title>
+    <link href="https://jacoli.github.io/15480679782500.html"/>
+    <updated>2019-01-21T18:52:58+08:00</updated>
+    <id>https://jacoli.github.io/15480679782500.html</id>
+    <content type="html"><![CDATA[
+<p>1、添加约束条件时，必须存在父视图或共同的父视图<br/>
+2、auto layout engine计算时，必须知道位置和大小的约束<br/>
+3、但某子视图启动auto layout约束后，父视图也随之启动<br/>
+4、frame自动转换成auto layout约束<br/>
+5、UILabel、UIImageVIew、UIButton、UITextField等，如果没有设置大小约束，则由intrinsicContentSize隐式提供，当内容改变后，intrinsicContentSize随之改变，并驱动auto layout engine重新计算<br/>
+6、content hugging priority（内容收缩优先级）和content compression resistance priority （内容放大优先级）和intrinsicContentSize 一起决定大小的计算</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[AppLink]]></title>
+    <link href="https://jacoli.github.io/15480679782446.html"/>
+    <updated>2019-01-21T18:52:58+08:00</updated>
+    <id>https://jacoli.github.io/15480679782446.html</id>
+    <content type="html"><![CDATA[
+<p><img src="http://upload-images.jianshu.io/upload_images/1824896-e9fe114c4419d41e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2017-09-13 下午2.09.46.png"/></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[WebView In Mobile App]]></title>
+    <link href="https://jacoli.github.io/15480679782625.html"/>
+    <updated>2019-01-21T18:52:58+08:00</updated>
+    <id>https://jacoli.github.io/15480679782625.html</id>
+    <content type="html"><![CDATA[
+<ul>
+<li><a href="http://blog.csdn.net/carson_ho/article/details/52693322"><a href="http://blog.csdn.net/carson_ho/article/details/52693322">Android：最全面的 Webview 详解</a></a></li>
+<li><a href="http://blog.csdn.net/carson_ho/article/details/64904691"><a href="http://blog.csdn.net/carson_ho/article/details/64904691">Android：你要的WebView与 JS 交互方式 都在这里了</a></a></li>
+<li><a href="http://www.cnblogs.com/whoislcj/p/5645025.html"><a href="http://www.cnblogs.com/whoislcj/p/5645025.html">Android混合开发之WebView使用总结</a></a></li>
+<li><a href="http://www.open-open.com/lib/view/open1472481479625.html">还在用Android自带的WebView组件？太Out了！</a></li>
+<li><a href="http://blog.csdn.net/u011904605/article/details/52301416">关于Android APP集成腾讯X5 WebKit</a></li>
+<li><a href="https://github.com/lzyzsd/JsBridge">JsBridge</a></li>
+<li><a href="http://www.cnblogs.com/oc-bowen/p/5547900.html">UIWebView和WKWebView的使用及js交互</a></li>
+<li><a href="https://github.com/marcuswestin/WebViewJavascriptBridge">WebViewJavascriptBridge</a></li>
+<li>淘宝的Windvane、微信的小程序也算是Hybrid框架，在WebView基础上，提供组件定制化、规范化、性能优化、访问Native能力等</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[关于电商的脑爆、YY]]></title>
+    <link href="https://jacoli.github.io/15480679570014.html"/>
+    <updated>2019-01-21T18:52:37+08:00</updated>
+    <id>https://jacoli.github.io/15480679570014.html</id>
+    <content type="html"><![CDATA[
+<p><img src="http://upload-images.jianshu.io/upload_images/1824896-376342729f32f6b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2017-07-22 下午2.20.43.png"/></p>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/1824896-74963cccc535cd20.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2017-07-22 下午2.21.00.png"/></p>
+
+<p>1、用户系统：会员信息、地址管理等</p>
+
+<p>2、商品系统：商品库、SKU、类目、库存、购物车</p>
+
+<p>3、营销系统：运营位、优惠券、活动</p>
+
+<p>4、交易系统：下单、支付、订单、逆向</p>
+
+<p>5、报表 对账 结算</p>
+
+<p>6、内容系统：文章、专辑、视频</p>
+
+<p>7、搜索、推荐</p>
+
+<p>7、其他：物流、推送</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[* [什么是软件架构](https://baike.baidu.com/item/%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84/7485920?fr=aladdin)]]></title>
+    <link href="https://jacoli.github.io/15480679781845.html"/>
+    <updated>2019-01-21T18:52:58+08:00</updated>
+    <id>https://jacoli.github.io/15480679781845.html</id>
+    <content type="html"><![CDATA[
+<ul>
+<li>架构服务于效率、质量、体验、性能等</li>
+<li>架构优化的短期成本和长期收益的权衡</li>
+<li>架构要与当前业务发展和团队规模相匹配</li>
+<li>架构设计的方法论和实践
+<code>
+解耦：模块化、组件化，<br/>
+复用：基础组件，<br/>
+分层：视图、业务、基础服务，<br/>
+协议化等
+</code></li>
+<li><a href="http://www.infoq.com/cn/news/2017/06/VirtualAPK-opensource?utm_source=news_about_architecture-design&amp;utm_medium=link&amp;utm_campaign=architecture-design">滴滴插件化项目VirtualAPK开源</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzAwNDY1ODY2OQ==&amp;mid=2649286672&amp;idx=1&amp;sn=4d9db00c496fcafd1d3e01d69af083f9&amp;chksm=8334cc92b4434584e8bdb117274f41145fb49ba467ec0cd9ba5e3551a8abf92f1996bd6b147a&amp;mpshare=1&amp;scene=24&amp;srcid=0630STw0N4c83hIAqLo9Tkdm&amp;key=c969774f949c279bf4404f575b096d071dfd21b85924484756752b237733d001fc998a2a59df09557a1190be7ce550df361bb8e62077f558b516011b3c3ce705b5cef390bed833792073e747cdcbbb2e&amp;ascene=0&amp;uin=MTc0NzM4NzU0MA%3D%3D&amp;devicetype=iMac+MacBookPro12%2C1+OSX+OSX+10.12.4+build(16E195)&amp;version=12020610&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=k43tzMF8U5%2FPsgUiLvhHQo3sXCCiUaVGAY20v8HBLLe9kKAiqhQfHGbhVeDiDq29">微信Android模块化架构重构实践</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzAxNDEwNjk5OQ==&amp;mid=2650400348&amp;idx=1&amp;sn=99bc1bce932c5b9000d5b54afa2de70e&amp;chksm=83952e44b4e2a752f2ef0aa2f31c80ff82a2dfdaef433cd5cb733f17eb9ff47899acbde09685&amp;mpshare=1&amp;scene=24&amp;srcid=0630xBc1VqyISqqlOOeGof54&amp;key=c969774f949c279b41505ca7d0c3b547b7694aae72cd532f903bcc00efbc8c9cec1a5a62405a2a17223d09a370575852d2e0306768755c1ad00e0309a7e8dc1ae557ebf30f727d82012dfa50e4f07acc&amp;ascene=0&amp;uin=MTc0NzM4NzU0MA%3D%3D&amp;devicetype=iMac+MacBookPro12%2C1+OSX+OSX+10.12.4+build(16E195)&amp;version=12020610&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=k43tzMF8U5%2FPsgUiLvhHQo3sXCCiUaVGAY20v8HBLLe9kKAiqhQfHGbhVeDiDq29">Atlas-手淘组件化框架的前世今生和未来的路</a></li>
+<li>架构的保持</li>
+<li>代码之外：人的因素</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[网络相关]]></title>
+    <link href="https://jacoli.github.io/15480679781942.html"/>
+    <updated>2019-01-21T18:52:58+08:00</updated>
+    <id>https://jacoli.github.io/15480679781942.html</id>
+    <content type="html"><![CDATA[
+<ul>
+<li><a href="https://github.com/Tencent/mars/">Mars</a></li>
+<li><a href="http://www.iteye.com/news/32012"><a href="http://www.iteye.com/news/32012">微信终端跨平台组件 Mars 正式开源！</a></a></li>
+<li><a href="http://www.cocoachina.com/ios/20170425/19118.html">关于 iOS HTTP2.0 的一次学习实践</a></li>
+<li><a href="https://github.com/AFNetworking/AFNetworking">AFNetworking</a></li>
+<li><a href="https://github.com/Alamofire/Alamofire">Alamofire</a></li>
+<li><a href="https://github.com/RestKit/RestKit">RestKit</a></li>
+<li><a href="https://github.com/yuantiku/YTKNetwork">YTKNetwork</a></li>
+<li><a href="https://github.com/square/retrofit">Retrofit</a></li>
+<li><a href="https://github.com/square/okhttp">okhttp</a></li>
+<li><a href="http://www.infoq.com/cn/articles/mogujie-app-chromium-network-layer/">蘑菇街App Chromium网络栈实践</a></li>
+<li>iOS9.0+支持HTTP2</li>
+<li><a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.html">NSURLSession</a></li>
+<li><a href="http://www.open-open.com/lib/view/open1478836390465.html">蘑菇街11.11：移动流量猛增，如何设计高并发多终端的无线网关</a></li>
+<li><a href="http://blog.csdn.net/hguisu/article/details/7445768/"><a href="http://blog.csdn.net/hguisu/article/details/7445768">Linux的SOCKET编程详解</a></a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Android存储]]></title>
+    <link href="https://jacoli.github.io/15480679782398.html"/>
+    <updated>2019-01-21T18:52:58+08:00</updated>
+    <id>https://jacoli.github.io/15480679782398.html</id>
+    <content type="html"><![CDATA[
+<ul>
+<li><a href="http://blog.csdn.net/amazing7/article/details/51437435">Android 数据存储五种方式使用与总结</a></li>
+<li><a href="https://github.com/Xiaofei-it/AndroidDataStorage">AndroidDataStorage</a></li>
+<li><a href="https://github.com/realm/realm-java">realm-java</a></li>
+<li><a href="https://github.com/greenrobot/greenDAO">greenDAO</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[开发笔记4]]></title>
+    <link href="https://jacoli.github.io/15480679782285.html"/>
+    <updated>2019-01-21T18:52:58+08:00</updated>
+    <id>https://jacoli.github.io/15480679782285.html</id>
+    <content type="html"><![CDATA[
+<ul>
+<li><a href="http://www.cocoachina.com/ios/20170502/19152.html">iOS 10.3开始可以动态改变app图标</a></li>
+<li><a href="http://www.cocoachina.com/ios/20170507/19201.html">浅谈iOS视频播放的N种解决方案</a></li>
+<li><a href="http://www.cocoachina.com/programmer/20170505/19189.html">【React Native】从源码一步一步解析它的实现原理</a></li>
+<li><a href="http://blog.jobbole.com/84903/">十分钟搞清字符集和字符编码</a></li>
+<li><a href="http://pingguohe.net/2016/01/31/lazyscroll.html">iOS 高性能异构滚动视图构建方案 —— LazyScrollView</a></li>
+<li><a href="http://pingguohe.net/2016/12/20/Tangram-design-and-practice.html">页面动态化的基础 —— Tangram</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[开发笔记2]]></title>
+    <link href="https://jacoli.github.io/15480679782183.html"/>
+    <updated>2019-01-21T18:52:58+08:00</updated>
+    <id>https://jacoli.github.io/15480679782183.html</id>
+    <content type="html"><![CDATA[
+<h3 id="toc_0">数据</h3>
+
+<ul>
+<li><a href="https://9to5mac.com/2017/01/05/ios-10-now-installed-on-76-of-active-devices-according-to-apples-stats/">iOS10 设备安装率超7成</a></li>
+</ul>
+
+<p>看了下自己app的友盟统计，还有6%的iOS 8.x设备。等iOS 11出来后，再考虑放弃iOS 8.x用户吧。</p>
+
+<ul>
+<li><a href="http://www.cocoachina.com/programmer/20170210/18665.html">TIOBE 2月编程语言排行榜，Swift和Objective-C语言分别排在12和19位</a></li>
+</ul>
+
+<p>OC稳住呀～</p>
+
+<h3 id="toc_1">文章推荐（转）</h3>
+
+<ul>
+<li><a href="http://blog.ibireme.com/2015/11/02/mobile_image_benchmark/">移动端图片格式调研</a></li>
+</ul>
+
+<p>最近看到<a href="https://github.com/airbnb/lottie-ios">Lottie</a>项目，一个iOS，Android和React Native库，可以实时渲染After Effects动画，并且允许本地app像静态资源那样轻松地使用动画。回过头又把这篇图片格式调研的文章看了一遍，哈。这篇文章把移动开发常用的几种静态、动态图片做了详细的比较。</p>
+
+<ul>
+<li><a href="https://blog.yeatse.com/2016/10/26/support-nsurlprotocol-in-wkwebview/">让 WKWebView 支持 NSURLProtocol</a></li>
+</ul>
+
+<p><code>WKWebView</code>不支持<code>NSURLProtocol</code>，导致基于<code>UIWebView＋NSURLProtocol</code>并做了一些深度优化的，很难一下子就迁移到<code>WKWebView</code>。<code>WKWebView</code>内部使用了<code>NSURLProtocol</code>，但没有对外开放，不知道出于什么考虑。这篇文章以比较hack的方式让<code>WKWebView</code>支持<code>NSURLProtocol</code>。</p>
+
+<ul>
+<li><a href="http://mp.weixin.qq.com/s/qRW_akbU3TSd0SxpF3iQmQ">DynamicCocoa：滴滴 iOS 动态化方案的诞生与起航</a></li>
+</ul>
+
+<p>另一种Native动态化的方案，在OC编译器上动手脚，将OC代码自动编译成可动态下发的JS代码。</p>
+
+<ul>
+<li><a href="http://www.jianshu.com/p/c1904fd8db06">Xcode8带来的新特性和坑</a></li>
+</ul>
+
+<p>有些特性需要配合ios 10设备使用，比如内存循环引用、DYLD_PRINT_STATISTICS（打印应用预加载时间）等。</p>
+
+<p>在Scheme的Environment Variables添加DYLD_PRINT_STATISTICS＝YES，可以打印应用预加载时间。从打印出来的日志看，<code>dylib loading time</code>占用了不少时间，应该是跟加载的系统库和三方库有关。<br/>
+<code>The loading of Apple system frameworks is highly optimized but loading your embedded frameworks can be expensive.</code>  当三方库不采用Framework形式打包，加载时间是少了不少。</p>
+
+<pre><code class="language-text">// 三方库以Frameworks形式打包
+Total pre-main time: 392.25 milliseconds (100.0%)
+         dylib loading time: 336.73 milliseconds (85.8%)
+        rebase/binding time:  10.88 milliseconds (2.7%)
+            ObjC setup time:  15.91 milliseconds (4.0%)
+           initializer time:  28.65 milliseconds (7.3%)
+           slowest intializers :
+             libSystem.B.dylib :   4.63 milliseconds (1.1%)
+                  AFNetworking :  12.03 milliseconds (3.0%)
+</code></pre>
+
+<pre><code class="language-text">// 三方库以.a静态链接库形式链接
+Total pre-main time:  93.71 milliseconds (100.0%)
+         dylib loading time:  11.46 milliseconds (12.2%)
+        rebase/binding time:  27.05 milliseconds (28.8%)
+            ObjC setup time:  13.16 milliseconds (14.0%)
+           initializer time:  41.94 milliseconds (44.7%)
+           slowest intializers :
+             libSystem.B.dylib :   5.47 milliseconds (5.8%)
+   libBacktraceRecording.dylib :   4.48 milliseconds (4.7%)
+                        Fanmei :  54.14 milliseconds (57.7%)　
+</code></pre>
+
+<h3 id="toc_2">项目</h3>
+
+<ul>
+<li><a href="https://github.com/airbnb/lottie-ios">Lottie</a></li>
+</ul>
+
+<p>After Effects动画的渲染引擎。</p>
+
+<ul>
+<li><a href="https://github.com/facebookincubator/Keyframes">Keyframes</a></li>
+</ul>
+
+<p>A library for converting Adobe AE shape based animations to a data format and playing it back on Android and iOS devices.</p>
+
+<p>跟<a href="https://github.com/airbnb/lottie-ios">Lottie</a>类似，也是After Effects动画的渲染引擎。</p>
+
+<ul>
+<li><a href="https://github.com/Instagram/IGListKit">Instagram/IGListKit</a></li>
+</ul>
+
+<p>A data-driven UICollectionView framework for building fast and flexible lists.</p>
+
+<ul>
+<li><a href="https://github.com/Flipboard/FLEX">Flipboard/FLEX</a></li>
+</ul>
+
+<p>An in-app debugging and exploration tool for iOS</p>
+
+<p>iOS设备调试工具，可以查看沙盒，抓包，查看视图信息等。</p>
+
+<ul>
+<li><a href="https://github.com/material-components/material-components-ios">material-components-ios</a></li>
+</ul>
+
+<p>仿android的meterial design风格的控件</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[开发笔记3]]></title>
+    <link href="https://jacoli.github.io/15480679782229.html"/>
+    <updated>2019-01-21T18:52:58+08:00</updated>
+    <id>https://jacoli.github.io/15480679782229.html</id>
+    <content type="html"><![CDATA[
+<h3 id="toc_0">数据</h3>
+
+<ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA3NTYzODYzMg==&amp;mid=2653578648&amp;idx=1&amp;sn=8fecce896bf881334507e7f3f3486c54&amp;chksm=84b3b79fb3c43e89c98ed2e7f60c3c59f00324f53fef012ed33cb8fc6b37e430e83a52dc5f68&amp;mpshare=1&amp;scene=1&amp;srcid=0216VUFfTaK8KjnNJHO0FXJ7#rd">2016 移动应用质量大数据报告</a></li>
+</ul>
+
+<p>主要是针对Crash和ANR的统计。</p>
+
+<h3 id="toc_1">文章推荐</h3>
+
+<ul>
+<li><a href="http://www.cocoachina.com/ios/20170302/18815.html">移动端监控体系之技术原理剖析</a></li>
+</ul>
+
+<p>监控先于优化。没有数据支撑的优化，往往没有说服力，也很难衡量优化的效果如何。</p>
+
+<ul>
+<li><a href="http://blog.flight.dev.qunar.com/2016/11/10/ios-data-persistence-learn/#more">iOS 中数据持久化的几种方式</a></li>
+</ul>
+
+<p>大部分App或多或少都会涉及到存储（持久化或缓存）。<a href="https://github.com/ibireme/YYCache">ibireme/YYCache</a>，支持在硬盘持久化和在内存中缓存，从功能、性能和接口易用性上都不错，目前项目中也在用，推荐。</p>
+
+<ul>
+<li><p><a href="http://stormzhang.com/2016/09/27/mobile-dev-vs-front-end-web-dev/">移动开发 OR WEB 前端？</a></p></li>
+<li><p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html">Flex 布局教程</a></p></li>
+</ul>
+
+<p>老文章了，视图布局机制在iOS、Android、Html CSS是相通的，可以互相借鉴。<a href="https://github.com/youngsoft/MyLinearLayout">youngsoft/MyLinearLayout</a>实现很多布局机制。</p>
+
+<p>MyLinearLayout is equivalent to: UIStackView of iOS and LinearLayout of Android.</p>
+
+<p>MyRelativeLayout is equivalent to: AutoLayout of iOS and RelativeLayout of Android.</p>
+
+<p>MyFrameLayout is equivalent to: FrameLayout of Android.</p>
+
+<p>MyTableLayout is equivalent to: TableLayout of Android and table of HTML.</p>
+
+<p>MyFlowLayout is equivalent to: flexbox of CSS3.</p>
+
+<p>MyFloatLayout is equivalent to: float of CSS.</p>
+
+<p>借鉴Android的LinearLayout以及Html CSS的FlexBox，自己写了<a href="https://github.com/fanmeiwireless/FMLayouts">FMLayouts</a>，对iOS的布局机制做补充。</p>
+
+<h3 id="toc_2">Android</h3>
+
+<ul>
+<li><p><a href="http://mp.weixin.qq.com/s?__biz=MzI3MDE0NzYwNA==&amp;mid=2651434652&amp;idx=1&amp;sn=da0ceda73595e5cb931abad7e51dbe62&amp;chksm=f12887e7c65f0ef1c086784e9ae77a7d9bd82daa6ba0302cebf307577ebd06fd3e0d9e37e87a&amp;mpshare=1&amp;scene=2&amp;srcid=0214hqv992PJvqbW94b0P2pv#rd">2017年,身为Android开发的你必须要掌握的热门开源框架</a></p></li>
+<li><p><a href="http://stormzhang.com/2017/02/16/google-events/">你可能不知道 GOOGLE 最近的「小动作」</a></p></li>
+</ul>
+
+<h3 id="toc_3">项目</h3>
+
+<ul>
+<li><a href="https://github.com/SnapKit/SnapKit">SnapKit/SnapKit</a></li>
+</ul>
+
+<p><a href="https://github.com/SnapKit/Masonry">SnapKit/Masonry</a>的Swift版本</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[iOS测试框架XCTest]]></title>
+    <link href="https://jacoli.github.io/15480679782543.html"/>
+    <updated>2019-01-21T18:52:58+08:00</updated>
+    <id>https://jacoli.github.io/15480679782543.html</id>
+    <content type="html"><![CDATA[
+<ul>
+<li>XCTest已基本满足单元测试和UI测试的需求，支持对同步流程、异步流程、性能的测试，UI测试代码的自动生成，代码测试覆盖率的统计等。</li>
+<li>UI测试也还有不足的地方，例如录制生成的代码仍不够完善，无法直接访问目标APP的接口，无法修改边界条件，在单设备或单模拟器运行效率过低，每次重启目标App后只能运行一个Case。</li>
+<li><a href="https://github.com/vsouza/awesome-ios#ui-testing">一些三方库</a></li>
+<li><a href="https://github.com/linkedin/bluepill">Bluepill is a tool to run iOS tests in parallel using multiple simulators.</a></li>
+<li><a href="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/testing_with_xcode/chapters/01-introduction.html">XCTest官方手册 </a></li>
+<li><a href="http://www.tuicool.com/articles/ZJNzYbY">iOS单元测试和UI测试</a></li>
+<li><a href="http://www.tuicool.com/articles/nyQBN3B">单元测试之旅--预见优秀</a></li>
+<li><a href="http://www.tuicool.com/articles/fE3Uvqb">iOS UnitTest单元测试</a></li>
+<li><a href="http://www.tuicool.com/articles/QfA73qy">Android单元测试的整理</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[开发笔记1]]></title>
+    <link href="https://jacoli.github.io/15480679782141.html"/>
+    <updated>2019-01-21T18:52:58+08:00</updated>
+    <id>https://jacoli.github.io/15480679782141.html</id>
+    <content type="html"><![CDATA[
+<h3 id="toc_0">文章推荐</h3>
+
+<ul>
+<li><a href="http://www.infoq.com/cn/articles/2016-review-mobile">2016移动开发技术巡礼</a></li>
+</ul>
+
+<p>徐川大神对2016年移动技术发展的概述，以及对2017年的展望。总结了各种技术，热补丁、组件化、动态化、跨平台、直播、AR/VR等等。自己在项目实践中，也尝试了热补丁、动态化、组件化等技术，比较有体会。推荐他的博客<a href="http://mobilefrontier.github.io/">移动开发前线</a>，还是相当不错的。</p>
+
+<ul>
+<li><a href="http://pingguohe.net/2016/01/31/lazyscroll.html">苹果核 - iOS 高性能异构滚动视图构建方案 —— LazyScrollView</a></li>
+</ul>
+
+<p>对于往往存在大量异构元素的app首页或集合页，该方案的思路还是可以借鉴下的。</p>
+
+<ul>
+<li><a href="http://www.jianshu.com/p/90a90bd13aac">WKWebView从入门到趟坑</a></li>
+</ul>
+
+<p>为满足大部分动态化需求，在App中内嵌一个WebView支持H5页，这是比较常见的做法。iOS上就UIWebView和WKWebView，WKWebView相比较UIWebView，性能更优，但也多了不少限制。目前自己项目中也是直接使用WKWebView，好在H5和Native的交互比较少，对WKWebView也没有做多少优化。</p>
+
+<ul>
+<li><a href="http://www.cocoachina.com/swift/20161221/18407.html">Swift 并行编程现状和展望 - async/await 和参与者模式</a></li>
+</ul>
+
+<p>异步编程，特别是多层嵌套的情况，即使用了GCD&amp;Block回调方式去写，代码仍会过于凌乱，可读性也大打折扣。我会通过以下两种方法去处理，将每个异步回调的处理逻辑封装在一个函数内，或将每个异步过程封装起来（即Future／Promise的做法）。无论哪种，也都会额外增加些成本，结合自己项目内的代码风格和使用成本再选择一个合适的。</p>
+
+<ul>
+<li><a href="http://www.cocoachina.com/programmer/20170122/18604.html">2017，我的iOS进阶规划</a></li>
+</ul>
+
+<p>知识点比较基础，罗列得比较多，可以结合项目多看看。</p>
+
+<h3 id="toc_1">代码推荐</h3>
+
+<ul>
+<li><a href="https://github.com/vsouza/awesome-ios">vsouza/awesome-ios</a></li>
+</ul>
+
+<p>收集了大量的iOS开源项目、网页等等</p>
+
+<ul>
+<li><a href="http://www.jianshu.com/p/d75a9a8d13b5">33 个 2017 年必须了解的 iOS 开源库</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[* 经过一个月多的努力，app终于成型了，欣喜，期待上线后效果，在这里稍作技术上的总结和展望。]]></title>
+    <link href="https://jacoli.github.io/15480679782099.html"/>
+    <updated>2019-01-21T18:52:58+08:00</updated>
+    <id>https://jacoli.github.io/15480679782099.html</id>
+    <content type="html"><![CDATA[
+<ul>
+<li><p>虽然是首版，功能不多，但麻雀虽小五脏俱全，详情、评论、登录、分享、支付、推送、地图、数据统计、错误统计、Hotfix等基础功能也都要有。</p></li>
+<li><p>分层，从上到下，将整体框架划分为业务层，基础服务层，容器运行层，和三方库层。</p></li>
+<li><p>组件划分，业务组件化、服务组件化、基础功能组件化</p></li>
+<li><p>考虑前面几个版本的快速开发迭代，只做了逻辑上的分层和组件划分，代码仍是在同一个工程内，没有做Bundle化。</p></li>
+<li><p>应用整体框架如下，具体细节暂不展开了，后续有时间再细化总结</p></li>
+</ul>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/1824896-75b18507cdc838ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="应用整体框架"/><br/>
+<img src="http://upload-images.jianshu.io/upload_images/1824896-c637a74c5142cf37.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="APP闪屏页"/></p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[iOS学习导图]]></title>
@@ -70,6 +580,62 @@
 <li><p><a href="http://www.cocoachina.com/ios/20150429/11712.html">WWDC心得与延伸:iOS图形性能</a></p></li>
 <li><p><a href="http://www.cocoachina.com/ios/20151203/14549.html">iOS 事件处理机制与图像渲染过程</a></p></li>
 <li><p><a href="https://mp.weixin.qq.com/s?__biz=MzAwNDY1ODY2OQ==&amp;mid=207890859&amp;idx=1&amp;sn=e98dd604cdb854e7a5808d2072c29162&amp;scene=1&amp;srcid=1119D98cPepPAys5UJjzKkFU&amp;key=d72a47206eca0ea99e5bfedd27c4e1979bafb09babd40343f279933377d574eeac88cdf63260b257d9bf187a90b30d1b&amp;ascene=0&amp;uin=NDEzMTA2OTc1&amp;devicetype=iMac+MacBookPro11%2C2+OSX+OSX+10.11+build(15A284)&amp;version=11020201&amp;pass_ticket=WqTD03t23%2Fz4yjGdIgJ7hHJdRAUd2Xh4DPQpswxoclHSqzbaxr%2B%2F%2B16u%2Fg0PXgMQ">微信iOS卡顿监控系统</a></p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[iOS Push相关的资料]]></title>
+    <link href="https://jacoli.github.io/15479057717825.html"/>
+    <updated>2019-01-19T21:49:31+08:00</updated>
+    <id>https://jacoli.github.io/15479057717825.html</id>
+    <content type="html"><![CDATA[
+<ul>
+<li><p>苹果官方的APNS，支持App不同状态下（前台、后台、未启动等）的消息推送。</p></li>
+<li><p>另外个方案是，App和应用服务间维护一个长链接，应用服务通过心跳感知App状态。当App为在线状态时，应用服务可以通过该长链接推送消息。一般跟APNS配合使用。</p></li>
+<li><p>自己的项目中使用的是友盟推送。</p></li>
+<li><p>在Push消息中设置自定义参数，App在<code>- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo</code>收到消息后解析参数并做相应逻辑（如跳转到相应页面等）</p></li>
+</ul>
+
+<pre><code class="language-text">- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSLog(@&quot;didRegisterForRemoteNotificationsWithDeviceToken&quot;);
+    
+    // 注册用户登录登出监听
+    [self handleRemoteNotificationDidRegistered];
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@&quot;didFailToRegisterForRemoteNotificationsWithError&quot;);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    NSLog(@&quot;didReceiveRemoteNotification&quot;);
+    
+    [UMessage didReceiveRemoteNotification:userInfo];
+    
+    NSString *jsonString = [userInfo objectForKey:@&quot;custom&quot;];
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:nil];
+    if (dic==nil || [dic isEqual:[NSNull null]]) {
+        return;
+    }
+
+    [self handleRemoteNotification:dic];
+}
+</code></pre>
+
+<h3 id="toc_0">其他一些资料</h3>
+
+<ul>
+<li><a href="http://www.tuicool.com/articles/Y77Ffe">一步一步实现iOS应用PUSH功能 - 咪咕咪咕</a></li>
+<li><a href="http://blog.csdn.net/daydreamingboy/article/details/7977098">iOS上简单推送通知（Push Notification）的实现</a></li>
+<li><a href="http://blog.csdn.net/c101012221/article/details/34433425">十大豪门推送sdk，哪个更适合你</a></li>
+<li><a href="http://www.getui.com/">个推</a></li>
+<li><a href="http://www.qcloud.com/product/XGPush.html">腾讯信鸽</a></li>
+<li><a href="http://mobile.umeng.com/push?spm=0.0.0.0.pphrqW">友盟U-Push</a></li>
 </ul>
 
 ]]></content>
@@ -324,915 +890,18 @@ IOS APP 安全评估工具。可对 APP 进行静态、动态分析。需通过 
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[iOS设备ID]]></title>
-    <link href="https://jacoli.github.io/15479057717614.html"/>
+    <title type="html"><![CDATA[iOS App安装包过大]]></title>
+    <link href="https://jacoli.github.io/15479057717878.html"/>
     <updated>2019-01-19T21:49:31+08:00</updated>
-    <id>https://jacoli.github.io/15479057717614.html</id>
+    <id>https://jacoli.github.io/15479057717878.html</id>
     <content type="html"><![CDATA[
-<p>NSString *identifierForVendor = [[UIDevice currentDevice].identifierForVendor UUIDString]; <br/>
-NSString *identifierForAdvertising = [[ASIdentifierManager sharedManager].advertisingIdentifier UUIDString]; </p>
-
-<p>设备标识<br/>
-identifierForVendor，<br/>
-app在一个device上的标识，从ios6开始支持。一个设备上相同vendor的app获取到相同值，不同vendor则不同值。<br/>
-app如果从App Store直接下载，该值由App Store分配，如果app是企业版、Ad Hoc、或开发版，则该值由bundle identifier计算。<br/>
-设备上删除所有该Vendor的apps后，下次再安装app，值会发生变化。<br/>
-If the value is nil, wait and get the value again later. This happens, for example, after the device has been restarted but before the user has unlocked the device.</p>
-
-<p>advertisingIdentifier<br/>
-一个设备上所有app获取到都是相同的值。<br/>
-If the value is nil, wait and get the value again later. This happens, for example, after the device has been restarted but before the user has unlocked the device.</p>
-
-<h3 id="toc_0">iOS获取设备唯一标识的各种方法？IDFA、IDFV、UDID分别是什么含义？</h3>
-
-<p>[摘要：1、UDID (Unique Device Identifier) UDID的齐称是Unique Device Identifier，望文生义，它便是苹果IOS装备的独一辨认码，它由40个字符的字母战数字构成。正在良多须要限定] </p>
-
-<p>一、UDID (Unique Device Identifier)</p>
-
-<pre><code class="language-text">UDID的全称是Unique Device Identifier，顾名思义，它就是苹果IOS设备的唯一识别码，它由40个字符的字母和数字组成。在很多需要限制一台设备一个账号的应用中经常会用到。在iOS5中可以获取到设备的UDID，后来被苹果禁止了。
-</code></pre>
-
-<p>二、UUID（Universally Unique Identifier）</p>
-
-<pre><code class="language-text">UUID是Universally Unique Identifier的缩写，中文意思是通用唯一识别码。它是让分布式系统中的所有元素，都能有唯一的辨识资讯，而不需要透过中央控制端来做辨识资讯的指定。这样，每个人都可以建立不与其它人冲突的 UUID。在此情况下，就不需考虑数据库建立时的名称重复问题。苹果公司建议使用UUID为应用生成唯一标识字符串。
-开发者可以在应用第一次启动时调用一 次，然后将该串存储起来，替代UDID来使用。但是，如果用户删除该应用再次安装时，又会生成新的字符串，所以不能保证唯一识别该设备。使用UUID，就要考虑应用被删除后再重新安装时的处理。一个解决的办法是：UUID一般只生成一次，保存在iOS系统里面，如果应用删除了，重装应用之后它的UUID还是一样的，除非系统重置 。但是不能保证在以后的系统升级后还能用（如果系统保存了该信息就能用）。
-</code></pre>
-
-<p>三、MAC Address</p>
-
-<p>用来表示互联网上每一个站点的标识符，采用十六进制数表示，共六个字节（48位）。其中，前三个字节是由IEEE的注册管理机构 RA负责给不同厂家分配的代码(高位24位)，也称为“编制上唯一的标识符” （Organizationally Unique Identifier)，后三个字节(低位24位)由各厂家自行指派给生产的适配器接口，称为扩展标识符（唯一性）。</p>
-
-<p>MAC地址在网络上用来区分设备的唯一性，接入网络的设备都有一个MAC地址，他们肯定都是不同的，是唯一的。一部iPhone上可能有多个MAC地址，包括WIFI的、SIM的等，但是iTouch和iPad上就有一个WIFI的，因此只需获取WIFI的MAC地址就好了，也就是en0的地址。<br/>
-MAC地址就如同我们身份证上的身份证号码，具有全球唯一性。这样就可以非常好的标识设备唯一性，类似与苹果设备的UDID号，通常的用途有：1）用于一些统计与分析目的，利用用户的操作习惯和数据更好的规划产品；2）作为用户ID来唯一识别用户，可以用游客身份使用app又能在服务器端保存相应的信息，省去用户名、密码等注册过程。<br/>
-使用Mac地址生成设备的唯一标识主要分三种：<br/>
-1、直接使用“MAC Address” <br/>
-2、使用“MD5(MAC Address)”<br/>
-3、使用“MD5(Mac Address+bundle_id)”获得“机器＋应用”的唯一标识（bundle_id 是应用的唯一标识）<br/>
-在iOS7之后，如果请求Mac地址都会返回一个固定值。<br/>
-四、IDFA（identifierForIdentifier）</p>
-
-<p>广告标示符，适用于对外：例如广告推广，换量等跨应用的用户追踪等。</p>
-
-<pre><code class="language-text">是iOS 6中另外一个新的方法，提供了一个方法advertisingIdentifier，通过调用该方法会返回一个NSUUID实例，最后可以获得一个UUID，由系统存储着的。不过即使这是由系统存储的，但是有几种情况下，会重新生成广告标示符。如果用户完全重置系统（(设置程序 -&gt; 通用 -&gt; 还原 -&gt; 还原位置与隐私) ，这个广告标示符会重新生成。另外如果用户明确的还原广告(设置程序-&gt; 通用 -&gt; 关于本机 -&gt; 广告 -&gt; 还原广告标示符) ，那么广告标示符也会重新生成。关于广告标示符的还原，有一点需要注意：如果程序在后台运行，此时用户“还原广告标示符”，然后再回到程序中，此时获取广 告标示符并不会立即获得还原后的标示符。必须要终止程序，然后再重新启动程序，才能获得还原后的广告标示符。
-</code></pre>
-
-<p>在同一个设备上的所有App都会取到相同的值，是苹果专门给各广告提供商用来追踪用户而设的，用户可以在 设置|隐私|广告追踪 里重置此id的值，或限制此id的使用，故此id有可能会取不到值，但好在Apple默认是允许追踪的，而且一般用户都不知道有这么个设置，所以基本上用来监测推广效果，是戳戳有余了。</p>
-
-<p>注意：由于idfa会出现取不到的情况，故绝不可以作为业务分析的主id，来识别用户。</p>
-
-<p>代码：</p>
-
-<h1 id="toc_1">import <AdSupport/AdSupport.h></h1>
-
-<p>NSString *adId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];<br/>
-五、IDFV（identifierForVendor）</p>
-
-<p>Vindor标示符，适用于对内：例如分析用户在应用内的行为等。</p>
-
-<p>是给Vendor标识用户用的，每个设备在所属同一个Vender的应用里，都有相同的值。其中的Vender是指应用提供商，但准确点说，是通过BundleID的DNS反转的前两部分进行匹配，如果相同就是同一个Vender，例如对于com.somecompany.appone,com.somecompany.apptwo 这两个BundleID来说，就属于同一个Vender，共享同一个idfv的值。和idfa不同的是，idfv的值是一定能取到的，所以非常适合于作为内部用户行为分析的主id，来标识用户，替代OpenUDID。</p>
-
-<p>注意：如果用户将属于此Vender的所有App卸载，则idfv的值会被重置，即再重装此Vender的App，idfv的值和之前不同。</p>
-
-<p>代码：</p>
-
-<p>NSString *idfv = [[[UIDevice currentDevice] identifierForVendor] UUIDString];<br/>
-六、OPEN UDID</p>
-
-<pre><code class="language-text">每台iOS设备的OpenUDID是通过第一个带有OpenUDID SDK包的App生成，如果你完全删除全部带有OpenUDID SDK包的App（比如恢复系统等），那么OpenUDID会重新生成，而且和之前的值会不同，相当于新设备；
-优点是没有用到MAC地址；不同设备能够获取各自唯一的识别码，保证了唯一性，可以用于以往UDID的相关用途；从代码分析OpenUDID的获取，识别码获取方便并且保存谨慎。缺点是当将设备上所有使用了OpenUDID方案的应用程序删除，且设备关机重启，xcode彻底清除并重启，重装应用程序去获取OpenUDID，此时OpenUDID变化，与之前不一样了，所有OpenUDID应用卸载后，由UIPasteboard保存的数据即被清除，重装故会重新获取新的OpenUDID。
-</code></pre>
-
-<p>那么当因为用户干预或者恶意程序，致使UIPasteboard数据清除，从而导致OpenUDID被删除，重装也会获取新的OpenUDID。</p>
-
-<pre><code class="language-text">OpenUDID生成唯一识别码的代码： 
-</code></pre>
-
-<p>unsigned char result[16];<br/><br/>
-        const charchar *cStr = [[[NSProcessInfo processInfo] globallyUniqueString] UTF8String];<br/><br/>
-        CC_MD5( cStr, strlen(cStr), result );<br/><br/>
-        _openUDID = [NSString stringWithFormat:<br/><br/>
-                     @&quot;%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%08x&quot;,<br/><br/>
-                     result[0], result[1], result[2], result[3],<br/><br/>
-                     result[4], result[5], result[6], result[7],<br/><br/>
-                     result[8], result[9], result[10], result[11],<br/><br/>
-                     result[12], result[13], result[14], result[15],<br/><br/>
-                     arc4random() % 4294967295]; </p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[iOS程序生命周期]]></title>
-    <link href="https://jacoli.github.io/15479057717671.html"/>
-    <updated>2019-01-19T21:49:31+08:00</updated>
-    <id>https://jacoli.github.io/15479057717671.html</id>
-    <content type="html"><![CDATA[
-<h3 id="toc_0">程序的生命周期</h3>
+<p><img src="media/15479057717878/app_package_too_large.png" alt="app_package_too_large"/></p>
 
 <ul>
-<li><p>程序的生命周期，包含非运行、非激活、激活、后台、挂起五个状态</p></li>
-<li><p>状态间切换都会有响应的回调和通知</p></li>
-<li><p>程序挂起状态将接收不到Terminate通知，因此进入后台，能够处理程序随时被结束。 applicationWillTerminate:—Lets you know that your app is being terminated. This method is not called if your app is suspended.</p></li>
-</ul>
-
-<h3 id="toc_1">程序如何在后台运行</h3>
-
-<ul>
-<li>1、短时间运行，进入后台后，可以调用beginBackgroundTaskWithName方法启动有限时间的任务。</li>
-<li>2、NSURLSession支持后台下载。</li>
-<li>3、长时间运行，支持以下几种模式，音频及视频（airplay）播放、更新定位、VOIP、下载Newsstand、外部附件、蓝牙、push，在info.plist添加相应配置，代码中引入相应的framework并调用相应接口。</li>
-<li>调用application:performFetchWithCompletionHandler: 在后台获取少量数据。</li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[OC Runtime(6)之Load&Initialize]]></title>
-    <link href="https://jacoli.github.io/15479057717263.html"/>
-    <updated>2019-01-19T21:49:31+08:00</updated>
-    <id>https://jacoli.github.io/15479057717263.html</id>
-    <content type="html"><![CDATA[
-<h3 id="toc_0">+load</h3>
-
-<ul>
-<li><code>+load</code>方法只会被执行一次，且是在程序加载阶段，这时运行环境并不完备。</li>
-<li>不同类或类别的<code>+load</code>方法会按一定顺序被执行。</li>
-</ul>
-
-<pre><code class="language-text">1、依赖库的`+load`。
-2、当前库`+load`，`class`的`+load`优先于`category`，父`class`优先于子`class`。
-3、当前库的`All C++ static initializers and C/C++ __attribute__(constructor) functions`。
-4、被依赖库的`+load`。
-
-</code></pre>
-
-<ul>
-<li><p>在<code>+load</code>方法中可以安全地发送消息给当前库内其他类的消息，虽然这些类的<code>+load</code>可能还没有执行过。</p></li>
-<li><p>从源码中，也可以看出<code>class</code>的<code>+load</code>优先于<code>category</code>，父<code>class</code>优先于子<code>class</code>。</p></li>
-</ul>
-
-<pre><code class="language-text">void prepare_load_methods(const headerType *mhdr)
-{
-    size_t count, i;
-
-    runtimeLock.assertWriting();
-
-    classref_t *classlist = 
-        _getObjc2NonlazyClassList(mhdr, &amp;count);
-    for (i = 0; i &lt; count; i++) {
-        schedule_class_load(remapClass(classlist[i]));
-    }
-
-    category_t **categorylist = _getObjc2NonlazyCategoryList(mhdr, &amp;count);
-    for (i = 0; i &lt; count; i++) {
-        category_t *cat = categorylist[i];
-        Class cls = remapClass(cat-&gt;cls);
-        if (!cls) continue;  // category for ignored weak-linked class
-        realizeClass(cls);
-        assert(cls-&gt;ISA()-&gt;isRealized());
-        add_category_to_loadable_list(cat);
-    }
-}
-</code></pre>
-
-<pre><code class="language-text">static void schedule_class_load(Class cls)
-{
-    if (!cls) return;
-    assert(cls-&gt;isRealized());  // _read_images should realize
-
-    if (cls-&gt;data()-&gt;flags &amp; RW_LOADED) return;
-
-    // Ensure superclass-first ordering
-    schedule_class_load(cls-&gt;superclass);
-
-    add_class_to_loadable_list(cls);
-    cls-&gt;setInfo(RW_LOADED); 
-}
-</code></pre>
-
-<h3 id="toc_1">initialize</h3>
-
-<ul>
-<li>向类或对象发送消息时，会调用<code>lookUpImpOrForward</code>查找，并会检查是否初始化过，如果没有，则会调用<code>_class_initialize</code>做初始化。</li>
-</ul>
-
-<pre><code class="language-text">IMP lookUpImpOrForward(Class cls, SEL sel, id inst, 
-                       bool initialize, bool cache, bool resolver)
-{
-    // ...
-
-    if (initialize  &amp;&amp;  !cls-&gt;isInitialized()) {
-        _class_initialize (_class_getNonMetaClass(cls, inst));
-        // If sel == initialize, _class_initialize will send +initialize and 
-        // then the messenger will send +initialize again after this 
-        // procedure finishes. Of course, if this is not being called 
-        // from the messenger then it won&#39;t happen. 2778172
-    }
-
-    // ...
-
-    return imp;
-}
-</code></pre>
-
-<h3 id="toc_2">参考</h3>
-
-<ul>
-<li><a href="http://cocoasamurai.blogspot.jp/2010/01/understanding-objective-c-runtime.html">understanding-objective-c-runtime</a></li>
-<li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048">ObjCRuntimeGuide</a></li>
-<li><a href="http://opensource.apple.com/tarballs/objc4/">runtime源码</a></li>
-<li><a href="http://blog.jobbole.com/45963/">Objective-C 的动态提示和技巧</a></li>
-<li><a href="http://www.cocoachina.com/ios/20150104/10826.html">NSObject的load和initialize方法</a></li>
-<li><a href="http://esoftmobile.com/2014/02/18/associated-objects/">associated-objects</a></li>
-<li><a href="http://esoftmobile.com/2014/02/19/method-swizzling/">method-swizzling</a></li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[OC Runtime(5)之Method Swizzling]]></title>
-    <link href="https://jacoli.github.io/15479057717312.html"/>
-    <updated>2019-01-19T21:49:31+08:00</updated>
-    <id>https://jacoli.github.io/15479057717312.html</id>
-    <content type="html"><![CDATA[
-<h3 id="toc_0">Method的几个概念</h3>
-
-<ul>
-<li><code>Method</code>包含方法名<code>Selector</code>、函数地址<code>IMP</code>、参数类型<code>TypeEncoding</code>。</li>
-</ul>
-
-<pre><code class="language-text">NSLog(@&quot;    method name = %s&quot;, sel_getName(method_getName(method)));
-NSLog(@&quot;    method type encode = %s&quot;, method_getTypeEncoding(method));
-NSLog(@&quot;    NumberOfArguments = %d&quot;, method_getNumberOfArguments(method));
-NSLog(@&quot;    ReturnType = %s&quot;, method_copyReturnType(method));
-</code></pre>
-
-<pre><code class="language-text">2016-04-08 20:54:59.351 OCRuntime[54195:953880]     method name = setNumberProperty:
-2016-04-08 20:54:59.352 OCRuntime[54195:953880]     method type encode = v24@0:8@16
-2016-04-08 20:54:59.352 OCRuntime[54195:953880]     NumberOfArguments = 3
-2016-04-08 20:54:59.352 OCRuntime[54195:953880]     ReturnType = v
-</code></pre>
-
-<h3 id="toc_1">动态修改Method的几个接口</h3>
-
-<pre><code class="language-text">// 设置或交换IMP
-IMP method_setImplementation(Method m, IMP imp);
-void method_exchangeImplementations(Method m1, Method m2);
-</code></pre>
-
-<pre><code class="language-text">BOOL class_addMethod(Class cls, SEL name, IMP imp, const char *types);
-                                 
-// 如果原来没有这个方法，则直接添加Method，效果同class_addMethod
-// 如果原来有，则替换掉原来的IMP，忽略参数类型
-IMP class_replaceMethod(Class cls, SEL name, IMP imp, const char *types);
-</code></pre>
-
-<ul>
-<li>例子：</li>
-</ul>
-
-<pre><code class="language-text">+ (void)load {
-    static dispatch_once_t onceToken;
-    dispatch_once(&amp;onceToken, ^{
-        Class class = [self class];
-
-        // When swizzling a class method, use the following:
-        // Class class = object_getClass((id)self);
-
-        SEL originalSelector = @selector(viewWillAppear:);
-        SEL swizzledSelector = @selector(xxx_viewWillAppear:);
-
-        Method originalMethod = class_getInstanceMethod(class, originalSelector);
-        Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
-
-        BOOL didAddMethod =
-            class_addMethod(class,
-                originalSelector,
-                method_getImplementation(swizzledMethod),
-                method_getTypeEncoding(swizzledMethod));
-
-        if (didAddMethod) {
-            class_replaceMethod(class,
-                swizzledSelector,
-                method_getImplementation(originalMethod),
-                method_getTypeEncoding(originalMethod));
-        } else {
-            method_exchangeImplementations(originalMethod, swizzledMethod);
-        }
-    });
-}
-</code></pre>
-
-<h3 id="toc_2">参考</h3>
-
-<ul>
-<li><a href="http://cocoasamurai.blogspot.jp/2010/01/understanding-objective-c-runtime.html">understanding-objective-c-runtime</a></li>
-<li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048">ObjCRuntimeGuide</a></li>
-<li><a href="http://opensource.apple.com/tarballs/objc4/">runtime源码</a></li>
-<li><a href="http://blog.jobbole.com/45963/">Objective-C 的动态提示和技巧</a></li>
-<li><a href="http://www.cocoachina.com/ios/20150104/10826.html">NSObject的load和initialize方法</a></li>
-<li><a href="http://esoftmobile.com/2014/02/18/associated-objects/">associated-objects</a></li>
-<li><a href="http://esoftmobile.com/2014/02/19/method-swizzling/">method-swizzling</a></li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[OC Runtime(4)之Message Forwarding]]></title>
-    <link href="https://jacoli.github.io/15479057717367.html"/>
-    <updated>2019-01-19T21:49:31+08:00</updated>
-    <id>https://jacoli.github.io/15479057717367.html</id>
-    <content type="html"><![CDATA[
-<h3 id="toc_0">消息发送</h3>
-
-<ul>
-<li>对象方法的调用就是向该对象发送消息。</li>
-</ul>
-
-<pre><code class="language-text">    OCHelper *object = [[OCHelper alloc] init];
-    
-    // 以下两句代码效果是相同的。
-    [object onHandler];
-    objc_msgSend(object, @selector(onHandler));
-</code></pre>
-
-<ul>
-<li>编译阶段，会自动将OC方法调用转化成内联的<code>objc_msgSend</code>方法调用。</li>
-</ul>
-
-<h3 id="toc_1">消息转发</h3>
-
-<ul>
-<li>有了OC的消息机制，就可以在运行时修改消息执行路径。</li>
-<li><p><code>objc_msgSend</code>会调用<code>lookUpImpOrForward</code>从类（或父类）的<code>methodsCache</code>或<code>methodList</code>寻找方法。</p></li>
-<li><p><code>lookUpImpOrForward</code>的源码如下：</p></li>
-</ul>
-
-<pre><code class="language-text">IMP lookUpImpOrForward(Class cls, SEL sel, id inst, 
-                       bool initialize, bool cache, bool resolver)
-{
-    Class curClass;
-    IMP methodPC = nil;
-    Method meth;
-    bool triedResolver = NO;
-
-    methodListLock.assertUnlocked();
-
-    // Optimistic cache lookup
-    if (cache) {
-        methodPC = _cache_getImp(cls, sel);
-        if (methodPC) return methodPC;    
-    }
-
-    // Check for freed class
-    if (cls == _class_getFreedObjectClass())
-        return (IMP) _freedHandler;
-
-    // Check for +initialize
-    if (initialize  &amp;&amp;  !cls-&gt;isInitialized()) {
-        _class_initialize (_class_getNonMetaClass(cls, inst));
-        // If sel == initialize, _class_initialize will send +initialize and 
-        // then the messenger will send +initialize again after this 
-        // procedure finishes. Of course, if this is not being called 
-        // from the messenger then it won&#39;t happen. 2778172
-    }
-
-    // The lock is held to make method-lookup + cache-fill atomic 
-    // with respect to method addition. Otherwise, a category could 
-    // be added but ignored indefinitely because the cache was re-filled 
-    // with the old value after the cache flush on behalf of the category.
- retry:
-    methodListLock.lock();
-
-    // Ignore GC selectors
-    if (ignoreSelector(sel)) {
-        methodPC = _cache_addIgnoredEntry(cls, sel);
-        goto done;
-    }
-
-    // Try this class&#39;s cache.
-
-    methodPC = _cache_getImp(cls, sel);
-    if (methodPC) goto done;
-
-    // Try this class&#39;s method lists.
-
-    meth = _class_getMethodNoSuper_nolock(cls, sel);
-    if (meth) {
-        log_and_fill_cache(cls, cls, meth, sel);
-        methodPC = method_getImplementation(meth);
-        goto done;
-    }
-
-    // Try superclass caches and method lists.
-
-    curClass = cls;
-    while ((curClass = curClass-&gt;superclass)) {
-        // Superclass cache.
-        meth = _cache_getMethod(curClass, sel, _objc_msgForward_impcache);
-        if (meth) {
-            if (meth != (Method)1) {
-                // Found the method in a superclass. Cache it in this class.
-                log_and_fill_cache(cls, curClass, meth, sel);
-                methodPC = method_getImplementation(meth);
-                goto done;
-            }
-            else {
-                // Found a forward:: entry in a superclass.
-                // Stop searching, but don&#39;t cache yet; call method 
-                // resolver for this class first.
-                break;
-            }
-        }
-
-        // Superclass method list.
-        meth = _class_getMethodNoSuper_nolock(curClass, sel);
-        if (meth) {
-            log_and_fill_cache(cls, curClass, meth, sel);
-            methodPC = method_getImplementation(meth);
-            goto done;
-        }
-    }
-
-    // No implementation found. Try method resolver once.
-
-    if (resolver  &amp;&amp;  !triedResolver) {
-        methodListLock.unlock();
-        _class_resolveMethod(cls, sel, inst);
-        triedResolver = YES;
-        goto retry;
-    }
-
-    // No implementation found, and method resolver didn&#39;t help. 
-    // Use forwarding.
-
-    _cache_addForwardEntry(cls, sel);
-    methodPC = _objc_msgForward_impcache;
-
- done:
-    methodListLock.unlock();
-
-    // paranoia: look for ignored selectors with non-ignored implementations
-    assert(!(ignoreSelector(sel)  &amp;&amp;  methodPC != (IMP)&amp;_objc_ignored_method));
-
-    return methodPC;
-}
-</code></pre>
-
-<ul>
-<li>如果找到方法，则直接执行。</li>
-<li>如果没有找到方法，则提供一套Hock机制，允许运行时解决。</li>
-<li><code>NSObject</code>提供了些可重载的方法，如下：</li>
-</ul>
-
-<pre><code class="language-text">@interface NSObject
-- (id)forwardingTargetForSelector:(SEL)aSelector;
-- (void)forwardInvocation:(NSInvocation *)anInvocation;
-- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector;
-+ (BOOL)resolveClassMethod:(SEL)sel;
-+ (BOOL)resolveInstanceMethod:(SEL)sel;
-@end
-</code></pre>
-
-<ul>
-<li>如果没有找到方法，会先调用<code>resolveInstanceMethod</code>，在该方法中可动态添加方法到类。</li>
-</ul>
-
-<p><img src="media/15479057717367/messaging.png" alt="messaging"/></p>
-
-<ul>
-<li>如果不行，接下来会调用<code>forwardingTargetForSelector</code>转发，可动态替换掉响应对象。</li>
-<li>如果还不行，则调用<code>methodSignatureForSelector</code>和<code>forwardInvocation</code>转发<code>Invocation</code>。</li>
-<li>如果还不行，则会抛异常<code>doesNotRecognizeSelector</code>。</li>
-</ul>
-
-<h3 id="toc_2">参考</h3>
-
-<ul>
-<li><a href="http://cocoasamurai.blogspot.jp/2010/01/understanding-objective-c-runtime.html">understanding-objective-c-runtime</a></li>
-<li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048">ObjCRuntimeGuide</a></li>
-<li><a href="http://opensource.apple.com/tarballs/objc4/">runtime源码</a></li>
-<li><a href="http://blog.jobbole.com/45963/">Objective-C 的动态提示和技巧</a></li>
-<li><a href="http://www.cocoachina.com/ios/20150104/10826.html">NSObject的load和initialize方法</a></li>
-<li><a href="http://esoftmobile.com/2014/02/18/associated-objects/">associated-objects</a></li>
-<li><a href="http://esoftmobile.com/2014/02/19/method-swizzling/">method-swizzling</a></li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[OC Runtime(3)之Associated Objects]]></title>
-    <link href="https://jacoli.github.io/15479057717432.html"/>
-    <updated>2019-01-19T21:49:31+08:00</updated>
-    <id>https://jacoli.github.io/15479057717432.html</id>
-    <content type="html"><![CDATA[
-<h3 id="toc_0">关联对象</h3>
-
-<ul>
-<li><objc/runtime.h>提供了三个方法，分别是get、set、remove</li>
-</ul>
-
-<pre><code class="language-text">void objc_setAssociatedObject(id object, const void *key, id value, objc_AssociationPolicy policy);
-id objc_getAssociatedObject(id object, const void *key);
-void objc_removeAssociatedObjects(id object);
-</code></pre>
-
-<h3 id="toc_1">源码</h3>
-
-<ul>
-<li>获取</li>
-</ul>
-
-<pre><code class="language-text">id _object_get_associative_reference(id object, void *key) {
-    id value = nil;
-    uintptr_t policy = OBJC_ASSOCIATION_ASSIGN;
-    {
-        AssociationsManager manager;
-        AssociationsHashMap &amp;associations(manager.associations());
-        disguised_ptr_t disguised_object = DISGUISE(object);
-        AssociationsHashMap::iterator i = associations.find(disguised_object);
-        if (i != associations.end()) {
-            ObjectAssociationMap *refs = i-&gt;second;
-            ObjectAssociationMap::iterator j = refs-&gt;find(key);
-            if (j != refs-&gt;end()) {
-                ObjcAssociation &amp;entry = j-&gt;second;
-                value = entry.value();
-                policy = entry.policy();
-                if (policy &amp; OBJC_ASSOCIATION_GETTER_RETAIN) ((id(*)(id, SEL))objc_msgSend)(value, SEL_retain);
-            }
-        }
-    }
-    if (value &amp;&amp; (policy &amp; OBJC_ASSOCIATION_GETTER_AUTORELEASE)) {
-        ((id(*)(id, SEL))objc_msgSend)(value, SEL_autorelease);
-    }
-    return value;
-}
-</code></pre>
-
-<ul>
-<li>设置</li>
-</ul>
-
-<pre><code class="language-text">void _object_set_associative_reference(id object, void *key, id value, uintptr_t policy) {
-    // retain the new value (if any) outside the lock.
-    ObjcAssociation old_association(0, nil);
-    id new_value = value ? acquireValue(value, policy) : nil;
-    {
-        AssociationsManager manager;
-        AssociationsHashMap &amp;associations(manager.associations());
-        disguised_ptr_t disguised_object = DISGUISE(object);
-        if (new_value) {
-            // break any existing association.
-            AssociationsHashMap::iterator i = associations.find(disguised_object);
-            if (i != associations.end()) {
-                // secondary table exists
-                ObjectAssociationMap *refs = i-&gt;second;
-                ObjectAssociationMap::iterator j = refs-&gt;find(key);
-                if (j != refs-&gt;end()) {
-                    old_association = j-&gt;second;
-                    j-&gt;second = ObjcAssociation(policy, new_value);
-                } else {
-                    (*refs)[key] = ObjcAssociation(policy, new_value);
-                }
-            } else {
-                // create the new association (first time).
-                ObjectAssociationMap *refs = new ObjectAssociationMap;
-                associations[disguised_object] = refs;
-                (*refs)[key] = ObjcAssociation(policy, new_value);
-                object-&gt;setHasAssociatedObjects();
-            }
-        } else {
-            // setting the association to nil breaks the association.
-            AssociationsHashMap::iterator i = associations.find(disguised_object);
-            if (i !=  associations.end()) {
-                ObjectAssociationMap *refs = i-&gt;second;
-                ObjectAssociationMap::iterator j = refs-&gt;find(key);
-                if (j != refs-&gt;end()) {
-                    old_association = j-&gt;second;
-                    refs-&gt;erase(j);
-                }
-            }
-        }
-    }
-    // release the old value (outside of the lock).
-    if (old_association.hasValue()) ReleaseValue()(old_association);
-}
-</code></pre>
-
-<ul>
-<li>释放</li>
-</ul>
-
-<pre><code class="language-text">id 
-object_dispose(id obj)
-{
-    if (!obj) return nil;
-
-    objc_destructInstance(obj);
-
-    free(obj);
-
-    return nil;
-}
-
-void *objc_destructInstance(id obj) 
-{
-    if (obj) {
-        // Read all of the flags at once for performance.
-        bool cxx = obj-&gt;hasCxxDtor();
-        bool assoc = !UseGC &amp;&amp; obj-&gt;hasAssociatedObjects();
-        bool dealloc = !UseGC;
-
-        // This order is important.
-        if (cxx) object_cxxDestruct(obj);
-        if (assoc) _object_remove_assocations(obj);
-        if (dealloc) obj-&gt;clearDeallocating();
-    }
-
-    return obj;
-}
-
-void _object_remove_assocations(id object) {
-    vector&lt; ObjcAssociation,ObjcAllocator&lt;ObjcAssociation&gt; &gt; elements;
-    {
-        AssociationsManager manager;
-        AssociationsHashMap &amp;associations(manager.associations());
-        if (associations.size() == 0) return;
-        disguised_ptr_t disguised_object = DISGUISE(object);
-        AssociationsHashMap::iterator i = associations.find(disguised_object);
-        if (i != associations.end()) {
-            // copy all of the associations that need to be removed.
-            ObjectAssociationMap *refs = i-&gt;second;
-            for (ObjectAssociationMap::iterator j = refs-&gt;begin(), end = refs-&gt;end(); j != end; ++j) {
-                elements.push_back(j-&gt;second);
-            }
-            // remove the secondary table.
-            delete refs;
-            associations.erase(i);
-        }
-    }
-    // the calls to releaseValue() happen outside of the lock.
-    for_each(elements.begin(), elements.end(), ReleaseValue());
-}
-
-</code></pre>
-
-<h3 id="toc_2">参考</h3>
-
-<ul>
-<li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048">ObjCRuntimeGuide</a></li>
-<li><a href="http://opensource.apple.com/tarballs/objc4/">runtime源码</a></li>
-<li><a href="http://blog.jobbole.com/45963/">Objective-C 的动态提示和技巧</a></li>
-<li><a href="http://www.cocoachina.com/ios/20150104/10826.html">NSObject的load和initialize方法</a></li>
-<li><a href="http://esoftmobile.com/2014/02/18/associated-objects/">associated-objects</a></li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[OC Runtime(1)之Object&Class]]></title>
-    <link href="https://jacoli.github.io/15479057717556.html"/>
-    <updated>2019-01-19T21:49:31+08:00</updated>
-    <id>https://jacoli.github.io/15479057717556.html</id>
-    <content type="html"><![CDATA[
-<h3 id="toc_0">Objective-C Runtime</h3>
-
-<p><img src="media/15479057717556/OC-Runtime.png" alt="OC-Runtime"/></p>
-
-<ul>
-<li><p>Objective-C是面向运行时的编程语言，这就意味着运行阶段才知道如何执行，而不是编译链接阶段就确定好。</p></li>
-<li><p>What is the Objective-C Runtime?</p></li>
-</ul>
-
-<pre><code class="language-text">The Objective-C Runtime is a Runtime Library, it&#39;s a library written 
-mainly in C &amp; Assembler that adds the Object Oriented capabilities 
-to C to create Objective-C. This means it loads in Class information, 
-does all method dispatching, method forwarding, etc. The Objective-C 
-runtime essentially creates all the support structures that make 
-Object Oriented Programming with Objective-C Possible.
-</code></pre>
-
-<ul>
-<li>有了Objective-C Runtime，就有了各种在运行时修改代码的hack手段。</li>
-</ul>
-
-<h3 id="toc_1">类</h3>
-
-<ul>
-<li>先看下<code>类</code>的结构体定义，除了存放类的基本信息，还存放对象的变量、方法、协议的元信息。程序加载时，<code>类</code>结构体会被实例化，并放到全局列表中<code>g_classList</code>，结构体的<code>isa</code>、<code>super_class</code>、<code>methodLists</code>等属性也一起被初始化。</li>
-</ul>
-
-<pre><code class="language-text">// 伪代码，对源码稍做修改。
-
-static Class *g_classList;
-
-struct objc_class {
-    Class isa;          // 指向元类
-    Class super_class;  // 指向父类
-    
-    // 类基本信息
-    const char *name;
-    long version;
-    long info;
-    long instance_size;
-    
-    // 类的变量、方法、协议的元信息
-    struct objc_ivar_list *ivars;
-    struct objc_method_list **methodLists;
-    struct objc_protocol_list *protocols;
-    
-    // 方法缓存
-    struct objc_cache *cache;
-};
-typedef struct objc_class *Class;
-
-bool isMetaClass() {
-        return info &amp; CLS_META;
-    }
-</code></pre>
-
-<h3 id="toc_2">元类</h3>
-
-<ul>
-<li><code>元类</code>跟<code>类</code>使用相同的结构体，只是通过<code>isMetaClass</code>方法做区分。</li>
-<li><p><code>元类</code>结构体中，存放类的变量、方法、协议的元信息。</p></li>
-<li><p>对象、类、元类的关系如下：</p></li>
-</ul>
-
-<p><img src="media/15479057717556/OC-Runtime-%E7%B1%BB%E5%9B%BE.png" alt="OC-Runtime-类图"/></p>
-
-<h3 id="toc_3">对象</h3>
-
-<ul>
-<li>对象的结构体如下，存放对象的变量数据，其他的都是先通过<code>isa</code>找到类，再从类中找出变量、方法等的元信息。</li>
-</ul>
-
-<pre><code class="language-text">// 伪代码，对源码稍做修改。
-
-struct objc_object {
-    Class isa;
-    
-    // 变量的数据
-    void *varsLayout;
-}
-
-typedef struct objc_object *id
-</code></pre>
-
-<ul>
-<li>创建对象，<code>NSObject *obj = [[NSObject alloc] init];</code>可能对应以下一些动作。</li>
-</ul>
-
-<pre><code class="language-text">// 伪代码
-
-{
-    // 找到类
-    Class cls = findClass(&quot;NSObject&quot;);
-    
-    // 找到alloc方法，执行生成对象
-    IMP imp = findImp(cls, &quot;alloc&quot;);
-    id obj = imp(cls);
-    
-    // 找到init方法，执行初始化对象
-    IMP imp = findImp(cls, &quot;init&quot;);
-    imp(obj);
-    
-    // 返回对象
-    return obj;
-}   
-    
-id alloc(Class cls) {
-    id obj = malloc(sizeof(struct objc_object));
-    obj-&gt;isa = cls;
-    return obj;
-}
-
-id init(id obj) {
-    obj-&gt;varsLayout = xxx;
-}   
-</code></pre>
-
-<h3 id="toc_4">总结</h3>
-
-<ul>
-<li>总的来说，全局维护一张类表，存放类方法、实例方法、实例变量的元信息等。程序加载阶段会初始化这张表。运行阶段，也可以通过<code>addMethod</code>、<code>class_replaceMethod</code>、<code>class_addIvar</code>、<code>class_addProtocol</code>、<code>class_addProperty</code>等接口动态修改这张表。<br/>
-### 参考</li>
-<li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048">ObjCRuntimeGuide</a></li>
-<li><a href="http://opensource.apple.com/tarballs/objc4/">runtime源码</a></li>
-<li><a href="http://blog.jobbole.com/45963/">Objective-C 的动态提示和技巧</a></li>
-<li><a href="http://www.cocoachina.com/ios/20150104/10826.html">NSObject的load和initialize方法</a></li>
-<li><a href="http://esoftmobile.com/2014/02/18/associated-objects/">associated-objects</a></li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[OC Runtime(2)之Ivar&Property&Method&Protocol]]></title>
-    <link href="https://jacoli.github.io/15479057717489.html"/>
-    <updated>2019-01-19T21:49:31+08:00</updated>
-    <id>https://jacoli.github.io/15479057717489.html</id>
-    <content type="html"><![CDATA[
-<h3 id="toc_0">Ivar</h3>
-
-<pre><code class="language-text">struct old_ivar {
-    char *ivar_name;
-    char *ivar_type;
-    int ivar_offset;
-#ifdef __LP64__
-    int space;
-#endif
-};
-</code></pre>
-
-<h3 id="toc_1">Property</h3>
-
-<pre><code class="language-text">struct old_property {
-    const char *name;
-    const char *attributes;
-};
-</code></pre>
-
-<h3 id="toc_2">Method</h3>
-
-<pre><code class="language-text">struct old_method {
-    SEL method_name;
-    char *method_types;
-    IMP method_imp;
-};
-</code></pre>
-
-<h3 id="toc_3">protocol</h3>
-
-<pre><code class="language-text">struct old_protocol {
-    Class isa;
-    const char *protocol_name;
-    struct old_protocol_list *protocol_list;
-    struct objc_method_description_list *instance_methods;
-    struct objc_method_description_list *class_methods;
-};
-</code></pre>
-
-<pre><code class="language-text">struct objc_method_description *
-lookup_protocol_method(old_protocol *proto, SEL aSel, 
-                       bool isRequiredMethod, bool isInstanceMethod, 
-                       bool recursive)
-{
-    struct objc_method_description *m = nil;
-    old_protocol_ext *ext;
-
-    if (isRequiredMethod) {
-        if (isInstanceMethod) {
-            m = lookup_method(proto-&gt;instance_methods, aSel);
-        } else {
-            m = lookup_method(proto-&gt;class_methods, aSel);
-        }
-    } else if ((ext = ext_for_protocol(proto))) {
-        if (isInstanceMethod) {
-            m = lookup_method(ext-&gt;optional_instance_methods, aSel);
-        } else {
-            m = lookup_method(ext-&gt;optional_class_methods, aSel);
-        }
-    }
-
-    if (!m  &amp;&amp;  recursive  &amp;&amp;  proto-&gt;protocol_list) {
-        int i;
-        for (i = 0; !m  &amp;&amp;  i &lt; proto-&gt;protocol_list-&gt;count; i++) {
-            m = lookup_protocol_method(proto-&gt;protocol_list-&gt;list[i], aSel, 
-                                       isRequiredMethod,isInstanceMethod,true);
-        }
-    }
-
-    return m;
-}
-</code></pre>
-
-<h3 id="toc_4">category</h3>
-
-<pre><code class="language-text">struct old_category {
-    char *category_name;
-    char *class_name;
-    struct old_method_list *instance_methods;
-    struct old_method_list *class_methods;
-    struct old_protocol_list *protocols;
-    uint32_t size;
-    struct old_property_list *instance_properties;
-};
-</code></pre>
-
-<h3 id="toc_5">参考</h3>
-
-<ul>
-<li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048">ObjCRuntimeGuide</a></li>
-<li><a href="http://opensource.apple.com/tarballs/objc4/">runtime源码</a></li>
-<li><a href="http://blog.jobbole.com/45963/">Objective-C 的动态提示和技巧</a></li>
-<li><a href="http://www.cocoachina.com/ios/20150104/10826.html">NSObject的load和initialize方法</a></li>
-<li><a href="http://esoftmobile.com/2014/02/18/associated-objects/">associated-objects</a></li>
+<li><p><a href="https://developer.apple.com/library/ios/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/">On-Demand Resources</a></p></li>
+<li><p><a href="https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AppThinning/AppThinning.html">App Thinning</a></p></li>
+<li><p><a href="http://www.cocoachina.com/ios/20151211/14562.html">iOS微信安装包瘦身</a></p></li>
+<li><p><a href="http://www.cocoachina.com/ios/20150202/11084.html">iOS可执行文件瘦身方法</a></p></li>
 </ul>
 
 ]]></content>

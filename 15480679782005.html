@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  OC Runtime(2)之Ivar&Property&Method&Protocol - 李传格的博客
+  问题：UICollectionView Cell之间存在缝隙 - 李传格的博客
   
   </title>
   
@@ -98,10 +98,10 @@
       <div class="markdown-body article-wrap">
        <div class="article">
           
-          <h1>OC Runtime(2)之Ivar&Property&Method&Protocol</h1>
+          <h1>问题：UICollectionView Cell之间存在缝隙</h1>
      
         <div class="read-more clearfix">
-          <span class="date">2014/3/17</span>
+          <span class="date">2018/6/1</span>
 
           
            
@@ -116,102 +116,70 @@
       </div><!-- article -->
 
       <div class="article-content">
-      <h3 id="toc_0">Ivar</h3>
-
-<pre><code class="language-text">struct old_ivar {
-    char *ivar_name;
-    char *ivar_type;
-    int ivar_offset;
-#ifdef __LP64__
-    int space;
-#endif
-};
-</code></pre>
-
-<h3 id="toc_1">Property</h3>
-
-<pre><code class="language-text">struct old_property {
-    const char *name;
-    const char *attributes;
-};
-</code></pre>
-
-<h3 id="toc_2">Method</h3>
-
-<pre><code class="language-text">struct old_method {
-    SEL method_name;
-    char *method_types;
-    IMP method_imp;
-};
-</code></pre>
-
-<h3 id="toc_3">protocol</h3>
-
-<pre><code class="language-text">struct old_protocol {
-    Class isa;
-    const char *protocol_name;
-    struct old_protocol_list *protocol_list;
-    struct objc_method_description_list *instance_methods;
-    struct objc_method_description_list *class_methods;
-};
-</code></pre>
-
-<pre><code class="language-text">struct objc_method_description *
-lookup_protocol_method(old_protocol *proto, SEL aSel, 
-                       bool isRequiredMethod, bool isInstanceMethod, 
-                       bool recursive)
-{
-    struct objc_method_description *m = nil;
-    old_protocol_ext *ext;
-
-    if (isRequiredMethod) {
-        if (isInstanceMethod) {
-            m = lookup_method(proto-&gt;instance_methods, aSel);
-        } else {
-            m = lookup_method(proto-&gt;class_methods, aSel);
-        }
-    } else if ((ext = ext_for_protocol(proto))) {
-        if (isInstanceMethod) {
-            m = lookup_method(ext-&gt;optional_instance_methods, aSel);
-        } else {
-            m = lookup_method(ext-&gt;optional_class_methods, aSel);
-        }
-    }
-
-    if (!m  &amp;&amp;  recursive  &amp;&amp;  proto-&gt;protocol_list) {
-        int i;
-        for (i = 0; !m  &amp;&amp;  i &lt; proto-&gt;protocol_list-&gt;count; i++) {
-            m = lookup_protocol_method(proto-&gt;protocol_list-&gt;list[i], aSel, 
-                                       isRequiredMethod,isInstanceMethod,true);
-        }
-    }
-
-    return m;
-}
-</code></pre>
-
-<h3 id="toc_4">category</h3>
-
-<pre><code class="language-text">struct old_category {
-    char *category_name;
-    char *class_name;
-    struct old_method_list *instance_methods;
-    struct old_method_list *class_methods;
-    struct old_protocol_list *protocols;
-    uint32_t size;
-    struct old_property_list *instance_properties;
-};
-</code></pre>
-
-<h3 id="toc_5">参考</h3>
+      <h2 id="toc_0">原因</h2>
 
 <ul>
-<li><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048">ObjCRuntimeGuide</a></li>
-<li><a href="http://opensource.apple.com/tarballs/objc4/">runtime源码</a></li>
-<li><a href="http://blog.jobbole.com/45963/">Objective-C 的动态提示和技巧</a></li>
-<li><a href="http://www.cocoachina.com/ios/20150104/10826.html">NSObject的load和initialize方法</a></li>
-<li><a href="http://esoftmobile.com/2014/02/18/associated-objects/">associated-objects</a></li>
+<li><p>当<code>UICollectionViewCell</code>的size不为整数时，<code>UICollectionViewFlowLayout</code>在布局计算时，可能会调整Cell的frame.origin，使Cell按照最小物理像素（渲染像素）对齐，导致出现缝隙。</p></li>
+<li><p>假设当前Cell的frame.origin.y=100.8（逻辑像素），转化成渲染像素（参考备注）是201.6（iPhone 8）或302.4（iPhone 8 Plus）。为了按渲染像素对齐，<code>UICollectionViewFlowLayout</code>应该会四舍五入取整，取整后为202（iPhone 8）或302（iPhone 8 Plus），转成逻辑像素101（iPhone 8）或100.667（iPhone 8 Plus），导致在iphone8上就会出现0.2像素的缝隙。</p></li>
+<li><p>分辨率相关的，可以百度下。</p></li>
 </ul>
+
+<h2 id="toc_1">简单解决办法：</h2>
+
+<ul>
+<li>主动把Cell的size取整，不丢给<code>UICollectionViewFlowLayout</code>处理。
+<code>
+- (CGSize)fixedCollectionCellSize:(CGSize)size {<br/>
+CGFloat scale = [UIScreen mainScreen].scale;<br/>
+return CGSizeMake(round(scale * size.width) / scale, round(scale * size.height) / scale);<br/>
+}
+</code></li>
+</ul>
+
+<h2 id="toc_2">Demo实验</h2>
+
+<ul>
+<li>UITableView，Cell高度设置成100.12，没有强制被按渲染像素对齐，如 <code>99.62</code> <code>1802.16</code>  <code>1902.28</code></li>
+</ul>
+
+<pre><code class="language-text">(lldb) po [0x7fb85b83b800 recursiveDescription]
+&lt;UITableView: 0x7fb85b83b800; frame = (0 0; 375 667); clipsToBounds = YES; gestureRecognizers = &lt;NSArray: 0x6000004451f0&gt;; layer = &lt;CALayer: 0x60000022dc40&gt;; contentOffset: {0, 1272.5}; contentSize: {375, 2002.4000549316406}; adjustedContentInset: {20, 0, 0, 0}&gt;
+   | &lt;UITableViewCell: 0x7fb85c862a00; frame = (0 1902.28; 375 100.12); autoresize = W; layer = &lt;CALayer: 0x6040004265a0&gt;&gt;
+   |    | &lt;UITableViewCellContentView: 0x7fb85b70fea0; frame = (0 0; 375 99.62); gestureRecognizers = &lt;NSArray: 0x6040002426a0&gt;; layer = &lt;CALayer: 0x604000425e80&gt;&gt;
+   |    |    | &lt;UIImageView: 0x7fb85b41a330; frame = (0 0; 0 0); userInteractionEnabled = NO; layer = &lt;CALayer: 0x6000008215c0&gt;&gt;
+   |    | &lt;_UITableViewCellSeparatorView: 0x7fb85b710820; frame = (15 99.62; 360 0.5); layer = &lt;CALayer: 0x604000427640&gt;&gt;
+   | &lt;UITableViewCell: 0x7fb85c862400; frame = (0 1802.16; 375 100.12); autoresize = W; layer = &lt;CALayer: 0x6040002212e0&gt;&gt;
+</code></pre>
+
+<ul>
+<li>iPhone Plus 8，UICollectionView，Cell高度设置成100.12，强制被按渲染像素对齐了，frame.origin.y被调整后的值，如<code>200.333</code> <code>500.667</code> <code>600.667</code></li>
+</ul>
+
+<pre><code class="language-text">   | &lt;UICollectionViewCell: 0x7fdd9f71f010; frame = (0 200.333; 414 100.12); hidden = YES; layer = &lt;CALayer: 0x60000023d800&gt;&gt;
+   | &lt;UICollectionViewCell: 0x7fdd9f71f470; frame = (0 300.333; 414 100.12); layer = &lt;CALayer: 0x60000023e380&gt;&gt;
+   | &lt;UICollectionViewCell: 0x7fdd9f72aa30; frame = (0 400.333; 414 100.12); layer = &lt;CALayer: 0x60000023f4e0&gt;&gt;
+   | &lt;UICollectionViewCell: 0x7fdd9f72ae90; frame = (0 500.667; 414 100.12); layer = &lt;CALayer: 0x60000023f9a0&gt;&gt;
+   | &lt;UICollectionViewCell: 0x7fdd9f72b510; frame = (0 600.667; 414 100.12); layer = &lt;CALayer: 0x60000023fbc0&gt;&gt;
+   | &lt;UICollectionViewCell: 0x7fdd9f72d1a0; frame = (0 701; 414 100.12); layer = &lt;CALayer: 0x60000023fdc0&gt;&gt;
+</code></pre>
+
+<ul>
+<li>iPhone Plus，UICollectionView，Cell高度设置成100.12，强制被按渲染像素对齐了，frame.origin.y被调整后的值，如<code>300.5</code> <code>400.5</code> <code>500.5</code></li>
+</ul>
+
+<pre><code class="language-text">   | &lt;UICollectionViewCell: 0x7f85b441b6c0; frame = (0 0; 375 100.12); hidden = YES; layer = &lt;CALayer: 0x600000035ec0&gt;&gt;
+   | &lt;UICollectionViewCell: 0x7f85b4502e10; frame = (0 100; 375 100.12); hidden = YES; layer = &lt;CALayer: 0x600000035c20&gt;&gt;
+   | &lt;UICollectionViewCell: 0x7f85b4505c10; frame = (0 200; 375 100.12); layer = &lt;CALayer: 0x600000036300&gt;&gt;
+   | &lt;UICollectionViewCell: 0x7f85b4506400; frame = (0 300.5; 375 100.12); layer = &lt;CALayer: 0x600000036be0&gt;&gt;
+   | &lt;UICollectionViewCell: 0x7f85b4506d70; frame = (0 400.5; 375 100.12); layer = &lt;CALayer: 0x600000227ac0&gt;&gt;
+   | &lt;UICollectionViewCell: 0x7f85b4507560; frame = (0 500.5; 375 100.12); layer = &lt;CALayer: 0x6000002277c0&gt;&gt;
+</code></pre>
+
+<h3 id="toc_3">备注</h3>
+
+<p>Points（逻辑像素）&lt;---&gt;Rendered Pixels（渲染像素）&lt;---&gt;Physical Pixels（物理像素）</p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/1824896-195d0d1574cf13c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="iOS不同机型尺寸.png"/></p>
 
 
     
@@ -222,16 +190,13 @@ lookup_protocol_method(old_protocol *proto, SEL aSel,
         <div class="large-6 columns">
         <p class="text-left" style="padding:15px 0px;">
       
-          <a href="15479057717432.html" 
-          title="Previous Post: OC Runtime(3)之Associated Objects">&laquo; OC Runtime(3)之Associated Objects</a>
-      
         </p>
         </div>
         <div class="large-6 columns">
       <p class="text-right" style="padding:15px 0px;">
       
-          <a  href="15479057717556.html" 
-          title="Next Post: OC Runtime(1)之Object&Class">OC Runtime(1)之Object&Class &raquo;</a>
+          <a  href="15480679782500.html" 
+          title="Next Post: Auto Layout">Auto Layout &raquo;</a>
       
       </p>
         </div>
