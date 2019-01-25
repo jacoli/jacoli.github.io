@@ -4,7 +4,7 @@
   <title><![CDATA[李传格的博客]]></title>
   <link href="https://jacoli.github.io/atom.xml" rel="self"/>
   <link href="https://jacoli.github.io/"/>
-  <updated>2019-01-22T15:27:37+08:00</updated>
+  <updated>2019-01-25T17:38:37+08:00</updated>
   <id>https://jacoli.github.io/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -227,6 +227,67 @@ return CGSizeMake(round(scale * size.width) / scale, round(scale * size.height) 
 <li><a href="https://github.com/Xiaofei-it/AndroidDataStorage">AndroidDataStorage</a></li>
 <li><a href="https://github.com/realm/realm-java">realm-java</a></li>
 <li><a href="https://github.com/greenrobot/greenDAO">greenDAO</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[iOS存储]]></title>
+    <link href="https://jacoli.github.io/15480679782584.html"/>
+    <updated>2019-01-21T18:52:58+08:00</updated>
+    <id>https://jacoli.github.io/15480679782584.html</id>
+    <content type="html"><![CDATA[
+<h3 id="toc_0">存储方式</h3>
+
+<ul>
+<li>NSUserDefault，可以存放Key-Value对形式的轻量数据。</li>
+<li>NSKeyedArchiver，存储对象到二进制文件。</li>
+<li>writeToFile，将NSString、NSArray、NSDictionary、NSData对象存储到文件。</li>
+<li>CoreData.Framework，对象管理并支持对象持久。
+<img src="http://upload-images.jianshu.io/upload_images/1824896-60432e4e99c8d3ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="CoreData持久类型"/></li>
+<li>Sqlite，轻量数据库</li>
+<li>Keychain，钥匙串存储</li>
+<li>NSUbiquitousKeyValueStore，存储数据到iCloud</li>
+</ul>
+
+<h3 id="toc_1">关于安全性</h3>
+
+<ul>
+<li>敏感数据不要明文存储</li>
+<li>存放在Keychain，不越狱还是安全的</li>
+<li>Safety is relative, choose a safer way.</li>
+</ul>
+
+<h3 id="toc_2">三方库</h3>
+
+<ul>
+<li><a href="https://github.com/aschuch/AwesomeCache">AwesomeCache</a></li>
+<li><a href="https://github.com/ibireme/YYCache">YYCache</a>
+基于Disk、Memory的缓存</li>
+<li><a href="https://github.com/yuantiku/YTKKeyValueStore">YTKKeyValueStore</a>
+基于Sqlite的健值对数据的存储</li>
+<li><a href="https://github.com/radex/SwiftyUserDefaults">SwiftyUserDefaults</a></li>
+<li><a href="https://github.com/ccgus/fmdb">FMDB</a></li>
+<li><a href="https://github.com/supermarin/ObjectiveRecord">ObjectiveRecord</a>
+CoreData的封装</li>
+<li><a href="https://github.com/realm/realm-cocoa">realm</a>
+Realm is a mobile database: a replacement for Core Data &amp; SQLite.</li>
+<li><a href="https://github.com/square/Valet">Valet</a>
+基于Keychain的数据存储，接口简洁易用，支持同一开发者下应用间数据共享，支持iCloud数据同步，通过TouchID或设备密码保护数据。</li>
+<li><a href="https://github.com/kishikawakatsumi/UICKeyChainStore">UICKeyChainStore</a></li>
+<li><a href="https://github.com/kishikawakatsumi/KeychainAccess">KeychainAccess</a></li>
+<li><a href="https://github.com/ptoomey3/Keychain-Dumper">Keychain-Dumper</a>
+Keychain is not safe.</li>
+</ul>
+
+<h3 id="toc_3">参考</h3>
+
+<ul>
+<li><a href="https://developer.apple.com/documentation/security/keychain_services">keychain_services</a></li>
+<li><a href="https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestore">NSUbiquitousKeyValueStore</a></li>
+<li><a href="http://wufawei.com/2013/11/ios-application-security-20/">iOS应用程序安全(20)-本地数据存储及其安全性（NSUserDefaults, CoreData, Sqlite, Plist 文件）</a></li>
+<li><a href="http://wufawei.com/2013/06/Keychain-is-not-safe/">Keychain is not safe</a></li>
 </ul>
 
 ]]></content>
@@ -497,6 +558,264 @@ Total pre-main time:  93.71 milliseconds (100.0%)
 
 <ul>
 <li><a href="http://www.jianshu.com/p/d75a9a8d13b5">33 个 2017 年必须了解的 iOS 开源库</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Alamofire源码分析]]></title>
+    <link href="https://jacoli.github.io/15480679782353.html"/>
+    <updated>2019-01-21T18:52:58+08:00</updated>
+    <id>https://jacoli.github.io/15480679782353.html</id>
+    <content type="html"><![CDATA[
+<h3 id="toc_0">概述</h3>
+
+<ul>
+<li><p><code>Alamofire</code>跟<a href="https://github.com/AFNetworking/AFNetworking">AFNetworking</a>的功能差不多，都是对URLSession的封装，对上层提供易用的网络请求接口。</p></li>
+<li><p><code>Alamofire</code>和<a href="https://github.com/AFNetworking/AFNetworking">AFNetworking</a>分别是Swift和OC的实现版本。</p></li>
+<li><p>目前，这两个网络封装库的关注度和使用率非常高，代码质量也相当不错。本文想通过对<code>Alamofire</code>源码的简单分析，了解其基本框架和设计思路。</p></li>
+<li><p>源码链接：<a href="https://github.com/Alamofire/Alamofire">Alamofire</a></p></li>
+</ul>
+
+<h3 id="toc_1">一个GET请求的源码分析</h3>
+
+<ul>
+<li>从最简单的Get请求入手，分析<code>Alamofire</code>的代码。一个请求流程，可以分为请求发送流程和请求响应流程，下文将从这两个流程展开分析。</li>
+</ul>
+
+<pre><code class="language-text">// Get请求的调用方式
+Alamofire.request(&quot;https://httpbin.org/get&quot;).responseJSON { response in
+    print(response.request)  // original URL request
+    print(response.response) // HTTP URL response
+    print(response.data)     // server data
+    print(response.result)   // result of response serialization
+
+    if let JSON = response.result.value {
+        print(&quot;JSON: \(JSON)&quot;)
+    }
+}
+</code></pre>
+
+<h4 id="toc_2">请求发送流程</h4>
+
+<ul>
+<li><code>Alamofire.Swift</code>可以认为<code>Alamofire</code>一些对外接口的包装（Facade API）。
+<code>Alamofire.request</code>实际上是调用了<code>SessionManager.request</code>。</li>
+</ul>
+
+<pre><code class="language-text">// 调用request方法
+/// Creates a `DataRequest` using the default `SessionManager` to retrieve the contents of a URL based on the specified `urlRequest`.
+@discardableResult
+public func request(_ urlRequest: URLRequestConvertible) -&gt; DataRequest {
+    return SessionManager.default.request(urlRequest)
+}
+</code></pre>
+
+<ul>
+<li>在<code>SessionManager.request</code>，<code>Request</code>被组装创建，并加到发送队列中，然后等待一系列的响应事件。而<code>SessionManager</code>主要职责是管理发送队列，组装请求消息，设置Session相关的配置，设置工作线程等。</li>
+</ul>
+
+<pre><code class="language-text">// 创建request对象，并开始发送
+/// Creates a `DataRequest` to retrieve the contents of a URL based on the specified `urlRequest`.
+    open func request(_ urlRequest: URLRequestConvertible) -&gt; DataRequest {
+        var originalRequest: URLRequest?
+
+        do {
+            originalRequest = try urlRequest.asURLRequest()
+            let originalTask = DataRequest.Requestable(urlRequest: originalRequest!)
+
+            let task = try originalTask.task(session: session, adapter: adapter, queue: queue)
+            let request = DataRequest(session: session, requestTask: .data(originalTask, task))
+
+            delegate[task] = request
+
+            if startRequestsImmediately { request.resume() }
+
+            return request
+        } catch {
+            return request(originalRequest, failedWith: error)
+        }
+    }
+</code></pre>
+
+<ul>
+<li>接着，通过<code>Request.responseJSON</code>设置JSON响应回调的处理方法。</li>
+</ul>
+
+<pre><code class="language-text">// 设置回调
+/// Adds a handler to be called once the request has finished.
+    @discardableResult
+    public func responseJSON(
+        queue: DispatchQueue? = nil,
+        options: JSONSerialization.ReadingOptions = .allowFragments,
+        completionHandler: @escaping (DataResponse&lt;Any&gt;) -&gt; Void)
+        -&gt; Self
+    {
+        return response(
+            queue: queue,
+            responseSerializer: DataRequest.jsonResponseSerializer(options: options),
+            completionHandler: completionHandler
+        )
+    }
+</code></pre>
+
+<ul>
+<li><code>Request.responseJSON</code>实际上是调用<code>Request.response</code>，将回调添加到<code>Request.delegate.queue</code>，然后等待响应事件。</li>
+</ul>
+
+<pre><code class="language-text">    /// Adds a handler to be called once the request has finished.
+    @discardableResult
+    public func response&lt;T: DataResponseSerializerProtocol&gt;(
+        queue: DispatchQueue? = nil,
+        responseSerializer: T,
+        completionHandler: @escaping (DataResponse&lt;T.SerializedObject&gt;) -&gt; Void)
+        -&gt; Self
+    {
+        delegate.queue.addOperation {
+            let result = responseSerializer.serializeResponse(
+                self.request,
+                self.response,
+                self.delegate.data,
+                self.delegate.error
+            )
+
+            var dataResponse = DataResponse&lt;T.SerializedObject&gt;(
+                request: self.request,
+                response: self.response,
+                data: self.delegate.data,
+                result: result,
+                timeline: self.timeline
+            )
+
+            dataResponse.add(self.delegate.metrics)
+
+            (queue ?? DispatchQueue.main).async { completionHandler(dataResponse) }
+        }
+
+        return self
+    }
+
+</code></pre>
+
+<ul>
+<li>至此，发送流程完成，接着就等待响应事件。</li>
+</ul>
+
+<h4 id="toc_3">请求响应流程</h4>
+
+<ul>
+<li><p>一个请求的响应事件会有多个，并按循序上报，例如以下几个主要事件，</p></li>
+<li><p>HTTPS鉴权事件 <code>func urlSession(_ session: URLSession,task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -&gt; Void)</code></p></li>
+<li><p>收到Response响应头事件 <code>func urlSession(_ session: URLSession,dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -&gt; Void)</code></p></li>
+<li><p>收到Response Body数据事件 <code>func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data)</code></p></li>
+<li><p>响应流程完成事件 <code>func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?)</code></p></li>
+<li><p>本文以最后一个响应流程完成事件为例，梳理下整个响应流程。</p></li>
+<li><p>首先，<code>SessionDelegate</code>会收到由<code>URLSession.delegate</code>上报的<code>urlSession:task:didCompleteWithError</code>，根据<code>task</code>找到<code>URLSessionTask</code>并通过其<code>delegate</code>上报事件给<code>TaskDelegate</code>。</p></li>
+</ul>
+
+<pre><code class="language-text">    /// Tells the delegate that the task finished transferring data.
+    open func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        /// Executed after it is determined that the request is not going to be retried
+        let completeTask: (URLSession, URLSessionTask, Error?) -&gt; Void = { [weak self] session, task, error in
+            guard let strongSelf = self else { return }
+
+            if let taskDidComplete = strongSelf.taskDidComplete {
+                taskDidComplete(session, task, error)
+            } else if let delegate = strongSelf[task]?.delegate {
+                delegate.urlSession(session, task: task, didCompleteWithError: error)
+            }
+
+            NotificationCenter.default.post(
+                name: Notification.Name.Task.DidComplete,
+                object: strongSelf,
+                userInfo: [Notification.Key.Task: task]
+            )
+
+            strongSelf[task] = nil
+        }
+
+        guard let request = self[task], let sessionManager = sessionManager else {
+            completeTask(session, task, error)
+            return
+        }
+
+        // Run all validations on the request before checking if an error occurred
+        request.validations.forEach { $0() }
+
+        // Determine whether an error has occurred
+        var error: Error? = error
+
+        if let taskDelegate = self[task]?.delegate, taskDelegate.error != nil {
+            error = taskDelegate.error
+        }
+
+        /// If an error occurred and the retrier is set, asynchronously ask the retrier if the request
+        /// should be retried. Otherwise, complete the task by notifying the task delegate.
+        if let retrier = retrier, let error = error {
+            retrier.should(sessionManager, retry: request, with: error) { [weak self] shouldRetry, timeDelay in
+                guard shouldRetry else { completeTask(session, task, error) ; return }
+
+                DispatchQueue.utility.after(timeDelay) { [weak self] in
+                    guard let strongSelf = self else { return }
+
+                    let retrySucceeded = strongSelf.sessionManager?.retry(request) ?? false
+
+                    if retrySucceeded, let task = request.task {
+                        strongSelf[task] = request
+                        return
+                    } else {
+                        completeTask(session, task, error)
+                    }
+                }
+            }
+        } else {
+            completeTask(session, task, error)
+        }
+    }
+</code></pre>
+
+<ul>
+<li>接着，<code>TaskDelegate</code>收到该事件后，恢复queue队列，按循序执行其中的回调，如<code>ResponseJSON</code>。</li>
+</ul>
+
+<pre><code class="language-text">    @objc(URLSession:task:didCompleteWithError:)
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        if let taskDidCompleteWithError = taskDidCompleteWithError {
+            taskDidCompleteWithError(session, task, error)
+        } else {
+            if let error = error {
+                if self.error == nil { self.error = error }
+
+                if
+                    let downloadDelegate = self as? DownloadTaskDelegate,
+                    let resumeData = (error as NSError).userInfo[NSURLSessionDownloadTaskResumeData] as? Data
+                {
+                    downloadDelegate.resumeData = resumeData
+                }
+            }
+
+            // queue队列中的operaion开始按循序执行，回调到上层。
+            queue.isSuspended = false
+        }
+    }
+</code></pre>
+
+<h3 id="toc_4">其他模块</h3>
+
+<ul>
+<li><p>除了发送，响应相关的代码，<code>Alamofire</code>还有许多其他模块。例如，</p></li>
+<li><p><code>NetworkReachabilityManager</code>管理网络状态。</p></li>
+<li><p><code>ParameterEncoding</code> 入参编解码方式。</p></li>
+<li><p><code>ResponseSerialization</code> 响应的反序列化方式。</p></li>
+<li><p><code>ServerTrustPolicy</code> HTTPS的鉴权</p></li>
+<li><p>等等。</p></li>
+</ul>
+
+<h3 id="toc_5">总结</h3>
+
+<ul>
+<li>分析得比较简单，抱砖引玉。</li>
 </ul>
 
 ]]></content>
@@ -801,107 +1120,6 @@ IOS APP 安全评估工具。可对 APP 进行静态、动态分析。需通过 
 <li><p>如微信三方登录认证，除了三方应用通过URL Scheme跳转微信拿到code，再通过https请求微信后台拿到access_token，后续用https带上access_token可以请求各种资源。<br/>
 <img src="media/15479057717149/weixinlogin.png" alt="weixinlogin"/></p></li>
 <li><p>三方分享则是通过<code>URL Schemes</code>带上不同格式的数据（文本、图片、链接等）。</p></li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[模式和架构]]></title>
-    <link href="https://jacoli.github.io/15479057717214.html"/>
-    <updated>2019-01-19T21:49:31+08:00</updated>
-    <id>https://jacoli.github.io/15479057717214.html</id>
-    <content type="html"><![CDATA[
-<h3 id="toc_0">编程模式</h3>
-
-<ul>
-<li>函数式编程 vs 面向对象编程</li>
-<li>响应式编程 vs 命令式编程</li>
-<li>promise</li>
-</ul>
-
-<h3 id="toc_1">架构、框架、设计模式：</h3>
-
-<ul>
-<li>1、架构属于顶层的设计，划分软件或解决方案的整体结构，倾向于抽象，常见的有分层架构、事件驱动架构、微内核架构、微服务架构等。</li>
-<li>2、框架类似于提供工具库或类库，倾向于实现。</li>
-<li>3、设计模式应该是更细力度的代码层级的复用、可维护性、可扩展性的设计。</li>
-</ul>
-
-<h3 id="toc_2">设计模式：</h3>
-
-<ul>
-<li>1、基于某种具体场景，代码组织结构或交互行为的设计方法，使得代码更易于复用、维护、扩展。</li>
-<li>2、基本的6个原则：开闭原则、里氏替换原则、依赖倒置原则、接口隔离原则、单一职责原则、最少知识原则。</li>
-<li>3、创建型模式：工厂方法、抽象工厂、原型、单例、builder</li>
-<li>4、结构型:适配器、组合、桥接、decorator、facade、享元、proxy</li>
-<li>5、行为型:解释器、模版方法、责任链、命令、迭代器、中介者、memento、观察者、状态、策略、访问者等。</li>
-</ul>
-
-<h3 id="toc_3">相关文章</h3>
-
-<p><a href="http://www.cnblogs.com/beijiguangyong/archive/2010/11/15/2302807.html#_Toc281750445">23种设计模式</a></p>
-
-<p><a href="http://www.cnblogs.com/hegezhou_hot/archive/2010/10/08/1846200.html">系统架构师</a></p>
-
-<p>前篇</p>
-
-<pre><code class="language-text">  1、系统架构师-基础到企业应用架构系列之--开卷有益
-  2、系统架构师-基础到企业应用架构-系统建模[上篇]
-  3、系统架构师-基础到企业应用架构-系统建模[中篇](上)
-  4、系统架构师-基础到企业应用架构-系统建模[中篇](下)
-  5、系统架构师-基础到企业应用架构-系统建模[下篇]
-  6、系统架构师-基础到企业应用架构-系统设计规范与原则[上篇]
-  7、系统架构师-基础到企业应用架构-系统设计规范与原则[下篇]
-  8、系统架构师-基础到企业应用架构-设计模式[上篇]
-  9、系统架构师-基础到企业应用架构-设计模式[中篇]
-  10、系统架构师-基础到企业应用架构-设计模式[下篇]
-</code></pre>
-
-<p>中篇</p>
-
-<pre><code class="language-text">  11、系统架构师-基础到企业应用架构-企业应用架构
-  12、系统架构师-基础到企业应用架构-分层[上篇]
-  13、系统架构师-基础到企业应用架构-分层[中篇]
-  14、系统架构师-基础到企业应用架构-分层[下篇]
-  15、系统架构师-基础到企业应用架构-表现层
-  16、系统架构师-基础到企业应用架构-服务层
-  17、系统架构师-基础到企业应用架构-业务逻辑层
-  18、系统架构师-基础到企业应用架构-数据访问层
-  19、系统架构师-基础到企业应用架构-组件服务
-  20、系统架构师-基础到企业应用架构-安全机制
-</code></pre>
-
-<p>后篇</p>
-
-<pre><code class="language-text">  21、单机应用、客户端/服务器、多服务、企业数据总线全解析
-  22、系统架构师-基础到企业应用架构-单机应用(实例及demo)
-  23、系统架构师-基础到企业应用架构-客户端/服务器(实例及demo)
-  24、系统架构师-基础到企业应用架构-多服务(实例及demo)
-  25、系统架构师-基础到企业应用架构-企业数据总线(实例及demo)
-  26、系统架构师-基础到企业应用架构-性能优化(架构瓶颈)
-  27、系统架构师-基础到企业应用架构-完整的架构方案实例[上篇]
-  28、系统架构师-基础到企业应用架构-完整的架构方案实例[中篇]
-  29、系统架构师-基础到企业应用架构-完整的架构方案实例[下篇]
-  30、系统架构师-基础到企业应用架构-总结及后续
-</code></pre>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[iOS App安装包过大]]></title>
-    <link href="https://jacoli.github.io/15479057717878.html"/>
-    <updated>2019-01-19T21:49:31+08:00</updated>
-    <id>https://jacoli.github.io/15479057717878.html</id>
-    <content type="html"><![CDATA[
-<p><img src="media/15479057717878/app_package_too_large.png" alt="app_package_too_large"/></p>
-
-<ul>
-<li><p><a href="https://developer.apple.com/library/ios/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/">On-Demand Resources</a></p></li>
-<li><p><a href="https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AppThinning/AppThinning.html">App Thinning</a></p></li>
-<li><p><a href="http://www.cocoachina.com/ios/20151211/14562.html">iOS微信安装包瘦身</a></p></li>
-<li><p><a href="http://www.cocoachina.com/ios/20150202/11084.html">iOS可执行文件瘦身方法</a></p></li>
 </ul>
 
 ]]></content>

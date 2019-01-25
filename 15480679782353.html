@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  概述 - 李传格的博客
+  Alamofire源码分析 - 李传格的博客
   
   </title>
   
@@ -98,10 +98,10 @@
       <div class="markdown-body article-wrap">
        <div class="article">
           
-          <h1>概述</h1>
+          <h1>Alamofire源码分析</h1>
      
         <div class="read-more clearfix">
-          <span class="date">2019/1/22</span>
+          <span class="date">2017/1/24</span>
 
           
            
@@ -116,14 +116,16 @@
       </div><!-- article -->
 
       <div class="article-content">
-      <ul>
+      <h3 id="toc_0">概述</h3>
+
+<ul>
 <li><p><code>Alamofire</code>跟<a href="https://github.com/AFNetworking/AFNetworking">AFNetworking</a>的功能差不多，都是对URLSession的封装，对上层提供易用的网络请求接口。</p></li>
 <li><p><code>Alamofire</code>和<a href="https://github.com/AFNetworking/AFNetworking">AFNetworking</a>分别是Swift和OC的实现版本。</p></li>
 <li><p>目前，这两个网络封装库的关注度和使用率非常高，代码质量也相当不错。本文想通过对<code>Alamofire</code>源码的简单分析，了解其基本框架和设计思路。</p></li>
 <li><p>源码链接：<a href="https://github.com/Alamofire/Alamofire">Alamofire</a></p></li>
 </ul>
 
-<h3 id="toc_0">一个GET请求的源码分析</h3>
+<h3 id="toc_1">一个GET请求的源码分析</h3>
 
 <ul>
 <li>从最简单的Get请求入手，分析<code>Alamofire</code>的代码。一个请求流程，可以分为请求发送流程和请求响应流程，下文将从这两个流程展开分析。</li>
@@ -142,7 +144,7 @@ Alamofire.request(&quot;https://httpbin.org/get&quot;).responseJSON { response i
 }
 </code></pre>
 
-<h4 id="toc_1">请求发送流程</h4>
+<h4 id="toc_2">请求发送流程</h4>
 
 <ul>
 <li><code>Alamofire.Swift</code>可以认为<code>Alamofire</code>一些对外接口的包装（Facade API）。
@@ -247,7 +249,7 @@ public func request(_ urlRequest: URLRequestConvertible) -&gt; DataRequest {
 <li>至此，发送流程完成，接着就等待响应事件。</li>
 </ul>
 
-<h4 id="toc_2">请求响应流程</h4>
+<h4 id="toc_3">请求响应流程</h4>
 
 <ul>
 <li><p>一个请求的响应事件会有多个，并按循序上报，例如以下几个主要事件，</p></li>
@@ -346,7 +348,7 @@ public func request(_ urlRequest: URLRequestConvertible) -&gt; DataRequest {
     }
 </code></pre>
 
-<h3 id="toc_3">其他模块</h3>
+<h3 id="toc_4">其他模块</h3>
 
 <ul>
 <li><p>除了发送，响应相关的代码，<code>Alamofire</code>还有许多其他模块。例如，</p></li>
@@ -357,7 +359,7 @@ public func request(_ urlRequest: URLRequestConvertible) -&gt; DataRequest {
 <li><p>等等。</p></li>
 </ul>
 
-<h3 id="toc_4">总结</h3>
+<h3 id="toc_5">总结</h3>
 
 <ul>
 <li>分析得比较简单，抱砖引玉。</li>
@@ -372,13 +374,16 @@ public func request(_ urlRequest: URLRequestConvertible) -&gt; DataRequest {
         <div class="large-6 columns">
         <p class="text-left" style="padding:15px 0px;">
       
-          <a href="15480679782584.html" 
-          title="Previous Post: iOS存储">&laquo; iOS存储</a>
+          <a href="15480679782141.html" 
+          title="Previous Post: 开发笔记1">&laquo; 开发笔记1</a>
       
         </p>
         </div>
         <div class="large-6 columns">
       <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15480679782099.html" 
+          title="Next Post: * 经过一个月多的努力，app终于成型了，欣喜，期待上线后效果，在这里稍作技术上的总结和展望。">* 经过一个月多的努力，app终于成型了，欣喜，期待上线后效果，在这里稍作技术上的总结和展望。 &raquo;</a>
       
       </p>
         </div>
