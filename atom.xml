@@ -4,13 +4,28 @@
   <title><![CDATA[李传格的博客]]></title>
   <link href="https://jacoli.github.io/atom.xml" rel="self"/>
   <link href="https://jacoli.github.io/"/>
-  <updated>2019-03-01T15:34:08+08:00</updated>
+  <updated>2019-03-26T11:15:44+08:00</updated>
   <id>https://jacoli.github.io/</id>
   <author>
     <name><![CDATA[]]></name>
     
   </author>
   <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[对移动客户端技术的思考]]></title>
+    <link href="https://jacoli.github.io/15535700326071.html"/>
+    <updated>2019-03-26T11:13:52+08:00</updated>
+    <id>https://jacoli.github.io/15535700326071.html</id>
+    <content type="html"><![CDATA[
+<p>14年到16年 客户端相关技术快速发展，大家在这方面的研究和落地结果非常多，插件化，包管理，组件化，各种脚手架和研发体系，换肤，热更新，动态化，跨平台，等等。各种技术和项目不断出现，百花齐放，那是移动客户端快速发展的阶段。现在，客户端的技术早已趋于稳定，同时偏重于运营的移动互联网对动态化的需求更为强烈。在这方面，前端，大前端更有优势，也更容易落地，也更为标准化。早期在动态化上的探索，主要集中在H5和Hybrid H5，之后还出现各种native的json动态化方案，还有以各种特有DSL去描述UI的方案，16年Facebook发起的react native项目，彻底点燃了前端跨平台演进的激情，weex随后跟进，再到flutter的出现。同时，前端框架react，Vue，angular的不断成熟，在构建前端/移动应用上，变得更加简单。</p>
+
+<p>总体上，移动客户端开发早已进入稳定期，技术框架开发模式成熟，各种配套设施齐全。前端这几年的发展日新月异，到目前为止，以Vue/React/Angular为代表的前端框架也趋于稳定，周边配套也较为齐全，开发模式也趋于稳定，都以组件化和标准化为指导原则。以RN/Weex/Flutter为基础的大前端技术也趋于稳定，开发模式稳定了，周边配套也完善了，后续更多地会在框架性能稳定性开发效率上做文章，应用层面不会大动干戈了，但小的变动仍会有不少。敬那些逝去的项目框架，期待这些新框架仍能不断带来惊喜。</p>
+
+<p>在对这些框架的使用和反哺上，大公司和小公司也必然是迥异的策略，小公司拿来即用，再配合一些胶水层代码，甚至这些代码也取之三方。大部分框架在追求通用性的同时，必然会在易用性上打折，大公司有能力也有人力对其深度定制，满足自身需求，提高使用效率，也能反馈给社区，甚至新的轮子就出来了。</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[读书目录]]></title>
@@ -1119,60 +1134,6 @@ public func request(_ urlRequest: URLRequestConvertible) -&gt; DataRequest {
 <li><a href="http://www.getui.com/">个推</a></li>
 <li><a href="http://www.qcloud.com/product/XGPush.html">腾讯信鸽</a></li>
 <li><a href="http://mobile.umeng.com/push?spm=0.0.0.0.pphrqW">友盟U-Push</a></li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[移动安全]]></title>
-    <link href="https://jacoli.github.io/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8.html"/>
-    <updated>2019-01-19T21:49:31+08:00</updated>
-    <id>https://jacoli.github.io/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8.html</id>
-    <content type="html"><![CDATA[
-<h3 id="toc_0">安全检查项</h3>
-
-<ul>
-<li>移动App上关键数据（密码、个人信息等）在存储、传输等各个阶段需要做一定的安全保护。下图罗列了常见的检查项。
-<img src="media/15479057717084/app_security_checks.png" alt="app_security_checks"/></li>
-</ul>
-
-<h3 id="toc_1">传输安全</h3>
-
-<ul>
-<li><p>保密性，消息是加密的，内容没有泄露，可以用对称加密算法进行加解密，如AES256。</p></li>
-<li><p>完整性，消息是完整的，内容没有被篡改，对消息做哈希得到摘要，作为消息的签名。哈希算法有SHA256等，MD5、SHA1已经不太安全，尽量用SHA256等相对安全的算法。</p></li>
-<li><p>真实性，消息是可靠的，内容来自受信的来源，验证来源的数字证书是否可靠。</p></li>
-</ul>
-
-<h3 id="toc_2">常见工具</h3>
-
-<ul>
-<li><p>class-dump-z<br/>
-一个跨平台的 Objective-C 接口提取器,用于分析 iPhoneOS 可执行文件中私有的 API。需 通过 Cydia 安装。</p></li>
-<li><p>darwin cc tools (otools) 一个开源的苹果程序编译和连接器。需通过 Cydia 安装。</p></li>
-<li><p>HTTP代理抓包工具(Fiddler)</p></li>
-<li><p>Plist文件查看器(plistEditor) </p></li>
-<li><p>iOS内存修改工具(iGameGuard) </p></li>
-<li><p>内购破解工具(LocalIAPStore、iAPFree) </p></li>
-<li><p>keychain-dumper<br/>
-该工具可以读取已越狱 IOS 设备中的 keychain。需通过 Cydia 安装。 </p></li>
-<li><p>Link Identity Editor (ldid)<br/>
-该工具可以协助测试人员修改 Mach-O 二进制文件的签名信息。需通过 Cydia 安装。 </p></li>
-<li><p>OpenSSH<br/>
-OpenSSH 是 Linux 下常用的服务,装上后设备可充当 SSH 服务端。需通过 Cydia 安装。 </p></li>
-<li><p>Snoop-it<br/>
-IOS APP 安全评估工具。可对 APP 进行静态、动态分析。需通过 Cydia 安装。</p></li>
-</ul>
-
-<h3 id="toc_3">相关博文</h3>
-
-<ul>
-<li><a href="http://security.ios-wiki.com/">ios-security</a></li>
-<li><a href="http://drops.wooyun.org/papers/345">在线支付逻辑漏洞总结</a></li>
-<li><a href="https://program-think.blogspot.com/2013/02/file-integrity-check.html?utm_source=tuicool&amp;utm_medium=referral">扫盲文件完整性校验——关于散列值和数字签名</a></li>
-<li><a href="https://program-think.blogspot.com/2010/02/introduce-digital-certificate-and-ca.html">数字证书及 CA 的扫盲介绍</a></li>
-<li><a href="http://www.techug.com/https-ssl-tls">https-ssl-tls</a></li>
 </ul>
 
 ]]></content>
