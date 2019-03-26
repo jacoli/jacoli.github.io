@@ -4,7 +4,7 @@
   <title><![CDATA[李传格的博客]]></title>
   <link href="https://jacoli.github.io/atom.xml" rel="self"/>
   <link href="https://jacoli.github.io/"/>
-  <updated>2019-03-26T11:28:32+08:00</updated>
+  <updated>2019-03-26T11:46:09+08:00</updated>
   <id>https://jacoli.github.io/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -23,6 +23,700 @@
 <p>总体上，移动客户端开发早已进入稳定期，技术框架开发模式成熟，各种配套设施齐全。前端这几年的发展日新月异，到目前为止，以Vue/React/Angular为代表的前端框架也趋于稳定，周边配套也较为齐全，开发模式也趋于稳定，都以组件化和标准化为指导原则。以RN/Weex/Flutter为基础的大前端技术也趋于稳定，开发模式稳定了，周边配套也完善了，后续更多地会在框架性能稳定性开发效率上做文章，应用层面不会大动干戈了，但小的变动仍会有不少。敬那些逝去的项目框架，期待这些新框架仍能不断带来惊喜。</p>
 
 <p>在对这些框架的使用和反哺上，大公司和小公司也必然是迥异的策略，小公司拿来即用，再配合一些胶水层代码，甚至这些代码也取之三方。大部分框架在追求通用性的同时，必然会在易用性上打折，大公司有能力也有人力对其深度定制，满足自身需求，提高使用效率，也能反馈给社区，甚至新的轮子就出来了。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[技术知识导图]]></title>
+    <link href="https://jacoli.github.io/15524404049139.html"/>
+    <updated>2019-03-13T09:26:44+08:00</updated>
+    <id>https://jacoli.github.io/15524404049139.html</id>
+    <content type="html"><![CDATA[
+<h2 id="toc_0">硬件</h2>
+
+<ul>
+<li>CPU、内存、总线、I/O</li>
+</ul>
+
+<h2 id="toc_1">操作系统</h2>
+
+<ul>
+<li>对硬件资源封装，对外提供基础服务。</li>
+<li>内核、网络、进程/线程、文件、显示、其他各种硬件驱动。</li>
+<li>提供系统库，内核态/用户态。</li>
+<li>跨平台接口 POSIX</li>
+</ul>
+
+<h2 id="toc_2">驱动开发/嵌入式开发</h2>
+
+<h2 id="toc_3">编程语言</h2>
+
+<ul>
+<li>C/C++、OC、Java、JS、Swift、Kotlin、Python、PHP、Dart。</li>
+<li>类型、集合、字符串、控制流、运算、函数/闭包/Lambada、结构体/类/枚举、方法/属性、接口/协议、继承、扩展、泛型、协程。</li>
+<li>编程范式：面向过程、面向对象、面向切片、函数反应式。</li>
+<li>AOT/JIT、解释执行、编译执行。</li>
+<li>由系统直接运行还是在虚拟机上运行。</li>
+<li>代码编译、代码转换。</li>
+</ul>
+
+<h2 id="toc_4">数据结构和算法</h2>
+
+<h2 id="toc_5">网络</h2>
+
+<h2 id="toc_6">数据库</h2>
+
+<h2 id="toc_7">设计模式和架构</h2>
+
+<h2 id="toc_8">分布式系统</h2>
+
+<h2 id="toc_9">虚拟机/容器技术</h2>
+
+<h2 id="toc_10">大数据</h2>
+
+<h2 id="toc_11">云计算</h2>
+
+<h2 id="toc_12">人工智能</h2>
+
+<h2 id="toc_13">服务端开发</h2>
+
+<h2 id="toc_14">PC客户端&amp;Web</h2>
+
+<h2 id="toc_15">移动客户端&amp;Web&amp;小程序</h2>
+
+<h3 id="toc_16">基础能力建设</h3>
+
+<ul>
+<li>通用能力，框架设计、网络、存储、图片、音视频、日志、配置、路由、数据管理/消息总线、H5容器、硬件能力、数据绑定。</li>
+<li>UI能力，UI组件、布局、渲染、动画、主题。</li>
+<li>动态化能力，JSON组件、Weex/RN、Hybrid H5、Flutter。</li>
+</ul>
+
+<h3 id="toc_17">上层业务解藕</h3>
+
+<ul>
+<li>登录、分享、支付、广告、导购、下单、订单、售后、用户。</li>
+</ul>
+
+<h3 id="toc_18">研发体系</h3>
+
+<ul>
+<li>webpack，脚手架</li>
+<li>CI、包管理、ESLint/OSLint</li>
+<li>缺陷管理</li>
+<li>功能测试、性能测试、集成测试</li>
+</ul>
+
+<h3 id="toc_19">运营体系</h3>
+
+<ul>
+<li>大盘数据、ABTest、营销系统</li>
+</ul>
+
+<h3 id="toc_20">运维体系</h3>
+
+<ul>
+<li>渠道发布、数据监控</li>
+</ul>
+
+<h2 id="toc_21">视频/游戏</h2>
+
+<h2 id="toc_22">AR/VR</h2>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[React Native]]></title>
+    <link href="https://jacoli.github.io/15523541981699.html"/>
+    <updated>2019-03-12T09:29:58+08:00</updated>
+    <id>https://jacoli.github.io/15523541981699.html</id>
+    <content type="html"><![CDATA[
+<ul>
+<li><p><a href="https://juejin.im/post/5a6460f8f265da3e4f0a446d">https://juejin.im/post/5a6460f8f265da3e4f0a446d</a> React Native for Android 原理分析与实践：实现原理</p></li>
+<li><p><a href="https://www.cnblogs.com/android-blogs/p/5623481.html">https://www.cnblogs.com/android-blogs/p/5623481.html</a> 其实没那么复杂！探究react-native通信机制</p></li>
+<li><p>Native与JS之间调用方式，Bridge。</p></li>
+<li><p>在jsi.h中Runtime抽象类，申明了JS执行已经与Native互调的接口。在iOS和Android中分别实现。iOS的JSCRuntime，直接调用iOS系统提供JavaScriptCore框架。Android则额外引入jsc.so包提供，JavaScriptCore的功能。</p></li>
+<li><p>Native和JS两端都保存模块、方法数据的注册表。</p></li>
+<li><p>通道优化，JS调用Naitve，先push到MessageQueue，等Native有调用时，顺带批量返回（如果5毫秒内，没有Native调用事件，则主动flush queue）。</p></li>
+<li><p>JS代码执行，Native与JS消息通信等都是通过该Bridge进行。</p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Swift]]></title>
+    <link href="https://jacoli.github.io/15516874524849.html"/>
+    <updated>2019-03-04T16:17:32+08:00</updated>
+    <id>https://jacoli.github.io/15516874524849.html</id>
+    <content type="html"><![CDATA[
+<ul>
+<li>basic types</li>
+<li>operators</li>
+<li>strings &amp; collections</li>
+<li>flow control</li>
+<li>method &amp; closure</li>
+<li>structure &amp; class</li>
+<li>enumeration</li>
+<li>extension &amp; protocol</li>
+<li>optional chaining</li>
+<li>generics</li>
+<li>memory</li>
+<li>access safety</li>
+<li>error handle</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[杂]]></title>
+    <link href="https://jacoli.github.io/15514141804337.html"/>
+    <updated>2019-03-01T12:23:00+08:00</updated>
+    <id>https://jacoli.github.io/15514141804337.html</id>
+    <content type="html"><![CDATA[
+<h3 id="toc_0">技术</h3>
+
+<ul>
+<li>技术、框架、功能都是为了解决某个问题、帮助某个业务而出现，在实现的选择上，有可能会受到当时场景、条件等各种因素影响，在当时可能是最优的选择，但也可能存在些副作用。</li>
+<li>更看重长期的收益，在短期上，可能需要额外付出，需要投入人力、物力。</li>
+<li>技术、框架、方案会过时，也许有些技术能存在很长时间，适应很多变化，但在新需求、新环境面前，总会有些心有余力不足。这时要么还在原来基础上修修补补，要么革就出新，刨除历史包袱，作出新的变革。</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[跨端方案]]></title>
+    <link href="https://jacoli.github.io/15512326160968.html"/>
+    <updated>2019-02-27T09:56:56+08:00</updated>
+    <id>https://jacoli.github.io/15512326160968.html</id>
+    <content type="html"><![CDATA[
+<h3 id="toc_0">UI系统</h3>
+
+<ul>
+<li>UI系统包含UI元素的布局、渲染和UI事件的捕获、传递、处理等。</li>
+<li>iOS、Android、Web、微信小程序、其他小程序都有各自的原生UI系统。</li>
+</ul>
+
+<h3 id="toc_1">系统服务</h3>
+
+<ul>
+<li>原生系统的各种能力，来自硬件的、软件的。</li>
+</ul>
+
+<h3 id="toc_2">开发语言不同、运行环境不同</h3>
+
+<h3 id="toc_3">开发模式不同</h3>
+
+<h3 id="toc_4">跨端方案</h3>
+
+<ul>
+<li>不同原生系统上的UI系统和系统服务是有差别和相似的，跨端方案是尽量屏蔽这些差异，对应用开发者来说，开发体验是一致的的、透明的，就像jQuery屏蔽不同Web浏览器间的差异性。</li>
+<li>需要做到这点，跨端方案需要提供包括DSL、Runtime、组件库、工具链等，一整套屏蔽原生系统开发和运行的差异。 </li>
+</ul>
+
+<h4 id="toc_5">Runtime</h4>
+
+<ul>
+<li>Runtime需要支撑DSL在原生系统的运行，需要桥接到到原生系统服务、原生UI系统，需要提供自有或轻或重的UI渲染系统，需要提供对自有组件库或三方组件库的访问等。</li>
+<li>UI引擎，轻的方案是直接桥接到原生UI系统，引擎只做UI数据的处理、转换、传递，重的方案是基于跨平台的渲染方案如OpenGL做一套自己的UI系统。 </li>
+</ul>
+
+<h4 id="toc_6">组件库</h4>
+
+<ul>
+<li>自有、三方、原生系统的组件库等等。</li>
+</ul>
+
+<h4 id="toc_7">工具链</h4>
+
+<ul>
+<li>开发阶段，需要提供转换器或编译器，对DSL的支持，IDE，等等。</li>
+<li>调试阶段，调试工具、方式。</li>
+<li>测试阶段，测试工具。</li>
+<li>部署阶段，本地部署、远程部署。</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Swift]]></title>
+    <link href="https://jacoli.github.io/15499585996277.html"/>
+    <updated>2019-02-12T16:03:19+08:00</updated>
+    <id>https://jacoli.github.io/15499585996277.html</id>
+    <content type="html"><![CDATA[
+<ul>
+<li><a href="https://swift.org/source-compatibility/#current-list-of-projects">https://swift.org/source-compatibility/#current-list-of-projects</a></li>
+</ul>
+
+<h3 id="toc_0">Pods</h3>
+
+<ul>
+<li><p>Assets问题 <a href="https://mp.weixin.qq.com/s?__biz=MzA5NzMwODI0MA==&amp;mid=2647759665&amp;idx=1&amp;sn=4b1f2fde434f1b45ff3eac627a7b7fd9">https://mp.weixin.qq.com/s?__biz=MzA5NzMwODI0MA==&amp;mid=2647759665&amp;idx=1&amp;sn=4b1f2fde434f1b45ff3eac627a7b7fd9</a></p></li>
+<li><p>组件化-动态库实战 <a href="http://www.cocoachina.com/ios/20170427/19136.html">http://www.cocoachina.com/ios/20170427/19136.html</a></p></li>
+<li><p>iOS 动态库和静态库的的区别 动态库的隔离与静态库的吸附问题以及解决方法 <a href="https://blog.csdn.net/clovejq/article/details/71107796">https://blog.csdn.net/clovejq/article/details/71107796</a></p></li>
+<li><p>Thunk程序的实现原理以及在iOS中的应用  <a href="https://juejin.im/post/5c5281e0e51d45517334dd34">https://juejin.im/post/5c5281e0e51d45517334dd34</a></p></li>
+<li><p>Chameleon原理详解：其它跨多端统一框架都是假的？<a href="https://mp.weixin.qq.com/s/F8ernZ57jseKNJgwGopNxg">https://mp.weixin.qq.com/s/F8ernZ57jseKNJgwGopNxg</a></p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[苹果开发文档]]></title>
+    <link href="https://jacoli.github.io/15498732238184.html"/>
+    <updated>2019-02-11T16:20:23+08:00</updated>
+    <id>https://jacoli.github.io/15498732238184.html</id>
+    <content type="html"><![CDATA[
+<p><a href="https://developer.apple.com/library/archive/navigation/">https://developer.apple.com/library/archive/navigation/</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[iOS Mach-O]]></title>
+    <link href="https://jacoli.github.io/15498647909565.html"/>
+    <updated>2019-02-11T13:59:50+08:00</updated>
+    <id>https://jacoli.github.io/15498647909565.html</id>
+    <content type="html"><![CDATA[
+<ul>
+<li>深入剖析iOS动态链接库 <a href="https://www.jianshu.com/p/1de663f64c05">https://www.jianshu.com/p/1de663f64c05</a></li>
+</ul>
+
+<pre><code class="language-text">/**
+ * Created by BeeHive.
+ * Copyright (c) 2016, Alibaba, Inc. All rights reserved.
+ *
+ * This source code is licensed under the GNU GENERAL PUBLIC LICENSE.
+ * For the full copyright and license information,please view the LICENSE file in the root directory of this source tree.
+ */
+
+
+#import &quot;BHAnnotation.h&quot;
+#import &quot;BHCommon.h&quot;
+#include &lt;mach-o/getsect.h&gt;
+#include &lt;mach-o/loader.h&gt;
+#include &lt;mach-o/dyld.h&gt;
+#include &lt;dlfcn.h&gt;
+#import &lt;objc/runtime.h&gt;
+#import &lt;objc/message.h&gt;
+#include &lt;mach-o/ldsyms.h&gt;
+
+NSArray&lt;NSString *&gt;* BHReadConfiguration(char *sectionName,const struct mach_header *mhp);
+static void dyld_callback(const struct mach_header *mhp, intptr_t vmaddr_slide)
+{
+    NSArray *mods = BHReadConfiguration(BeehiveModSectName, mhp);
+    for (NSString *modName in mods) {
+        Class cls;
+        if (modName) {
+            cls = NSClassFromString(modName);
+            
+            if (cls) {
+                [[BHModuleManager sharedManager] registerDynamicModule:cls];
+            }
+        }
+    }
+    
+    //register services
+    NSArray&lt;NSString *&gt; *services = BHReadConfiguration(BeehiveServiceSectName,mhp);
+    for (NSString *map in services) {
+        NSData *jsonData =  [map dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *error = nil;
+        id json = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&amp;error];
+        if (!error) {
+            if ([json isKindOfClass:[NSDictionary class]] &amp;&amp; [json allKeys].count) {
+                
+                NSString *protocol = [json allKeys][0];
+                NSString *clsName  = [json allValues][0];
+                
+                if (protocol &amp;&amp; clsName) {
+                    [[BHServiceManager sharedManager] registerService:NSProtocolFromString(protocol) implClass:NSClassFromString(clsName)];
+                }
+                
+            }
+        }
+    }
+    
+}
+__attribute__((constructor))
+void initProphet() {
+    _dyld_register_func_for_add_image(dyld_callback);
+}
+
+NSArray&lt;NSString *&gt;* BHReadConfiguration(char *sectionName,const struct mach_header *mhp)
+{
+    NSMutableArray *configs = [NSMutableArray array];
+    unsigned long size = 0;
+#ifndef __LP64__
+    uintptr_t *memory = (uintptr_t*)getsectiondata(mhp, SEG_DATA, sectionName, &amp;size);
+#else
+    const struct mach_header_64 *mhp64 = (const struct mach_header_64 *)mhp;
+    uintptr_t *memory = (uintptr_t*)getsectiondata(mhp64, SEG_DATA, sectionName, &amp;size);
+#endif
+    
+    unsigned long counter = size/sizeof(void*);
+    for(int idx = 0; idx &lt; counter; ++idx){
+        char *string = (char*)memory[idx];
+        NSString *str = [NSString stringWithUTF8String:string];
+        if(!str)continue;
+        
+        BHLog(@&quot;config = %@&quot;, str);
+        if(str) [configs addObject:str];
+    }
+    
+    return configs;
+
+    
+}
+
+@implementation BHAnnotation
+
+@end
+
+
+
+</code></pre>
+
+<pre><code class="language-text">__attribute__((constructor)) void before_main() {
+    printf(&quot;--- %s\n&quot;, __func__);
+}
+
+__attribute__((destructor)) void after_main() {
+    printf(&quot;--- %s\n&quot;, __func__);
+}
+
+
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[HTTP2]]></title>
+    <link href="https://jacoli.github.io/15490095279690.html"/>
+    <updated>2019-02-01T16:25:27+08:00</updated>
+    <id>https://jacoli.github.io/15490095279690.html</id>
+    <content type="html"><![CDATA[
+<p>HTTP,HTTP2.0,SPDY,HTTPS你应该知道的一些事 <a href="http://www.alloyteam.com/2016/07/httphttp2-0spdyhttps-reading-this-is-enough/">http://www.alloyteam.com/2016/07/httphttp2-0spdyhttps-reading-this-is-enough/</a></p>
+
+<p>HTTP/2 新特性总结 <a href="https://www.jianshu.com/p/67c541a421f9">https://www.jianshu.com/p/67c541a421f9</a></p>
+
+<ul>
+<li>http2能带来如下这些收益：<br/>
+1、多路复用、多个HTTP可以在同个TCP连接上同时发送。<br/>
+2、优先级<br/>
+3、header压缩<br/>
+4、Server Push</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[对开发的思考]]></title>
+    <link href="https://jacoli.github.io/15490075081945.html"/>
+    <updated>2019-02-01T15:51:48+08:00</updated>
+    <id>https://jacoli.github.io/15490075081945.html</id>
+    <content type="html"><![CDATA[
+<h2 id="toc_0">开发环节</h2>
+
+<ul>
+<li>开发、集成、测试、部署、运维</li>
+</ul>
+
+<p>如何协同，解藕、组件化、平台化</p>
+
+<ul>
+<li>研发平台</li>
+<li>运维平台</li>
+<li>营销平台</li>
+</ul>
+
+<h2 id="toc_1">衡量</h2>
+
+<ul>
+<li>效率、质量 -&gt; 效能、价值</li>
+</ul>
+
+<h2 id="toc_2">网络</h2>
+
+<ul>
+<li>移动网关</li>
+<li>HTTP DNS</li>
+<li>直连、加速</li>
+<li>HTTP/2</li>
+<li>加密、压缩</li>
+<li>业务接口协议</li>
+<li>代理、Mock、Debug、测试、诊断</li>
+<li>长连接</li>
+<li>推送</li>
+<li>服务端、客户端二方包</li>
+</ul>
+
+<h2 id="toc_3">存储</h2>
+
+<ul>
+<li>关系数据存储</li>
+<li>非关系数据存储</li>
+<li>缓存</li>
+<li>读写分离</li>
+<li>mmap</li>
+</ul>
+
+<h2 id="toc_4">图片</h2>
+
+<ul>
+<li>图片格式</li>
+<li>域名收敛</li>
+<li>CDN</li>
+<li>图片质量、大小</li>
+<li>渐进式</li>
+<li>失败率</li>
+</ul>
+
+<h2 id="toc_5">视频</h2>
+
+<ul>
+<li>格式</li>
+<li>云存储、本地存储</li>
+<li>视频播放</li>
+<li>视频流</li>
+<li>弹幕</li>
+</ul>
+
+<h2 id="toc_6">日志</h2>
+
+<ul>
+<li>本地日志</li>
+<li>远程日志</li>
+<li>聚合</li>
+</ul>
+
+<h2 id="toc_7">统计</h2>
+
+<h2 id="toc_8">调试工具</h2>
+
+<h2 id="toc_9">Web容器</h2>
+
+<h2 id="toc_10">设计模式&amp;架构</h2>
+
+<h2 id="toc_11">动态化方案</h2>
+
+<h2 id="toc_12">UI框架</h2>
+
+<ul>
+<li>组件库</li>
+<li>页面模式</li>
+</ul>
+
+<h2 id="toc_13">三方业务</h2>
+
+<ul>
+<li>支付</li>
+<li>分享</li>
+<li>OAuth登录</li>
+<li>推送</li>
+<li>地图</li>
+<li>直播</li>
+</ul>
+
+<h2 id="toc_14">自有业务</h2>
+
+<ul>
+<li>登录</li>
+<li>电商</li>
+<li>营销</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Fishhook]]></title>
+    <link href="https://jacoli.github.io/15490016925851.html"/>
+    <updated>2019-02-01T14:14:52+08:00</updated>
+    <id>https://jacoli.github.io/15490016925851.html</id>
+    <content type="html"><![CDATA[
+<ul>
+<li><p><a href="https://www.jianshu.com/p/4d86de908721">https://www.jianshu.com/p/4d86de908721</a></p></li>
+<li><p>Mach-O文件结构 <a href="https://www.jianshu.com/p/1f22d1e667e3">https://www.jianshu.com/p/1f22d1e667e3</a></p></li>
+<li><p>MachOView</p></li>
+</ul>
+
+<pre><code class="language-text">- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view, typically from a nib.
+    //这里必须要先加载一次NSLog，如果不写NSLog，符号表里面根本就不会出现NSLog的地址
+    NSLog(@&quot;123&quot;); 
+
+    //定义rebinding结构体
+    struct rebinding nslogBind;
+    //函数的名称
+    nslogBind.name = &quot;NSLog&quot;;
+    //新的函数地址
+    nslogBind.replacement = myMethod;
+    //保存原始函数地址变量的指针
+    nslogBind.replaced = (void *)&amp;old_nslog;
+    
+    //定义数组
+    struct rebinding rebs[] = {nslogBind};
+    
+    /**
+     arg1: 存放rebinding结构体的数组
+     arg2: 数组的长度
+     */
+    rebind_symbols(rebs, 1);
+}
+
+//函数指针，用来保存原始的函数地址
+static void (*old_nslog)(NSString *format, ...);
+
+//新的NSLog
+void myMethod(NSString *format, ...) {
+    //再调用原来的
+    old_nslog(@&quot;勾上了！&quot;);
+}
+
+- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event {
+    NSLog(@&quot;点击屏幕&quot;);
+}
+</code></pre>
+
+<h2 id="toc_0">lldb</h2>
+
+<ul>
+<li>iOS之LLDB常用命令 <a href="https://www.jianshu.com/p/7fb43e0b956a">https://www.jianshu.com/p/7fb43e0b956a</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[UI框架、编程范式]]></title>
+    <link href="https://jacoli.github.io/15488220197262.html"/>
+    <updated>2019-01-30T12:20:19+08:00</updated>
+    <id>https://jacoli.github.io/15488220197262.html</id>
+    <content type="html"><![CDATA[
+<h2 id="toc_0">移动客户端、H5、小程序</h2>
+
+<ul>
+<li>iOS native编码、Android native编码、Weex方案、React Native方案、小程序的mpvue方案、小程序的wepy方案</li>
+</ul>
+
+<h3 id="toc_1">iOS UI编码方式</h3>
+
+<ul>
+<li>使用Objective-C/Swift构建基于ViewController的原生页面。</li>
+</ul>
+
+<h3 id="toc_2">Android UI编码方式</h3>
+
+<ul>
+<li>Java、AndroidSDK、kotlin</li>
+<li>Activity/Flagment + XML构建原生页面。</li>
+</ul>
+
+<h3 id="toc_3">Weex/RN</h3>
+
+<ul>
+<li>DSL转换打包成Bundle，部署下发的目标环境上，在Weex引擎或RN引擎上运行，桥接到原生的UI框架。 </li>
+</ul>
+
+<p>DSL -- transform --&gt; bundle -- distribution --&gt; run in engine --&gt; adaptor layer (bridge with native / render in native)</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[美团2018技术合集 阅读笔记]]></title>
+    <link href="https://jacoli.github.io/15487552906072.html"/>
+    <updated>2019-01-29T17:48:10+08:00</updated>
+    <id>https://jacoli.github.io/15487552906072.html</id>
+    <content type="html"><![CDATA[
+<h3 id="toc_0">mpvue</h3>
+
+<p><a href="https://tech.meituan.com/2018/03/11/mt-mpvue-development-framework.html">https://tech.meituan.com/2018/03/11/mt-mpvue-development-framework.html</a></p>
+
+<ul>
+<li>使用vue.js开发小程序</li>
+<li>原理：增加一个中间层，将小程序的生命周期、事件、数据同步等桥接到vue对象。</li>
+</ul>
+
+<h3 id="toc_1">Flutter</h3>
+
+<p><a href="https://tech.meituan.com/2018/08/09/waimai-flutter-practice.html">https://tech.meituan.com/2018/08/09/waimai-flutter-practice.html</a></p>
+
+<ul>
+<li>全新思路的跨平台的移动客户端UI方案。</li>
+<li>不同于Weex或ReactNative将JS数据代理到Native UI库做渲染，Flutter直接使用更加底层的图形渲染接口，从更底层去接管消息事件，在此基础上，封装跨平台的UI库。</li>
+<li>对于UI层来说，这样的跨平台更彻底，一致性更强。</li>
+<li>核心引擎+Widget库</li>
+</ul>
+
+<h3 id="toc_2">Picasso 大众点评自研的Native动态化方案</h3>
+
+<p><a href="https://tech.meituan.com/2018/06/21/picasso-the-future.html">https://tech.meituan.com/2018/06/21/picasso-the-future.html</a></p>
+
+<ul>
+<li>对比</li>
+</ul>
+
+<p>Hybrid WebView<br/>
+Weex、RN、Flutter</p>
+
+<ul>
+<li><p>基本原理<br/>
+DSL（TypeScript）-》 PModel -〉 iOS、Android、H5、小程序渲染引擎 -》 UI</p></li>
+<li><p>DSL</p></li>
+<li><p>核心SDK + 适配层 + 脚手架</p></li>
+<li><p>开发流程</p></li>
+</ul>
+
+<p>VSCode + 插件</p>
+
+<ul>
+<li>发布流程</li>
+</ul>
+
+<p>Picasso文件 -〉JS Bundle -》 部署服务器 -〉Picasso执行环境（iOS、Android、H5、小程序）-》渲染引擎</p>
+
+<h3 id="toc_3">美团客户端响应式框架Easy React</h3>
+
+<p><a href="https://tech.meituan.com/2018/07/19/react-programming-framework-easyreact-opensource.html">https://tech.meituan.com/2018/07/19/react-programming-framework-easyreact-opensource.html</a></p>
+
+<ul>
+<li>对比ReactiveCocoa、ReactiveX</li>
+<li>基于Objective-C</li>
+<li>EasyMVVM</li>
+</ul>
+
+<h3 id="toc_4">Logan:美团点评的开源移动端基础日志库 - 美团技术团队</h3>
+
+<p><a href="https://tech.meituan.com/2018/10/11/logan-open-source.html">https://tech.meituan.com/2018/10/11/logan-open-source.html</a></p>
+
+<h3 id="toc_5">MCI:移动持续集成在大众点评的实践</h3>
+
+<p><a href="https://tech.meituan.com/2018/07/12/mci.html">https://tech.meituan.com/2018/07/12/mci.html</a></p>
+
+<h3 id="toc_6">美团外卖Android Crash治理之路</h3>
+
+<p><a href="https://tech.meituan.com/2018/06/14/waimai-android-crash.html">https://tech.meituan.com/2018/06/14/waimai-android-crash.html</a></p>
+
+<h3 id="toc_7">运营平台</h3>
+
+<ul>
+<li>运营、平台管理、前端开发</li>
+<li>同一个运营位，多维度内容的展示。</li>
+<li>运营效果</li>
+</ul>
+
+<h3 id="toc_8">监控系统</h3>
+
+<h3 id="toc_9">HTTP服务治理框架</h3>
 
 ]]></content>
   </entry>
@@ -192,163 +886,143 @@ PayPal诞生及成长史，面对众多竞争对手的生死突围，以及围�
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[问题：UICollectionView Cell之间存在缝隙]]></title>
-    <link href="https://jacoli.github.io/15480679782005.html"/>
-    <updated>2019-01-21T18:52:58+08:00</updated>
-    <id>https://jacoli.github.io/15480679782005.html</id>
+    <title type="html"><![CDATA[iOS审核]]></title>
+    <link href="https://jacoli.github.io/15482114330729.html"/>
+    <updated>2019-01-23T10:43:53+08:00</updated>
+    <id>https://jacoli.github.io/15482114330729.html</id>
     <content type="html"><![CDATA[
-<h2 id="toc_0">原因</h2>
+<h3 id="toc_0">上传审核附件解决办法（注意事项）</h3>
 
-<ul>
-<li><p>当<code>UICollectionViewCell</code>的size不为整数时，<code>UICollectionViewFlowLayout</code>在布局计算时，可能会调整Cell的frame.origin，使Cell按照最小物理像素（渲染像素）对齐，导致出现缝隙。</p></li>
-<li><p>假设当前Cell的frame.origin.y=100.8（逻辑像素），转化成渲染像素（参考备注）是201.6（iPhone 8）或302.4（iPhone 8 Plus）。为了按渲染像素对齐，<code>UICollectionViewFlowLayout</code>应该会四舍五入取整，取整后为202（iPhone 8）或302（iPhone 8 Plus），转成逻辑像素101（iPhone 8）或100.667（iPhone 8 Plus），导致在iphone8上就会出现0.2像素的缝隙。</p></li>
-<li><p>分辨率相关的，可以百度下。</p></li>
-</ul>
-
-<h2 id="toc_1">简单解决办法：</h2>
-
-<ul>
-<li>主动把Cell的size取整，不丢给<code>UICollectionViewFlowLayout</code>处理。
-<code>
-- (CGSize)fixedCollectionCellSize:(CGSize)size {<br/>
-CGFloat scale = [UIScreen mainScreen].scale;<br/>
-return CGSizeMake(round(scale * size.width) / scale, round(scale * size.height) / scale);<br/>
-}
-</code></li>
-</ul>
-
-<h2 id="toc_2">Demo实验</h2>
-
-<ul>
-<li>UITableView，Cell高度设置成100.12，没有强制被按渲染像素对齐，如 <code>99.62</code> <code>1802.16</code>  <code>1902.28</code></li>
-</ul>
-
-<pre><code class="language-text">(lldb) po [0x7fb85b83b800 recursiveDescription]
-&lt;UITableView: 0x7fb85b83b800; frame = (0 0; 375 667); clipsToBounds = YES; gestureRecognizers = &lt;NSArray: 0x6000004451f0&gt;; layer = &lt;CALayer: 0x60000022dc40&gt;; contentOffset: {0, 1272.5}; contentSize: {375, 2002.4000549316406}; adjustedContentInset: {20, 0, 0, 0}&gt;
-   | &lt;UITableViewCell: 0x7fb85c862a00; frame = (0 1902.28; 375 100.12); autoresize = W; layer = &lt;CALayer: 0x6040004265a0&gt;&gt;
-   |    | &lt;UITableViewCellContentView: 0x7fb85b70fea0; frame = (0 0; 375 99.62); gestureRecognizers = &lt;NSArray: 0x6040002426a0&gt;; layer = &lt;CALayer: 0x604000425e80&gt;&gt;
-   |    |    | &lt;UIImageView: 0x7fb85b41a330; frame = (0 0; 0 0); userInteractionEnabled = NO; layer = &lt;CALayer: 0x6000008215c0&gt;&gt;
-   |    | &lt;_UITableViewCellSeparatorView: 0x7fb85b710820; frame = (15 99.62; 360 0.5); layer = &lt;CALayer: 0x604000427640&gt;&gt;
-   | &lt;UITableViewCell: 0x7fb85c862400; frame = (0 1802.16; 375 100.12); autoresize = W; layer = &lt;CALayer: 0x6040002212e0&gt;&gt;
-</code></pre>
-
-<ul>
-<li>iPhone Plus 8，UICollectionView，Cell高度设置成100.12，强制被按渲染像素对齐了，frame.origin.y被调整后的值，如<code>200.333</code> <code>500.667</code> <code>600.667</code></li>
-</ul>
-
-<pre><code class="language-text">   | &lt;UICollectionViewCell: 0x7fdd9f71f010; frame = (0 200.333; 414 100.12); hidden = YES; layer = &lt;CALayer: 0x60000023d800&gt;&gt;
-   | &lt;UICollectionViewCell: 0x7fdd9f71f470; frame = (0 300.333; 414 100.12); layer = &lt;CALayer: 0x60000023e380&gt;&gt;
-   | &lt;UICollectionViewCell: 0x7fdd9f72aa30; frame = (0 400.333; 414 100.12); layer = &lt;CALayer: 0x60000023f4e0&gt;&gt;
-   | &lt;UICollectionViewCell: 0x7fdd9f72ae90; frame = (0 500.667; 414 100.12); layer = &lt;CALayer: 0x60000023f9a0&gt;&gt;
-   | &lt;UICollectionViewCell: 0x7fdd9f72b510; frame = (0 600.667; 414 100.12); layer = &lt;CALayer: 0x60000023fbc0&gt;&gt;
-   | &lt;UICollectionViewCell: 0x7fdd9f72d1a0; frame = (0 701; 414 100.12); layer = &lt;CALayer: 0x60000023fdc0&gt;&gt;
-</code></pre>
-
-<ul>
-<li>iPhone Plus，UICollectionView，Cell高度设置成100.12，强制被按渲染像素对齐了，frame.origin.y被调整后的值，如<code>300.5</code> <code>400.5</code> <code>500.5</code></li>
-</ul>
-
-<pre><code class="language-text">   | &lt;UICollectionViewCell: 0x7f85b441b6c0; frame = (0 0; 375 100.12); hidden = YES; layer = &lt;CALayer: 0x600000035ec0&gt;&gt;
-   | &lt;UICollectionViewCell: 0x7f85b4502e10; frame = (0 100; 375 100.12); hidden = YES; layer = &lt;CALayer: 0x600000035c20&gt;&gt;
-   | &lt;UICollectionViewCell: 0x7f85b4505c10; frame = (0 200; 375 100.12); layer = &lt;CALayer: 0x600000036300&gt;&gt;
-   | &lt;UICollectionViewCell: 0x7f85b4506400; frame = (0 300.5; 375 100.12); layer = &lt;CALayer: 0x600000036be0&gt;&gt;
-   | &lt;UICollectionViewCell: 0x7f85b4506d70; frame = (0 400.5; 375 100.12); layer = &lt;CALayer: 0x600000227ac0&gt;&gt;
-   | &lt;UICollectionViewCell: 0x7f85b4507560; frame = (0 500.5; 375 100.12); layer = &lt;CALayer: 0x6000002277c0&gt;&gt;
-</code></pre>
-
-<h3 id="toc_3">备注</h3>
-
-<p>Points（逻辑像素）&lt;---&gt;Rendered Pixels（渲染像素）&lt;---&gt;Physical Pixels（物理像素）</p>
-
-<p><img src="https://upload-images.jianshu.io/upload_images/1824896-195d0d1574cf13c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="iOS不同机型尺寸.png"/></p>
+<p>1.上传的文件必须是png格式（直接修改后缀名不可以），并且文件大小限制在5M内。<br/>
+2.上传文件的命名不要有汉字，要用字母。</p>
 
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Auto Layout]]></title>
-    <link href="https://jacoli.github.io/15480679782500.html"/>
-    <updated>2019-01-21T18:52:58+08:00</updated>
-    <id>https://jacoli.github.io/15480679782500.html</id>
-    <content type="html"><![CDATA[
-<p>1、添加约束条件时，必须存在父视图或共同的父视图<br/>
-2、auto layout engine计算时，必须知道位置和大小的约束<br/>
-3、但某子视图启动auto layout约束后，父视图也随之启动<br/>
-4、frame自动转换成auto layout约束<br/>
-5、UILabel、UIImageVIew、UIButton、UITextField等，如果没有设置大小约束，则由intrinsicContentSize隐式提供，当内容改变后，intrinsicContentSize随之改变，并驱动auto layout engine重新计算<br/>
-6、content hugging priority（内容收缩优先级）和content compression resistance priority （内容放大优先级）和intrinsicContentSize 一起决定大小的计算</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[AppLink]]></title>
-    <link href="https://jacoli.github.io/15480679782446.html"/>
-    <updated>2019-01-21T18:52:58+08:00</updated>
-    <id>https://jacoli.github.io/15480679782446.html</id>
-    <content type="html"><![CDATA[
-<p><img src="http://upload-images.jianshu.io/upload_images/1824896-e9fe114c4419d41e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2017-09-13 下午2.09.46.png"/></p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[WebView In Mobile App]]></title>
-    <link href="https://jacoli.github.io/15480679782625.html"/>
-    <updated>2019-01-21T18:52:58+08:00</updated>
-    <id>https://jacoli.github.io/15480679782625.html</id>
+    <title type="html"><![CDATA[开发笔记]]></title>
+    <link href="https://jacoli.github.io/15481440187560.html"/>
+    <updated>2019-01-22T16:00:18+08:00</updated>
+    <id>https://jacoli.github.io/15481440187560.html</id>
     <content type="html"><![CDATA[
 <ul>
-<li><a href="http://blog.csdn.net/carson_ho/article/details/52693322"><a href="http://blog.csdn.net/carson_ho/article/details/52693322">Android：最全面的 Webview 详解</a></a></li>
-<li><a href="http://blog.csdn.net/carson_ho/article/details/64904691"><a href="http://blog.csdn.net/carson_ho/article/details/64904691">Android：你要的WebView与 JS 交互方式 都在这里了</a></a></li>
-<li><a href="http://www.cnblogs.com/whoislcj/p/5645025.html"><a href="http://www.cnblogs.com/whoislcj/p/5645025.html">Android混合开发之WebView使用总结</a></a></li>
-<li><a href="http://www.open-open.com/lib/view/open1472481479625.html">还在用Android自带的WebView组件？太Out了！</a></li>
-<li><a href="http://blog.csdn.net/u011904605/article/details/52301416">关于Android APP集成腾讯X5 WebKit</a></li>
-<li><a href="https://github.com/lzyzsd/JsBridge">JsBridge</a></li>
-<li><a href="http://www.cnblogs.com/oc-bowen/p/5547900.html">UIWebView和WKWebView的使用及js交互</a></li>
-<li><a href="https://github.com/marcuswestin/WebViewJavascriptBridge">WebViewJavascriptBridge</a></li>
-<li>淘宝的Windvane、微信的小程序也算是Hybrid框架，在WebView基础上，提供组件定制化、规范化、性能优化、访问Native能力等</li>
+<li><a href="https://www.jianshu.com/p/4d86de908721">https://www.jianshu.com/p/4d86de908721</a></li>
+</ul>
+
+<h3 id="toc_0">微服务</h3>
+
+<p><a href="https://www.tuicool.com/articles/aIjeiq3">单体到微服务是一个演化过程，别在一开始就过度设计</a></p>
+
+<p>“ The Art of Scalability ”一书描述了一种 三维可伸缩性模型 （AKF Scale Cube），其中三个轴分别代表了不同类型的缩放：</p>
+
+<p>X：水平复制和克隆；-&gt; (Docker，容器)<br/>
+Y：功能分解和分割（微服务）；<br/>
+Z：水平数据分区（分片）。</p>
+
+<h3 id="toc_1">微服务架构设计</h3>
+
+<p><a href="https://www.cnblogs.com/wintersun/p/6219259.html">微服务架构设计</a></p>
+
+<h3 id="toc_2">vue</h3>
+
+<p><a href="https://juejin.im/post/5c488a3cf265da615705cc2a?utm_source=tuicool&amp;utm_medium=referral">https://juejin.im/post/5c488a3cf265da615705cc2a?utm_source=tuicool&amp;utm_medium=referral</a></p>
+
+<h3 id="toc_3">社交</h3>
+
+<p>Tumblr、Pinterest……一个个想创造新模式的应用都失败了，它们改变了什么又为何没落？ | 好奇心商业史</p>
+
+<p><a href="https://www.qdaily.com/articles/60688.html?utm_source=tuicool&amp;utm_medium=referral">https://www.qdaily.com/articles/60688.html?utm_source=tuicool&amp;utm_medium=referral</a></p>
+
+<p>三个软件可能要被整合到一起：WhatsApp、Instagram和Facebook Messenger</p>
+
+<p><a href="https://www.qdaily.com/articles/60669.html">https://www.qdaily.com/articles/60669.html</a></p>
+
+<p>数据垄断和信息孤岛，是如何驯化我们的？<br/>
+<a href="https://www.huxiu.com/article/282751.html?utm_source=tuicool&amp;utm_medium=referral">https://www.huxiu.com/article/282751.html?utm_source=tuicool&amp;utm_medium=referral</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[2018-3-15]]></title>
+    <link href="https://jacoli.github.io/15480586858677.html"/>
+    <updated>2019-01-21T16:18:05+08:00</updated>
+    <id>https://jacoli.github.io/15480586858677.html</id>
+    <content type="html"><![CDATA[
+<p>客户端上的一个页面搭建采用哪种架构，往往取决与页面类型。</p>
+
+<p>展示型页面</p>
+
+<p>数据从数据层到展示层单向流动</p>
+
+<p>表单型页面</p>
+
+<p>数据在数据层和展示层双向流动</p>
+
+<p>交互型页面</p>
+
+<p>展示层不仅展示数据，还有大量动画，操作行为等</p>
+
+<h2 id="toc_0">组件</h2>
+
+<p>系统底层框架<br/>
+网络<br/>
+存储<br/>
+缓存<br/>
+序列化<br/>
+架构<br/>
+组件化<br/>
+工程化<br/>
+数据监控<br/>
+日志<br/>
+性能<br/>
+Crash<br/>
+安全<br/>
+图片<br/>
+视频、音频<br/>
+AR、VR、ML<br/>
+UI组件<br/>
+屏幕分辨率<br/>
+布局、样式<br/>
+渲染<br/>
+研发效率<br/>
+编程语言、OC/Swift、OOP、AOP、FP<br/>
+Hybrid<br/>
+Native动态化<br/>
+热补丁<br/>
+小程序<br/>
+PWA<br/>
+编译<br/>
+部署</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[技术图谱]]></title>
+    <link href="https://jacoli.github.io/15478658194063.html"/>
+    <updated>2019-01-19T10:43:39+08:00</updated>
+    <id>https://jacoli.github.io/15478658194063.html</id>
+    <content type="html"><![CDATA[
+<ul>
+<li><p><a href="media/15478658194063/%E7%94%B5%E5%95%86%E8%84%91%E7%88%86%E5%9B%BE.xmind">电商脑爆图</a></p></li>
+<li><p><a href="media/15478658194063/%E6%8A%80%E6%9C%AF%E5%9B%BE%E8%B0%B1.xmind">技术图谱</a></p></li>
+<li><p><a href="media/15478658194063/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.xmind">性能优化</a></p></li>
+<li><p><a href="media/15478658194063/%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91%E5%9B%BE%E8%B0%B1.xmind">移动客户端开发图谱</a></p></li>
+<li><p><a href="media/15478658194063/iOS%E6%A1%86%E6%9E%B6%E6%A2%B3%E7%90%86.xmind">iOS框架梳理</a></p></li>
 </ul>
 
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[关于电商的脑爆、YY]]></title>
-    <link href="https://jacoli.github.io/15480679570014.html"/>
-    <updated>2019-01-21T18:52:37+08:00</updated>
-    <id>https://jacoli.github.io/15480679570014.html</id>
-    <content type="html"><![CDATA[
-<p><img src="http://upload-images.jianshu.io/upload_images/1824896-376342729f32f6b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2017-07-22 下午2.20.43.png"/></p>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/1824896-74963cccc535cd20.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2017-07-22 下午2.21.00.png"/></p>
-
-<p>1、用户系统：会员信息、地址管理等</p>
-
-<p>2、商品系统：商品库、SKU、类目、库存、购物车</p>
-
-<p>3、营销系统：运营位、优惠券、活动</p>
-
-<p>4、交易系统：下单、支付、订单、逆向</p>
-
-<p>5、报表 对账 结算</p>
-
-<p>6、内容系统：文章、专辑、视频</p>
-
-<p>7、搜索、推荐</p>
-
-<p>7、其他：物流、推送</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[* [什么是软件架构](https://baike.baidu.com/item/%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84/7485920?fr=aladdin)]]></title>
-    <link href="https://jacoli.github.io/15480679781845.html"/>
-    <updated>2019-01-21T18:52:58+08:00</updated>
-    <id>https://jacoli.github.io/15480679781845.html</id>
+    <title type="html"><![CDATA[关于软件架构的思考]]></title>
+    <link href="https://jacoli.github.io/15478657684777.html"/>
+    <updated>2019-01-19T10:42:48+08:00</updated>
+    <id>https://jacoli.github.io/15478657684777.html</id>
     <content type="html"><![CDATA[
 <ul>
+<li><a href="https://baike.baidu.com/item/%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84/7485920?fr=aladdin">软件架构</a></li>
 <li>架构服务于效率、质量、体验、性能等</li>
 <li>架构优化的短期成本和长期收益的权衡</li>
 <li>架构要与当前业务发展和团队规模相匹配</li>
@@ -363,777 +1037,7 @@ return CGSizeMake(round(scale * size.width) / scale, round(scale * size.height) 
 <li><a href="https://mp.weixin.qq.com/s?__biz=MzAwNDY1ODY2OQ==&amp;mid=2649286672&amp;idx=1&amp;sn=4d9db00c496fcafd1d3e01d69af083f9&amp;chksm=8334cc92b4434584e8bdb117274f41145fb49ba467ec0cd9ba5e3551a8abf92f1996bd6b147a&amp;mpshare=1&amp;scene=24&amp;srcid=0630STw0N4c83hIAqLo9Tkdm&amp;key=c969774f949c279bf4404f575b096d071dfd21b85924484756752b237733d001fc998a2a59df09557a1190be7ce550df361bb8e62077f558b516011b3c3ce705b5cef390bed833792073e747cdcbbb2e&amp;ascene=0&amp;uin=MTc0NzM4NzU0MA%3D%3D&amp;devicetype=iMac+MacBookPro12%2C1+OSX+OSX+10.12.4+build(16E195)&amp;version=12020610&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=k43tzMF8U5%2FPsgUiLvhHQo3sXCCiUaVGAY20v8HBLLe9kKAiqhQfHGbhVeDiDq29">微信Android模块化架构重构实践</a></li>
 <li><a href="https://mp.weixin.qq.com/s?__biz=MzAxNDEwNjk5OQ==&amp;mid=2650400348&amp;idx=1&amp;sn=99bc1bce932c5b9000d5b54afa2de70e&amp;chksm=83952e44b4e2a752f2ef0aa2f31c80ff82a2dfdaef433cd5cb733f17eb9ff47899acbde09685&amp;mpshare=1&amp;scene=24&amp;srcid=0630xBc1VqyISqqlOOeGof54&amp;key=c969774f949c279b41505ca7d0c3b547b7694aae72cd532f903bcc00efbc8c9cec1a5a62405a2a17223d09a370575852d2e0306768755c1ad00e0309a7e8dc1ae557ebf30f727d82012dfa50e4f07acc&amp;ascene=0&amp;uin=MTc0NzM4NzU0MA%3D%3D&amp;devicetype=iMac+MacBookPro12%2C1+OSX+OSX+10.12.4+build(16E195)&amp;version=12020610&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=k43tzMF8U5%2FPsgUiLvhHQo3sXCCiUaVGAY20v8HBLLe9kKAiqhQfHGbhVeDiDq29">Atlas-手淘组件化框架的前世今生和未来的路</a></li>
 <li>架构的保持</li>
-<li>代码之外：人的因素</li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[网络相关]]></title>
-    <link href="https://jacoli.github.io/15480679781942.html"/>
-    <updated>2019-01-21T18:52:58+08:00</updated>
-    <id>https://jacoli.github.io/15480679781942.html</id>
-    <content type="html"><![CDATA[
-<ul>
-<li><a href="https://github.com/Tencent/mars/">Mars</a></li>
-<li><a href="http://www.iteye.com/news/32012"><a href="http://www.iteye.com/news/32012">微信终端跨平台组件 Mars 正式开源！</a></a></li>
-<li><a href="http://www.cocoachina.com/ios/20170425/19118.html">关于 iOS HTTP2.0 的一次学习实践</a></li>
-<li><a href="https://github.com/AFNetworking/AFNetworking">AFNetworking</a></li>
-<li><a href="https://github.com/Alamofire/Alamofire">Alamofire</a></li>
-<li><a href="https://github.com/RestKit/RestKit">RestKit</a></li>
-<li><a href="https://github.com/yuantiku/YTKNetwork">YTKNetwork</a></li>
-<li><a href="https://github.com/square/retrofit">Retrofit</a></li>
-<li><a href="https://github.com/square/okhttp">okhttp</a></li>
-<li><a href="http://www.infoq.com/cn/articles/mogujie-app-chromium-network-layer/">蘑菇街App Chromium网络栈实践</a></li>
-<li>iOS9.0+支持HTTP2</li>
-<li><a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.html">NSURLSession</a></li>
-<li><a href="http://www.open-open.com/lib/view/open1478836390465.html">蘑菇街11.11：移动流量猛增，如何设计高并发多终端的无线网关</a></li>
-<li><a href="http://blog.csdn.net/hguisu/article/details/7445768/"><a href="http://blog.csdn.net/hguisu/article/details/7445768">Linux的SOCKET编程详解</a></a></li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Android存储]]></title>
-    <link href="https://jacoli.github.io/15480679782398.html"/>
-    <updated>2019-01-21T18:52:58+08:00</updated>
-    <id>https://jacoli.github.io/15480679782398.html</id>
-    <content type="html"><![CDATA[
-<ul>
-<li><a href="http://blog.csdn.net/amazing7/article/details/51437435">Android 数据存储五种方式使用与总结</a></li>
-<li><a href="https://github.com/Xiaofei-it/AndroidDataStorage">AndroidDataStorage</a></li>
-<li><a href="https://github.com/realm/realm-java">realm-java</a></li>
-<li><a href="https://github.com/greenrobot/greenDAO">greenDAO</a></li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[iOS存储]]></title>
-    <link href="https://jacoli.github.io/15480679782584.html"/>
-    <updated>2019-01-21T18:52:58+08:00</updated>
-    <id>https://jacoli.github.io/15480679782584.html</id>
-    <content type="html"><![CDATA[
-<h3 id="toc_0">存储方式</h3>
-
-<ul>
-<li>NSUserDefault，可以存放Key-Value对形式的轻量数据。</li>
-<li>NSKeyedArchiver，存储对象到二进制文件。</li>
-<li>writeToFile，将NSString、NSArray、NSDictionary、NSData对象存储到文件。</li>
-<li>CoreData.Framework，对象管理并支持对象持久。
-<img src="http://upload-images.jianshu.io/upload_images/1824896-60432e4e99c8d3ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="CoreData持久类型"/></li>
-<li>Sqlite，轻量数据库</li>
-<li>Keychain，钥匙串存储</li>
-<li>NSUbiquitousKeyValueStore，存储数据到iCloud</li>
-</ul>
-
-<h3 id="toc_1">关于安全性</h3>
-
-<ul>
-<li>敏感数据不要明文存储</li>
-<li>存放在Keychain，不越狱还是安全的</li>
-<li>Safety is relative, choose a safer way.</li>
-</ul>
-
-<h3 id="toc_2">三方库</h3>
-
-<ul>
-<li><a href="https://github.com/aschuch/AwesomeCache">AwesomeCache</a></li>
-<li><a href="https://github.com/ibireme/YYCache">YYCache</a>
-基于Disk、Memory的缓存</li>
-<li><a href="https://github.com/yuantiku/YTKKeyValueStore">YTKKeyValueStore</a>
-基于Sqlite的健值对数据的存储</li>
-<li><a href="https://github.com/radex/SwiftyUserDefaults">SwiftyUserDefaults</a></li>
-<li><a href="https://github.com/ccgus/fmdb">FMDB</a></li>
-<li><a href="https://github.com/supermarin/ObjectiveRecord">ObjectiveRecord</a>
-CoreData的封装</li>
-<li><a href="https://github.com/realm/realm-cocoa">realm</a>
-Realm is a mobile database: a replacement for Core Data &amp; SQLite.</li>
-<li><a href="https://github.com/square/Valet">Valet</a>
-基于Keychain的数据存储，接口简洁易用，支持同一开发者下应用间数据共享，支持iCloud数据同步，通过TouchID或设备密码保护数据。</li>
-<li><a href="https://github.com/kishikawakatsumi/UICKeyChainStore">UICKeyChainStore</a></li>
-<li><a href="https://github.com/kishikawakatsumi/KeychainAccess">KeychainAccess</a></li>
-<li><a href="https://github.com/ptoomey3/Keychain-Dumper">Keychain-Dumper</a>
-Keychain is not safe.</li>
-</ul>
-
-<h3 id="toc_3">参考</h3>
-
-<ul>
-<li><a href="https://developer.apple.com/documentation/security/keychain_services">keychain_services</a></li>
-<li><a href="https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestore">NSUbiquitousKeyValueStore</a></li>
-<li><a href="http://wufawei.com/2013/11/ios-application-security-20/">iOS应用程序安全(20)-本地数据存储及其安全性（NSUserDefaults, CoreData, Sqlite, Plist 文件）</a></li>
-<li><a href="http://wufawei.com/2013/06/Keychain-is-not-safe/">Keychain is not safe</a></li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[开发笔记4]]></title>
-    <link href="https://jacoli.github.io/15480679782285.html"/>
-    <updated>2019-01-21T18:52:58+08:00</updated>
-    <id>https://jacoli.github.io/15480679782285.html</id>
-    <content type="html"><![CDATA[
-<ul>
-<li><a href="http://www.cocoachina.com/ios/20170502/19152.html">iOS 10.3开始可以动态改变app图标</a></li>
-<li><a href="http://www.cocoachina.com/ios/20170507/19201.html">浅谈iOS视频播放的N种解决方案</a></li>
-<li><a href="http://www.cocoachina.com/programmer/20170505/19189.html">【React Native】从源码一步一步解析它的实现原理</a></li>
-<li><a href="http://blog.jobbole.com/84903/">十分钟搞清字符集和字符编码</a></li>
-<li><a href="http://pingguohe.net/2016/01/31/lazyscroll.html">iOS 高性能异构滚动视图构建方案 —— LazyScrollView</a></li>
-<li><a href="http://pingguohe.net/2016/12/20/Tangram-design-and-practice.html">页面动态化的基础 —— Tangram</a></li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[开发笔记2]]></title>
-    <link href="https://jacoli.github.io/15480679782183.html"/>
-    <updated>2019-01-21T18:52:58+08:00</updated>
-    <id>https://jacoli.github.io/15480679782183.html</id>
-    <content type="html"><![CDATA[
-<h3 id="toc_0">数据</h3>
-
-<ul>
-<li><a href="https://9to5mac.com/2017/01/05/ios-10-now-installed-on-76-of-active-devices-according-to-apples-stats/">iOS10 设备安装率超7成</a></li>
-</ul>
-
-<p>看了下自己app的友盟统计，还有6%的iOS 8.x设备。等iOS 11出来后，再考虑放弃iOS 8.x用户吧。</p>
-
-<ul>
-<li><a href="http://www.cocoachina.com/programmer/20170210/18665.html">TIOBE 2月编程语言排行榜，Swift和Objective-C语言分别排在12和19位</a></li>
-</ul>
-
-<p>OC稳住呀～</p>
-
-<h3 id="toc_1">文章推荐（转）</h3>
-
-<ul>
-<li><a href="http://blog.ibireme.com/2015/11/02/mobile_image_benchmark/">移动端图片格式调研</a></li>
-</ul>
-
-<p>最近看到<a href="https://github.com/airbnb/lottie-ios">Lottie</a>项目，一个iOS，Android和React Native库，可以实时渲染After Effects动画，并且允许本地app像静态资源那样轻松地使用动画。回过头又把这篇图片格式调研的文章看了一遍，哈。这篇文章把移动开发常用的几种静态、动态图片做了详细的比较。</p>
-
-<ul>
-<li><a href="https://blog.yeatse.com/2016/10/26/support-nsurlprotocol-in-wkwebview/">让 WKWebView 支持 NSURLProtocol</a></li>
-</ul>
-
-<p><code>WKWebView</code>不支持<code>NSURLProtocol</code>，导致基于<code>UIWebView＋NSURLProtocol</code>并做了一些深度优化的，很难一下子就迁移到<code>WKWebView</code>。<code>WKWebView</code>内部使用了<code>NSURLProtocol</code>，但没有对外开放，不知道出于什么考虑。这篇文章以比较hack的方式让<code>WKWebView</code>支持<code>NSURLProtocol</code>。</p>
-
-<ul>
-<li><a href="http://mp.weixin.qq.com/s/qRW_akbU3TSd0SxpF3iQmQ">DynamicCocoa：滴滴 iOS 动态化方案的诞生与起航</a></li>
-</ul>
-
-<p>另一种Native动态化的方案，在OC编译器上动手脚，将OC代码自动编译成可动态下发的JS代码。</p>
-
-<ul>
-<li><a href="http://www.jianshu.com/p/c1904fd8db06">Xcode8带来的新特性和坑</a></li>
-</ul>
-
-<p>有些特性需要配合ios 10设备使用，比如内存循环引用、DYLD_PRINT_STATISTICS（打印应用预加载时间）等。</p>
-
-<p>在Scheme的Environment Variables添加DYLD_PRINT_STATISTICS＝YES，可以打印应用预加载时间。从打印出来的日志看，<code>dylib loading time</code>占用了不少时间，应该是跟加载的系统库和三方库有关。<br/>
-<code>The loading of Apple system frameworks is highly optimized but loading your embedded frameworks can be expensive.</code>  当三方库不采用Framework形式打包，加载时间是少了不少。</p>
-
-<pre><code class="language-text">// 三方库以Frameworks形式打包
-Total pre-main time: 392.25 milliseconds (100.0%)
-         dylib loading time: 336.73 milliseconds (85.8%)
-        rebase/binding time:  10.88 milliseconds (2.7%)
-            ObjC setup time:  15.91 milliseconds (4.0%)
-           initializer time:  28.65 milliseconds (7.3%)
-           slowest intializers :
-             libSystem.B.dylib :   4.63 milliseconds (1.1%)
-                  AFNetworking :  12.03 milliseconds (3.0%)
-</code></pre>
-
-<pre><code class="language-text">// 三方库以.a静态链接库形式链接
-Total pre-main time:  93.71 milliseconds (100.0%)
-         dylib loading time:  11.46 milliseconds (12.2%)
-        rebase/binding time:  27.05 milliseconds (28.8%)
-            ObjC setup time:  13.16 milliseconds (14.0%)
-           initializer time:  41.94 milliseconds (44.7%)
-           slowest intializers :
-             libSystem.B.dylib :   5.47 milliseconds (5.8%)
-   libBacktraceRecording.dylib :   4.48 milliseconds (4.7%)
-                        Fanmei :  54.14 milliseconds (57.7%)　
-</code></pre>
-
-<h3 id="toc_2">项目</h3>
-
-<ul>
-<li><a href="https://github.com/airbnb/lottie-ios">Lottie</a></li>
-</ul>
-
-<p>After Effects动画的渲染引擎。</p>
-
-<ul>
-<li><a href="https://github.com/facebookincubator/Keyframes">Keyframes</a></li>
-</ul>
-
-<p>A library for converting Adobe AE shape based animations to a data format and playing it back on Android and iOS devices.</p>
-
-<p>跟<a href="https://github.com/airbnb/lottie-ios">Lottie</a>类似，也是After Effects动画的渲染引擎。</p>
-
-<ul>
-<li><a href="https://github.com/Instagram/IGListKit">Instagram/IGListKit</a></li>
-</ul>
-
-<p>A data-driven UICollectionView framework for building fast and flexible lists.</p>
-
-<ul>
-<li><a href="https://github.com/Flipboard/FLEX">Flipboard/FLEX</a></li>
-</ul>
-
-<p>An in-app debugging and exploration tool for iOS</p>
-
-<p>iOS设备调试工具，可以查看沙盒，抓包，查看视图信息等。</p>
-
-<ul>
-<li><a href="https://github.com/material-components/material-components-ios">material-components-ios</a></li>
-</ul>
-
-<p>仿android的meterial design风格的控件</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[开发笔记3]]></title>
-    <link href="https://jacoli.github.io/15480679782229.html"/>
-    <updated>2019-01-21T18:52:58+08:00</updated>
-    <id>https://jacoli.github.io/15480679782229.html</id>
-    <content type="html"><![CDATA[
-<h3 id="toc_0">数据</h3>
-
-<ul>
-<li><a href="http://mp.weixin.qq.com/s?__biz=MzA3NTYzODYzMg==&amp;mid=2653578648&amp;idx=1&amp;sn=8fecce896bf881334507e7f3f3486c54&amp;chksm=84b3b79fb3c43e89c98ed2e7f60c3c59f00324f53fef012ed33cb8fc6b37e430e83a52dc5f68&amp;mpshare=1&amp;scene=1&amp;srcid=0216VUFfTaK8KjnNJHO0FXJ7#rd">2016 移动应用质量大数据报告</a></li>
-</ul>
-
-<p>主要是针对Crash和ANR的统计。</p>
-
-<h3 id="toc_1">文章推荐</h3>
-
-<ul>
-<li><a href="http://www.cocoachina.com/ios/20170302/18815.html">移动端监控体系之技术原理剖析</a></li>
-</ul>
-
-<p>监控先于优化。没有数据支撑的优化，往往没有说服力，也很难衡量优化的效果如何。</p>
-
-<ul>
-<li><a href="http://blog.flight.dev.qunar.com/2016/11/10/ios-data-persistence-learn/#more">iOS 中数据持久化的几种方式</a></li>
-</ul>
-
-<p>大部分App或多或少都会涉及到存储（持久化或缓存）。<a href="https://github.com/ibireme/YYCache">ibireme/YYCache</a>，支持在硬盘持久化和在内存中缓存，从功能、性能和接口易用性上都不错，目前项目中也在用，推荐。</p>
-
-<ul>
-<li><p><a href="http://stormzhang.com/2016/09/27/mobile-dev-vs-front-end-web-dev/">移动开发 OR WEB 前端？</a></p></li>
-<li><p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html">Flex 布局教程</a></p></li>
-</ul>
-
-<p>老文章了，视图布局机制在iOS、Android、Html CSS是相通的，可以互相借鉴。<a href="https://github.com/youngsoft/MyLinearLayout">youngsoft/MyLinearLayout</a>实现很多布局机制。</p>
-
-<p>MyLinearLayout is equivalent to: UIStackView of iOS and LinearLayout of Android.</p>
-
-<p>MyRelativeLayout is equivalent to: AutoLayout of iOS and RelativeLayout of Android.</p>
-
-<p>MyFrameLayout is equivalent to: FrameLayout of Android.</p>
-
-<p>MyTableLayout is equivalent to: TableLayout of Android and table of HTML.</p>
-
-<p>MyFlowLayout is equivalent to: flexbox of CSS3.</p>
-
-<p>MyFloatLayout is equivalent to: float of CSS.</p>
-
-<p>借鉴Android的LinearLayout以及Html CSS的FlexBox，自己写了<a href="https://github.com/fanmeiwireless/FMLayouts">FMLayouts</a>，对iOS的布局机制做补充。</p>
-
-<h3 id="toc_2">Android</h3>
-
-<ul>
-<li><p><a href="http://mp.weixin.qq.com/s?__biz=MzI3MDE0NzYwNA==&amp;mid=2651434652&amp;idx=1&amp;sn=da0ceda73595e5cb931abad7e51dbe62&amp;chksm=f12887e7c65f0ef1c086784e9ae77a7d9bd82daa6ba0302cebf307577ebd06fd3e0d9e37e87a&amp;mpshare=1&amp;scene=2&amp;srcid=0214hqv992PJvqbW94b0P2pv#rd">2017年,身为Android开发的你必须要掌握的热门开源框架</a></p></li>
-<li><p><a href="http://stormzhang.com/2017/02/16/google-events/">你可能不知道 GOOGLE 最近的「小动作」</a></p></li>
-</ul>
-
-<h3 id="toc_3">项目</h3>
-
-<ul>
-<li><a href="https://github.com/SnapKit/SnapKit">SnapKit/SnapKit</a></li>
-</ul>
-
-<p><a href="https://github.com/SnapKit/Masonry">SnapKit/Masonry</a>的Swift版本</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[iOS测试框架XCTest]]></title>
-    <link href="https://jacoli.github.io/15480679782543.html"/>
-    <updated>2019-01-21T18:52:58+08:00</updated>
-    <id>https://jacoli.github.io/15480679782543.html</id>
-    <content type="html"><![CDATA[
-<ul>
-<li>XCTest已基本满足单元测试和UI测试的需求，支持对同步流程、异步流程、性能的测试，UI测试代码的自动生成，代码测试覆盖率的统计等。</li>
-<li>UI测试也还有不足的地方，例如录制生成的代码仍不够完善，无法直接访问目标APP的接口，无法修改边界条件，在单设备或单模拟器运行效率过低，每次重启目标App后只能运行一个Case。</li>
-<li><a href="https://github.com/vsouza/awesome-ios#ui-testing">一些三方库</a></li>
-<li><a href="https://github.com/linkedin/bluepill">Bluepill is a tool to run iOS tests in parallel using multiple simulators.</a></li>
-<li><a href="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/testing_with_xcode/chapters/01-introduction.html">XCTest官方手册 </a></li>
-<li><a href="http://www.tuicool.com/articles/ZJNzYbY">iOS单元测试和UI测试</a></li>
-<li><a href="http://www.tuicool.com/articles/nyQBN3B">单元测试之旅--预见优秀</a></li>
-<li><a href="http://www.tuicool.com/articles/fE3Uvqb">iOS UnitTest单元测试</a></li>
-<li><a href="http://www.tuicool.com/articles/QfA73qy">Android单元测试的整理</a></li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[开发笔记1]]></title>
-    <link href="https://jacoli.github.io/15480679782141.html"/>
-    <updated>2019-01-21T18:52:58+08:00</updated>
-    <id>https://jacoli.github.io/15480679782141.html</id>
-    <content type="html"><![CDATA[
-<h3 id="toc_0">文章推荐</h3>
-
-<ul>
-<li><a href="http://www.infoq.com/cn/articles/2016-review-mobile">2016移动开发技术巡礼</a></li>
-</ul>
-
-<p>徐川大神对2016年移动技术发展的概述，以及对2017年的展望。总结了各种技术，热补丁、组件化、动态化、跨平台、直播、AR/VR等等。自己在项目实践中，也尝试了热补丁、动态化、组件化等技术，比较有体会。推荐他的博客<a href="http://mobilefrontier.github.io/">移动开发前线</a>，还是相当不错的。</p>
-
-<ul>
-<li><a href="http://pingguohe.net/2016/01/31/lazyscroll.html">苹果核 - iOS 高性能异构滚动视图构建方案 —— LazyScrollView</a></li>
-</ul>
-
-<p>对于往往存在大量异构元素的app首页或集合页，该方案的思路还是可以借鉴下的。</p>
-
-<ul>
-<li><a href="http://www.jianshu.com/p/90a90bd13aac">WKWebView从入门到趟坑</a></li>
-</ul>
-
-<p>为满足大部分动态化需求，在App中内嵌一个WebView支持H5页，这是比较常见的做法。iOS上就UIWebView和WKWebView，WKWebView相比较UIWebView，性能更优，但也多了不少限制。目前自己项目中也是直接使用WKWebView，好在H5和Native的交互比较少，对WKWebView也没有做多少优化。</p>
-
-<ul>
-<li><a href="http://www.cocoachina.com/swift/20161221/18407.html">Swift 并行编程现状和展望 - async/await 和参与者模式</a></li>
-</ul>
-
-<p>异步编程，特别是多层嵌套的情况，即使用了GCD&amp;Block回调方式去写，代码仍会过于凌乱，可读性也大打折扣。我会通过以下两种方法去处理，将每个异步回调的处理逻辑封装在一个函数内，或将每个异步过程封装起来（即Future／Promise的做法）。无论哪种，也都会额外增加些成本，结合自己项目内的代码风格和使用成本再选择一个合适的。</p>
-
-<ul>
-<li><a href="http://www.cocoachina.com/programmer/20170122/18604.html">2017，我的iOS进阶规划</a></li>
-</ul>
-
-<p>知识点比较基础，罗列得比较多，可以结合项目多看看。</p>
-
-<h3 id="toc_1">代码推荐</h3>
-
-<ul>
-<li><a href="https://github.com/vsouza/awesome-ios">vsouza/awesome-ios</a></li>
-</ul>
-
-<p>收集了大量的iOS开源项目、网页等等</p>
-
-<ul>
-<li><a href="http://www.jianshu.com/p/d75a9a8d13b5">33 个 2017 年必须了解的 iOS 开源库</a></li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Alamofire源码分析]]></title>
-    <link href="https://jacoli.github.io/15480679782353.html"/>
-    <updated>2019-01-21T18:52:58+08:00</updated>
-    <id>https://jacoli.github.io/15480679782353.html</id>
-    <content type="html"><![CDATA[
-<h3 id="toc_0">概述</h3>
-
-<ul>
-<li><p><code>Alamofire</code>跟<a href="https://github.com/AFNetworking/AFNetworking">AFNetworking</a>的功能差不多，都是对URLSession的封装，对上层提供易用的网络请求接口。</p></li>
-<li><p><code>Alamofire</code>和<a href="https://github.com/AFNetworking/AFNetworking">AFNetworking</a>分别是Swift和OC的实现版本。</p></li>
-<li><p>目前，这两个网络封装库的关注度和使用率非常高，代码质量也相当不错。本文想通过对<code>Alamofire</code>源码的简单分析，了解其基本框架和设计思路。</p></li>
-<li><p>源码链接：<a href="https://github.com/Alamofire/Alamofire">Alamofire</a></p></li>
-</ul>
-
-<h3 id="toc_1">一个GET请求的源码分析</h3>
-
-<ul>
-<li>从最简单的Get请求入手，分析<code>Alamofire</code>的代码。一个请求流程，可以分为请求发送流程和请求响应流程，下文将从这两个流程展开分析。</li>
-</ul>
-
-<pre><code class="language-text">// Get请求的调用方式
-Alamofire.request(&quot;https://httpbin.org/get&quot;).responseJSON { response in
-    print(response.request)  // original URL request
-    print(response.response) // HTTP URL response
-    print(response.data)     // server data
-    print(response.result)   // result of response serialization
-
-    if let JSON = response.result.value {
-        print(&quot;JSON: \(JSON)&quot;)
-    }
-}
-</code></pre>
-
-<h4 id="toc_2">请求发送流程</h4>
-
-<ul>
-<li><code>Alamofire.Swift</code>可以认为<code>Alamofire</code>一些对外接口的包装（Facade API）。
-<code>Alamofire.request</code>实际上是调用了<code>SessionManager.request</code>。</li>
-</ul>
-
-<pre><code class="language-text">// 调用request方法
-/// Creates a `DataRequest` using the default `SessionManager` to retrieve the contents of a URL based on the specified `urlRequest`.
-@discardableResult
-public func request(_ urlRequest: URLRequestConvertible) -&gt; DataRequest {
-    return SessionManager.default.request(urlRequest)
-}
-</code></pre>
-
-<ul>
-<li>在<code>SessionManager.request</code>，<code>Request</code>被组装创建，并加到发送队列中，然后等待一系列的响应事件。而<code>SessionManager</code>主要职责是管理发送队列，组装请求消息，设置Session相关的配置，设置工作线程等。</li>
-</ul>
-
-<pre><code class="language-text">// 创建request对象，并开始发送
-/// Creates a `DataRequest` to retrieve the contents of a URL based on the specified `urlRequest`.
-    open func request(_ urlRequest: URLRequestConvertible) -&gt; DataRequest {
-        var originalRequest: URLRequest?
-
-        do {
-            originalRequest = try urlRequest.asURLRequest()
-            let originalTask = DataRequest.Requestable(urlRequest: originalRequest!)
-
-            let task = try originalTask.task(session: session, adapter: adapter, queue: queue)
-            let request = DataRequest(session: session, requestTask: .data(originalTask, task))
-
-            delegate[task] = request
-
-            if startRequestsImmediately { request.resume() }
-
-            return request
-        } catch {
-            return request(originalRequest, failedWith: error)
-        }
-    }
-</code></pre>
-
-<ul>
-<li>接着，通过<code>Request.responseJSON</code>设置JSON响应回调的处理方法。</li>
-</ul>
-
-<pre><code class="language-text">// 设置回调
-/// Adds a handler to be called once the request has finished.
-    @discardableResult
-    public func responseJSON(
-        queue: DispatchQueue? = nil,
-        options: JSONSerialization.ReadingOptions = .allowFragments,
-        completionHandler: @escaping (DataResponse&lt;Any&gt;) -&gt; Void)
-        -&gt; Self
-    {
-        return response(
-            queue: queue,
-            responseSerializer: DataRequest.jsonResponseSerializer(options: options),
-            completionHandler: completionHandler
-        )
-    }
-</code></pre>
-
-<ul>
-<li><code>Request.responseJSON</code>实际上是调用<code>Request.response</code>，将回调添加到<code>Request.delegate.queue</code>，然后等待响应事件。</li>
-</ul>
-
-<pre><code class="language-text">    /// Adds a handler to be called once the request has finished.
-    @discardableResult
-    public func response&lt;T: DataResponseSerializerProtocol&gt;(
-        queue: DispatchQueue? = nil,
-        responseSerializer: T,
-        completionHandler: @escaping (DataResponse&lt;T.SerializedObject&gt;) -&gt; Void)
-        -&gt; Self
-    {
-        delegate.queue.addOperation {
-            let result = responseSerializer.serializeResponse(
-                self.request,
-                self.response,
-                self.delegate.data,
-                self.delegate.error
-            )
-
-            var dataResponse = DataResponse&lt;T.SerializedObject&gt;(
-                request: self.request,
-                response: self.response,
-                data: self.delegate.data,
-                result: result,
-                timeline: self.timeline
-            )
-
-            dataResponse.add(self.delegate.metrics)
-
-            (queue ?? DispatchQueue.main).async { completionHandler(dataResponse) }
-        }
-
-        return self
-    }
-
-</code></pre>
-
-<ul>
-<li>至此，发送流程完成，接着就等待响应事件。</li>
-</ul>
-
-<h4 id="toc_3">请求响应流程</h4>
-
-<ul>
-<li><p>一个请求的响应事件会有多个，并按循序上报，例如以下几个主要事件，</p></li>
-<li><p>HTTPS鉴权事件 <code>func urlSession(_ session: URLSession,task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -&gt; Void)</code></p></li>
-<li><p>收到Response响应头事件 <code>func urlSession(_ session: URLSession,dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -&gt; Void)</code></p></li>
-<li><p>收到Response Body数据事件 <code>func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data)</code></p></li>
-<li><p>响应流程完成事件 <code>func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?)</code></p></li>
-<li><p>本文以最后一个响应流程完成事件为例，梳理下整个响应流程。</p></li>
-<li><p>首先，<code>SessionDelegate</code>会收到由<code>URLSession.delegate</code>上报的<code>urlSession:task:didCompleteWithError</code>，根据<code>task</code>找到<code>URLSessionTask</code>并通过其<code>delegate</code>上报事件给<code>TaskDelegate</code>。</p></li>
-</ul>
-
-<pre><code class="language-text">    /// Tells the delegate that the task finished transferring data.
-    open func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        /// Executed after it is determined that the request is not going to be retried
-        let completeTask: (URLSession, URLSessionTask, Error?) -&gt; Void = { [weak self] session, task, error in
-            guard let strongSelf = self else { return }
-
-            if let taskDidComplete = strongSelf.taskDidComplete {
-                taskDidComplete(session, task, error)
-            } else if let delegate = strongSelf[task]?.delegate {
-                delegate.urlSession(session, task: task, didCompleteWithError: error)
-            }
-
-            NotificationCenter.default.post(
-                name: Notification.Name.Task.DidComplete,
-                object: strongSelf,
-                userInfo: [Notification.Key.Task: task]
-            )
-
-            strongSelf[task] = nil
-        }
-
-        guard let request = self[task], let sessionManager = sessionManager else {
-            completeTask(session, task, error)
-            return
-        }
-
-        // Run all validations on the request before checking if an error occurred
-        request.validations.forEach { $0() }
-
-        // Determine whether an error has occurred
-        var error: Error? = error
-
-        if let taskDelegate = self[task]?.delegate, taskDelegate.error != nil {
-            error = taskDelegate.error
-        }
-
-        /// If an error occurred and the retrier is set, asynchronously ask the retrier if the request
-        /// should be retried. Otherwise, complete the task by notifying the task delegate.
-        if let retrier = retrier, let error = error {
-            retrier.should(sessionManager, retry: request, with: error) { [weak self] shouldRetry, timeDelay in
-                guard shouldRetry else { completeTask(session, task, error) ; return }
-
-                DispatchQueue.utility.after(timeDelay) { [weak self] in
-                    guard let strongSelf = self else { return }
-
-                    let retrySucceeded = strongSelf.sessionManager?.retry(request) ?? false
-
-                    if retrySucceeded, let task = request.task {
-                        strongSelf[task] = request
-                        return
-                    } else {
-                        completeTask(session, task, error)
-                    }
-                }
-            }
-        } else {
-            completeTask(session, task, error)
-        }
-    }
-</code></pre>
-
-<ul>
-<li>接着，<code>TaskDelegate</code>收到该事件后，恢复queue队列，按循序执行其中的回调，如<code>ResponseJSON</code>。</li>
-</ul>
-
-<pre><code class="language-text">    @objc(URLSession:task:didCompleteWithError:)
-    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        if let taskDidCompleteWithError = taskDidCompleteWithError {
-            taskDidCompleteWithError(session, task, error)
-        } else {
-            if let error = error {
-                if self.error == nil { self.error = error }
-
-                if
-                    let downloadDelegate = self as? DownloadTaskDelegate,
-                    let resumeData = (error as NSError).userInfo[NSURLSessionDownloadTaskResumeData] as? Data
-                {
-                    downloadDelegate.resumeData = resumeData
-                }
-            }
-
-            // queue队列中的operaion开始按循序执行，回调到上层。
-            queue.isSuspended = false
-        }
-    }
-</code></pre>
-
-<h3 id="toc_4">其他模块</h3>
-
-<ul>
-<li><p>除了发送，响应相关的代码，<code>Alamofire</code>还有许多其他模块。例如，</p></li>
-<li><p><code>NetworkReachabilityManager</code>管理网络状态。</p></li>
-<li><p><code>ParameterEncoding</code> 入参编解码方式。</p></li>
-<li><p><code>ResponseSerialization</code> 响应的反序列化方式。</p></li>
-<li><p><code>ServerTrustPolicy</code> HTTPS的鉴权</p></li>
-<li><p>等等。</p></li>
-</ul>
-
-<h3 id="toc_5">总结</h3>
-
-<ul>
-<li>分析得比较简单，抱砖引玉。</li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[* 经过一个月多的努力，app终于成型了，欣喜，期待上线后效果，在这里稍作技术上的总结和展望。]]></title>
-    <link href="https://jacoli.github.io/15480679782099.html"/>
-    <updated>2019-01-21T18:52:58+08:00</updated>
-    <id>https://jacoli.github.io/15480679782099.html</id>
-    <content type="html"><![CDATA[
-<ul>
-<li><p>虽然是首版，功能不多，但麻雀虽小五脏俱全，详情、评论、登录、分享、支付、推送、地图、数据统计、错误统计、Hotfix等基础功能也都要有。</p></li>
-<li><p>分层，从上到下，将整体框架划分为业务层，基础服务层，容器运行层，和三方库层。</p></li>
-<li><p>组件划分，业务组件化、服务组件化、基础功能组件化</p></li>
-<li><p>考虑前面几个版本的快速开发迭代，只做了逻辑上的分层和组件划分，代码仍是在同一个工程内，没有做Bundle化。</p></li>
-<li><p>应用整体框架如下，具体细节暂不展开了，后续有时间再细化总结</p></li>
-</ul>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/1824896-75b18507cdc838ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="应用整体框架"/><br/>
-<img src="http://upload-images.jianshu.io/upload_images/1824896-c637a74c5142cf37.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="APP闪屏页"/></p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[iOS学习导图]]></title>
-    <link href="https://jacoli.github.io/15479057717732.html"/>
-    <updated>2019-01-19T21:49:31+08:00</updated>
-    <id>https://jacoli.github.io/15479057717732.html</id>
-    <content type="html"><![CDATA[
-<p>本文简单罗列了下iOS相关的点。</p>
-
-<h3 id="toc_0">基础</h3>
-
-<p><img src="media/15479057717732/iOS%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80.png" alt="iOS应用开发基础"/></p>
-
-<ul>
-<li>Runloop</li>
-</ul>
-
-<p><a href="http://blog.ibireme.com/2015/05/18/runloop/">深入理解RunLoop</a></p>
-
-<ul>
-<li>多线程&amp;同步</li>
-</ul>
-
-<p><a href="http://www.dreamingwish.com/article/ios-multi-threaded-programming-a-multi-threaded-programming.html">iOS多线程编程指南</a></p>
-
-<ul>
-<li>Core Animation</li>
-</ul>
-
-<p><a href="http://www.dreamingwish.com/article/coreanimation-programming-guide-summary.html">CoreAnimation编程指南</a></p>
-
-<p><a href="http://www.cnblogs.com/xdream86/p/3250782.html">Core Animation编程指南</a><br/>
-<a href="http://www.cocoachina.com/ios/20150104/10814.html">iOS-Core-Animation-Advanced-Techniques</a></p>
-
-<ul>
-<li>Block</li>
-</ul>
-
-<p><a href="http://www.dreamingwish.com/article/block%E4%BB%8B%E7%BB%8D%EF%BC%88%E4%B8%80%EF%BC%89%E5%9F%BA%E7%A1%80.html">Block介绍</a></p>
-
-<ul>
-<li>GCD</li>
-</ul>
-
-<p><a href="http://www.dreamingwish.com/article/grand-central-dispatch-basic-1.html">GCD入门</a></p>
-
-<ul>
-<li>Core Foundation</li>
-</ul>
-
-<p><a href="http://opensource.apple.com/tarballs/CF/">Core Foundation源码</a></p>
-
-<h3 id="toc_1">应用优化</h3>
-
-<ul>
-<li><p><a href="http://blog.ibireme.com/2015/11/12/smooth_user_interfaces_for_ios/">iOS 保持界面流畅的技巧</a></p></li>
-<li><p><a href="http://www.cocoachina.com/ios/20150429/11712.html">WWDC心得与延伸:iOS图形性能</a></p></li>
-<li><p><a href="http://www.cocoachina.com/ios/20151203/14549.html">iOS 事件处理机制与图像渲染过程</a></p></li>
-<li><p><a href="https://mp.weixin.qq.com/s?__biz=MzAwNDY1ODY2OQ==&amp;mid=207890859&amp;idx=1&amp;sn=e98dd604cdb854e7a5808d2072c29162&amp;scene=1&amp;srcid=1119D98cPepPAys5UJjzKkFU&amp;key=d72a47206eca0ea99e5bfedd27c4e1979bafb09babd40343f279933377d574eeac88cdf63260b257d9bf187a90b30d1b&amp;ascene=0&amp;uin=NDEzMTA2OTc1&amp;devicetype=iMac+MacBookPro11%2C2+OSX+OSX+10.11+build(15A284)&amp;version=11020201&amp;pass_ticket=WqTD03t23%2Fz4yjGdIgJ7hHJdRAUd2Xh4DPQpswxoclHSqzbaxr%2B%2F%2B16u%2Fg0PXgMQ">微信iOS卡顿监控系统</a></p></li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[iOS Push相关的资料]]></title>
-    <link href="https://jacoli.github.io/15479057717825.html"/>
-    <updated>2019-01-19T21:49:31+08:00</updated>
-    <id>https://jacoli.github.io/15479057717825.html</id>
-    <content type="html"><![CDATA[
-<ul>
-<li><p>苹果官方的APNS，支持App不同状态下（前台、后台、未启动等）的消息推送。</p></li>
-<li><p>另外个方案是，App和应用服务间维护一个长链接，应用服务通过心跳感知App状态。当App为在线状态时，应用服务可以通过该长链接推送消息。一般跟APNS配合使用。</p></li>
-<li><p>自己的项目中使用的是友盟推送。</p></li>
-<li><p>在Push消息中设置自定义参数，App在<code>- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo</code>收到消息后解析参数并做相应逻辑（如跳转到相应页面等）</p></li>
-</ul>
-
-<pre><code class="language-text">- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    NSLog(@&quot;didRegisterForRemoteNotificationsWithDeviceToken&quot;);
-    
-    // 注册用户登录登出监听
-    [self handleRemoteNotificationDidRegistered];
-}
-
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    NSLog(@&quot;didFailToRegisterForRemoteNotificationsWithError&quot;);
-}
-
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    NSLog(@&quot;didReceiveRemoteNotification&quot;);
-    
-    [UMessage didReceiveRemoteNotification:userInfo];
-    
-    NSString *jsonString = [userInfo objectForKey:@&quot;custom&quot;];
-    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                        options:NSJSONReadingMutableContainers
-                                                          error:nil];
-    if (dic==nil || [dic isEqual:[NSNull null]]) {
-        return;
-    }
-
-    [self handleRemoteNotification:dic];
-}
-</code></pre>
-
-<h3 id="toc_0">其他一些资料</h3>
-
-<ul>
-<li><a href="http://www.tuicool.com/articles/Y77Ffe">一步一步实现iOS应用PUSH功能 - 咪咕咪咕</a></li>
-<li><a href="http://blog.csdn.net/daydreamingboy/article/details/7977098">iOS上简单推送通知（Push Notification）的实现</a></li>
-<li><a href="http://blog.csdn.net/c101012221/article/details/34433425">十大豪门推送sdk，哪个更适合你</a></li>
-<li><a href="http://www.getui.com/">个推</a></li>
-<li><a href="http://www.qcloud.com/product/XGPush.html">腾讯信鸽</a></li>
-<li><a href="http://mobile.umeng.com/push?spm=0.0.0.0.pphrqW">友盟U-Push</a></li>
+<li>代码之外</li>
 </ul>
 
 ]]></content>

@@ -80,6 +80,16 @@
             <li><a href="%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91.html">移动开发</a></li>
         
             <li><a href="%E6%9D%82%E6%83%B3.html">杂想</a></li>
+        
+            <li><a href="iOS.html">iOS</a></li>
+        
+            <li><a href="%E5%89%8D%E7%AB%AF.html">前端</a></li>
+        
+            <li><a href="%E6%9E%B6%E6%9E%84.html">架构</a></li>
+        
+            <li><a href="Android.html">Android</a></li>
+        
+            <li><a href="%E4%B8%B4%E6%97%B6.html">临时</a></li>
          
 
       </ul>
@@ -123,6 +133,1268 @@
                   <div class="more-left left">
                   
                     <span class="date">2019/3/20</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91.html'>移动开发</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15512326160968.html">
+                
+                  <h1>跨端方案</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h3 id="toc_0">UI系统</h3>
+
+<ul>
+<li>UI系统包含UI元素的布局、渲染和UI事件的捕获、传递、处理等。</li>
+<li>iOS、Android、Web、微信小程序、其他小程序都有各自的原生UI系统。</li>
+</ul>
+
+<h3 id="toc_1">系统服务</h3>
+
+<ul>
+<li>原生系统的各种能力，来自硬件的、软件的。</li>
+</ul>
+
+<h3 id="toc_2">开发语言不同、运行环境不同</h3>
+
+<h3 id="toc_3">开发模式不同</h3>
+
+<h3 id="toc_4">跨端方案</h3>
+
+<ul>
+<li>不同原生系统上的UI系统和系统服务是有差别和相似的，跨端方案是尽量屏蔽这些差异，对应用开发者来说，开发体验是一致的的、透明的，就像jQuery屏蔽不同Web浏览器间的差异性。</li>
+<li>需要做到这点，跨端方案需要提供包括DSL、Runtime、组件库、工具链等，一整套屏蔽原生系统开发和运行的差异。 </li>
+</ul>
+
+<h4 id="toc_5">Runtime</h4>
+
+<ul>
+<li>Runtime需要支撑DSL在原生系统的运行，需要桥接到到原生系统服务、原生UI系统，需要提供自有或轻或重的UI渲染系统，需要提供对自有组件库或三方组件库的访问等。</li>
+<li>UI引擎，轻的方案是直接桥接到原生UI系统，引擎只做UI数据的处理、转换、传递，重的方案是基于跨平台的渲染方案如OpenGL做一套自己的UI系统。 </li>
+</ul>
+
+<h4 id="toc_6">组件库</h4>
+
+<ul>
+<li>自有、三方、原生系统的组件库等等。</li>
+</ul>
+
+<h4 id="toc_7">工具链</h4>
+
+<ul>
+<li>开发阶段，需要提供转换器或编译器，对DSL的支持，IDE，等等。</li>
+<li>调试阶段，调试工具、方式。</li>
+<li>测试阶段，测试工具。</li>
+<li>部署阶段，本地部署、远程部署。</li>
+</ul>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2019/2/27</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91.html'>移动开发</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15480586858677.html">
+                
+                  <h1>2018-3-15</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>客户端上的一个页面搭建采用哪种架构，往往取决与页面类型。</p>
+
+<p>展示型页面</p>
+
+<p>数据从数据层到展示层单向流动</p>
+
+<p>表单型页面</p>
+
+<p>数据在数据层和展示层双向流动</p>
+
+<p>交互型页面</p>
+
+<p>展示层不仅展示数据，还有大量动画，操作行为等</p>
+
+<h2 id="toc_0">组件</h2>
+
+<p>系统底层框架<br/>
+网络<br/>
+存储<br/>
+缓存<br/>
+序列化<br/>
+架构<br/>
+组件化<br/>
+工程化<br/>
+数据监控<br/>
+日志<br/>
+性能<br/>
+Crash<br/>
+安全<br/>
+图片<br/>
+视频、音频<br/>
+AR、VR、ML<br/>
+UI组件<br/>
+屏幕分辨率<br/>
+布局、样式<br/>
+渲染<br/>
+研发效率<br/>
+编程语言、OC/Swift、OOP、AOP、FP<br/>
+Hybrid<br/>
+Native动态化<br/>
+热补丁<br/>
+小程序<br/>
+PWA<br/>
+编译<br/>
+部署</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2019/1/21</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91.html'>移动开发</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15478658194063.html">
+                
+                  <h1>技术图谱</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<ul>
+<li><p><a href="media/15478658194063/%E7%94%B5%E5%95%86%E8%84%91%E7%88%86%E5%9B%BE.xmind">电商脑爆图</a></p></li>
+<li><p><a href="media/15478658194063/%E6%8A%80%E6%9C%AF%E5%9B%BE%E8%B0%B1.xmind">技术图谱</a></p></li>
+<li><p><a href="media/15478658194063/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.xmind">性能优化</a></p></li>
+<li><p><a href="media/15478658194063/%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91%E5%9B%BE%E8%B0%B1.xmind">移动客户端开发图谱</a></p></li>
+<li><p><a href="media/15478658194063/iOS%E6%A1%86%E6%9E%B6%E6%A2%B3%E7%90%86.xmind">iOS框架梳理</a></p></li>
+</ul>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2019/1/19</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91.html'>移动开发</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="H5%20Hybrid%E6%96%B9%E6%A1%88%E7%A0%94%E7%A9%B6.html">
+                
+                  <h1>h5 hybrid方案</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">三方库选择</h2>
+
+<ul>
+<li><a href="https://github.com/marcuswestin/WebViewJavascriptBridge">WebViewJavascriptBridge</a></li>
+</ul>
+
+<p>方案比较通用，对UIWebView也支持。</p>
+
+<ul>
+<li><a href="https://github.com/wendux/DSBridge-IOS">DSBridge-IOS</a></li>
+</ul>
+
+<p>需要改用DWKWebView，对原有代码略有侵入。</p>
+
+<h2 id="toc_1">目前方案</h2>
+
+<ul>
+<li><p>直接使用WKWebView原生接口</p></li>
+<li><p>JS调用Native</p></li>
+</ul>
+
+<pre><code class="language-text">[config.userContentController addScriptMessageHandler:[WKScriptMessageHandlerWrapper wrapper:self] name:JS_HANDLER_UrlRouter];
+
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
+    NSLog(@&quot;Recv Js call : name =  %@&quot;, message.name);
+    if ([message.name isEqualToString:JS_HANDLER_UrlRouter]) {
+        [self handleUrlRouterMessage:message.body];
+    } else if ([message.name isEqualToString:JS_HANDLER_ShareService]) {
+        [self handleShareServiceMessage:message.body];
+    }
+}
+</code></pre>
+
+<ul>
+<li>Native调用JS</li>
+</ul>
+
+<pre><code class="language-text">[self.webView evaluateJavaScript:@&quot;window.JSHandler()&quot; completionHandler:^(id _Nullable obj, NSError * _Nullable error) {
+    if (obj) {
+        NSLog(@&quot;receive js response %@&quot;, obj);
+    }
+}];
+
+</code></pre>
+
+<ul>
+<li><p>JS调用Native不支持返回值。</p></li>
+<li><p>接口调用不支持回调：JS和Native侧都增加个Callback队列，根据CallbackId执行对应的回调函数。</p></li>
+</ul>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2019/1/19</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91.html'>移动开发</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15478656888498.html">
+                
+                  <h1></h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<ul>
+<li><p>阿里技术参考图册（研发类）<br/>
+<a href="https://102.alibaba.com/downloadFile.do?file=1523962960197/AliTech101_RD.pdf">https://102.alibaba.com/downloadFile.do?file=1523962960197/AliTech101_RD.pdf</a></p></li>
+<li><p>阿里技术参考图册（算法类）<br/>
+<a href="https://102.alibaba.com/downloadFile.do?file=1523848064814/AliTech101_Algorithms.pdf">https://102.alibaba.com/downloadFile.do?file=1523848064814/AliTech101_Algorithms.pdf</a></p></li>
+<li><p>FB大规模重构React Native，Airbnb宣布回归原生，前端巨变来临？<br/>
+<a href="https://mp.weixin.qq.com/s/xbVNGGoH6mlmx6T0YL-r1w">https://mp.weixin.qq.com/s/xbVNGGoH6mlmx6T0YL-r1w</a><br/>
+React Native面临挑战，重构求变。<br/>
+RN在跨平台开发并没有做到完全抽象，不同平台仍会有些差异性存在。<br/>
+Airbnb放弃RN，回归原生。<br/>
+Flutter跨平台开发框架，媲美Native的性能，发布release版本，</p></li>
+<li><p>携程RN实践<br/>
+<a href="https://static001.geekbang.org/con/31/pdf/2987539114/file/GMTC2018-%E3%80%8A%E6%90%BA%E7%A8%8B%E5%A4%A7%E8%A7%84%E6%A8%A1%E5%BA%94%E7%94%A8React+Native%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E3%80%8B-%E8%B5%B5%E8%BE%9B%E8%B4%B5.pdf">https://static001.geekbang.org/con/31/pdf/2987539114/file/GMTC2018-%E3%80%8A%E6%90%BA%E7%A8%8B%E5%A4%A7%E8%A7%84%E6%A8%A1%E5%BA%94%E7%94%A8React+Native%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E3%80%8B-%E8%B5%B5%E8%BE%9B%E8%B4%B5.pdf</a></p></li>
+<li><p>我们可能会为同一类型的公司构建相同类型的Web应用。<br/>
+经济学规律告诉我们，在这种环境下，我们将从“探索”——<br/>
+尝试新的实践、范式、技术——转向“开发”：以更快的速度、<br/>
+更低的成本构建相似的东西。</p></li>
+</ul>
+
+<p>我想说的是，在接下来的几年里，我们已经发展起来的微型库架<br/>
+构将逐渐被那些单体框架所取代。它们将采用一种约定配置<br/>
+（convention-over-configuration）的方式，用透明度<br/>
+换取生产力的提升。</p>
+
+<ul>
+<li>提现到支付宝<br/>
+绑定支付宝
+<a href="https://docs.open.alipay.com/218/">https://docs.open.alipay.com/218/</a>
+单笔转账到支付宝
+<a href="https://docs.open.alipay.com/309/">https://docs.open.alipay.com/309/</a></li>
+</ul>
+
+<h1 id="toc_0">RN</h1>
+
+<ul>
+<li>优势：跨平台、动态性、性能媲美原生、Web开发人力</li>
+<li>劣势：兼容性问题（也许花在处理多端不一致、兼容性等问题上的时间比使用原生方案实现业务所花的时间更多）、包大小、与原生数据的异步交互等等</li>
+</ul>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2019/1/19</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91.html'>移动开发</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15478655552191.html">
+                
+                  <h1>weex代码走读</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<ul>
+<li><p>WXSDKInstance -&gt; WXBridgeManager-&gt;WXBridgeContext-&gt;WXJSCoreBridge<WXBridgeProtocol>-&gt;JSContext</p></li>
+<li><p>WXSDKInstance -&gt; WXComponentManager</p></li>
+<li><p>WXBridgeManager : 对WXBridgeContext进一步封装，提供JS API调用，JS 事件发送，注册Native Call Handler，注册Native模块Handler、注册Native组件Handler、注册Native服务Handler等接口。提供Bridge独立线程，上述接口基本上都在该线程中执行。</p></li>
+<li><p>WXComponentManager ：管理着组件的布局，样式等</p></li>
+</ul>
+
+<pre><code class="language-text">// WXComponentManager.mm
+
+- (void)_layoutAndSyncUI
+{
+    [self _layout];
+    if(_uiTaskQueue.count &gt; 0){
+        [self _syncUITasks];
+        _noTaskTickCount = 0;
+    } else {
+        // suspend display link when there&#39;s no task for 1 second, in order to save CPU time.
+        _noTaskTickCount ++;
+        if (_noTaskTickCount &gt; 60) {
+            [self _suspendDisplayLink];
+        }
+    }
+}
+
+- (void)_layout
+{
+    BOOL needsLayout = NO;
+
+    needsLayout = [_rootComponent needsLayout];
+
+    if (!needsLayout) {
+        return;
+    }
+#ifdef DEBUG
+    WXLogDebug(@&quot;flexLayout -&gt; action__ calculateLayout root&quot;);
+#endif
+
+        std::pair&lt;float, float&gt; renderPageSize;
+        renderPageSize.first = self.weexInstance.frame.size.width;
+        renderPageSize.second = self.weexInstance.frame.size.height;
+        _rootFlexCSSNode-&gt;calculateLayout(renderPageSize);
+    NSMutableSet&lt;WXComponent *&gt; *dirtyComponents = [NSMutableSet set];
+    [_rootComponent _calculateFrameWithSuperAbsolutePosition:CGPointZero gatherDirtyComponents:dirtyComponents];
+    [self _calculateRootFrame];
+
+    for (WXComponent *dirtyComponent in dirtyComponents) {
+        [self _addUITask:^{
+            [dirtyComponent _layoutDidFinish];
+        }];
+    }
+}
+</code></pre>
+
+<ul>
+<li><p>WXSDKInstance : 加载bundle文件，管理、渲染根视图。</p></li>
+<li><p>WXSDKManager ：管理WXSDKInstance多实例</p></li>
+</ul>
+
+<pre><code class="language-text">//WXSDKInstance.m
+
+- (void)_renderWithMainBundleString:(NSString *)mainBundleString
+{
+    if (!self.instanceId) {
+        WXLogError(@&quot;Fail to find instance！&quot;);
+        return;
+    }
+    self.performance.renderTimeOrigin = CACurrentMediaTime()*1000;
+
+    if (![WXUtility isBlankString:self.pageName]) {
+        WXLog(@&quot;Start rendering page:%@&quot;, self.pageName);
+    } else {
+        WXLogWarning(@&quot;WXSDKInstance&#39;s pageName should be specified.&quot;);
+        id&lt;WXJSExceptionProtocol&gt; jsExceptionHandler = [WXHandlerFactory handlerForProtocol:@protocol(WXJSExceptionProtocol)];
+        if ([jsExceptionHandler respondsToSelector:@selector(onRuntimeCheckException:)]) {
+            WXRuntimeCheckException * runtimeCheckException = [WXRuntimeCheckException new];
+            runtimeCheckException.exception = @&quot;We highly recommend you to set pageName.\n Using WXSDKInstance * instance = [WXSDKInstance new]; instance.pageName = @\&quot;your page name\&quot; to fix it&quot;;
+            [jsExceptionHandler onRuntimeCheckException:runtimeCheckException];
+        }
+    }
+    if (!self.userInfo) {
+        self.userInfo = [NSMutableDictionary new];
+    }
+    if (!self.userInfo[@&quot;jsMainBundleStringContentLength&quot;]) {
+        self.userInfo[@&quot;jsMainBundleStringContentLength&quot;] = @([mainBundleString length]);
+    }
+    if (!self.userInfo[@&quot;jsMainBundleStringContentLength&quot;]) {
+        self.userInfo[@&quot;jsMainBundleStringContentMd5&quot;] = [WXUtility md5:mainBundleString];
+    }
+
+    id&lt;WXPageEventNotifyEventProtocol&gt; pageEvent = [WXSDKEngine handlerForProtocol:@protocol(WXPageEventNotifyEventProtocol)];
+    if ([pageEvent respondsToSelector:@selector(pageStart:)]) {
+        [pageEvent pageStart:self.instanceId];
+    }
+
+    WX_MONITOR_INSTANCE_PERF_START(WXPTFirstScreenRender, self);
+    WX_MONITOR_INSTANCE_PERF_START(WXPTAllRender, self);
+
+    NSMutableDictionary *dictionary = [_options mutableCopy];
+    if ([WXLog logLevel] &gt;= WXLogLevelLog) {
+        dictionary[@&quot;debug&quot;] = @(YES);
+    }
+
+    if ([WXDebugTool getReplacedBundleJS]) {
+        mainBundleString = [WXDebugTool getReplacedBundleJS];
+    }
+
+    //TODO WXRootView
+    WXPerformBlockOnMainThread(^{
+        _rootView = [[WXRootView alloc] initWithFrame:self.frame];
+        _rootView.instance = self;
+        if(self.onCreate) {
+            self.onCreate(_rootView);
+        }
+    });
+    // ensure default modules/components/handlers are ready before create instance
+    [WXSDKEngine registerDefaults];
+     [[NSNotificationCenter defaultCenter] postNotificationName:WX_SDKINSTANCE_WILL_RENDER object:self];
+
+    _needDestroy = YES;
+    _mainBundleString = mainBundleString;
+    if ([self _handleConfigCenter]) {
+        NSError * error = [NSError errorWithDomain:WX_ERROR_DOMAIN code:9999 userInfo:nil];
+        if (self.onFailed) {
+            self.onFailed(error);
+        }
+        return;
+    }
+
+    _needDestroy = YES;
+    [WXTracingManager startTracingWithInstanceId:self.instanceId ref:nil className:nil name:WXTExecJS phase:WXTracingBegin functionName:@&quot;renderWithMainBundleString&quot; options:@{@&quot;threadName&quot;:WXTMainThread}];
+    [[WXSDKManager bridgeMgr] createInstance:self.instanceId template:mainBundleString options:dictionary data:_jsData];
+    [WXTracingManager startTracingWithInstanceId:self.instanceId ref:nil className:nil name:WXTExecJS phase:WXTracingEnd functionName:@&quot;renderWithMainBundleString&quot; options:@{@&quot;threadName&quot;:WXTMainThread}];
+
+    WX_MONITOR_PERF_SET(WXPTBundleSize, [mainBundleString lengthOfBytesUsingEncoding:NSUTF8StringEncoding], self);
+}
+</code></pre>
+
+<pre><code class="language-text">//WXBridgeProtocol.h
+
+@protocol WXBridgeProtocol &lt;NSObject&gt;
+
+@property (nonatomic, readonly) JSValue* exception;
+
+/**
+ * Executes the js framework code in javascript engine
+ * You can do some setup in this method
+ */
+- (void)executeJSFramework:(NSString *)frameworkScript;
+
+/**
+ * Executes the js code in javascript engine
+ * You can do some setup in this method
+ */
+- (void)executeJavascript:(NSString *)script;
+
+/**
+ * Executes global js method with specific arguments
+ */
+- (JSValue *)callJSMethod:(NSString *)method args:(NSArray*)args;
+
+/**
+ * Register callback when call native tasks occur
+ */
+- (void)registerCallNative:(WXJSCallNative)callNative;
+
+/**
+ * Reset js engine environment, called when any environment variable is changed.
+ */
+- (void)resetEnvironment;
+</code></pre>
+
+<pre><code class="language-text">// WXJSCoreBridge.m
+
+- (void)executeJSFramework:(NSString *)frameworkScript
+{
+    WXAssertParam(frameworkScript);
+    if (WX_SYS_VERSION_GREATER_THAN_OR_EQUAL_TO(@&quot;8.0&quot;)) {
+        NSString * fileName = @&quot;native-bundle-main.js&quot;;
+        if ([WXSDKManager sharedInstance].multiContext) {
+            fileName = @&quot;weex-main-jsfm.js&quot;;
+        }
+        [_jsContext evaluateScript:frameworkScript withSourceURL:[NSURL URLWithString:fileName]];
+    }else{
+        [_jsContext evaluateScript:frameworkScript];
+    }
+}
+
+- (JSValue *)callJSMethod:(NSString *)method args:(NSArray *)args
+{
+    WXLogDebug(@&quot;Calling JS... method:%@, args:%@&quot;, method, args);
+    return [[_jsContext globalObject] invokeMethod:method withArguments:args];
+}
+
+- (void)registerCallNative:(WXJSCallNative)callNative
+{
+    JSValue* (^callNativeBlock)(JSValue *, JSValue *, JSValue *) = ^JSValue*(JSValue *instance, JSValue *tasks, JSValue *callback){
+        NSString *instanceId = [instance toString];
+        NSArray *tasksArray = [tasks toArray];
+        NSString *callbackId = [callback toString];
+        WXLogDebug(@&quot;Calling native... instance:%@, tasks:%@, callback:%@&quot;, instanceId, tasksArray, callbackId);
+        return [JSValue valueWithInt32:(int32_t)callNative(instanceId, tasksArray, callbackId) inContext:[JSContext currentContext]];
+    };
+
+    _jsContext[@&quot;callNative&quot;] = callNativeBlock;
+}
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2019/1/19</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91.html'>移动开发</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15480679782446.html">
+                
+                  <h1>AppLink</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p><img src="http://upload-images.jianshu.io/upload_images/1824896-e9fe114c4419d41e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2017-09-13 下午2.09.46.png"/></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/9/13</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91.html'>移动开发</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15480679781942.html">
+                
+                  <h1>网络相关</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<ul>
+<li><a href="https://github.com/Tencent/mars/">Mars</a></li>
+<li><a href="http://www.iteye.com/news/32012"><a href="http://www.iteye.com/news/32012">微信终端跨平台组件 Mars 正式开源！</a></a></li>
+<li><a href="http://www.cocoachina.com/ios/20170425/19118.html">关于 iOS HTTP2.0 的一次学习实践</a></li>
+<li><a href="https://github.com/AFNetworking/AFNetworking">AFNetworking</a></li>
+<li><a href="https://github.com/Alamofire/Alamofire">Alamofire</a></li>
+<li><a href="https://github.com/RestKit/RestKit">RestKit</a></li>
+<li><a href="https://github.com/yuantiku/YTKNetwork">YTKNetwork</a></li>
+<li><a href="https://github.com/square/retrofit">Retrofit</a></li>
+<li><a href="https://github.com/square/okhttp">okhttp</a></li>
+<li><a href="http://www.infoq.com/cn/articles/mogujie-app-chromium-network-layer/">蘑菇街App Chromium网络栈实践</a></li>
+<li>iOS9.0+支持HTTP2</li>
+<li><a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.html">NSURLSession</a></li>
+<li><a href="http://www.open-open.com/lib/view/open1478836390465.html">蘑菇街11.11：移动流量猛增，如何设计高并发多终端的无线网关</a></li>
+<li><a href="http://blog.csdn.net/hguisu/article/details/7445768/"><a href="http://blog.csdn.net/hguisu/article/details/7445768">Linux的SOCKET编程详解</a></a></li>
+</ul>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/6/23</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91.html'>移动开发</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15480679782285.html">
+                
+                  <h1>开发笔记4</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<ul>
+<li><a href="http://www.cocoachina.com/ios/20170502/19152.html">iOS 10.3开始可以动态改变app图标</a></li>
+<li><a href="http://www.cocoachina.com/ios/20170507/19201.html">浅谈iOS视频播放的N种解决方案</a></li>
+<li><a href="http://www.cocoachina.com/programmer/20170505/19189.html">【React Native】从源码一步一步解析它的实现原理</a></li>
+<li><a href="http://blog.jobbole.com/84903/">十分钟搞清字符集和字符编码</a></li>
+<li><a href="http://pingguohe.net/2016/01/31/lazyscroll.html">iOS 高性能异构滚动视图构建方案 —— LazyScrollView</a></li>
+<li><a href="http://pingguohe.net/2016/12/20/Tangram-design-and-practice.html">页面动态化的基础 —— Tangram</a></li>
+</ul>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/6/17</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91.html'>移动开发</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15480679782183.html">
+                
+                  <h1>开发笔记2</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h3 id="toc_0">数据</h3>
+
+<ul>
+<li><a href="https://9to5mac.com/2017/01/05/ios-10-now-installed-on-76-of-active-devices-according-to-apples-stats/">iOS10 设备安装率超7成</a></li>
+</ul>
+
+<p>看了下自己app的友盟统计，还有6%的iOS 8.x设备。等iOS 11出来后，再考虑放弃iOS 8.x用户吧。</p>
+
+<ul>
+<li><a href="http://www.cocoachina.com/programmer/20170210/18665.html">TIOBE 2月编程语言排行榜，Swift和Objective-C语言分别排在12和19位</a></li>
+</ul>
+
+<p>OC稳住呀～</p>
+
+<h3 id="toc_1">文章推荐（转）</h3>
+
+<ul>
+<li><a href="http://blog.ibireme.com/2015/11/02/mobile_image_benchmark/">移动端图片格式调研</a></li>
+</ul>
+
+<p>最近看到<a href="https://github.com/airbnb/lottie-ios">Lottie</a>项目，一个iOS，Android和React Native库，可以实时渲染After Effects动画，并且允许本地app像静态资源那样轻松地使用动画。回过头又把这篇图片格式调研的文章看了一遍，哈。这篇文章把移动开发常用的几种静态、动态图片做了详细的比较。</p>
+
+<ul>
+<li><a href="https://blog.yeatse.com/2016/10/26/support-nsurlprotocol-in-wkwebview/">让 WKWebView 支持 NSURLProtocol</a></li>
+</ul>
+
+<p><code>WKWebView</code>不支持<code>NSURLProtocol</code>，导致基于<code>UIWebView＋NSURLProtocol</code>并做了一些深度优化的，很难一下子就迁移到<code>WKWebView</code>。<code>WKWebView</code>内部使用了<code>NSURLProtocol</code>，但没有对外开放，不知道出于什么考虑。这篇文章以比较hack的方式让<code>WKWebView</code>支持<code>NSURLProtocol</code>。</p>
+
+<ul>
+<li><a href="http://mp.weixin.qq.com/s/qRW_akbU3TSd0SxpF3iQmQ">DynamicCocoa：滴滴 iOS 动态化方案的诞生与起航</a></li>
+</ul>
+
+<p>另一种Native动态化的方案，在OC编译器上动手脚，将OC代码自动编译成可动态下发的JS代码。</p>
+
+<ul>
+<li><a href="http://www.jianshu.com/p/c1904fd8db06">Xcode8带来的新特性和坑</a></li>
+</ul>
+
+<p>有些特性需要配合ios 10设备使用，比如内存循环引用、DYLD_PRINT_STATISTICS（打印应用预加载时间）等。</p>
+
+<p>在Scheme的Environment Variables添加DYLD_PRINT_STATISTICS＝YES，可以打印应用预加载时间。从打印出来的日志看，<code>dylib loading time</code>占用了不少时间，应该是跟加载的系统库和三方库有关。<br/>
+<code>The loading of Apple system frameworks is highly optimized but loading your embedded frameworks can be expensive.</code>  当三方库不采用Framework形式打包，加载时间是少了不少。</p>
+
+<pre><code class="language-text">// 三方库以Frameworks形式打包
+Total pre-main time: 392.25 milliseconds (100.0%)
+         dylib loading time: 336.73 milliseconds (85.8%)
+        rebase/binding time:  10.88 milliseconds (2.7%)
+            ObjC setup time:  15.91 milliseconds (4.0%)
+           initializer time:  28.65 milliseconds (7.3%)
+           slowest intializers :
+             libSystem.B.dylib :   4.63 milliseconds (1.1%)
+                  AFNetworking :  12.03 milliseconds (3.0%)
+</code></pre>
+
+<pre><code class="language-text">// 三方库以.a静态链接库形式链接
+Total pre-main time:  93.71 milliseconds (100.0%)
+         dylib loading time:  11.46 milliseconds (12.2%)
+        rebase/binding time:  27.05 milliseconds (28.8%)
+            ObjC setup time:  13.16 milliseconds (14.0%)
+           initializer time:  41.94 milliseconds (44.7%)
+           slowest intializers :
+             libSystem.B.dylib :   5.47 milliseconds (5.8%)
+   libBacktraceRecording.dylib :   4.48 milliseconds (4.7%)
+                        Fanmei :  54.14 milliseconds (57.7%)　
+</code></pre>
+
+<h3 id="toc_2">项目</h3>
+
+<ul>
+<li><a href="https://github.com/airbnb/lottie-ios">Lottie</a></li>
+</ul>
+
+<p>After Effects动画的渲染引擎。</p>
+
+<ul>
+<li><a href="https://github.com/facebookincubator/Keyframes">Keyframes</a></li>
+</ul>
+
+<p>A library for converting Adobe AE shape based animations to a data format and playing it back on Android and iOS devices.</p>
+
+<p>跟<a href="https://github.com/airbnb/lottie-ios">Lottie</a>类似，也是After Effects动画的渲染引擎。</p>
+
+<ul>
+<li><a href="https://github.com/Instagram/IGListKit">Instagram/IGListKit</a></li>
+</ul>
+
+<p>A data-driven UICollectionView framework for building fast and flexible lists.</p>
+
+<ul>
+<li><a href="https://github.com/Flipboard/FLEX">Flipboard/FLEX</a></li>
+</ul>
+
+<p>An in-app debugging and exploration tool for iOS</p>
+
+<p>iOS设备调试工具，可以查看沙盒，抓包，查看视图信息等。</p>
+
+<ul>
+<li><a href="https://github.com/material-components/material-components-ios">material-components-ios</a></li>
+</ul>
+
+<p>仿android的meterial design风格的控件</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/6/16</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91.html'>移动开发</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15480679782229.html">
+                
+                  <h1>开发笔记3</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h3 id="toc_0">数据</h3>
+
+<ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA3NTYzODYzMg==&amp;mid=2653578648&amp;idx=1&amp;sn=8fecce896bf881334507e7f3f3486c54&amp;chksm=84b3b79fb3c43e89c98ed2e7f60c3c59f00324f53fef012ed33cb8fc6b37e430e83a52dc5f68&amp;mpshare=1&amp;scene=1&amp;srcid=0216VUFfTaK8KjnNJHO0FXJ7#rd">2016 移动应用质量大数据报告</a></li>
+</ul>
+
+<p>主要是针对Crash和ANR的统计。</p>
+
+<h3 id="toc_1">文章推荐</h3>
+
+<ul>
+<li><a href="http://www.cocoachina.com/ios/20170302/18815.html">移动端监控体系之技术原理剖析</a></li>
+</ul>
+
+<p>监控先于优化。没有数据支撑的优化，往往没有说服力，也很难衡量优化的效果如何。</p>
+
+<ul>
+<li><a href="http://blog.flight.dev.qunar.com/2016/11/10/ios-data-persistence-learn/#more">iOS 中数据持久化的几种方式</a></li>
+</ul>
+
+<p>大部分App或多或少都会涉及到存储（持久化或缓存）。<a href="https://github.com/ibireme/YYCache">ibireme/YYCache</a>，支持在硬盘持久化和在内存中缓存，从功能、性能和接口易用性上都不错，目前项目中也在用，推荐。</p>
+
+<ul>
+<li><p><a href="http://stormzhang.com/2016/09/27/mobile-dev-vs-front-end-web-dev/">移动开发 OR WEB 前端？</a></p></li>
+<li><p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html">Flex 布局教程</a></p></li>
+</ul>
+
+<p>老文章了，视图布局机制在iOS、Android、Html CSS是相通的，可以互相借鉴。<a href="https://github.com/youngsoft/MyLinearLayout">youngsoft/MyLinearLayout</a>实现很多布局机制。</p>
+
+<p>MyLinearLayout is equivalent to: UIStackView of iOS and LinearLayout of Android.</p>
+
+<p>MyRelativeLayout is equivalent to: AutoLayout of iOS and RelativeLayout of Android.</p>
+
+<p>MyFrameLayout is equivalent to: FrameLayout of Android.</p>
+
+<p>MyTableLayout is equivalent to: TableLayout of Android and table of HTML.</p>
+
+<p>MyFlowLayout is equivalent to: flexbox of CSS3.</p>
+
+<p>MyFloatLayout is equivalent to: float of CSS.</p>
+
+<p>借鉴Android的LinearLayout以及Html CSS的FlexBox，自己写了<a href="https://github.com/fanmeiwireless/FMLayouts">FMLayouts</a>，对iOS的布局机制做补充。</p>
+
+<h3 id="toc_2">Android</h3>
+
+<ul>
+<li><p><a href="http://mp.weixin.qq.com/s?__biz=MzI3MDE0NzYwNA==&amp;mid=2651434652&amp;idx=1&amp;sn=da0ceda73595e5cb931abad7e51dbe62&amp;chksm=f12887e7c65f0ef1c086784e9ae77a7d9bd82daa6ba0302cebf307577ebd06fd3e0d9e37e87a&amp;mpshare=1&amp;scene=2&amp;srcid=0214hqv992PJvqbW94b0P2pv#rd">2017年,身为Android开发的你必须要掌握的热门开源框架</a></p></li>
+<li><p><a href="http://stormzhang.com/2017/02/16/google-events/">你可能不知道 GOOGLE 最近的「小动作」</a></p></li>
+</ul>
+
+<h3 id="toc_3">项目</h3>
+
+<ul>
+<li><a href="https://github.com/SnapKit/SnapKit">SnapKit/SnapKit</a></li>
+</ul>
+
+<p><a href="https://github.com/SnapKit/Masonry">SnapKit/Masonry</a>的Swift版本</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/6/16</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91.html'>移动开发</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15480679782141.html">
+                
+                  <h1>开发笔记1</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h3 id="toc_0">文章推荐</h3>
+
+<ul>
+<li><a href="http://www.infoq.com/cn/articles/2016-review-mobile">2016移动开发技术巡礼</a></li>
+</ul>
+
+<p>徐川大神对2016年移动技术发展的概述，以及对2017年的展望。总结了各种技术，热补丁、组件化、动态化、跨平台、直播、AR/VR等等。自己在项目实践中，也尝试了热补丁、动态化、组件化等技术，比较有体会。推荐他的博客<a href="http://mobilefrontier.github.io/">移动开发前线</a>，还是相当不错的。</p>
+
+<ul>
+<li><a href="http://pingguohe.net/2016/01/31/lazyscroll.html">苹果核 - iOS 高性能异构滚动视图构建方案 —— LazyScrollView</a></li>
+</ul>
+
+<p>对于往往存在大量异构元素的app首页或集合页，该方案的思路还是可以借鉴下的。</p>
+
+<ul>
+<li><a href="http://www.jianshu.com/p/90a90bd13aac">WKWebView从入门到趟坑</a></li>
+</ul>
+
+<p>为满足大部分动态化需求，在App中内嵌一个WebView支持H5页，这是比较常见的做法。iOS上就UIWebView和WKWebView，WKWebView相比较UIWebView，性能更优，但也多了不少限制。目前自己项目中也是直接使用WKWebView，好在H5和Native的交互比较少，对WKWebView也没有做多少优化。</p>
+
+<ul>
+<li><a href="http://www.cocoachina.com/swift/20161221/18407.html">Swift 并行编程现状和展望 - async/await 和参与者模式</a></li>
+</ul>
+
+<p>异步编程，特别是多层嵌套的情况，即使用了GCD&amp;Block回调方式去写，代码仍会过于凌乱，可读性也大打折扣。我会通过以下两种方法去处理，将每个异步回调的处理逻辑封装在一个函数内，或将每个异步过程封装起来（即Future／Promise的做法）。无论哪种，也都会额外增加些成本，结合自己项目内的代码风格和使用成本再选择一个合适的。</p>
+
+<ul>
+<li><a href="http://www.cocoachina.com/programmer/20170122/18604.html">2017，我的iOS进阶规划</a></li>
+</ul>
+
+<p>知识点比较基础，罗列得比较多，可以结合项目多看看。</p>
+
+<h3 id="toc_1">代码推荐</h3>
+
+<ul>
+<li><a href="https://github.com/vsouza/awesome-ios">vsouza/awesome-ios</a></li>
+</ul>
+
+<p>收集了大量的iOS开源项目、网页等等</p>
+
+<ul>
+<li><a href="http://www.jianshu.com/p/d75a9a8d13b5">33 个 2017 年必须了解的 iOS 开源库</a></li>
+</ul>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/1/24</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91.html'>移动开发</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8.html">
+                
+                  <h1>移动安全</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h3 id="toc_0">安全检查项</h3>
+
+<ul>
+<li>移动App上关键数据（密码、个人信息等）在存储、传输等各个阶段需要做一定的安全保护。下图罗列了常见的检查项。
+<img src="media/15479057717084/app_security_checks.png" alt="app_security_checks"/></li>
+</ul>
+
+<h3 id="toc_1">传输安全</h3>
+
+<ul>
+<li><p>保密性，消息是加密的，内容没有泄露，可以用对称加密算法进行加解密，如AES256。</p></li>
+<li><p>完整性，消息是完整的，内容没有被篡改，对消息做哈希得到摘要，作为消息的签名。哈希算法有SHA256等，MD5、SHA1已经不太安全，尽量用SHA256等相对安全的算法。</p></li>
+<li><p>真实性，消息是可靠的，内容来自受信的来源，验证来源的数字证书是否可靠。</p></li>
+</ul>
+
+<h3 id="toc_2">常见工具</h3>
+
+<ul>
+<li><p>class-dump-z<br/>
+一个跨平台的 Objective-C 接口提取器,用于分析 iPhoneOS 可执行文件中私有的 API。需 通过 Cydia 安装。</p></li>
+<li><p>darwin cc tools (otools) 一个开源的苹果程序编译和连接器。需通过 Cydia 安装。</p></li>
+<li><p>HTTP代理抓包工具(Fiddler)</p></li>
+<li><p>Plist文件查看器(plistEditor) </p></li>
+<li><p>iOS内存修改工具(iGameGuard) </p></li>
+<li><p>内购破解工具(LocalIAPStore、iAPFree) </p></li>
+<li><p>keychain-dumper<br/>
+该工具可以读取已越狱 IOS 设备中的 keychain。需通过 Cydia 安装。 </p></li>
+<li><p>Link Identity Editor (ldid)<br/>
+该工具可以协助测试人员修改 Mach-O 二进制文件的签名信息。需通过 Cydia 安装。 </p></li>
+<li><p>OpenSSH<br/>
+OpenSSH 是 Linux 下常用的服务,装上后设备可充当 SSH 服务端。需通过 Cydia 安装。 </p></li>
+<li><p>Snoop-it<br/>
+IOS APP 安全评估工具。可对 APP 进行静态、动态分析。需通过 Cydia 安装。</p></li>
+</ul>
+
+<h3 id="toc_3">相关博文</h3>
+
+<ul>
+<li><a href="http://security.ios-wiki.com/">ios-security</a></li>
+<li><a href="http://drops.wooyun.org/papers/345">在线支付逻辑漏洞总结</a></li>
+<li><a href="https://program-think.blogspot.com/2013/02/file-integrity-check.html?utm_source=tuicool&amp;utm_medium=referral">扫盲文件完整性校验——关于散列值和数字签名</a></li>
+<li><a href="https://program-think.blogspot.com/2010/02/introduce-digital-certificate-and-ca.html">数字证书及 CA 的扫盲介绍</a></li>
+<li><a href="http://www.techug.com/https-ssl-tls">https-ssl-tls</a></li>
+</ul>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/5/4</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91.html'>移动开发</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15479057717149.html">
+                
+                  <h1>移动三方应用分享</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h3 id="toc_0">iOS原生分享控件</h3>
+
+<pre><code class="language-text">    NSString *textToShare = @&quot;要分享的文本内容&quot;;
+    UIImage *imageToShare = [UIImage imageNamed:@&quot;shop&quot;];
+    NSURL *urlToShare = [NSURL URLWithString:@&quot;http://blog.csdn.net/hitwhylz&quot;];
+    NSArray *activityItems = @[textToShare, imageToShare, urlToShare];
+    
+    UIActivityViewController *vc = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];
+    [self presentViewController:vc animated:YES completion:nil];
+</code></pre>
+
+<h3 id="toc_1">三方开放平台</h3>
+
+<ul>
+<li>新浪微博 <a href="http://open.weibo.com">http://open.weibo.com</a></li>
+<li>腾讯微博 <a href="http://dev.t.qq.com">http://dev.t.qq.com</a></li>
+<li>QQ空间，朋友网 <a href="http://connect.qq.com/intro/login/">http://connect.qq.com/intro/login/</a></li>
+<li>QQ分享（QQ好友，QQ群等）<a href="http://mobile.qq.com/api/">http://mobile.qq.com/api/</a></li>
+<li>豆瓣社区 <a href="http://developers.douban.com">http://developers.douban.com</a></li>
+<li>人人网 <a href="http://dev.renren.com">http://dev.renren.com</a></li>
+<li>微信好友 微信朋友圈 <a href="http://open.weixin.qq.com">http://open.weixin.qq.com</a></li>
+<li><a href="http://mobile.umeng.com/social?spm=0.0.0.0.lW5N4c">友盟U-Share</a></li>
+<li>用过友盟Share，但是遇到友盟ShareSDK中使用的微信SDK版本与官方不同步的问题，后来放弃了友盟ShareSDK，全部采用原生官方SDK，如微信（好友、朋友圈）、QQ、微博，在国内，这三个分享渠道已经能覆盖80%了。</li>
+</ul>
+
+<h3 id="toc_2">URL Schemes</h3>
+
+<ul>
+<li>iOS应用间可以通过<code>URL Schemes</code>解决相互通信的问题。</li>
+<li>DemoA通过<code>openURL</code>唤起DemoB，并带上参数。</li>
+</ul>
+
+<pre><code class="language-text">DemoA
+
+[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@&quot;demob://page?sourcescheme=demoa&quot;]];
+</code></pre>
+
+<ul>
+<li>DemoB收到并解析参数并作逻辑处理，然后同样通过<code>openURL</code>返回到DemoA，并带上参数。</li>
+</ul>
+
+<pre><code class="language-text">DemoB
+
+- (BOOL)handleUrl:(NSURL *)url {
+    NSArray *querys = [url.query componentsSeparatedByString:@&quot;&amp;&quot;];
+    
+    NSMutableDictionary *queryDict = [[NSMutableDictionary alloc] init];
+    for (NSString *q in querys) {
+        NSArray *kv = [q componentsSeparatedByString:@&quot;=&quot;];
+        if (kv.count == 2) {
+            queryDict[kv[0]] = kv[1];
+        }
+    }
+    
+    NSString *returnScheme = queryDict[@&quot;sourcescheme&quot;];
+    
+    UIAlertController *vc = [UIAlertController alertControllerWithTitle:@&quot;url&quot;
+                                                                message:url.absoluteString
+                                                         preferredStyle:UIAlertControllerStyleAlert];
+    [vc addAction:[UIAlertAction actionWithTitle:@&quot;返回原应用&quot;
+                                           style:UIAlertActionStyleDefault
+                                         handler:^(UIAlertAction * _Nonnull action) {
+                                             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@&quot;%@://&quot;, returnScheme]]];
+                                         }]];
+    
+    [vc addAction:[UIAlertAction actionWithTitle:@&quot;留在当前应用&quot;
+                                           style:UIAlertActionStyleCancel
+                                         handler:^(UIAlertAction * _Nonnull action) {
+                                         }]];
+    
+    [self.window.rootViewController presentViewController:vc animated:YES completion:nil];
+    
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url NS_DEPRECATED_IOS(2_0, 9_0, &quot;Please use application:openURL:options:&quot;) __TVOS_PROHIBITED {
+    return [self handleUrl:url];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation NS_DEPRECATED_IOS(4_2, 9_0, &quot;Please use application:openURL:options:&quot;) __TVOS_PROHIBITED {
+    return [self handleUrl:url];
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary&lt;NSString*, id&gt; *)options NS_AVAILABLE_IOS(9_0) {
+    return [self handleUrl:url];
+
+}
+</code></pre>
+
+<p><img src="media/15479057717149/urlschemedemo.png" alt="urlschemedemo"/></p>
+
+<p><img src="media/15479057717149/iosappsinteraction.png" alt="iosappsinteraction"/></p>
+
+<h3 id="toc_3">三方分享或认证</h3>
+
+<ul>
+<li>三方应用分享或认证都会用到<code>URL Schemes</code>流程，实际过程和参数会更复杂点，还需要考虑安全性。</li>
+<li><p>如微信三方登录认证，除了三方应用通过URL Scheme跳转微信拿到code，再通过https请求微信后台拿到access_token，后续用https带上access_token可以请求各种资源。<br/>
+<img src="media/15479057717149/weixinlogin.png" alt="weixinlogin"/></p></li>
+<li><p>三方分享则是通过<code>URL Schemes</code>带上不同格式的数据（文本、图片、链接等）。</p></li>
+</ul>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/5/3</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91.html'>移动开发</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15479057717938.html">
+                
+                  <h1>Deep Linking</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h3 id="toc_0">概念理解</h3>
+
+<ul>
+<li><code>Deep Link</code>深度链接，打破APP沙盒壁垒，链接到App内具体的内容。另外，iOS9 <code>CoreSpotlight.framework</code>提供了些APP内容搜索的API，也可以认为是深度链接。</li>
+<li><code>Defferred Deep Link</code>延迟深度链接，在深度链接基础上改进，如果链接的App未安装，则先跳转到应用中心或AppStore提示安装App。</li>
+<li><code>Universal Link</code>，iOS9上提供了Associated－Domain关联域名，用于在网页或App内唤起其他App。<a href="http://www.jianshu.com/p/16374288c976">Universal Links通用链接应用跳转总结以及坑</a></li>
+<li><code>Custom URL Scheme</code>，iOS提供的App间跳转的协议。</li>
+</ul>
+
+<h3 id="toc_1">产品</h3>
+
+<ul>
+<li><a href="http://deepshare.io/deeplink/">DeepShare</a></li>
+</ul>
+
+<h3 id="toc_2">参考</h3>
+
+<ul>
+<li><a href="http://www.cocoachina.com/ios/20160105/14871.html">iOS 中的 Deferred Deep Linking</a></li>
+<li><a href="http://www.csdn.net/article/2015-07-16/2825222-search-apis">实战iOS 9：开发者必须掌握的三种搜索API</a></li>
+</ul>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2016/4/12</span>
                     <span>posted in&nbsp;</span> 
           				  
           					    <span class="posted-in"><a href='%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91.html'>移动开发</a></span>
@@ -193,6 +1465,16 @@
             <a href="%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91.html"><strong>移动开发</strong></a>
         
             <a href="%E6%9D%82%E6%83%B3.html"><strong>杂想</strong></a>
+        
+            <a href="iOS.html"><strong>iOS</strong></a>
+        
+            <a href="%E5%89%8D%E7%AB%AF.html"><strong>前端</strong></a>
+        
+            <a href="%E6%9E%B6%E6%9E%84.html"><strong>架构</strong></a>
+        
+            <a href="Android.html"><strong>Android</strong></a>
+        
+            <a href="%E4%B8%B4%E6%97%B6.html"><strong>临时</strong></a>
          
         </p>
 
@@ -215,25 +1497,25 @@
 		  
 		      
 			      <li class="post">
-			        <a href="15485137190847.html">读书目录</a>
+			        <a href="15524404049139.html">技术知识导图</a>
 			      </li>
 		     
 		  
 		      
 			      <li class="post">
-			        <a href="15480679782005.html">问题：UICollectionView Cell之间存在缝隙</a>
+			        <a href="15523541981699.html">React Native</a>
 			      </li>
 		     
 		  
 		      
 			      <li class="post">
-			        <a href="15480679782500.html">Auto Layout</a>
+			        <a href="15516874524849.html">Swift</a>
 			      </li>
 		     
 		  
 		      
 			      <li class="post">
-			        <a href="15480679782446.html">AppLink</a>
+			        <a href="15514141804337.html">杂</a>
 			      </li>
 		     
 		  

@@ -1,0 +1,547 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  weex代码走读 - 李传格的博客
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="李传格的博客" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:jacoli.github.io ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; 李传格的博客</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">Home</a></li>
+        
+        <li><a target="_self" href="archives.html">Archives</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91.html">移动开发</a></li>
+        
+            <li><a href="%E6%9D%82%E6%83%B3.html">杂想</a></li>
+        
+            <li><a href="iOS.html">iOS</a></li>
+        
+            <li><a href="%E5%89%8D%E7%AB%AF.html">前端</a></li>
+        
+            <li><a href="%E6%9E%B6%E6%9E%84.html">架构</a></li>
+        
+            <li><a href="Android.html">Android</a></li>
+        
+            <li><a href="%E4%B8%B4%E6%97%B6.html">临时</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>weex代码走读</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2019/1/19</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91.html'>移动开发</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <ul>
+<li><p>WXSDKInstance -&gt; WXBridgeManager-&gt;WXBridgeContext-&gt;WXJSCoreBridge<WXBridgeProtocol>-&gt;JSContext</p></li>
+<li><p>WXSDKInstance -&gt; WXComponentManager</p></li>
+<li><p>WXBridgeManager : 对WXBridgeContext进一步封装，提供JS API调用，JS 事件发送，注册Native Call Handler，注册Native模块Handler、注册Native组件Handler、注册Native服务Handler等接口。提供Bridge独立线程，上述接口基本上都在该线程中执行。</p></li>
+<li><p>WXComponentManager ：管理着组件的布局，样式等</p></li>
+</ul>
+
+<pre><code class="language-text">// WXComponentManager.mm
+
+- (void)_layoutAndSyncUI
+{
+    [self _layout];
+    if(_uiTaskQueue.count &gt; 0){
+        [self _syncUITasks];
+        _noTaskTickCount = 0;
+    } else {
+        // suspend display link when there&#39;s no task for 1 second, in order to save CPU time.
+        _noTaskTickCount ++;
+        if (_noTaskTickCount &gt; 60) {
+            [self _suspendDisplayLink];
+        }
+    }
+}
+
+- (void)_layout
+{
+    BOOL needsLayout = NO;
+
+    needsLayout = [_rootComponent needsLayout];
+
+    if (!needsLayout) {
+        return;
+    }
+#ifdef DEBUG
+    WXLogDebug(@&quot;flexLayout -&gt; action__ calculateLayout root&quot;);
+#endif
+
+        std::pair&lt;float, float&gt; renderPageSize;
+        renderPageSize.first = self.weexInstance.frame.size.width;
+        renderPageSize.second = self.weexInstance.frame.size.height;
+        _rootFlexCSSNode-&gt;calculateLayout(renderPageSize);
+    NSMutableSet&lt;WXComponent *&gt; *dirtyComponents = [NSMutableSet set];
+    [_rootComponent _calculateFrameWithSuperAbsolutePosition:CGPointZero gatherDirtyComponents:dirtyComponents];
+    [self _calculateRootFrame];
+
+    for (WXComponent *dirtyComponent in dirtyComponents) {
+        [self _addUITask:^{
+            [dirtyComponent _layoutDidFinish];
+        }];
+    }
+}
+</code></pre>
+
+<ul>
+<li><p>WXSDKInstance : 加载bundle文件，管理、渲染根视图。</p></li>
+<li><p>WXSDKManager ：管理WXSDKInstance多实例</p></li>
+</ul>
+
+<pre><code class="language-text">//WXSDKInstance.m
+
+- (void)_renderWithMainBundleString:(NSString *)mainBundleString
+{
+    if (!self.instanceId) {
+        WXLogError(@&quot;Fail to find instance！&quot;);
+        return;
+    }
+    self.performance.renderTimeOrigin = CACurrentMediaTime()*1000;
+
+    if (![WXUtility isBlankString:self.pageName]) {
+        WXLog(@&quot;Start rendering page:%@&quot;, self.pageName);
+    } else {
+        WXLogWarning(@&quot;WXSDKInstance&#39;s pageName should be specified.&quot;);
+        id&lt;WXJSExceptionProtocol&gt; jsExceptionHandler = [WXHandlerFactory handlerForProtocol:@protocol(WXJSExceptionProtocol)];
+        if ([jsExceptionHandler respondsToSelector:@selector(onRuntimeCheckException:)]) {
+            WXRuntimeCheckException * runtimeCheckException = [WXRuntimeCheckException new];
+            runtimeCheckException.exception = @&quot;We highly recommend you to set pageName.\n Using WXSDKInstance * instance = [WXSDKInstance new]; instance.pageName = @\&quot;your page name\&quot; to fix it&quot;;
+            [jsExceptionHandler onRuntimeCheckException:runtimeCheckException];
+        }
+    }
+    if (!self.userInfo) {
+        self.userInfo = [NSMutableDictionary new];
+    }
+    if (!self.userInfo[@&quot;jsMainBundleStringContentLength&quot;]) {
+        self.userInfo[@&quot;jsMainBundleStringContentLength&quot;] = @([mainBundleString length]);
+    }
+    if (!self.userInfo[@&quot;jsMainBundleStringContentLength&quot;]) {
+        self.userInfo[@&quot;jsMainBundleStringContentMd5&quot;] = [WXUtility md5:mainBundleString];
+    }
+
+    id&lt;WXPageEventNotifyEventProtocol&gt; pageEvent = [WXSDKEngine handlerForProtocol:@protocol(WXPageEventNotifyEventProtocol)];
+    if ([pageEvent respondsToSelector:@selector(pageStart:)]) {
+        [pageEvent pageStart:self.instanceId];
+    }
+
+    WX_MONITOR_INSTANCE_PERF_START(WXPTFirstScreenRender, self);
+    WX_MONITOR_INSTANCE_PERF_START(WXPTAllRender, self);
+
+    NSMutableDictionary *dictionary = [_options mutableCopy];
+    if ([WXLog logLevel] &gt;= WXLogLevelLog) {
+        dictionary[@&quot;debug&quot;] = @(YES);
+    }
+
+    if ([WXDebugTool getReplacedBundleJS]) {
+        mainBundleString = [WXDebugTool getReplacedBundleJS];
+    }
+
+    //TODO WXRootView
+    WXPerformBlockOnMainThread(^{
+        _rootView = [[WXRootView alloc] initWithFrame:self.frame];
+        _rootView.instance = self;
+        if(self.onCreate) {
+            self.onCreate(_rootView);
+        }
+    });
+    // ensure default modules/components/handlers are ready before create instance
+    [WXSDKEngine registerDefaults];
+     [[NSNotificationCenter defaultCenter] postNotificationName:WX_SDKINSTANCE_WILL_RENDER object:self];
+
+    _needDestroy = YES;
+    _mainBundleString = mainBundleString;
+    if ([self _handleConfigCenter]) {
+        NSError * error = [NSError errorWithDomain:WX_ERROR_DOMAIN code:9999 userInfo:nil];
+        if (self.onFailed) {
+            self.onFailed(error);
+        }
+        return;
+    }
+
+    _needDestroy = YES;
+    [WXTracingManager startTracingWithInstanceId:self.instanceId ref:nil className:nil name:WXTExecJS phase:WXTracingBegin functionName:@&quot;renderWithMainBundleString&quot; options:@{@&quot;threadName&quot;:WXTMainThread}];
+    [[WXSDKManager bridgeMgr] createInstance:self.instanceId template:mainBundleString options:dictionary data:_jsData];
+    [WXTracingManager startTracingWithInstanceId:self.instanceId ref:nil className:nil name:WXTExecJS phase:WXTracingEnd functionName:@&quot;renderWithMainBundleString&quot; options:@{@&quot;threadName&quot;:WXTMainThread}];
+
+    WX_MONITOR_PERF_SET(WXPTBundleSize, [mainBundleString lengthOfBytesUsingEncoding:NSUTF8StringEncoding], self);
+}
+</code></pre>
+
+<pre><code class="language-text">//WXBridgeProtocol.h
+
+@protocol WXBridgeProtocol &lt;NSObject&gt;
+
+@property (nonatomic, readonly) JSValue* exception;
+
+/**
+ * Executes the js framework code in javascript engine
+ * You can do some setup in this method
+ */
+- (void)executeJSFramework:(NSString *)frameworkScript;
+
+/**
+ * Executes the js code in javascript engine
+ * You can do some setup in this method
+ */
+- (void)executeJavascript:(NSString *)script;
+
+/**
+ * Executes global js method with specific arguments
+ */
+- (JSValue *)callJSMethod:(NSString *)method args:(NSArray*)args;
+
+/**
+ * Register callback when call native tasks occur
+ */
+- (void)registerCallNative:(WXJSCallNative)callNative;
+
+/**
+ * Reset js engine environment, called when any environment variable is changed.
+ */
+- (void)resetEnvironment;
+</code></pre>
+
+<pre><code class="language-text">// WXJSCoreBridge.m
+
+- (void)executeJSFramework:(NSString *)frameworkScript
+{
+    WXAssertParam(frameworkScript);
+    if (WX_SYS_VERSION_GREATER_THAN_OR_EQUAL_TO(@&quot;8.0&quot;)) {
+        NSString * fileName = @&quot;native-bundle-main.js&quot;;
+        if ([WXSDKManager sharedInstance].multiContext) {
+            fileName = @&quot;weex-main-jsfm.js&quot;;
+        }
+        [_jsContext evaluateScript:frameworkScript withSourceURL:[NSURL URLWithString:fileName]];
+    }else{
+        [_jsContext evaluateScript:frameworkScript];
+    }
+}
+
+- (JSValue *)callJSMethod:(NSString *)method args:(NSArray *)args
+{
+    WXLogDebug(@&quot;Calling JS... method:%@, args:%@&quot;, method, args);
+    return [[_jsContext globalObject] invokeMethod:method withArguments:args];
+}
+
+- (void)registerCallNative:(WXJSCallNative)callNative
+{
+    JSValue* (^callNativeBlock)(JSValue *, JSValue *, JSValue *) = ^JSValue*(JSValue *instance, JSValue *tasks, JSValue *callback){
+        NSString *instanceId = [instance toString];
+        NSArray *tasksArray = [tasks toArray];
+        NSString *callbackId = [callback toString];
+        WXLogDebug(@&quot;Calling native... instance:%@, tasks:%@, callback:%@&quot;, instanceId, tasksArray, callbackId);
+        return [JSValue valueWithInt32:(int32_t)callNative(instanceId, tasksArray, callbackId) inContext:[JSContext currentContext]];
+    };
+
+    _jsContext[@&quot;callNative&quot;] = callNativeBlock;
+}
+</code></pre>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15478656888498.html" 
+          title="Previous Post: ">&laquo; </a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15477181743744.html" 
+          title="Next Post: "> &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>李传格的博客</h1>
+                <div class="site-des"></div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91.html"><strong>移动开发</strong></a>
+        
+            <a href="%E6%9D%82%E6%83%B3.html"><strong>杂想</strong></a>
+        
+            <a href="iOS.html"><strong>iOS</strong></a>
+        
+            <a href="%E5%89%8D%E7%AB%AF.html"><strong>前端</strong></a>
+        
+            <a href="%E6%9E%B6%E6%9E%84.html"><strong>架构</strong></a>
+        
+            <a href="Android.html"><strong>Android</strong></a>
+        
+            <a href="%E4%B8%B4%E6%97%B6.html"><strong>临时</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15535700326071.html">对移动客户端技术的思考</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15524404049139.html">技术知识导图</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15523541981699.html">React Native</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15516874524849.html">Swift</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15514141804337.html">杂</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+
+
+  </body>
+</html>
